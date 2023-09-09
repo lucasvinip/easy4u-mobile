@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native';
 interface InputTextProps {
   label: string,
   mode: 'flat' | 'outlined'
-  keyboardType: 'default' | 'email-address',
+  keyboardType: 'default' | 'email-address' | 'numeric' | 'web-search',
   underlineColor: string,
   theme: typeof DefaultTheme
   fontSize?: number,
@@ -46,22 +46,3 @@ const InputText = ({
 };
 
 export default InputText;
-
-
-{/* <TextInput
-            theme={themaTextInput}
-            style={{ fontSize: 12, fontFamily: theme.FONTS.Popp400, backgroundColor: 'white', color: 'blue' }}
-            label={"EMAIL"}
-            mode='flat'
-            keyboardType='email-address'
-            underlineColor='#F3F2F2'
-          />
-          <TextInput
-            theme={themaTextInput}
-            style={{ fontSize: 12, fontFamily: theme.FONTS.Popp400, backgroundColor: 'white', paddingTop: 18}}
-            label={"EMAIL"}
-            secureTextEntry
-            keyboardType='default'
-            mode='flat'
-            underlineColor='#F3F2F2'
-          /> */}

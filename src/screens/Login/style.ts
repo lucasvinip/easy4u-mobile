@@ -22,8 +22,8 @@ ContainerHeader.Text = styled.Text`
 `;
 ContainerHeader.SubText = styled.Text`
   font-family: ${theme.FONTS.Popp400};
-  font-size: ${RFValue(18)}px;
-  color: ${theme.COLORS.Gray7868686};
+  font-size: ${RFValue(16)}px;
+  color: ${theme.COLORS.Gray868686};
 `;
 
 

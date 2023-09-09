@@ -1,12 +1,5 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import {
-  Container,
-  ContainerHeader,
-  ContainerInputs,
-  ContainerClicks,
-  ContainerFooter,
-} from './style';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign } from '@expo/vector-icons';
@@ -16,6 +9,13 @@ import Button from '../../components/Button/Button';
 import theme from '../../styles/theme';
 import { AppTexts } from '../../assets/strings';
 import InputText from '../../components/TextInput/inputText';
+import {
+  Container,
+  ContainerHeader,
+  ContainerInputs,
+  ContainerClicks,
+  ContainerFooter,
+} from './style';
 
 
 
@@ -55,7 +55,7 @@ const Login = () => {
             label='EMAIL'
             mode='flat'
             keyboardType='email-address'
-            underlineColor={theme.COLORS.Gray7868686}
+            underlineColor={theme.COLORS.Gray868686}
             theme={themeTextInput}
             background='white'
             fontSize={RFValue(12)}
@@ -65,7 +65,7 @@ const Login = () => {
             label='SENHA'
             mode='flat'
             keyboardType='default'
-            underlineColor={theme.COLORS.Gray7868686}
+            underlineColor={theme.COLORS.Gray868686}
             theme={themeTextInput}
             background='white'
             fontSize={RFValue(12)}
@@ -117,7 +117,7 @@ const Login = () => {
                 paddingRight: RFValue(33.5),
                 color: theme.COLORS.White2F3F3F3,
                 fontSize: 28,
-                paddingTop: RFValue(7.2)
+                paddingTop: RFValue(6.5)
               }} />
 
               <Text style={{

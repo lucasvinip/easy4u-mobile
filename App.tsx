@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-import { Text, View } from 'react-native';
+import { Keyboard, Pressable, Text, View } from 'react-native';
 import { ThemeProvider } from 'styled-components/native'
 import { StatusBar } from 'expo-status-bar';
 
-import { Login } from './src/screens/Login/Login';
+
 
 import {
   useFonts,
@@ -20,7 +20,10 @@ import {
   Raleway_700Bold
 } from '@expo-google-fonts/raleway'
 import COLORS from './src/styles/theme'
-
+import { ForgotPassword } from './src/screens/ForgotPassword/ForgotPassword';
+import { Login } from './src/screens/Login/Login';
+import { CreateAccount } from './src/screens/CreateAccount/CreateAccount';
+import { ProfileSetting } from './src/screens/ProfileSetting/ProfileSetting';
 
 
 const App: React.FC = () => {
@@ -45,18 +48,25 @@ const App: React.FC = () => {
   }
 
   return (
+
     <ThemeProvider theme={COLORS}>
       <StatusBar
         style='dark'
         translucent backgroundColor='transparent'
       />
-      <View style={{
-        flex: 1, 
-        
-      }} onLayout={onLayoutRootView}>
-        <Login />
-      </View>
+      <Pressable style={{flex: 1}}
+        onPress={Keyboard.dismiss}
+        >
+        <View onLayout={onLayoutRootView}>
+          {/* <Login /> */}
+          {/* <ForgotPassword
+          /> */}
+          {/* <CreateAccount/> */}
+          <ProfileSetting/>
+        </View>
+      </Pressable>
     </ThemeProvider>
+
   )
 }
 

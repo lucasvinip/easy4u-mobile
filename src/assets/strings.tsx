@@ -21,9 +21,9 @@ export const AppTexts = {
     Create_Account: 'CRIAR CONTA',
 
     Create_a_Account_now: 'Crie uma conta agora!',
-    Join_Name_Email_Password: 'Entre com nome, email e senha para criar a conta.',
+    Join_Name_Email_Password: 'Entre com nome completo, cpf, email e senha para criar a conta.',
 
-    Already_Account: 'Já tenho um conta!',
+    Already_Account: 'Já tenho uma conta!',
     Full_Name: 'NOME COMPLETO',
 
     Cpf: 'CPF',
