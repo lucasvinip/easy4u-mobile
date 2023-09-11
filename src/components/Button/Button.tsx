@@ -5,23 +5,26 @@ import { RFValue } from 'react-native-responsive-fontsize';
 interface ButtonProps {
     background: string,
     width: number
-    heigh: number,
+    height: number,
     borderRadius: number
     text: string,
     fontFamily: string,
+    fontSize: number
 };
 const Button = ({
     background,
     width,
-    heigh,
+    height,
     borderRadius,
     text,
-    fontFamily }: ButtonProps) => {
+    fontFamily,
+    fontSize
+ }: ButtonProps) => {
     const styles = StyleSheet.create({
         button: {
             backgroundColor: background,
             width: RFValue(width),
-            height: RFValue(heigh),
+            height: RFValue(height),
             borderRadius: RFValue(borderRadius),
             alignItems: 'center',
             justifyContent: 'center'
@@ -29,6 +32,7 @@ const Button = ({
         text: {
             color: 'white',
             fontFamily: fontFamily,
+            fontSize: RFValue(fontSize)
         },
     });
 

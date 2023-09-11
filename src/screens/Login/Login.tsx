@@ -58,8 +58,9 @@ const Login = () => {
             underlineColor={theme.COLORS.Gray868686}
             theme={themeTextInput}
             background='white'
-            fontSize={RFValue(12)}
+            fontSize={12}
             fontFamily={theme.FONTS.Popp400}
+            paddingTop={5}
           />
           <InputText
             label='SENHA'
@@ -68,36 +69,38 @@ const Login = () => {
             underlineColor={theme.COLORS.Gray868686}
             theme={themeTextInput}
             background='white'
-            fontSize={RFValue(12)}
+            fontSize={12}
             fontFamily={theme.FONTS.Popp400}
-            paddingTop={RFValue(18)}
+            paddingTop={18}
           />
 
         </ContainerInputs>
 
         <ContainerClicks>
 
-          <ContainerClicks.Text>
-            {AppTexts.Forgot_Password}
-          </ContainerClicks.Text>
-
+          <TouchableOpacity>
+            <ContainerClicks.Text>
+              {AppTexts.Forgot_Password}
+            </ContainerClicks.Text>
+          </TouchableOpacity>
           <Button
             text={AppTexts.Join}
             fontFamily={theme.FONTS.Popp700}
             background={theme.COLORS.OrangeFF6C44}
-            width={RFValue(278)}
-            heigh={RFValue(35)}
-            borderRadius={RFValue(4)}
+            width={330}
+            height={40}
+            borderRadius={4}
+            fontSize={14}
           />
 
           <ContainerClicks.Container>
 
-            <ContainerClicks.Container.Text1>
-              {AppTexts.Dont_Have_Account}
-            </ContainerClicks.Container.Text1>
-            <ContainerClicks.Container.Text2>
-              {AppTexts.Create_a_Account}
-            </ContainerClicks.Container.Text2>
+            <TouchableOpacity>
+              <ContainerClicks.Container.Text1>{AppTexts.Dont_Have_Account}</ContainerClicks.Container.Text1>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <ContainerClicks.Container.Text2>{AppTexts.Create_a_Account}</ContainerClicks.Container.Text2>
+            </TouchableOpacity>
 
           </ContainerClicks.Container>
 
@@ -114,22 +117,23 @@ const Login = () => {
             <ContainerFooter.Touchable.View>
 
               <AntDesign name='googleplus' style={{
-                paddingRight: RFValue(33.5),
+                paddingRight: RFValue(17),
+                paddingLeft: RFValue(15),
                 color: theme.COLORS.White2F3F3F3,
                 fontSize: 28,
-                paddingTop: RFValue(6.5)
+                paddingTop: RFValue(5)
               }} />
 
               <Text style={{
                 color: 'white',
                 fontFamily: theme.FONTS.Popp700,
-                paddingTop: RFValue(9.5)
+                paddingTop: RFValue(8)
               }}>
                 {AppTexts.Connect_Google.toUpperCase()}
               </Text>
 
             </ContainerFooter.Touchable.View>
-            
+
           </ContainerFooter.Touchable>
 
         </ContainerFooter>

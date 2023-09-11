@@ -50,7 +50,7 @@ const CreateAccount = () => {
                         underlineColor={theme.COLORS.Gray868686}
                         theme={themeTextInput}
                         background='white'
-                        fontSize={RFValue(12)}
+                        fontSize={12}
                         fontFamily={theme.FONTS.Popp400}
                         paddingTop={12}
                     />
@@ -61,7 +61,7 @@ const CreateAccount = () => {
                         underlineColor={theme.COLORS.Gray868686}
                         theme={themeTextInput}
                         background='white'
-                        fontSize={RFValue(12)}
+                        fontSize={12}
                         fontFamily={theme.FONTS.Popp400}
                         paddingTop={14}
                     />
@@ -72,7 +72,7 @@ const CreateAccount = () => {
                         underlineColor={theme.COLORS.Gray868686}
                         theme={themeTextInput}
                         background='white'
-                        fontSize={RFValue(12)}
+                        fontSize={12}
                         fontFamily={theme.FONTS.Popp400}
                         paddingTop={14}
                     />
@@ -83,7 +83,7 @@ const CreateAccount = () => {
                         underlineColor={theme.COLORS.Gray868686}
                         theme={themeTextInput}
                         background='white'
-                        fontSize={RFValue(12)}
+                        fontSize={12}
                         fontFamily={theme.FONTS.Popp400}
                         paddingTop={14}
                     />
@@ -94,9 +94,10 @@ const CreateAccount = () => {
                         text={AppTexts.Join}
                         fontFamily={theme.FONTS.Popp700}
                         background={theme.COLORS.OrangeFF6C44}
-                        width={RFValue(260)}
-                        heigh={RFValue(35)}
-                        borderRadius={RFValue(4)}
+                        width={260}
+                        height={40}
+                        borderRadius={4}
+                        fontSize={14}
                     />
 
                 </ContainerButton>

@@ -24,6 +24,7 @@ import { ForgotPassword } from './src/screens/ForgotPassword/ForgotPassword';
 import { Login } from './src/screens/Login/Login';
 import { CreateAccount } from './src/screens/CreateAccount/CreateAccount';
 import { ProfileSetting } from './src/screens/ProfileSetting/ProfileSetting';
+import { Orders } from './src/screens/Orders/Orders';
 
 
 const App: React.FC = () => {
@@ -62,7 +63,8 @@ const App: React.FC = () => {
           {/* <ForgotPassword
           /> */}
           {/* <CreateAccount/> */}
-          <ProfileSetting/>
+          {/* <ProfileSetting/> */}
+          <Orders/>
         </View>
       </Pressable>
     </ThemeProvider>

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import theme from '../../styles/theme';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 
 export const Container = styled.View`
@@ -12,7 +12,7 @@ export const Container = styled.View`
 
 
 export const ContainerHeader = styled.View`
-  height: ${RFValue(34)}%;
+  height: ${RFPercentage(4)}%;
   justify-content: flex-end;
 `;
 ContainerHeader.Text = styled.Text`
@@ -24,19 +24,19 @@ ContainerHeader.SubText = styled.Text`
   font-family: ${theme.FONTS.Popp400};
   font-size: ${RFValue(16)}px;
   color: ${theme.COLORS.Gray868686};
+  width: ${RFValue(280)}px;
 `;
 
 
 export const ContainerInputs = styled.View`
-  padding-top: ${RFValue(8)}px;
+  padding-top: ${RFValue(9)}px;
 `;
 
 
 export const ContainerClicks = styled.View` 
   justify-content: space-around;
   align-items: center;
-  height: ${RFValue(21)}%;
-  /* background-color: green; */
+  height: ${RFPercentage(4)}%;
 `;
 ContainerClicks.Text = styled.Text`
   font-size: ${RFValue(12)}px;
@@ -45,7 +45,7 @@ ContainerClicks.Text = styled.Text`
 `;
 ContainerClicks.Container = styled.View`
   flex-direction: row;
-  width: ${RFValue(95)}%;
+  width: ${RFPercentage(14)}%;
   justify-content: space-evenly;
 `;
 ContainerClicks.Container.Text1 = styled.Text`
@@ -63,7 +63,7 @@ ContainerClicks.Container.Text2 = styled.Text`
 export const ContainerFooter = styled.View` 
   align-items: center;
   justify-content: space-around;
-  height: ${RFValue(15)}%;
+  height: ${RFPercentage(3)}%;
 `;
 ContainerFooter.Text = styled.Text`
   font-size: ${RFValue(16)}px;
@@ -72,12 +72,11 @@ ContainerFooter.Text = styled.Text`
 ContainerFooter.Touchable = styled.TouchableOpacity`
   border-radius: ${RFValue(4)}px;
   background-color: ${theme.COLORS.Blue4285F4};
-  width: ${RFValue(310)}px;
+  width: ${RFValue(300)}px;
   height: ${RFValue(37)}px;
-  align-items: center;
 `;
 ContainerFooter.Touchable.View = styled.View`
   flex-direction: row;
-  width: ${RFValue(82)}%;
+  width: ${RFPercentage(15)}%;
   justify-content: flex-start;
 `;

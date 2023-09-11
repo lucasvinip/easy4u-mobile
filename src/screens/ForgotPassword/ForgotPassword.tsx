@@ -48,18 +48,19 @@ const ForgotPassword = () => {
                     underlineColor={theme.COLORS.Gray868686}
                     theme={themeTextInput}
                     background='white'
-                    fontSize={RFValue(12)}
+                    fontSize={12}
                     fontFamily={theme.FONTS.Popp400}
-                    paddingTop={RFValue(12)}
+                    paddingTop={12}
                 />
                 <ContainerButton>
                     <Button
                         text={AppTexts.Reset_Password.toUpperCase()}
                         fontFamily={theme.FONTS.Popp700}
                         background={theme.COLORS.OrangeFF6C44}
-                        width={RFValue(260)}
-                        heigh={RFValue(35)}
-                        borderRadius={RFValue(4)}
+                        width={260}
+                        height={40}
+                        borderRadius={4}
+                        fontSize={14}
                     />
                 </ContainerButton>
 

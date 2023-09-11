@@ -1,4 +1,4 @@
-import { RFValue } from "react-native-responsive-fontsize";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import styled from 'styled-components/native';
 import theme from "../../styles/theme";
 
@@ -13,7 +13,7 @@ margin-left: ${RFValue(20)}px;
 
 
 export const ContainerHeader = styled.View`
-    height: ${RFValue(52)}%;
+    height: ${RFPercentage(8)}%;
   justify-content: flex-end;
 
 `;
