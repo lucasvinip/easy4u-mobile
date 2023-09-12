@@ -59,12 +59,12 @@ const App: React.FC = () => {
         onPress={Keyboard.dismiss}
         >
         <View onLayout={onLayoutRootView}>
-          {/* <Login /> */}
+          <Login />
           {/* <ForgotPassword
           /> */}
           {/* <CreateAccount/> */}
           {/* <ProfileSetting/> */}
-          <Orders/>
+          {/* <Orders/> */}
         </View>
       </Pressable>
     </ThemeProvider>

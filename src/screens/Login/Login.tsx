@@ -34,23 +34,16 @@ const Login = () => {
 
   return (
     <SafeAreaView>
-
       <Container>
-
         <ContainerHeader>
-
           <ContainerHeader.Text>
             {AppTexts.Welcome}
           </ContainerHeader.Text>
-
           <ContainerHeader.SubText>
             {AppTexts.Enjoy_Cafeteria}
           </ContainerHeader.SubText>
-
         </ContainerHeader>
-
         <ContainerInputs>
-
           <InputText
             label='EMAIL'
             mode='flat'
@@ -73,11 +66,8 @@ const Login = () => {
             fontFamily={theme.FONTS.Popp400}
             paddingTop={18}
           />
-
         </ContainerInputs>
-
         <ContainerClicks>
-
           <TouchableOpacity>
             <ContainerClicks.Text>
               {AppTexts.Forgot_Password}
@@ -87,35 +77,26 @@ const Login = () => {
             text={AppTexts.Join}
             fontFamily={theme.FONTS.Popp700}
             background={theme.COLORS.OrangeFF6C44}
-            width={330}
+            width={310}
             height={40}
             borderRadius={4}
             fontSize={14}
           />
-
           <ContainerClicks.Container>
-
             <TouchableOpacity>
               <ContainerClicks.Container.Text1>{AppTexts.Dont_Have_Account}</ContainerClicks.Container.Text1>
             </TouchableOpacity>
             <TouchableOpacity>
               <ContainerClicks.Container.Text2>{AppTexts.Create_a_Account}</ContainerClicks.Container.Text2>
             </TouchableOpacity>
-
           </ContainerClicks.Container>
-
         </ContainerClicks>
-
         <ContainerFooter>
-
           <ContainerFooter.Text>
             {AppTexts.Or}
           </ContainerFooter.Text>
-
           <ContainerFooter.Touchable>
-
             <ContainerFooter.Touchable.View>
-
               <AntDesign name='googleplus' style={{
                 paddingRight: RFValue(17),
                 paddingLeft: RFValue(15),
@@ -123,7 +104,6 @@ const Login = () => {
                 fontSize: 28,
                 paddingTop: RFValue(5)
               }} />
-
               <Text style={{
                 color: 'white',
                 fontFamily: theme.FONTS.Popp700,
@@ -131,15 +111,10 @@ const Login = () => {
               }}>
                 {AppTexts.Connect_Google.toUpperCase()}
               </Text>
-
             </ContainerFooter.Touchable.View>
-
           </ContainerFooter.Touchable>
-
         </ContainerFooter>
-
       </Container>
-
     </SafeAreaView>
   )
 };

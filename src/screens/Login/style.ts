@@ -4,15 +4,15 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 
 export const Container = styled.View`
-  margin-left: ${RFValue(20)}px;
-  margin-right: ${RFValue(20)}px;
+  margin-left: ${RFValue(15)}px;
+  margin-right: ${RFValue(15)}px;
   background-color: ${theme.COLORS.Whiteffffff};
   justify-content: center;
 `;
 
 
 export const ContainerHeader = styled.View`
-  height: ${RFPercentage(4)}%;
+  height: ${RFPercentage(4.5)}%;
   justify-content: flex-end;
 `;
 ContainerHeader.Text = styled.Text`
@@ -36,7 +36,7 @@ export const ContainerInputs = styled.View`
 export const ContainerClicks = styled.View` 
   justify-content: space-around;
   align-items: center;
-  height: ${RFPercentage(4)}%;
+  height: ${RFPercentage(3)}%;
 `;
 ContainerClicks.Text = styled.Text`
   font-size: ${RFValue(12)}px;
@@ -63,7 +63,7 @@ ContainerClicks.Container.Text2 = styled.Text`
 export const ContainerFooter = styled.View` 
   align-items: center;
   justify-content: space-around;
-  height: ${RFPercentage(3)}%;
+  height: ${RFPercentage(2)}%;
 `;
 ContainerFooter.Text = styled.Text`
   font-size: ${RFValue(16)}px;
@@ -72,11 +72,11 @@ ContainerFooter.Text = styled.Text`
 ContainerFooter.Touchable = styled.TouchableOpacity`
   border-radius: ${RFValue(4)}px;
   background-color: ${theme.COLORS.Blue4285F4};
-  width: ${RFValue(300)}px;
+  width: ${RFValue(280)}px;
   height: ${RFValue(37)}px;
 `;
 ContainerFooter.Touchable.View = styled.View`
   flex-direction: row;
-  width: ${RFPercentage(15)}%;
+  width: ${RFPercentage(10)}%;
   justify-content: flex-start;
 `;

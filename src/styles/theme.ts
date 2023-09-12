@@ -30,6 +30,7 @@ export default{
         Gray65E5959: '#5E5959',
         Gray868686: '#868686',
         Gray888888: '#888888',
+        Gray949494: '#949494',
 
         YellowFFAA2C: '#FFAA2C',
         YellowEEA734: '#EEA734'
