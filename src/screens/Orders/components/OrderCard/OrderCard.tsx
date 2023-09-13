@@ -13,7 +13,7 @@ import theme from '../../../../styles/theme';
 import { AppTexts } from '../../../../assets/strings';
 import Button from '../../../../components/Button/Button';
 
-interface Item {
+interface ItemsOrder {
     id: string;
     title: string;
     date: string;
@@ -22,7 +22,7 @@ interface Item {
     imageURL: string;
 }
 
-const data: Item[] = [
+const data: ItemsOrder[] = [
     {
         id: '1',
         title: 'Croissant de Chocolate',
@@ -82,7 +82,7 @@ const data: Item[] = [
 ];
 
 function OrderCard() {
-    const renderItem = ({ item }: { item: Item }) => (
+    const renderItem = ({ item }: { item: ItemsOrder }) => (
         item.status === 'Pedido Fechado' ? (
             <View style={{ paddingBottom: RFValue(30), alignItems: 'center', justifyContent: 'center' }} >
                 <View style={styles.Container}>

@@ -12,7 +12,7 @@ const Orders = () => {
     return (
         <SafeAreaView>
             <Container>
-                <View style={{paddingTop: 15}}>
+                <View>
                     <OrderCard />
                 </View>
             </Container>

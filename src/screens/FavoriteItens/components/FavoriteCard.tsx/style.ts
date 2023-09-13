@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignSelf: 'center',
         justifyContent: 'center',
+        
     },
     ContainerItems: {
         flexDirection: 'row', justifyContent: 'space-evenly'
@@ -25,11 +26,11 @@ const styles = StyleSheet.create({
         color: theme.COLORS.Black393939,
         fontFamily: theme.FONTS.Popp500
     },
-    Date: {
-        color: theme.COLORS.Gray888888,
-        fontSize: RFValue(10),
-        fontFamily: theme.FONTS.Popp400,
-        paddingTop: RFValue(5)
+    Heart: {
+        color: theme.COLORS.RedF15050,
+        fontSize: RFValue(20),
+        paddingTop: RFValue(2),
+        paddingLeft: RFValue(19)
     },
     R$: {
         color: theme.COLORS.Black393939,

@@ -25,6 +25,9 @@ import { Login } from './src/screens/Login/Login';
 import { CreateAccount } from './src/screens/CreateAccount/CreateAccount';
 import { ProfileSetting } from './src/screens/ProfileSetting/ProfileSetting';
 import { Orders } from './src/screens/Orders/Orders';
+import { FavoriteItens } from './src/screens/FavoriteItens/FavoriteItens';
+import { Checkout } from './src/screens/Checkout/Checkout';
+import { ShoppingCart } from './src/screens/ShoppingCart/ShoppingCart';
 
 
 const App: React.FC = () => {
@@ -59,12 +62,15 @@ const App: React.FC = () => {
         onPress={Keyboard.dismiss}
         >
         <View onLayout={onLayoutRootView}>
-          <Login />
+          {/* <Login /> */}
           {/* <ForgotPassword
           /> */}
           {/* <CreateAccount/> */}
           {/* <ProfileSetting/> */}
           {/* <Orders/> */}
+          {/* <FavoriteItens/> */}
+          {/* <Checkout/> */}
+          <ShoppingCart/>
         </View>
       </Pressable>
     </ThemeProvider>

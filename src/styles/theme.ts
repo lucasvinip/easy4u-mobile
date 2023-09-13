@@ -21,6 +21,7 @@ export default{
         Orange4FE724C: '#FE724C',
 
         PinkFFE9E9: '#FFE9E9',
+        RedF15050: '#F15050',
 
         GrayRgba255249243041: 'rgba(255, 249, 243, 0.41)',
         Gray2Rgba255249243047: 'rgba(255, 249, 243, 0.47)',

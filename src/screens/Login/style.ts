@@ -63,7 +63,7 @@ ContainerClicks.Container.Text2 = styled.Text`
 export const ContainerFooter = styled.View` 
   align-items: center;
   justify-content: space-around;
-  height: ${RFPercentage(2)}%;
+  height: ${RFPercentage(2.5)}%;
 `;
 ContainerFooter.Text = styled.Text`
   font-size: ${RFValue(16)}px;
@@ -77,6 +77,6 @@ ContainerFooter.Touchable = styled.TouchableOpacity`
 `;
 ContainerFooter.Touchable.View = styled.View`
   flex-direction: row;
-  width: ${RFPercentage(10)}%;
+  width: ${RFPercentage(13)}%;
   justify-content: flex-start;
 `;
