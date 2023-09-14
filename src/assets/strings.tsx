@@ -70,6 +70,9 @@ export const AppTexts = {
 
     Discount: 'Desconto',
     Total: 'Total',
+    Schedule_Time: 'Agendar horário',
+    Get_Now: 'Retirar agora',
+    Select_Time: 'Selecione um horário',
 
     Finalize: 'Finalizar',
     Payment: 'PAGAMENTO',
