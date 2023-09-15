@@ -19,6 +19,7 @@ export default{
         Orange2FFA24B: '#FFA24B',
         Orange3FF9D00: '#FF9D00',
         Orange4FE724C: '#FE724C',
+        OrangeF6752C: '#F6752C',
 
         PinkFFE9E9: '#FFE9E9',
         RedF15050: '#F15050',
@@ -32,6 +33,7 @@ export default{
         Gray868686: '#868686',
         Gray888888: '#888888',
         Gray949494: '#949494',
+        Gray5E5959: '#5E5959',
 
         YellowFFAA2C: '#FFAA2C',
         YellowEEA734: '#EEA734'

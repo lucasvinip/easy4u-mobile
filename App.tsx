@@ -69,8 +69,8 @@ const App: React.FC = () => {
           {/* <ProfileSetting/> */}
           {/* <Orders/> */}
           {/* <FavoriteItens/> */}
-          {/* <Checkout/> */}
-          <ShoppingCart/>
+          <Checkout/>
+          {/* <ShoppingCart/> */}
         </View>
       </Pressable>
     </ThemeProvider>
