@@ -10,9 +10,7 @@ import InputText from '../../components/TextInput/inputText';
 import { AppTexts } from '../../assets/strings';
 import Button from '../../components/Button/Button';
 import {
-    Container,
-    ContainerHeader,
-    ContainerButton
+    styles
 } from './style'
 
 const themeTextInput = {
@@ -20,20 +18,15 @@ const themeTextInput = {
     colors: {
         ...DefaultTheme.colors,
         primary: 'black',
-
-
     },
 };
 
 const ProfileSetting = () => (
     <SafeAreaView>
-
-        <Container>
-
-            <ContainerHeader>
-
-                <Card style={{ width: 125, height: 120, borderRadius: 100, alignItems: 'center', justifyContent: 'center' }}>
-                    <Card.Cover source={{ uri: 'https://picsum.photos/700' }} style={{ width: 118, height: 118, borderRadius: 100, borderWidth: 1, borderColor: 'black' }} />
+        <View style={styles.Container}>
+            <View style={styles.ContainerHeader}>
+                <Card style={styles.HeaderCard}>
+                    <Card.Cover source={{ uri: 'https://picsum.photos/700' }} style={styles.CardImg} />
                     <TouchableOpacity>
                         <AntDesign name='camera' style={{
                             color: theme.COLORS.BlackRgba3419081,
@@ -42,9 +35,7 @@ const ProfileSetting = () => (
                         }} />
                     </TouchableOpacity>
                 </Card>
-
-            </ContainerHeader>
-
+            </View>
             <InputText
                 label='NOME COMPLETO'
                 mode='flat'
@@ -54,8 +45,8 @@ const ProfileSetting = () => (
                 background='white'
                 fontSize={12}
                 fontFamily={theme.FONTS.Popp400}
+                paddingTop={18}
             />
-            <TouchTextAlter />
             <InputText
                 label='EMAIL'
                 mode='flat'
@@ -66,7 +57,9 @@ const ProfileSetting = () => (
                 fontSize={12}
                 fontFamily={theme.FONTS.Popp400}
             />
-            <TouchTextAlter />
+            <View style={{ alignItems: 'flex-end' }}>
+                <TouchTextAlter />
+            </View>
             <InputText
                 label='SENHA'
                 mode='flat'
@@ -76,26 +69,22 @@ const ProfileSetting = () => (
                 background='white'
                 fontSize={12}
                 fontFamily={theme.FONTS.Popp400}
-
             />
-            <TouchTextAlter />
-
-            <ContainerButton>
-
+            <View style={{ alignItems: 'flex-end', paddingBottom: 15}}>
+                <TouchTextAlter />
+            </View>
+            <View style={styles.ContainerButton}>
                 <Button
                     text={AppTexts.Change_Settings}
                     fontFamily={theme.FONTS.Popp700}
                     background={theme.COLORS.OrangeFF6C44}
-                    width={260}
-                    height={40}
-                    borderRadius={4}
+                    width={280}
+                    height={42}
+                    borderRadius={8}
                     fontSize={14}
                 />
-
-            </ContainerButton>
-
-        </Container>
-
+            </View>
+        </View>
     </SafeAreaView >
 );
 

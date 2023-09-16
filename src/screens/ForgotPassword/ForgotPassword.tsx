@@ -1,17 +1,17 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DefaultTheme } from 'react-native-paper';
-import { RFValue } from 'react-native-responsive-fontsize';
+import {Text, View} from 'react-native'
+
 
 import Button from '../../components/Button/Button';
 import theme from '../../styles/theme';
 import InputText from '../../components/TextInput/inputText';
 import { AppTexts } from '../../assets/strings';
 import {
-    Container,
-    ContainerHeader,
-    ContainerButton
+    styles
 } from './style';
+
 
 
 const themeTextInput = {
@@ -27,20 +27,15 @@ const themeTextInput = {
 const ForgotPassword = () => {
     return (
         <SafeAreaView>
-
-            <Container>
-
-                <ContainerHeader>
-
-                    <ContainerHeader.Text>
+            <View style={styles.Container}>
+                <View style={styles.ContainerHeader}>
+                    <Text style={styles.HeaderText}>
                         {AppTexts.Forgot_my_Password}
-                    </ContainerHeader.Text>
-                    <ContainerHeader.SubText>
+                    </Text>
+                    <Text style={styles.HeaderSubText}>
                         {AppTexts.Put_your_Email}
-                    </ContainerHeader.SubText>
-
-                </ContainerHeader>
-
+                    </Text>
+                </View>
                 <InputText
                     label='EMAIL'
                     mode='flat'
@@ -50,22 +45,20 @@ const ForgotPassword = () => {
                     background='white'
                     fontSize={12}
                     fontFamily={theme.FONTS.Popp400}
-                    paddingTop={12}
+                    
                 />
-                <ContainerButton>
+                <View style={styles.ContainerButton}>
                     <Button
                         text={AppTexts.Reset_Password.toUpperCase()}
                         fontFamily={theme.FONTS.Popp700}
                         background={theme.COLORS.OrangeFF6C44}
                         width={260}
                         height={40}
-                        borderRadius={4}
+                        borderRadius={8}
                         fontSize={14}
                     />
-                </ContainerButton>
-
-            </Container>
-
+                </View>
+            </View>
         </SafeAreaView>
     )
 };

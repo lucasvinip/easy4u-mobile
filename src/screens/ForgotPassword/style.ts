@@ -1,36 +1,33 @@
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import styled from 'styled-components/native';
 import theme from "../../styles/theme";
+import { StyleSheet } from 'react-native'
 
 
+const styles = StyleSheet.create({
+  Container: {
+    marginLeft: 18,
+    marginRight: 18,
+    backgroundColor: theme.COLORS.Whiteffffff,
+    justifyContent: 'center'
+  },
+  ContainerHeader: {
+    height: '55%',
+    justifyContent: 'flex-end'
+  },
+  HeaderText: {
+    fontFamily: theme.FONTS.Popp500,
+    fontSize: 30,
+    width: 300
+  },
+  HeaderSubText: {
+    fontFamily: theme.FONTS.Popp400,
+    fontSize: 16,
+    color: theme.COLORS.Gray868686,
+    width: 270
+  },
+  ContainerButton:{
+    paddingTop: 25,
+    alignItems: 'center'
+  }
+});
 
-export const Container = styled.View`
-margin-left: ${RFValue(20)}px;
-  margin-right: ${RFValue(20)}px;
-  background-color: ${theme.COLORS.Whiteffffff};
-  justify-content: center;
-`;
-
-
-export const ContainerHeader = styled.View`
-    height: ${RFPercentage(8)}%;
-  justify-content: flex-end;
-
-`;
-ContainerHeader.Text = styled.Text`
-  font-family: ${theme.FONTS.Popp500};
-  font-size: ${RFValue(30)}px;
-  width: ${RFValue(300)}px;
-`;
-ContainerHeader.SubText = styled.Text`
-  font-family: ${theme.FONTS.Popp400};
-  font-size: ${RFValue(16)}px;
-  color: ${theme.COLORS.Gray868686};
-  width: ${RFValue(264.9)}px;
-`;
-
-
-export const ContainerButton = styled.View`
-    padding-top: ${RFValue(25)}px;
-    align-items: center;
-`;
+export { styles };

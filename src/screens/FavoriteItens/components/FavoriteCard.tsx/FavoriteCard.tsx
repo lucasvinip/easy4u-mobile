@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, Image, Text, FlatList} from 'react-native';
+import { View, Image, Text, FlatList, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 
 import { styles } from './style';
-import { RFValue } from 'react-native-responsive-fontsize';
-import theme from '../../../../styles/theme';
 
-interface ItemsFavorite {
+interface ItemsFavoriteProps {
     id: string;
     title: string;
     date: string;
@@ -16,7 +14,7 @@ interface ItemsFavorite {
     imageURL: string;
 }
 
-const data: ItemsFavorite[] = [
+const data: ItemsFavoriteProps[] = [
     {
         id: '1',
         title: 'Croissant de Chocolate',
@@ -76,22 +74,22 @@ const data: ItemsFavorite[] = [
 ];
 
 function FavoriteCard() {
-    const renderItem = ({ item }: { item: ItemsFavorite }) => (
-        <View style={{ paddingBottom: RFValue(30), alignItems: 'center', justifyContent: 'center' }} >
-            <View style={styles.Container}>
+    const renderItem = ({item}: {item: ItemsFavoriteProps}) => (
+        <View style={styles.Container} >
+            <View style={styles.Card}>
                 <View style={styles.ContainerItems}>
                     <Image source={{ uri: item.imageURL }} style={styles.Img} />
-                    <View style={{ justifyContent: 'space-evenly' }}>
-                        <View style={{ flexDirection: 'row', alignContent: 'center'}}>
-                            <Text style={styles.Title}>
-                                {item.title}
-                            </Text>
-                            <AntDesign name='heart' style={styles.Heart} />
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
+                    <View style={styles.ContainerTexts}>
+                        <Text style={styles.Text}>
+                            {item.title}
+                        </Text>
+                        <View style={styles.ContainerPriceHeart}>
                             <Text>
                                 <Text style={styles.R$}>R$</Text> <Text style={styles.Price}>{item.price}</Text>
                             </Text>
+                            <TouchableOpacity>
+                                <AntDesign name='delete' style={styles.Heart} />
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
@@ -105,9 +103,9 @@ function FavoriteCard() {
             keyExtractor={(item) => item.id}
             renderItem={renderItem}
             showsVerticalScrollIndicator={false}
-            
+
         />
-  )
+    )
 }
 
 export { FavoriteCard };

@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 
@@ -23,21 +23,34 @@ const Button = ({
     const styles = StyleSheet.create({
         button: {
             backgroundColor: background,
-            width: RFValue(width),
-            height: RFValue(height),
-            borderRadius: RFValue(borderRadius),
+            width: width,
+            height: height,
+            borderRadius: borderRadius,
             alignItems: 'center',
             justifyContent: 'center'
         },
         text: {
             color: 'white',
             fontFamily: fontFamily,
-            fontSize: RFValue(fontSize)
+            fontSize: fontSize
         },
     });
+    const shadowStyle = {
+        ...Platform.select({
+          ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 2, height: 10 },
+            shadowOpacity: 40,
+            shadowRadius: 5,
+          },
+          android: {
+            elevation: 6,
+          },
+        }),
+      };
 
     return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={[styles.button, shadowStyle]} >
             <Text style={styles.text}>{text}</Text>
         </TouchableOpacity>
     );

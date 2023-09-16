@@ -16,7 +16,12 @@ const styles = StyleSheet.create({
     paddingTop: 20
   },
   ContainerMain:{
-    
+    justifyContent: 'center',
+  },
+  ContainerFooter:{
+    alignItems: 'center',
+    height: '25%',
+    justifyContent: 'space-around'
   }
 });
 

@@ -1,24 +1,37 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native'
 import theme from '../../styles/theme';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 
-export const Container = styled.View`
-  margin-left: ${RFValue(20)}px;
-  margin-right: ${RFValue(20)}px;
-  background-color: ${theme.COLORS.Whiteffffff};
-  justify-content: center;
-`;
+const styles = StyleSheet.create({
+  Container: {
+    backgroundColor: theme.COLORS.Whiteffffff,
+    marginLeft: 18,
+    marginRight: 18,
+    justifyContent: `center`
+  },
+  ContainerHeader: {
+    justifyContent: 'center',
+    height: '32%',
+    alignItems: 'center',
+  },
+  HeaderCard: {
+    width: 125,
+    height: 120,
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  CardImg: {
+    width: 118,
+    height: 118,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: 'black'
+  },
+  ContainerButton: {
+    paddingTop: 20,
+    alignItems: 'center'
+  }
+});
 
-
-export const ContainerHeader = styled.View`
-  height: ${RFValue(38)}%;
-  justify-content: flex-end;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const ContainerButton = styled.View`
-    padding-top: ${RFValue(10)}px;
-    align-items: center;
-`;
+export { styles };

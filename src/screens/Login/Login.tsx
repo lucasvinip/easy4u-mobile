@@ -3,19 +3,15 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign } from '@expo/vector-icons';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 import Button from '../../components/Button/Button';
 import theme from '../../styles/theme';
 import { AppTexts } from '../../assets/strings';
 import InputText from '../../components/TextInput/inputText';
 import {
-  Container,
-  ContainerHeader,
-  ContainerInputs,
-  ContainerClicks,
-  ContainerFooter,
+  styles
 } from './style';
+import ButtonGoogle from './components/ButtonGoogle/ButtonGoogle';
 
 
 
@@ -34,16 +30,16 @@ const Login = () => {
 
   return (
     <SafeAreaView>
-      <Container>
-        <ContainerHeader>
-          <ContainerHeader.Text>
+      <View style={styles.Container}>
+        <View style={styles.ContainerHeader}>
+          <Text style={styles.HeaderText}>
             {AppTexts.Welcome}
-          </ContainerHeader.Text>
-          <ContainerHeader.SubText>
+          </Text>
+          <Text style={styles.HeaderSubText}>
             {AppTexts.Enjoy_Cafeteria}
-          </ContainerHeader.SubText>
-        </ContainerHeader>
-        <ContainerInputs>
+          </Text>
+        </View>
+        <View style={styles.ContainerInputs}>
           <InputText
             label='EMAIL'
             mode='flat'
@@ -66,12 +62,12 @@ const Login = () => {
             fontFamily={theme.FONTS.Popp400}
             paddingTop={18}
           />
-        </ContainerInputs>
-        <ContainerClicks>
+        </View>
+        <View style={styles.ContainerClicks}>
           <TouchableOpacity>
-            <ContainerClicks.Text>
+            <Text style={styles.ClicksText}>
               {AppTexts.Forgot_Password}
-            </ContainerClicks.Text>
+            </Text>
           </TouchableOpacity>
           <Button
             text={AppTexts.Join}
@@ -82,39 +78,26 @@ const Login = () => {
             borderRadius={4}
             fontSize={14}
           />
-          <ContainerClicks.Container>
+          <View style={styles.ClicksContainer}>
             <TouchableOpacity>
-              <ContainerClicks.Container.Text1>{AppTexts.Dont_Have_Account}</ContainerClicks.Container.Text1>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <ContainerClicks.Container.Text2>{AppTexts.Create_a_Account}</ContainerClicks.Container.Text2>
-            </TouchableOpacity>
-          </ContainerClicks.Container>
-        </ContainerClicks>
-        <ContainerFooter>
-          <ContainerFooter.Text>
-            {AppTexts.Or}
-          </ContainerFooter.Text>
-          <ContainerFooter.Touchable>
-            <ContainerFooter.Touchable.View>
-              <AntDesign name='googleplus' style={{
-                paddingRight: RFValue(17),
-                paddingLeft: RFValue(15),
-                color: theme.COLORS.White2F3F3F3,
-                fontSize: 28,
-                paddingTop: RFValue(5)
-              }} />
-              <Text style={{
-                color: 'white',
-                fontFamily: theme.FONTS.Popp700,
-                paddingTop: RFValue(8)
-              }}>
-                {AppTexts.Connect_Google.toUpperCase()}
+              <Text style={styles.ClicksContainerText1}>
+                {AppTexts.Dont_Have_Account}
               </Text>
-            </ContainerFooter.Touchable.View>
-          </ContainerFooter.Touchable>
-        </ContainerFooter>
-      </Container>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text style={styles.ClicksContainerText2}>
+                {AppTexts.Create_a_Account}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.ContainerFooter}>
+          <Text style={styles.FooterText}>
+            {AppTexts.Or}
+          </Text>
+          <ButtonGoogle/>
+        </View>
+      </View>
     </SafeAreaView>
   )
 };

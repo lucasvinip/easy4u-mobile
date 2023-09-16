@@ -1,40 +1,45 @@
-import { RFValue } from "react-native-responsive-fontsize";
-import styled from "styled-components/native";
+import {StyleSheet} from 'react-native'
 import theme from "../../styles/theme";
 
-export const Container = styled.View`
-  margin-left: ${RFValue(20)}px;
-  margin-right: ${RFValue(20)}px;
-  background-color: ${theme.COLORS.Whiteffffff};
-  justify-content: center; 
-  
-`;
+const styles = StyleSheet.create({
+  Container: {
+    backgroundColor: theme.COLORS.Whiteffffff,
+    marginLeft: 18,
+    marginRight: 18,
+    justifyContent: `center`
+  },
+  ContainerHeader: {
+    justifyContent: 'flex-end',
+    height: '32%'
+  },
+  HeaderText:{
+    fontSize: 30,
+    fontFamily: theme.FONTS.Popp500,
+    width: 300 
+  },
+  HeaderSubText:{
+    fontFamily: theme.FONTS.Popp400,
+    color: theme.COLORS.Gray868686,
+    fontSize: 16,
+    width: 336,
+    justifyContent: 'space-around'
+  },
+  HeaderSubText2:{
+    fontFamily: theme.FONTS.Popp400,
+    fontSize: 16,
+    color: theme.COLORS.Orange3FF9D00,
+  },
+  ContainerButton:{
+    paddingTop: 45,
+    alignItems: 'center'
+  },
+  PrivacySecurityText:{
+    paddingTop: 25,
+     textAlign: 'center',
+      fontSize: 16,
+       fontFamily: theme.FONTS.Popp400,
+        color: theme.COLORS.Gray868686
+  }
+});
 
-
-export const ContainerHeader = styled.View` 
-    height: ${RFValue(32)}%;
-    justify-content: flex-end;
-`;
-ContainerHeader.Text = styled.Text`
-  font-family: ${theme.FONTS.Popp500};
-  font-size: ${RFValue(30)}px;
-  width: ${RFValue(300)}px;
-`;
-ContainerHeader.SubText = styled.Text`
-font-family: ${theme.FONTS.Popp400};
-  font-size: ${RFValue(16)}px;
-  color: ${theme.COLORS.Gray868686};
-  width: ${RFValue(285)}px;
-  justify-content: space-around;
-  
-`;
-ContainerHeader.SubText2 = styled.Text`
-  font-family: ${theme.FONTS.Popp400};
-  font-size: ${RFValue(16)}px;
-  color: ${theme.COLORS.Orange3FF9D00};
-`;
-
-export const ContainerButton = styled.View`
-    padding-top: ${RFValue(25)}px;
-    align-items: center;
-`;
+export {styles};

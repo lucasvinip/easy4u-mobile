@@ -1,13 +1,11 @@
 import React from 'react';
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, View } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 import {
-    Container,
-    ContainerHeader,
-    ContainerButton
+    styles
 } from './style'
 import { AppTexts } from '../../assets/strings';
 import InputText from '../../components/TextInput/inputText';
@@ -28,20 +26,17 @@ const themeTextInput = {
 const CreateAccount = () => {
     return (
         <SafeAreaView>
-            <Container>
-
-                <ContainerHeader>
-
-                    <ContainerHeader.Text>
+            <View style={styles.Container}>
+                <View style={styles.ContainerHeader}>
+                    <Text style={styles.HeaderText}>
                         {AppTexts.Create_a_Account_now}
-                    </ContainerHeader.Text>
-
-                    <ContainerHeader.SubText>
+                    </Text>
+                    <Text style={styles.HeaderSubText}>
                         {AppTexts.Join_Name_Email_Password}
-                        <ContainerHeader.SubText2>  {AppTexts.Already_Account}</ContainerHeader.SubText2>
-                    </ContainerHeader.SubText>
+                        <Text style={styles.HeaderSubText2}>  {AppTexts.Already_Account}</Text>
+                    </Text>
 
-                </ContainerHeader>
+                </View >
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <InputText
                         label='NOME COMPLETO'
@@ -88,26 +83,21 @@ const CreateAccount = () => {
                         paddingTop={14}
                     />
                 </ScrollView>
-                <ContainerButton>
-
+                <View style={styles.ContainerButton}>
                     <Button
                         text={AppTexts.Join}
                         fontFamily={theme.FONTS.Popp700}
                         background={theme.COLORS.OrangeFF6C44}
-                        width={260}
-                        height={40}
-                        borderRadius={4}
+                        width={290}
+                        height={43}
+                        borderRadius={8}
                         fontSize={14}
                     />
-
-                </ContainerButton>
-
-                <Text style={{ paddingTop: 25, textAlign: 'center', fontSize: RFValue(14), fontFamily: theme.FONTS.Popp400, color: theme.COLORS.Gray868686 }}>
+                </View>
+                <Text style={styles.PrivacySecurityText}>
                     {AppTexts.Privacy_Security}
                 </Text>
-
-            </Container>
-
+            </View>
         </SafeAreaView>
     )
 };

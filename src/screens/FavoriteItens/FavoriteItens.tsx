@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Container } from './style';
+import { styles } from './style';
 import { FavoriteCard } from './components/FavoriteCard.tsx/FavoriteCard';
 
 // import { Container } from './styles';
@@ -10,11 +10,11 @@ import { FavoriteCard } from './components/FavoriteCard.tsx/FavoriteCard';
 const FavoriteItens = () => {
   return (
     <SafeAreaView>
-        <Container>
+        <View style={styles.Container}>
           <View>
             <FavoriteCard />
           </View>
-        </Container>
+        </View>
     </SafeAreaView>
   )
 };

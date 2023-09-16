@@ -29,7 +29,7 @@ const SubTotalDiscount = () => {
         <View style={styles.buttonContainer}>
           <Button
             text={AppTexts.Finalize}
-            fontFamily={theme.FONTS.Raleway700}
+            fontFamily={theme.FONTS.Popp700}
             background={theme.COLORS.OrangeFF6C44}
             width={160}
             height={30}
