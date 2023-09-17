@@ -2,6 +2,7 @@ export default{
     COLORS: {
         Whiteffffff: '#ffffff',
         White2F3F3F3: '#F3F3F3',
+        WhiteEDF3EDEB: '#EDF3EDEB',
 
         Black000000: '#000000',
         Black010F07: '#010F07',

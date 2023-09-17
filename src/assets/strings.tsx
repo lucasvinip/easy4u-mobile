@@ -63,7 +63,7 @@ export const AppTexts = {
     Any_Observation: 'Alguma observação?',
 
     Amount: 'Quantidade',
-    Add_Cart: 'Adicionar ao carrinho',
+    Add_Cart: 'Adicionar ao Carrinho',
 
     Shopping_Cart: 'Carrinho de Compras',
     Subtotal: 'Subtotal',
@@ -95,5 +95,7 @@ export const AppTexts = {
     Order_Here: 'Seu pedido está aqui!',
     Closed: 'Fechar',
 
-    Sure_Remove_Favorites: 'Tem certeza que deseja tirar esse item do seus favoritos?'
+    Sure_Remove_Favorites: 'Tem certeza que deseja tirar esse item do seus favoritos?',
+    Continue: 'Continuar',
+    Check_Baked_Snacks: 'Verifique nossa infinidade de salgados assados'
 }

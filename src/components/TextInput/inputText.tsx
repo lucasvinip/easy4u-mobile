@@ -5,15 +5,19 @@ import { StyleSheet } from 'react-native';
 
 
 interface InputTextProps {
-  label: string,
+  label?: string,
   mode: 'flat' | 'outlined'
   keyboardType: 'default' | 'email-address' | 'numeric' | 'web-search',
-  underlineColor: string,
+  underlineColor?: string,
   theme: typeof DefaultTheme
   fontSize?: number,
   fontFamily?: typeof theme.FONTS.Popp400,
   background?: string,
-  paddingTop?: number
+  paddingTop?: number,
+  borderRadius?: number,
+  width?: number,
+  height?: number,
+  borderColor?: string
 };
 
 const InputText = ({
@@ -25,13 +29,22 @@ const InputText = ({
   fontSize,
   fontFamily,
   background,
-  paddingTop }: InputTextProps) => {
+  paddingTop,
+  borderRadius,
+  width,
+  height,
+  borderColor
+}: InputTextProps) => {
   const styles = StyleSheet.create({
     TextInput: {
       backgroundColor: background,
       fontSize: fontSize,
       fontFamily: fontFamily,
       paddingTop: paddingTop,
+      borderRadius: borderRadius,
+      borderColor: borderColor,
+      width: width,
+      height: height
     },
   });
 

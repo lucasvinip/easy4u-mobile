@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons'; // Import AntDesign from your li
 import theme from '../../../../styles/theme';
 import { AppTexts } from '../../../../assets/strings';
 import {styles} from './style'
+import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMoreOrLess';
 
 const ProductItem = () => {
     return (
@@ -23,19 +24,7 @@ const ProductItem = () => {
                         </Text>
                     </View>
                 </View>
-                <View style={styles.QuantityContainer}>
-                    <View style={styles.MinusButton}>
-                        <AntDesign name='minus' style={styles.MinusIcon} />
-                    </View>
-                    <View style={styles.QuantityTextContainer}>
-                        <Text style={styles.QuantityText}>1</Text>
-                    </View>
-                    <View style={styles.PlusButton}>
-                        <TouchableOpacity>
-                            <AntDesign name='plus' style={styles.PlusIcon} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <ButtonMoreOrLess/>
             </View>
             <View style={styles.SeparatorContainer}>
                 <View style={styles.Separator} />
