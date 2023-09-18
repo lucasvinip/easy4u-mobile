@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform} from "react-native";
 import theme from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
@@ -41,5 +41,6 @@ const styles = StyleSheet.create({
     width: 200,
   },
 });
+
 
 export {styles}

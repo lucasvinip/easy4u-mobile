@@ -28,7 +28,7 @@ import { Orders } from './src/screens/Orders/Orders';
 import { FavoriteItens } from './src/screens/FavoriteItens/FavoriteItens';
 import { Checkout } from './src/screens/Checkout/Checkout';
 import { ShoppingCart } from './src/screens/ShoppingCart/ShoppingCart';
-import { Products } from './src/screens/Products/Products';
+import { Product } from './src/screens/Product/Product';
 import { AllProducts } from './src/screens/AllProducts/AllProducts';
 
 
@@ -73,7 +73,7 @@ const App: React.FC = () => {
           {/* <FavoriteItens/> */}
           {/* <Checkout/> */}
           {/* <ShoppingCart/> */}
-          {/* <Products/> */}
+          {/* <Product/> */}
           <AllProducts/>
         </View>
       </Pressable>

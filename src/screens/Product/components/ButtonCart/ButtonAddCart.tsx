@@ -5,7 +5,7 @@ import { AppTexts } from '../../../../assets/strings';
 
 import { styles, shadowStyle } from './style'
 
-const ButtonContinue = () => {
+const ButtonAddCart = () => {
     return (
         <TouchableOpacity style={[styles.Container, shadowStyle]}>
             <View style={styles.Touchable}>
@@ -19,5 +19,5 @@ const ButtonContinue = () => {
         </TouchableOpacity>
     )
 };
-export default ButtonContinue;
+export default ButtonAddCart;
 

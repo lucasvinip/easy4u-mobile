@@ -9,6 +9,7 @@ import { DefaultTheme } from 'react-native-paper';
 import InputText from '../../components/TextInput/inputText';
 import theme from '../../styles/theme';
 import { AppTexts } from '../../assets/strings';
+import CardProduct from './components/CardProduct/CardProduct';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -42,7 +43,7 @@ const AllProducts = () => {
                         }} />
                     </View>
                     <View style={{}}>
-                        <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                             <InputText
                                 label='Pesquisar'
                                 mode='outlined'
@@ -90,29 +91,12 @@ const AllProducts = () => {
                             </View>
                         </ScrollView>
                     </View>
-                    <View style={{ alignItems: 'center', justifyContent: 'center', height: 'auto'}}>
-                        <ScrollView>
-                            <TouchableOpacity style={{ width: 363, height: 140, backgroundColor: theme.COLORS.Whiteffffff, borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '92%' }}>
-                                    <View style={{ justifyContent: 'space-around', height: '82%' }}>
-                                        <Text style={{ fontSize: 18, fontFamily: theme.FONTS.Popp400 }}>
-                                            Salgados Assados
-                                        </Text>
-                                        <Text style={{ width: 198, fontSize: 13, fontFamily: theme.FONTS.Popp400, color: theme.COLORS.Gray888888 }}>
-                                            {AppTexts.Check_Baked_Snacks}
-                                        </Text>
-                                        <Text>
-                                            <Text style={{ color: theme.COLORS.Black393939, fontSize: 14, fontFamily: theme.FONTS.Popp700 }}>R$</Text> <Text style={{ color: theme.COLORS.OrangeFF6C44, fontSize: 14, fontFamily: theme.FONTS.Popp700 }}> 5,00</Text>
-                                        </Text>
-                                    </View>
-                                    <View style={{ justifyContent: 'center' }}>
-                                        <Image source={require('../../assets/img/cheesy-bread.png')} style={{ width: 116 }} />
-                                    </View>
-                                </View>
-                            </TouchableOpacity>     
-                        </ScrollView>
-                    </View>
+                    <ScrollView>
+                        <CardProduct />
+                    </ScrollView>
+
                 </View>
+
             </View>
         </SafeAreaView>
     );

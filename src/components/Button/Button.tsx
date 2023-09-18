@@ -37,7 +37,7 @@ const Button = ({
   const shadowStyle = {
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
+        shadowColor: '#ffff',
         shadowOffset: { width: 2, height: 10 },
         shadowOpacity: 40,
         shadowRadius: 5,
