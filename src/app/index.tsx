@@ -28,10 +28,8 @@ const themeTextInput = {
 const Login = () => {
 
   return (
-
-    <SafeAreaView>
-      <Pressable>
-        <UseFonts />
+    <UseFonts>
+      <SafeAreaView>
         <View style={styles.Container}>
           <View style={styles.ContainerHeader}>
             <Text style={styles.HeaderText}>
@@ -83,9 +81,13 @@ const Login = () => {
               fontSize={14}
             />
             <View style={styles.ClicksContainer}>
-              <Text style={styles.ClicksContainerText1}>
-                {AppTexts.Dont_Have_Account}
-              </Text>
+              <Link href={'/ProfileSetting'} asChild>
+                <TouchableOpacity>
+                  <Text style={styles.ClicksContainerText1}>
+                    {AppTexts.Dont_Have_Account}
+                  </Text>
+                </TouchableOpacity>
+              </Link>
               <Link href={'/CreateAccount'} asChild>
                 <TouchableOpacity>
                   <Text style={styles.ClicksContainerText2}>
@@ -102,8 +104,8 @@ const Login = () => {
             <ButtonGoogle />
           </View>
         </View>
-      </Pressable>
-    </SafeAreaView>
+      </SafeAreaView>
+    </UseFonts>
   )
 };
 

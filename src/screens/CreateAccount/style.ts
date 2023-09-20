@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 import theme from "../../styles/theme";
 
 const styles = StyleSheet.create({
@@ -10,36 +10,36 @@ const styles = StyleSheet.create({
   },
   ContainerHeader: {
     justifyContent: 'flex-end',
-    height: '32%'
+    height: '30%'
   },
-  HeaderText:{
+  HeaderText: {
     fontSize: 30,
     fontFamily: theme.FONTS.Popp500,
-    width: 300 
+    width: 300
   },
-  HeaderSubText:{
+  HeaderSubText: {
     fontFamily: theme.FONTS.Popp400,
     color: theme.COLORS.Gray868686,
     fontSize: 16,
     width: 336,
     justifyContent: 'space-around'
   },
-  HeaderSubText2:{
+  HeaderSubText2: {
     fontFamily: theme.FONTS.Popp400,
     fontSize: 16,
     color: theme.COLORS.Orange3FF9D00,
   },
-  ContainerButton:{
-    paddingTop: 45,
+  ContainerButton: {
+    paddingTop: 25,
     alignItems: 'center'
   },
-  PrivacySecurityText:{
-    paddingTop: 25,
-     textAlign: 'center',
-      fontSize: 16,
-       fontFamily: theme.FONTS.Popp400,
-        color: theme.COLORS.Gray868686
+  PrivacySecurityText: {
+    paddingTop: 20,
+    textAlign: 'center',
+    fontSize: 16,
+    fontFamily: theme.FONTS.Popp400,
+    color: theme.COLORS.Gray868686
   }
 });
 
-export {styles};
+export { styles };

@@ -20,7 +20,11 @@ import { ThemeProvider } from 'styled-components/native'
 import { StatusBar } from 'expo-status-bar';
 
 
-const UseFonts = () => {
+interface UseFontsProps{
+    children: React.ReactNode
+}
+
+const UseFonts = ({children} : UseFontsProps) => {
     const [fontsLoaded, fontError] = useFonts({
         Poppins_300Light,
         Poppins_400Regular,
@@ -50,7 +54,9 @@ const UseFonts = () => {
             <Pressable
                 onPress={Keyboard.dismiss}
             >
-                <View onLayout={onLayoutRootView}></View>
+                <View onLayout={onLayoutRootView}>
+                    {children}
+                </View>
             </Pressable>
         </ThemeProvider>
     )

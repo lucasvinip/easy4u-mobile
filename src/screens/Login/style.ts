@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.Whiteffffff,
     marginLeft: 18,
     marginRight: 18,
-    justifyContent: `center`
+    justifyContent: 'center',
+    
   },
   ContainerHeader: {
     justifyContent: 'flex-end',
