@@ -6,12 +6,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
     styles
-} from './style'
-import { AppTexts } from '../../assets/strings';
-import InputText from '../../components/TextInput/inputText';
-import theme from '../../styles/theme';
+} from '../screens/CreateAccount/style'
+import { AppTexts } from '../assets/strings';
+import InputText from '../components/TextInput/inputText';
+import theme from '../styles/theme';
 import { RFValue } from 'react-native-responsive-fontsize';
-import Button from '../../components/Button/Button';
+import Button from '../components/Button/Button';
+import UseFonts from '../assets/useFonts';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -26,6 +27,7 @@ const themeTextInput = {
 const CreateAccount = () => {
     return (
         <SafeAreaView>
+            <UseFonts />
             <View style={styles.Container}>
                 <View style={styles.ContainerHeader}>
                     <Text style={styles.HeaderText}>
@@ -102,4 +104,4 @@ const CreateAccount = () => {
     )
 };
 
-export { CreateAccount };
+export default CreateAccount;

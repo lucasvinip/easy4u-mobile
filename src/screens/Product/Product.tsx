@@ -29,7 +29,7 @@ const Product = () => {
                 backgroundColor='transparent'
             />
             <View style={styles.Container}>
-                <Image source={require('../../assets/img/lanche.png')} style={styles.Img} />
+                <Image source={require('../../../assets/img/lanche.png')} style={styles.Img} />
                 <View>
                     <View style={styles.ContainerMain}>
                         <View style={styles.Main}>
@@ -89,4 +89,4 @@ const Product = () => {
     );
 };
 
-export { Product};
+export  default Product;

@@ -4,13 +4,13 @@ import { DefaultTheme } from 'react-native-paper';
 import {Text, View} from 'react-native'
 
 
-import Button from '../../components/Button/Button';
-import theme from '../../styles/theme';
-import InputText from '../../components/TextInput/inputText';
-import { AppTexts } from '../../assets/strings';
+import Button from '../components/Button/Button';
+import theme from '../styles/theme';
+import InputText from '../components/TextInput/inputText';
+import { AppTexts } from '../assets/strings';
 import {
     styles
-} from './style';
+} from '../screens/ForgotPassword/style';
 
 
 
@@ -63,4 +63,4 @@ const ForgotPassword = () => {
     )
 };
 
-export { ForgotPassword };
+export default ForgotPassword;
