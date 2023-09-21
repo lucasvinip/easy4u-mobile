@@ -28,7 +28,6 @@ const CreateAccount = () => {
     return (
         <UseFonts>
             <SafeAreaView>
-                <HeaderNamePage href={'/'} name={AppTexts.Create_a_Account} width={275} paddingBottom={5} />
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.Container}>
                         <View style={styles.ContainerHeader}>

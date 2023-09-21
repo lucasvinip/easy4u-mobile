@@ -2,6 +2,7 @@ import React from 'react';
 import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Link, Stack } from 'expo-router';
 
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
@@ -11,7 +12,6 @@ import {
   styles
 } from '../screens/Login/style';
 import ButtonGoogle from '../screens/Login/components/ButtonGoogle/ButtonGoogle';
-import { Link } from 'expo-router';
 import UseFonts from '../assets/useFonts';
 
 const themeTextInput = {
@@ -22,7 +22,7 @@ const themeTextInput = {
 
 
   },
-};
+};  
 
 
 const Login = () => {

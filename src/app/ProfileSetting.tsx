@@ -26,7 +26,6 @@ const themeTextInput = {
 const ProfileSetting = () => (
     <UseFonts>
         <SafeAreaView>
-            <HeaderNamePage name={AppTexts.Profile_Settings} paddingBottom={3} href={'/'} width={285} textWidth={200} />
             <View style={styles.Container}>
                 <View style={styles.ContainerHeader}>
                     <Card style={styles.HeaderCard}>
