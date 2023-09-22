@@ -49,7 +49,7 @@ const UseFonts = ({children} : UseFontsProps) => {
         <ThemeProvider theme={COLORS}>
             <StatusBar
                 style='dark'
-                translucent backgroundColor='transparent'
+                translucent backgroundColor='white'
             />
             <Pressable
                 onPress={Keyboard.dismiss}

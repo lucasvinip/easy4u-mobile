@@ -3,6 +3,11 @@ import theme from '../../styles/theme';
 
 
 const styles = StyleSheet.create({
+  Screen: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: theme.COLORS.Whiteffffff
+  },
   Container: {
     backgroundColor: theme.COLORS.Whiteffffff,
     marginLeft: 18,
@@ -12,7 +17,7 @@ const styles = StyleSheet.create({
   },
   ContainerHeader: {
     justifyContent: 'flex-end',
-    height: '28%',
+    height: '21%',
   },
   HeaderText: {
     width: 350,

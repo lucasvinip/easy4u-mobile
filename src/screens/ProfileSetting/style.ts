@@ -3,15 +3,19 @@ import theme from '../../styles/theme';
 
 
 const styles = StyleSheet.create({
+  Screen: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: theme.COLORS.Whiteffffff
+  },
   Container: {
-    backgroundColor: theme.COLORS.Whiteffffff,
     marginLeft: 18,
     marginRight: 18,
     justifyContent: `center`
   },
   ContainerHeader: {
     justifyContent: 'center',
-    height: '32%',
+    height: '42%',
     alignItems: 'center',
   },
   HeaderCard: {
