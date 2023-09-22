@@ -5,8 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Link } from 'expo-router';
 
-import UseFonts from '../assets/useFonts';
-import { styles } from '../screens/CreateAccount/style';
+import UseFonts from '../styles/useFonts';
+import { styles } from '../StyleAndComponentsScreens/CreateAccount/style';
 import { AppTexts } from '../assets/strings';
 import InputText from '../components/TextInput/inputText';
 import theme from '../styles/theme';
@@ -33,7 +33,10 @@ const CreateAccount = () => {
                             </Text>
                             <Text style={styles.HeaderSubText}>
                                 {AppTexts.Join_Name_Email_Password}
-                                <Link href={'/'} asChild><TouchableOpacity><Text style={styles.HeaderSubText2}>{AppTexts.Already_Account}</Text></TouchableOpacity></Link>
+                                <Link href={'/'} asChild>
+                                    <Text style={styles.HeaderSubText2}> {AppTexts.Already_Account}
+                                    </Text>
+                                </Link>
                             </Text>
                         </View >
                         <ScrollView showsVerticalScrollIndicator={false}>

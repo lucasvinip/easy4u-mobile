@@ -1,4 +1,5 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize';
 import theme from '../../../../styles/theme';
 
 const styles = StyleSheet.create({
@@ -17,14 +18,16 @@ const styles = StyleSheet.create({
     },
     TouchableIcon: {
         color: theme.COLORS.White2F3F3F3,
-        fontSize: 28,
-        paddingTop: 5
+        fontSize: RFValue(24),
+        paddingTop: 7
     },
     TouchableText: {
         color: 'white',
         fontFamily: theme.FONTS.Popp700,
-        paddingTop: 8
+        
+        paddingTop: 10,
     }
 });
 
 export { styles };
+

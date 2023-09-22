@@ -8,14 +8,14 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 import theme from '../styles/theme';
-import TouchTextAlter from '../screens/ProfileSetting/components/TouchTextAlter'
+import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter'
 import InputText from '../components/TextInput/inputText';
 import { AppTexts } from '../assets/strings';
 import Button from '../components/Button/Button';
 import {
     styles
-} from '../screens/ProfileSetting/style'
-import UseFonts from '../assets/useFonts';
+} from '../StyleAndComponentsScreens/ProfileSetting/style'
+import UseFonts from '../styles/useFonts';
 
 const themeTextInput = {
     ...DefaultTheme,

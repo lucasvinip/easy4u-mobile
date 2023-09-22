@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize';
 import theme from '../../styles/theme';
 
 
@@ -22,12 +23,12 @@ const styles = StyleSheet.create({
   HeaderText: {
     width: 350,
     fontFamily: theme.FONTS.Popp500,
-    fontSize: 30
+    fontSize: RFValue(30)
   },
   HeaderSubText: {
     width: 350,
     fontFamily: theme.FONTS.Popp400,
-    fontSize: 16,
+    fontSize: RFValue(15),
     color: theme.COLORS.Gray868686
   },
   ContainerInputs: {
@@ -48,23 +49,13 @@ const styles = StyleSheet.create({
     width: '85%',
     justifyContent: 'space-evenly'
   },
-  ClicksContainerText1: {
-    fontSize: 12,
-    fontFamily: theme.FONTS.Popp300,
-    color: theme.COLORS.Gray65E5959
-  },
-  ClicksContainerText2: {
-    fontSize: 12,
-    fontFamily: theme.FONTS.Popp500,
-    color: theme.COLORS.YellowEEA734
-  },
   ContainerFooter: {
     alignItems: 'center',
     justifyContent: 'space-around',
     height: '16%'
   },
   FooterText: {
-    fontSize: 16,
+    fontSize: RFValue(15),
     fontFamily: theme.FONTS.Popp400
   },
   ContainerButton: {

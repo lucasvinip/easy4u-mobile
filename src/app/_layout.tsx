@@ -42,6 +42,12 @@ const Layout = () => {
 
                 }}
             />
+            <Stack.Screen
+                name='(drawer)'
+                options={{
+                    headerShown: false
+                }}
+            />
         </Stack>
     );
 }

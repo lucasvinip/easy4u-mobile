@@ -14,7 +14,7 @@ import {
     Raleway_600SemiBold,
     Raleway_700Bold
 } from '@expo-google-fonts/raleway';
-import COLORS from '../styles/theme'
+import COLORS from './theme'
 import { Keyboard, Pressable, View } from 'react-native';
 import { ThemeProvider } from 'styled-components/native'
 import { StatusBar } from 'expo-status-bar';

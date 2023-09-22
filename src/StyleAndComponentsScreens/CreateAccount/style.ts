@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
     color: theme.COLORS.Gray868686,
     fontSize: RFValue(14),
     width: 336,
-    justifyContent: 'space-around'
   },
   HeaderSubText2: {
     fontFamily: theme.FONTS.Popp400,
     fontSize: RFValue(14),
     color: theme.COLORS.Orange3FF9D00,
+    textAlign: 'right'
   },
   ContainerButton: {
     paddingTop: 25,

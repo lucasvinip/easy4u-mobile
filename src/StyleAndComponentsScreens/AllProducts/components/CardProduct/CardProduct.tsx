@@ -10,7 +10,7 @@ const CardProduct = () => {
         <TouchableOpacity style={{width: 330,height: 140, backgroundColor: theme.COLORS.Whiteffffff, borderRadius: 15, justifyContent: 'center', alignItems: 'center'}}>
             <View style={{ alignItems: 'center', height: '100%', justifyContent: 'center'}}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems:'center'}}>
-                    <View style={{ justifyContent: 'space-around', height: '80%', }}>
+                    <View style={{ justifyContent: 'space-around', height: '83%', }}>
                         <Text style={{ fontSize: 18, fontFamily: theme.FONTS.Popp400 }}>
                             Salgados Assados
                         </Text>

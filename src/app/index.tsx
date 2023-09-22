@@ -10,10 +10,10 @@ import { AppTexts } from '../assets/strings';
 import InputText from '../components/TextInput/inputText';
 import {
   styles
-} from '../screens/Login/style';
-import ButtonGoogle from '../screens/Login/components/ButtonGoogle/ButtonGoogle';
-import UseFonts from '../assets/useFonts';
-import TouchText from '../screens/Login/components/TouchText/TouchText';
+} from '../StyleAndComponentsScreens/Login/style';
+import ButtonGoogle from '../StyleAndComponentsScreens/Login/components/ButtonGoogle/ButtonGoogle';
+import UseFonts from '../styles/useFonts';
+import TouchText from '../StyleAndComponentsScreens/Login/components/TouchText/TouchText';
 
 const themeTextInput = {
   ...DefaultTheme,

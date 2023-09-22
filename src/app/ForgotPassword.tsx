@@ -10,8 +10,8 @@ import InputText from '../components/TextInput/inputText';
 import { AppTexts } from '../assets/strings';
 import {
     styles
-} from '../screens/ForgotPassword/style';
-import UseFonts from '../assets/useFonts';
+} from '../StyleAndComponentsScreens/ForgotPassword/style';
+import UseFonts from '../styles/useFonts';
 
 
 
