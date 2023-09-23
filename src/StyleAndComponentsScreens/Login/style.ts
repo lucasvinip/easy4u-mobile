@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     height: '29%'
   },
   ClicksText: {
-    fontSize: 12,
+    fontSize: RFValue(11),
     fontFamily: theme.FONTS.Popp300,
     color: theme.COLORS.Gray65E5959
   },

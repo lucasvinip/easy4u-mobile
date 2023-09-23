@@ -1,13 +1,22 @@
-import styled from 'styled-components/native';
 import theme from '../../styles/theme';
 import { RFValue } from 'react-native-responsive-fontsize';
 
+import { StyleSheet } from 'react-native'
 
-export const Container = styled.View`
-  margin-left: ${RFValue(15)}px;
-  margin-right: ${RFValue(15)}px;
-  background-color: ${theme.COLORS.Whiteffffff};
-  justify-content: center;
-  align-items: center;
-  height: auto;
-`;
+const styles = StyleSheet.create({
+  Screen: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: theme.COLORS.Whiteffffff
+  },
+  Container: {
+    marginLeft: 18,
+    marginRight: 18,
+    justifyContent: 'center',
+    alignItems:'center',
+    height: '100%'
+  }
+
+});
+
+export {styles};

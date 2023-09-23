@@ -7,7 +7,7 @@ import {
     StyleSheet
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import {styles} from './style'
+import { styles } from './style'
 
 import theme from '../../../../styles/theme';
 import { AppTexts } from '../../../../assets/strings';
@@ -138,13 +138,15 @@ function OrderCard() {
     );
 
     return (
-        <FlatList
-            data={data}
-            keyExtractor={(item) => item.id}
-            renderItem={renderItem}
-            showsVerticalScrollIndicator={false}
-            
-        />
+        <View>
+            <FlatList
+                data={data}
+                keyExtractor={(item) => item.id}
+                renderItem={renderItem}
+                showsVerticalScrollIndicator={false}
+
+            />
+        </View>
     );
 }
 

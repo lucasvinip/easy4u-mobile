@@ -32,17 +32,6 @@ const Layout = () => {
                 }}
             />
             <Stack.Screen
-                name='ProfileSetting'
-                options={{
-                    headerTransparent: true,
-                    headerTitle: (props) => (
-                        <CustomHeaderTitle title={AppTexts.Profile_Settings.toLocaleUpperCase()} textWith={200} padding={7.5}/>),
-                    headerTitleAlign: 'center',
-                    animationTypeForReplace:'pop',
-
-                }}
-            />
-            <Stack.Screen
                 name='(drawer)'
                 options={{
                     headerShown: false

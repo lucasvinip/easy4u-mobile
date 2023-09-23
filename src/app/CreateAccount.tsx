@@ -8,7 +8,7 @@ import { Link } from 'expo-router';
 import UseFonts from '../styles/useFonts';
 import { styles } from '../StyleAndComponentsScreens/CreateAccount/style';
 import { AppTexts } from '../assets/strings';
-import InputText from '../components/TextInput/inputText';
+import InputText from '../components/CustomTextInput/CustomTextInput';
 import theme from '../styles/theme';
 import Button from '../components/Button/Button';
 

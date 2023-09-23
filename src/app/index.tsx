@@ -7,7 +7,7 @@ import { Link, Stack } from 'expo-router';
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
 import { AppTexts } from '../assets/strings';
-import InputText from '../components/TextInput/inputText';
+import InputText from '../components/CustomTextInput/CustomTextInput';
 import {
   styles
 } from '../StyleAndComponentsScreens/Login/style';
@@ -66,7 +66,7 @@ const Login = () => {
               />
             </View>
             <View style={styles.ContainerClicks}>
-              <TouchText title={AppTexts.Forgot_Password} href='/ForgotPassword' titleColor={theme.COLORS.Gray65E5959}/>
+              <TouchText title={AppTexts.Forgot_Password} href='/ForgotPassword' titleColor={theme.COLORS.Beige65E5959} />
               <Button
                 text={AppTexts.Join}
                 fontFamily={theme.FONTS.Popp700}
@@ -77,8 +77,10 @@ const Login = () => {
                 fontSize={14}
               />
               <View style={styles.ClicksContainer}>
-              <TouchText title={AppTexts.Dont_Have_Account} href='/ProfileSetting' titleColor={theme.COLORS.Gray65E5959}/>
-              <TouchText title={AppTexts.Create_a_Account} href='/CreateAccount' titleColor={theme.COLORS.YellowEEA734}/>
+                <Text style={styles.ClicksText}>
+                  {AppTexts.Dont_Have_Account}
+                </Text>
+                <TouchText title={AppTexts.Create_a_Account} href='/CreateAccount' titleColor={theme.COLORS.YellowEEA734} />
               </View>
             </View>
             <View style={styles.ContainerFooter}>

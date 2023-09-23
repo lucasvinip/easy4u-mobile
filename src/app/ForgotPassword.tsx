@@ -6,7 +6,7 @@ import { Text, View} from 'react-native'
 
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
-import InputText from '../components/TextInput/inputText';
+import InputText from '../components/CustomTextInput/CustomTextInput';
 import { AppTexts } from '../assets/strings';
 import {
     styles

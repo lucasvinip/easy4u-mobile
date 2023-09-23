@@ -8,9 +8,11 @@ export default{
         Black010F07: '#010F07',
         BlackRgba3419081: 'rgba(3, 4, 19, 0.81)',
         Black393939: '#393939',
-
+        
         BeigeRgba237243237092: 'rgba(237, 243, 237, 0.92)',
         Beige2FDF6F5: '#FDF6F5',
+        Beige65E5959: '#5E5959',
+
 
         Blue395998: '#395998',
         Blue24285F4: '#4285F4',
@@ -30,7 +32,6 @@ export default{
         Gray37C7C7A: '#7C7C7A',
         Gray4F5F3EF: '#F5F3EF',
         Gray5CDCDCD: '#CDCDCD',
-        Gray65E5959: '#5E5959',
         Gray868686: '#868686',
         Gray888888: '#888888',
         Gray949494: '#949494',

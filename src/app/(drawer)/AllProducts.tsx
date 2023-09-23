@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AntDesign } from '@expo/vector-icons';
 import { DefaultTheme } from 'react-native-paper';
 
-
-// import { Container } from './styles';
-import InputText from '../../components/TextInput/inputText';
+import { styles } from '../../StyleAndComponentsScreens/AllProducts/style'
 import theme from '../../styles/theme';
 import { AppTexts } from '../../assets/strings';
 import CardProduct from '../../StyleAndComponentsScreens/AllProducts/components/CardProduct/CardProduct';
+import UseFonts from '../../styles/useFonts';
+import { StatusBar } from 'expo-status-bar';
+import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/components/CustomTextInput/CustomTextInput';
+import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -22,9 +23,63 @@ const themeTextInput = {
 };
 const AllProducts = () => {
     return (
-        <SafeAreaView style={{backgroundColor: 'orange'}}>
-            
-        </SafeAreaView>
+        <UseFonts>
+            <StatusBar
+                style='light'
+                translucent backgroundColor={theme.COLORS.Orange4FE724C}
+            />
+            <SafeAreaView style={styles.SafeAreaView}>
+                <Text style={{ textAlign: 'center', fontSize: 16, fontFamily: theme.FONTS.Popp500, color: theme.COLORS.White2F3F3F3 }}>{AppTexts.Products}</Text>
+                <View style={styles.ColorOrange}>
+                    <View style={styles.ContainerColorBeige}>
+                        <View style={styles.ColorBeige}></View>
+                    </View>
+                    <View style={styles.Container}>
+                        <View style={styles.ContainerHeader}>
+                            <View style={styles.Header}>
+                                <View style={styles.ContainerInput}>
+                                    <CustomTextInput />
+                                </View>
+                                <View style={styles.ContainerTypeProduct}>
+                                    <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                        <TypeProduct />
+                                    </ScrollView>
+                                </View>
+                            </View>
+                        </View>
+                        <ScrollView contentContainerStyle={styles.ContainerMain} showsVerticalScrollIndicator={false}>
+                            <View style={styles.Main}>
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                                <CardProduct />
+                            </View>
+                        </ScrollView>
+                    </View>
+                </View>
+            </SafeAreaView>
+        </UseFonts>
     );
 };
 

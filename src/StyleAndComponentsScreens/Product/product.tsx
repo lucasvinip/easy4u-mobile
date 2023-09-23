@@ -8,7 +8,7 @@ import { styles, shadowStyle} from './style';
 import theme from '../../styles/theme';
 import { AppTexts } from '../../assets/strings';
 import ButtonMoreOrLess from '../../components/ButtonMoreOrLess/ButtonMoreOrLess';
-import InputText from '../../components/TextInput/inputText';
+import InputText from '../../components/CustomTextInput/CustomTextInput';
 import ButtonAddCart from './components/ButtonCart/ButtonAddCart';
 
 const themeTextInput = {

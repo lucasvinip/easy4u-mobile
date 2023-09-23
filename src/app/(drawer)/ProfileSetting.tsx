@@ -7,15 +7,15 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 
-import theme from '../styles/theme';
-import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter'
-import InputText from '../components/TextInput/inputText';
-import { AppTexts } from '../assets/strings';
-import Button from '../components/Button/Button';
+import theme from '../../styles/theme';
+import TouchTextAlter from '../../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter'
+import InputText from '../../components/CustomTextInput/CustomTextInput';
+import { AppTexts } from '../../assets/strings';
+import Button from '../../components/Button/Button';
 import {
     styles
-} from '../StyleAndComponentsScreens/ProfileSetting/style'
-import UseFonts from '../styles/useFonts';
+} from '../../StyleAndComponentsScreens/ProfileSetting/style'
+import UseFonts from '../../styles/useFonts';
 
 const themeTextInput = {
     ...DefaultTheme,

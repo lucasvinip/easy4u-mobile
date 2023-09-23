@@ -4,7 +4,7 @@ import theme from '../../styles/theme';
 import { StyleSheet } from 'react-native';
 
 
-interface InputTextProps {
+interface CustomTextInputProps {
   label?: string,
   mode: 'flat' | 'outlined'
   keyboardType: 'default' | 'email-address' | 'numeric' | 'web-search',
@@ -20,7 +20,7 @@ interface InputTextProps {
   borderColor?: string
 };
 
-const InputText = ({
+const CustomTextInput = ({
   label,
   mode,
   keyboardType,
@@ -34,7 +34,7 @@ const InputText = ({
   width,
   height,
   borderColor
-}: InputTextProps) => {
+}: CustomTextInputProps) => {
   const styles = StyleSheet.create({
     TextInput: {
       backgroundColor: background,
@@ -58,4 +58,4 @@ const InputText = ({
   />
 };
 
-export default InputText;
+export default CustomTextInput;

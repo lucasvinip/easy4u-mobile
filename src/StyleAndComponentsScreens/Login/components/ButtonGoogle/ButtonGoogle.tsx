@@ -9,7 +9,7 @@ import { Link } from 'expo-router';
 
 const ButtonGoogle = () => {
     return (
-        <Link href={'/AllProducts'} asChild>
+        <Link  replace href={'/AllProducts'} asChild>
             <TouchableOpacity style={styles.Container}>
                 <View style={styles.Touchable}>
                     <AntDesign name='googleplus' style={styles.TouchableIcon} />
