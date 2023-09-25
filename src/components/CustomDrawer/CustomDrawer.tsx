@@ -1,25 +1,39 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
-import theme from '../../styles/theme';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { Link } from 'expo-router';
+import { styles } from './style'
+import { AppTexts } from '../../assets/strings';
+import theme from '../../styles/theme';
+import ButtonNavigation from './components/ButtonNavigation/ButtonNavigation';
 
-interface CustomDrawerProps {
-  title: string,
-  textWith?: number,
-  padding?: number
-}
-
-const CustomDrawer = ({ title, textWith, padding }: CustomDrawerProps) => {
+const CustomDrawer = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center' }}>
-      <Link href={'/(drawer)/Orders'} asChild>
-        <TouchableOpacity >
-          <Text style={{ textAlign: 'center' }}>
-            {title}
-          </Text>
-        </TouchableOpacity>
-      </Link>
+    <View style={styles.Drawer}>
+      <View style={styles.Container}>
+        <View style={styles.Content}>
+          <View style={styles.ContainerHeader}>
+            <View style={styles.Header}>
+              <Image source={require('../../assets/img/cheesy-bread.png')} style={styles.Image} />
+              <View style={styles.Texts}>
+                <Text style={styles.Name}>
+                  Lucas Vinicius
+                </Text>
+                <Text style={styles.Email}>
+                  easy4ufoods@gmail.com.br
+                </Text>
+                <Text style={styles.Balance}>
+                  Saldo: R$ 150
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.ContainerMain}>
+            <View style={styles.Main}>
+              <ButtonNavigation title='inicoo'/>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };

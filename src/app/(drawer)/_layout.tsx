@@ -10,7 +10,7 @@ import { AppTexts } from '../../assets/strings';
 const Layout = () => {
   return (
     <Drawer 
-    drawerContent={(props) => <CustomDrawer title='lucas'/>}
+    drawerContent={(props) => <CustomDrawer/>}
     >
       <Drawer.Screen name='AllProducts' options={{title: '', headerTransparent: true, drawerLabel: AppTexts.Start}} />
       <Drawer.Screen name='Orders' options={{headerTransparent: true}} />

@@ -1,7 +1,7 @@
 import theme from '../../../../styles/theme';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform} from 'react-native'
 
 const styles = StyleSheet.create({
     Container: {
@@ -55,4 +55,18 @@ const styles = StyleSheet.create({
     }
 });
 
-export { styles };
+const shadowStyle = {
+    ...Platform.select({
+      ios: {
+        shadowColor: '#ffff',
+        shadowOffset: { width: 2, height: 10 },
+        shadowOpacity: 40,
+        shadowRadius: 5,
+      },
+      android: {
+        elevation: 2,
+      },
+    }),
+  };
+
+export { styles, shadowStyle};

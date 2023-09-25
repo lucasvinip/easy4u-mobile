@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     height: '21%',
   },
   HeaderText: {
-    width: 350,
+    width: 320,
     fontFamily: theme.FONTS.Popp500,
     fontSize: RFValue(30)
   },
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   ClicksText: {
     fontSize: RFValue(11),
     fontFamily: theme.FONTS.Popp300,
-    color: theme.COLORS.Gray65E5959
+    color: theme.COLORS.Beige65E5959
   },
   ClicksContainer: {
     flexDirection: 'row',

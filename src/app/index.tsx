@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <UseFonts>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: 'white'}}>
         <View style={styles.Screen}>
           <View style={styles.Container}>
             <View style={styles.ContainerHeader}>

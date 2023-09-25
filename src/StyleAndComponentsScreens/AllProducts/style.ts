@@ -24,11 +24,8 @@ const styles = StyleSheet.create({
         backgroundColor: theme.COLORS.WhiteEDF3EDEB,
         width: '100%',
         height: '70%',
-        borderTopLeftRadius: 118,
-        borderTopRightRadius: 118,
-        borderEndWidth: 1,
-        borderStartWidth: 1,
-        borderColor: theme.COLORS.Beige65E5959,
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
         position: 'absolute'
     },
     Container: {

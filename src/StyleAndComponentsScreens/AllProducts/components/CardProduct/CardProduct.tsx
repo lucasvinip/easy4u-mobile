@@ -1,13 +1,12 @@
 import React from 'react';
-import { ScrollView, TouchableOpacity, View, Text, Image } from 'react-native';
+import { TouchableOpacity, View, Text, Image } from 'react-native';
 import { AppTexts } from '../../../../assets/strings';
-import theme from '../../../../styles/theme';
 
-import { styles } from './style';
+import { styles, shadowStyle} from './style';
 
 const CardProduct = () => {
     return (
-        <TouchableOpacity style={styles.Container}>
+        <TouchableOpacity style={[styles.Container, shadowStyle]}>
             <View style={styles.ContainerCard}>
                 <View style={styles.CardItems}>
                     <View style={styles.Description}>
