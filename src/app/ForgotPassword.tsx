@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DefaultTheme } from 'react-native-paper';
-import { Text, View} from 'react-native'
+import { Text, View } from 'react-native'
 
 
 import Button from '../components/Button/Button';
@@ -12,6 +12,7 @@ import {
     styles
 } from '../StyleAndComponentsScreens/ForgotPassword/style';
 import UseFonts from '../styles/useFonts';
+import { StatusBar } from 'expo-status-bar';
 
 
 
@@ -30,7 +31,11 @@ const themeTextInput = {
 const ForgotPassword = () => {
     return (
         <UseFonts>
-            <SafeAreaView style={{backgroundColor: 'white'}}>
+            <StatusBar
+                style='dark'
+                translucent backgroundColor={theme.COLORS.Whiteffffff}
+            />
+            <SafeAreaView style={{ backgroundColor: 'white' }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
                         <View style={styles.ContainerHeader}>

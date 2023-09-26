@@ -37,6 +37,33 @@ const Layout = () => {
                     headerShown: false
                 }}
             />
+            <Stack.Screen
+                name='ProfileSetting'
+                options={{
+                    headerTransparent: true,
+                    headerTitle: (props) => (
+                        <CustomHeaderTitle title={AppTexts.Profile_Settings.toLocaleUpperCase()} padding={5.5} textWith={200}/>),
+                    headerTitleAlign: 'center',
+                }}
+            />
+            <Stack.Screen
+                name='Orders'
+                options={{
+                    headerTransparent: true,
+                    headerTitle: (props) => (
+                        <CustomHeaderTitle title={AppTexts.Orders.toLocaleUpperCase()} padding={5.5} textWith={200}/>),
+                    headerTitleAlign: 'center',
+                }}
+            />
+            <Stack.Screen
+                name='FavoriteItens'
+                options={{
+                    headerTransparent: true,
+                    headerTitle: (props) => (
+                        <CustomHeaderTitle title={AppTexts.Favorites.toLocaleUpperCase()} padding={5.5} textWith={200}/>),
+                    headerTitleAlign: 'center',
+                }}
+            />
         </Stack>
     );
 }

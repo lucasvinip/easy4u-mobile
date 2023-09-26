@@ -11,6 +11,7 @@ import { AppTexts } from '../assets/strings';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import theme from '../styles/theme';
 import Button from '../components/Button/Button';
+import { StatusBar } from 'expo-status-bar';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -23,6 +24,10 @@ const themeTextInput = {
 const CreateAccount = () => {
     return (
         <UseFonts>
+            <StatusBar
+                style='dark'
+                translucent backgroundColor={theme.COLORS.Whiteffffff}
+            />
             <SafeAreaView style={{ backgroundColor: 'white' }}>
                 <View style={styles.Screen}>
 

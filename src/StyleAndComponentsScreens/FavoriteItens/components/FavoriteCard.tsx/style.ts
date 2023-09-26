@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     Container: {
         paddingBottom: 30,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     Card: {
         height: 140,

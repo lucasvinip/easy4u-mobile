@@ -12,11 +12,15 @@ const Layout = () => {
     <Drawer
       drawerContent={(props) => <CustomDrawer />}
       defaultStatus='open'
+
     >
-      <Drawer.Screen name='AllProducts' options={{ title: '', headerTransparent: true, drawerLabel: AppTexts.Start }} />
-      <Drawer.Screen name='Orders' options={{ headerTransparent: true }} />
-      <Drawer.Screen name='FavoriteItens' options={{ drawerLabel: AppTexts.Favorites }} />
-      <Drawer.Screen name='ProfileSetting' options={{ drawerLabel: AppTexts.Favorites, headerShown: false}} />
+      <Drawer.Screen
+        name='AllProducts'
+        options={{
+          title: '',
+          headerTransparent: true,
+          drawerLabel: AppTexts.Start,
+        }} />
     </Drawer>
   );
 };

@@ -75,7 +75,7 @@ const data: ItemsFavoriteProps[] = [
 
 function FavoriteCard() {
     const renderItem = ({item}: {item: ItemsFavoriteProps}) => (
-        <View style={styles.Container} >
+        <TouchableOpacity style={styles.Container} >
             <View style={styles.Card}>
                 <View style={styles.ContainerItems}>
                     <Image source={{ uri: item.imageURL }} style={styles.Img} />
@@ -94,7 +94,7 @@ function FavoriteCard() {
                     </View>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 
     return (

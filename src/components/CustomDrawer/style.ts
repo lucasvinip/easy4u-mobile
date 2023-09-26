@@ -12,20 +12,22 @@ const styles = StyleSheet.create({
     },
     Container: {
         height: '90%',
-        width: '95%',
+        width: '98%',
     },
     Content: {
         alignItems: 'center',
         height: '100%'
     },
     ContainerHeader: {
-        width: '95%',
+        width: '98%',
         height: '30%',
         justifyContent: 'flex-end',
     },
     Header: {
         flexDirection: 'row',
         justifyContent: 'space-between'
+
+
     },
     Image: {
         width: 60,
@@ -39,16 +41,16 @@ const styles = StyleSheet.create({
     },
     Name: {
         fontFamily: theme.FONTS.Raleway600,
-        fontSize: RFValue(16)
+        fontSize: RFValue(14)
     },
     Email: {
         fontFamily: theme.FONTS.Raleway600,
-        fontSize: RFValue(14),
+        fontSize: RFValue(12),
         color: theme.COLORS.Gray37C7C7A
     },
     Balance: {
         fontFamily: theme.FONTS.Raleway600,
-        fontSize: RFValue(13),
+        fontSize: RFValue(12),
         color: theme.COLORS.Gray37C7C7A
     },
     ContainerMain: {

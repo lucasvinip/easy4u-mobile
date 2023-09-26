@@ -14,6 +14,7 @@ import {
 import ButtonGoogle from '../StyleAndComponentsScreens/Login/components/ButtonGoogle/ButtonGoogle';
 import UseFonts from '../styles/useFonts';
 import TouchText from '../StyleAndComponentsScreens/Login/components/TouchText/TouchText';
+import { StatusBar } from 'expo-status-bar';
 
 const themeTextInput = {
   ...DefaultTheme,
@@ -30,6 +31,10 @@ const Login = () => {
 
   return (
     <UseFonts>
+      <StatusBar
+        style='dark'
+        translucent backgroundColor={theme.COLORS.Whiteffffff}
+      />
       <SafeAreaView style={{backgroundColor: 'white'}}>
         <View style={styles.Screen}>
           <View style={styles.Container}>

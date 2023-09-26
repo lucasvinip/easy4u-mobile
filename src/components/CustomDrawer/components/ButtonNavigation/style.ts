@@ -9,15 +9,16 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     Icon: {
-        fontSize: RFValue(20),
+        fontSize: RFValue(18),
         color: theme.COLORS.Gray37C7C7A
     },
     Title: {
         color: theme.COLORS.Gray37C7C7A,
-        fontSize: RFValue(14),
+        fontSize: RFValue(13),
         fontFamily: theme.FONTS.Popp500,
         paddingTop: 5,
-        width: '55%', paddingLeft: 10
+        width: '55%',
+        paddingLeft: 10
     }
 });
 
