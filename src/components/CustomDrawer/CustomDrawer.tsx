@@ -5,6 +5,7 @@ import { styles } from './style'
 import { AppTexts } from '../../assets/strings';
 import theme from '../../styles/theme';
 import ButtonNavigation from './components/ButtonNavigation/ButtonNavigation';
+import ButtonGetOut from './components/ButtonGetOut/ButtonGetOut';
 
 const CustomDrawer = () => {
   return (
@@ -29,8 +30,14 @@ const CustomDrawer = () => {
           </View>
           <View style={styles.ContainerMain}>
             <View style={styles.Main}>
-              <ButtonNavigation title='inicoo'/>
+              <ButtonNavigation title={AppTexts.Start} icon='home' href='/(drawer)/AllProducts'/>
+              <ButtonNavigation title={AppTexts.Orders} icon='filetext1' href='/(drawer)/Orders'/>
+              <ButtonNavigation title={AppTexts.Favorites} icon='heart' href='/(drawer)/FavoriteItens'/>
+              <ButtonNavigation title={AppTexts.Profile_Settings} icon='setting' href='/ProfileSetting'/>
             </View>
+          </View>
+          <View style={styles.ContainerFooter}>
+            <ButtonGetOut/>
           </View>
         </View>
       </View>

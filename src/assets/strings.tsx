@@ -97,5 +97,7 @@ export const AppTexts = {
 
     Sure_Remove_Favorites: 'Tem certeza que deseja tirar esse item do seus favoritos?',
     Continue: 'Continuar',
-    Check_Baked_Snacks: 'Verifique nossa infinidade de salgados assados'
+
+    Check_Baked_Snacks: 'Verifique nossa infinidade de salgados assados',
+    Get_Out: 'Sair'
 }

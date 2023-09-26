@@ -38,4 +38,4 @@ const ShoppingCart = () => {
     )
 };
 
-export { ShoppingCart };
+export default ShoppingCart;

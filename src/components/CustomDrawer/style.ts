@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     Container: {
         height: '90%',
         width: '95%',
-        backgroundColor: 'green'
     },
     Content: {
         alignItems: 'center',
@@ -23,8 +22,6 @@ const styles = StyleSheet.create({
         width: '95%',
         height: '30%',
         justifyContent: 'flex-end',
-        backgroundColor: 'blue'
-
     },
     Header: {
         flexDirection: 'row',
@@ -55,15 +52,18 @@ const styles = StyleSheet.create({
         color: theme.COLORS.Gray37C7C7A
     },
     ContainerMain: {
-        backgroundColor: 'pink',
         height: '50%',
         width: '95%',
         justifyContent: 'center'
     },
     Main:{
-        backgroundColor: 'purple',
         height: '80%',
         justifyContent: 'space-evenly'
+    },
+    ContainerFooter:{
+        height: '17%',
+        width: '95%',
+        justifyContent: 'flex-end'
     }
 });
 

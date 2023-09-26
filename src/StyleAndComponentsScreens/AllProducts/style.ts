@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         justifyContent: 'flex-end',
-        position: 'absolute'
+        position: 'absolute',
     },
     ColorBeige: {
         backgroundColor: theme.COLORS.WhiteEDF3EDEB,
@@ -63,7 +63,9 @@ const styles = StyleSheet.create({
     },
     Main: {
         height: 'auto'
-    }
+    },
+    
 });
+
 
 export { styles };

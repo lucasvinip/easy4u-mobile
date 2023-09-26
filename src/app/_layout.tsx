@@ -16,9 +16,9 @@ const Layout = () => {
                 options={{
                     headerTransparent: true,
                     headerTitle: (props) => (
-                        <CustomHeaderTitle title={AppTexts.Forgot_my_Password.toLocaleUpperCase()} padding={5.5}/>),
+                        <CustomHeaderTitle title={AppTexts.Forgot_my_Password.toLocaleUpperCase()} padding={5.5} />),
                     headerTitleAlign: 'center',
-                    
+
                 }}
             />
             <Stack.Screen
@@ -26,9 +26,9 @@ const Layout = () => {
                 options={{
                     headerTransparent: true,
                     headerTitle: (props) => (
-                        <CustomHeaderTitle title={AppTexts.Create_a_Account.toLocaleUpperCase()} padding={5.5}/>),
+                        <CustomHeaderTitle title={AppTexts.Create_a_Account.toLocaleUpperCase()} padding={5.5} />),
                     headerTitleAlign: 'center',
-                    
+
                 }}
             />
             <Stack.Screen
