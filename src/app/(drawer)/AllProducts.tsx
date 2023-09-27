@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DefaultTheme } from 'react-native-paper';
+import { AntDesign } from '@expo/vector-icons';
+
 
 import { styles } from '../../StyleAndComponentsScreens/AllProducts/style'
 import theme from '../../styles/theme';
@@ -29,7 +31,7 @@ const AllProducts = () => {
                 translucent backgroundColor={theme.COLORS.Orange4FE724C}
             />
             <SafeAreaView style={styles.SafeAreaView}>
-                <Text style={{ textAlign: 'center', fontSize: 16, fontFamily: theme.FONTS.Popp500, color: theme.COLORS.White2F3F3F3 }}>{AppTexts.Products}</Text>
+    
                 <View style={styles.ColorOrange}>
                     <View style={styles.ContainerColorBeige}>
                         <View style={styles.ColorBeige}></View>

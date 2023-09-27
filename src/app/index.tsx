@@ -96,6 +96,7 @@ const Login = () => {
             </View>
           </View>
         </View>
+        
       </SafeAreaView>
     </UseFonts>
   )

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
-import { Link } from 'expo-router';
 import { styles } from './style'
 import { AppTexts } from '../../assets/strings';
-import theme from '../../styles/theme';
 import ButtonNavigation from './components/ButtonNavigation/ButtonNavigation';
 import ButtonGetOut from './components/ButtonGetOut/ButtonGetOut';
 

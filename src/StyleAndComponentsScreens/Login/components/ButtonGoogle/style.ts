@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     TouchableText: {
         color: 'white',
         fontFamily: theme.FONTS.Popp700,
-        
         paddingTop: 10,
     }
 });

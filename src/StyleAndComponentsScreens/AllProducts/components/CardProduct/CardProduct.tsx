@@ -6,6 +6,7 @@ import { styles, shadowStyle} from './style';
 
 const CardProduct = () => {
     return (
+        
         <TouchableOpacity style={[styles.Container, shadowStyle]}>
             <View style={styles.ContainerCard}>
                 <View style={styles.CardItems}>

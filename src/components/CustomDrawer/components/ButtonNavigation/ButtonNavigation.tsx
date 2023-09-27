@@ -1,7 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import theme from '../../../../styles/theme';
 import { styles } from './style'
 import { Href, Link } from 'expo-router';
 

@@ -144,7 +144,7 @@ function OrderCard() {
                 keyExtractor={(item) => item.id}
                 renderItem={renderItem}
                 showsVerticalScrollIndicator={false}
-
+        
             />
         </View>
     );

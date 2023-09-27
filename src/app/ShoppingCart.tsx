@@ -6,11 +6,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { styles } from './style';
-import theme from '../../styles/theme';
-import ProductItem from './components/ProductItem/ProductItem'
-import ScheduleTime from './components/SchuleTime/SchuleTime';
-import SubTotalDiscount from './components/SubTotalDiscount/SubTotalDiscount';
+import { styles } from '../StyleAndComponentsScreens/ShoppingCart/style';
+import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/ProductItem/ProductItem'
+import ScheduleTime from '../StyleAndComponentsScreens/ShoppingCart/components/SchuleTime/SchuleTime';
+import SubTotalDiscount from '../StyleAndComponentsScreens/ShoppingCart/components/SubTotalDiscount/SubTotalDiscount';
 
 const ShoppingCart = () => {
     return (

@@ -58,7 +58,7 @@ const Layout = () => {
             <Stack.Screen
                 name='FavoriteItens'
                 options={{
-                    headerTransparent: true,
+                    
                     headerTitle: (props) => (
                         <CustomHeaderTitle title={AppTexts.Favorites.toLocaleUpperCase()} padding={5.5} textWith={200}/>),
                     headerTitleAlign: 'center',
