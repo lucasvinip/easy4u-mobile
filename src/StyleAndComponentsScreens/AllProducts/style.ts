@@ -9,12 +9,6 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%'
     },
-    Text: {
-        textAlign: 'center',
-        fontSize: 16,
-        fontFamily: theme.FONTS.Popp500,
-        color: theme.COLORS.White2F3F3F3
-    },
     ColorOrange: {
         backgroundColor: theme.COLORS.Orange4FE724C,
         height: '100%',

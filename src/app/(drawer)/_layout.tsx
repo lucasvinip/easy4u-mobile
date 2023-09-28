@@ -7,7 +7,8 @@ import CustomDrawer from '../../components/CustomDrawer/CustomDrawer';
 import theme from '../../styles/theme';
 import { AppTexts } from '../../assets/strings';
 import { Stack } from 'expo-router';
-import CustomHeaderNavigation from '../../components/CustomHeaderNavigation/CustomHeaderNavigation';
+import CustomHeaderNavigation from '../../components/CustomHeaderDrawer/CustomHeaderDrawer';
+import CustomHeaderDrawer from '../../components/CustomHeaderDrawer/CustomHeaderDrawer';
 
 const Layout = () => {
   return (
@@ -17,6 +18,7 @@ const Layout = () => {
         headerTintColor: '#FFF',
         drawerType: 'slide',
       }}
+      defaultStatus={'open'}
       >
       <Drawer.Screen
         name='AllProducts'
@@ -24,7 +26,7 @@ const Layout = () => {
           title: '',
           headerTransparent: true,
           drawerLabel: AppTexts.Start,
-          header: () => (<CustomHeaderNavigation/>)
+          header: () => (<CustomHeaderDrawer/>)
         }} />
 
     </Drawer>

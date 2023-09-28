@@ -7,9 +7,9 @@ import { Link } from 'expo-router';
 
 const CardProduct = () => {
     return (
-        <View>
+        <View style={[styles.Container, shadowStyle]}>
             <Link href={'/Product'} asChild>
-                <TouchableOpacity style={[styles.Container, shadowStyle]}>
+                <TouchableOpacity>
                     <View style={styles.ContainerCard}>
                         <View style={styles.CardItems}>
                             <View style={styles.Description}>

@@ -3,9 +3,10 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { styles } from './style'
 import { AntDesign } from '@expo/vector-icons';
 import { AppTexts } from '../../assets/strings';
-import { Link } from 'expo-router';
+import { Link, useNavigation } from 'expo-router';
 
-const CustomHeaderNavigation = () => {
+const CustomHeaderDrawer = () => {
+
     return (
         <View style={styles.ContainerHeader}>
             <View style={styles.Title}>
@@ -31,4 +32,4 @@ const CustomHeaderNavigation = () => {
     );
 };
 
-export default CustomHeaderNavigation;
+export default CustomHeaderDrawer;

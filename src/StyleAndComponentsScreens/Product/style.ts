@@ -1,41 +1,80 @@
-import { StyleSheet, Platform} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 import theme from '../../styles/theme';
 
 const styles = StyleSheet.create({
-  Container: {
-    height: '100%'
+  SafeAreaView: {
+    backgroundColor: theme.COLORS.Beige65E5959,
+    height: '100%',
+    width: '100%'
+  },
+  Background: {
+    backgroundColor: theme.COLORS.White2F3F3F3,
+    height: '100%',
+    width: '100%'
   },
   Img: {
     width: '100%',
     height: '48%',
-    borderRadius: 15
+    borderRadius: 15,
+    position: 'absolute'
   },
-  ContainerMain: {
-    backgroundColor: theme.COLORS.Gray2Rgba255249243047,
-    width: '100%',
+  Backgroung2: {
     height: '100%',
-    borderRadius: 38,
-    zIndex: 1
-  },
-  Main: {
-    paddingLeft: 18,
-    paddingRight: 18,
     width: '100%',
-    height: '100%'
+    justifyContent: 'flex-end',
+    position: 'absolute',
   },
   ContainerIcon: {
-    width: '92%',
-    height: '6%',
-    justifyContent: 'flex-end'
+    width: '85%',
+    height: '61%',
+    alignItems: 'flex-end',
+    position: 'absolute'
+  },
+  ContainerCircle: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  Circle: {
+    borderRadius: 100,
+    width: 48,
+    height: 48,
+    backgroundColor: theme.COLORS.OrangeFF6C44,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   Icon: {
-    color: theme.COLORS.RedF15050,
-    fontSize: 30,
-    textAlign: 'right',
+    color: theme.COLORS.Gray4F5F3EF,
+    fontSize: RFValue(25),
+  },
+  Screen: {
+    backgroundColor: theme.COLORS.Gray4F5F3EF,
+    width: '100%',
+    height: '58%',
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    position: 'absolute',
+  },
+  Container: {
+    height: '100%',
+    marginRight: 15,
+    marginLeft: 15,
+    justifyContent: 'center',
+    zIndex: 3,
+
+  },
+  ContainerMain: {
+    height: '99%',
+    justifyContent: 'center',
+  },
+  Main: {
+    height: '100%',
+    justifyContent: 'space-evenly',
+
   },
   TypeProductName: {
     fontFamily: theme.FONTS.Popp600,
-    fontSize: 22
+    fontSize: RFValue(18),
   },
   ContainerAvailable: {
     paddingBottom: 20
@@ -52,7 +91,7 @@ const styles = StyleSheet.create({
     fontFamily: theme.FONTS.Popp500,
     fontSize: 12,
     color: theme.COLORS.Gray37C7C7A,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   ContainerObservationAmount: {
     height: '12%'
@@ -74,7 +113,6 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   AmountText: {
-    textAlign: 'left',
     width: '100%',
     color: theme.COLORS.Gray37C7C7A,
     fontFamily: theme.FONTS.Popp600,
@@ -94,10 +132,10 @@ const shadowStyle = {
       shadowRadius: 3,
     },
     android: {
-      elevation: 6,
+      elevation: 2,
     },
   }),
 };
 
-export { styles, shadowStyle};
+export { styles, shadowStyle };
 

@@ -29,7 +29,6 @@ const AllProducts = () => {
                 translucent backgroundColor={theme.COLORS.Orange4FE724C}
             />
             <SafeAreaView style={styles.SafeAreaView}>
-    
                 <View style={styles.ColorOrange}>
                     <View style={styles.ContainerColorBeige}>
                         <View style={styles.ColorBeige}></View>
@@ -60,14 +59,6 @@ const AllProducts = () => {
                         </View>
                         <ScrollView contentContainerStyle={styles.ContainerMain} showsVerticalScrollIndicator={false}>
                             <View style={styles.Main}>
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
                                 <CardProduct />
                                 <CardProduct />
                                 <CardProduct />
