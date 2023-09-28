@@ -12,12 +12,11 @@ import CustomHeaderNavigation from '../../components/CustomHeaderNavigation/Cust
 const Layout = () => {
   return (
     <Drawer
-      drawerContent={(props) => <CustomDrawer />}
+      drawerContent={() => <CustomDrawer />}
       screenOptions={{
         headerTintColor: '#FFF',
         drawerType: 'slide',
       }}
-      
       >
       <Drawer.Screen
         name='AllProducts'
@@ -25,7 +24,7 @@ const Layout = () => {
           title: '',
           headerTransparent: true,
           drawerLabel: AppTexts.Start,
-          header: (props) => (<CustomHeaderNavigation/>)
+          header: () => (<CustomHeaderNavigation/>)
         }} />
 
     </Drawer>

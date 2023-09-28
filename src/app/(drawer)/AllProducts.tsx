@@ -2,15 +2,13 @@ import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DefaultTheme } from 'react-native-paper';
-import { AntDesign } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 
 import { styles } from '../../StyleAndComponentsScreens/AllProducts/style'
 import theme from '../../styles/theme';
-import { AppTexts } from '../../assets/strings';
 import CardProduct from '../../StyleAndComponentsScreens/AllProducts/components/CardProduct/CardProduct';
 import UseFonts from '../../styles/useFonts';
-import { StatusBar } from 'expo-status-bar';
 import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/components/CustomTextInput/CustomTextInput';
 import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
 

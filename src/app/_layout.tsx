@@ -58,10 +58,25 @@ const Layout = () => {
             <Stack.Screen
                 name='FavoriteItens'
                 options={{
-                    
                     headerTitle: (props) => (
                         <CustomHeaderTitle title={AppTexts.Favorites.toLocaleUpperCase()} padding={5.5} textWith={200}/>),
                     headerTitleAlign: 'center',
+                }}
+            />
+            <Stack.Screen
+                name='ShoppingCart'
+                options={{
+                    headerTitle: (props) => (
+                        <CustomHeaderTitle title={AppTexts.Shopping_Cart.toLocaleUpperCase()} padding={5.5}/>),
+                    headerTitleAlign: 'center',
+                }}
+            />
+            <Stack.Screen
+                name='Product'
+                options={{
+                    headerTransparent: true,
+                    title: '',
+                    headerTintColor: 'white'
                 }}
             />
         </Stack>

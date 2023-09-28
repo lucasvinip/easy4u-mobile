@@ -1,5 +1,10 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Image } from 'react-native';
+import {
+    View,
+    TouchableOpacity,
+    Text,
+    Image
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
@@ -7,10 +12,7 @@ import { StatusBar } from 'expo-status-bar';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
 import { AppTexts } from '../assets/strings';
-import Button from '../components/Button/Button';
-import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard';
 import UseFonts from '../styles/useFonts';
-import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/ProductItem/ProductItem';
 
 const Orders = () => {
     return (
@@ -31,7 +33,7 @@ const Orders = () => {
                                                 10/08/2023
                                             </Text>
                                         </View>
-                                        <View style={{ flexDirection: 'row', width: '99%', alignItems: 'center', justifyContent: 'space-around', marginBottom: 18}}>
+                                        <View style={{ flexDirection: 'row', width: '99%', alignItems: 'center', justifyContent: 'space-around', marginBottom: 18 }}>
                                             <Image source={require('../assets/img/cheesy-bread.png')} style={{ width: 80, height: 80 }} />
                                             <View>
                                                 <Text
@@ -44,21 +46,21 @@ const Orders = () => {
                                                     {AppTexts.Croassaint_Queijo}
                                                 </Text>
                                                 <Text>
-                                                    <Text style={{fontFamily: theme.FONTS.Popp700, fontSize: 14}}>R$</Text> <Text style={{fontFamily: theme.FONTS.Popp700, fontSize: 14, color: theme.COLORS.OrangeFF6C44}}> 5,00</Text>
+                                                    <Text style={{ fontFamily: theme.FONTS.Popp700, fontSize: 14 }}>R$</Text> <Text style={{ fontFamily: theme.FONTS.Popp700, fontSize: 14, color: theme.COLORS.OrangeFF6C44 }}> 5,00</Text>
                                                 </Text>
                                             </View>
                                             <View style={{}}>
                                                 <View style={{
                                                     backgroundColor: theme.COLORS.Gray5CDCDCD, height: 18, width: 40, borderRadius: 50, alignItems: 'center', justifyContent: 'center'
                                                 }}>
-                                                    <Text style={{ fontSize: 14, fontFamily: theme.FONTS.Popp600, textAlignVertical: 'top'}}>
+                                                    <Text style={{ fontSize: 14, fontFamily: theme.FONTS.Popp600, textAlignVertical: 'top' }}>
                                                         20
                                                     </Text>
                                                 </View>
                                             </View>
                                         </View>
                                     </View>
-                                    
+
                                 </TouchableOpacity>
                             </View>
                         </View>

@@ -22,22 +22,23 @@ const styles = StyleSheet.create({
         width: '98%',
         height: '30%',
         justifyContent: 'flex-end',
+        alignItems: 'center'
     },
     Header: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly'
-
-
+        justifyContent: 'space-evenly',
+        height: '45%',
     },
     Image: {
         width: 60,
         height: 60,
         borderRadius: 5,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
     },
     Texts: {
-        justifyContent: 'space-between',
-        height: '30%',
+        justifyContent: 'space-evenly',
+        height: '60%',
     },
     Name: {
         fontFamily: theme.FONTS.Raleway600,
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
     Email: {
         fontFamily: theme.FONTS.Raleway600,
         fontSize: RFValue(12),
-        color: theme.COLORS.Gray37C7C7A
+        color: theme.COLORS.Gray37C7C7A,
+        
     },
     Balance: {
         fontFamily: theme.FONTS.Raleway600,

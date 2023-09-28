@@ -3,6 +3,11 @@ import { StyleSheet } from "react-native";
 
 
 const styles = StyleSheet.create({
+  Screen: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: theme.COLORS.Whiteffffff
+  },
   Container: {
     backgroundColor: theme.COLORS.Whiteffffff,
     marginLeft: 15,
@@ -12,7 +17,6 @@ const styles = StyleSheet.create({
   ContainerHeader: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 60,
     marginBottom: 20
   },
   HeaderText: {
@@ -25,14 +29,14 @@ const styles = StyleSheet.create({
     height: 30,
     width: '98%'
   },
-  ContainerMain:{
+  ContainerMain: {
     marginBottom: 15,
-    justifyContent: 'space-evenly' 
+    justifyContent: 'space-evenly'
   },
-  ConatinerFooter:{
+  ConatinerFooter: {
     justifyContent: 'center',
-     paddingTop: 20,
-    height: 'auto' 
+    paddingTop: 20,
+    height: 'auto'
   }
 });
 

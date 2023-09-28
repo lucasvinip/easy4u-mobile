@@ -4,12 +4,12 @@ import { StatusBar } from 'expo-status-bar';
 import { AntDesign } from '@expo/vector-icons';
 import { DefaultTheme } from 'react-native-paper';
 
-import { styles, shadowStyle} from './style';
-import theme from '../../styles/theme';
-import { AppTexts } from '../../assets/strings';
-import ButtonMoreOrLess from '../../components/ButtonMoreOrLess/ButtonMoreOrLess';
-import InputText from '../../components/CustomTextInput/CustomTextInput';
-import ButtonAddCart from './components/ButtonCart/ButtonAddCart';
+import { styles, shadowStyle} from '../StyleAndComponentsScreens/Product/style';
+import theme from '../styles/theme';
+import { AppTexts } from '../assets/strings';
+import ButtonMoreOrLess from '../components/ButtonMoreOrLess/ButtonMoreOrLess';
+import InputText from '../components/CustomTextInput/CustomTextInput';
+import ButtonAddCart from '../StyleAndComponentsScreens/Product/components/ButtonCart/ButtonAddCart';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -29,7 +29,7 @@ const Product = () => {
                 backgroundColor='transparent'
             />
             <View style={styles.Container}>
-                <Image source={require('../../../assets/img/lanche.png')} style={styles.Img} />
+                <Image source={require('../assets/img/lanche.png')} style={styles.Img} />
                 <View>
                     <View style={styles.ContainerMain}>
                         <View style={styles.Main}>
@@ -89,4 +89,4 @@ const Product = () => {
     );
 };
 
-export  default Product;
+export default Product;

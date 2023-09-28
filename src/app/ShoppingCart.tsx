@@ -13,27 +13,36 @@ import SubTotalDiscount from '../StyleAndComponentsScreens/ShoppingCart/componen
 
 const ShoppingCart = () => {
     return (
-        <SafeAreaView>
-            <View style={styles.Container}>
-                <View style={styles.ContainerHeader}>
-                    <Text style={styles.HeaderText}>3 items</Text>
-                    <View style={styles.HeaderLine} />
+        <SafeAreaView style={{backgroundColor: 'white'}}>
+            <View style={styles.Screen}>
+                <View style={styles.Container}>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <View style={styles.ContainerHeader}>
+                            <Text style={styles.HeaderText}>3 items</Text>
+                            <View style={styles.HeaderLine} />
+                        </View>
+
+                        <View style={styles.ContainerMain}>
+                            <ProductItem />
+                            <ProductItem />
+                            <ProductItem />
+                            <ProductItem />
+                            <ProductItem />
+                            <ProductItem />
+                            <ProductItem />
+                            <ProductItem />
+                            <ProductItem />
+                        </View>
+                        <View>
+                            <ScheduleTime />
+                        </View>
+                        <View style={styles.ConatinerFooter}>
+                            <SubTotalDiscount />
+                        </View>
+                    </ScrollView>
                 </View>
-                <ScrollView>
-                    <View style={styles.ContainerMain}>
-                        <ProductItem />
-                        <ProductItem />
-                        <ProductItem />
-                    </View>
-                    <View>
-                        <ScheduleTime />
-                    </View>
-                    <View style={styles.ConatinerFooter}>
-                        <SubTotalDiscount />
-                    </View>
-                </ScrollView>
             </View>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 };
 

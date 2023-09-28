@@ -3,13 +3,13 @@ import { Text, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import theme from '../../styles/theme';
 
-interface CustomDrawerProps {
+interface CustomHeaderTitleProps {
     title?: string,
     textWith?: number,
     padding?: number
   }
 
-const CustomDrawer = ({ title, textWith, padding} : CustomDrawerProps) => {
+const CustomHeaderTitle = ({ title, textWith, padding} : CustomHeaderTitleProps) => {
   return (
     <View>
       <Text
@@ -27,4 +27,4 @@ const CustomDrawer = ({ title, textWith, padding} : CustomDrawerProps) => {
   );
 };
 
-export default CustomDrawer;
+export default CustomHeaderTitle;
