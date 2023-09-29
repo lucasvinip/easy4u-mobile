@@ -15,10 +15,8 @@ const Layout = () => {
     <Drawer
       drawerContent={() => <CustomDrawer />}
       screenOptions={{
-        headerTintColor: '#FFF',
         drawerType: 'slide',
       }}
-      defaultStatus={'open'}
       >
       <Drawer.Screen
         name='AllProducts'

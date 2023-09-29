@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         fontSize: RFValue(14.5),
         fontFamily: theme.FONTS.Popp400,
-        color: theme.COLORS.BlackRgba3419081
+        color: theme.COLORS.White2F3F3F3
     },
     Icon: {
         position: 'absolute',

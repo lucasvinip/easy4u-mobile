@@ -33,15 +33,15 @@ const Product = () => {
                 <View style={styles.Background}>
                     <Image source={require('../assets/img/lanche.png')} style={styles.Img} />
                     <View style={styles.Backgroung2}>
-                        <View style={styles.ContainerIcon}>
-                            <TouchableOpacity style={styles.ContainerCircle}>
-                                <View style={[styles.Circle, , shadowStyle]}>
-                                    <AntDesign name='heart' style={styles.Icon} />
-                                </View>
-                            </TouchableOpacity>
-                        </View>
                         <View style={styles.Screen}>
                             <View style={styles.Container}>
+                                <View style={styles.ContainerIcon}>
+                                    <TouchableOpacity style={styles.ContainerCircle}>
+                                        <View style={[styles.Circle, , shadowStyle]}>
+                                            <AntDesign name='heart' style={styles.Icon} />
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
                                 <View style={styles.ContainerMain}>
                                     <View style={styles.Main}>
                                         <Text style={styles.TypeProductName}>
@@ -51,14 +51,13 @@ const Product = () => {
                                             <Text style={styles.AvailableText}>
                                                 {AppTexts.Available}
                                             </Text>
-                                            <ScrollView style={styles.AvailableScroll} showsVerticalScrollIndicator={false}>
-                                                <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
+                                            <ScrollView  showsVerticalScrollIndicator={false}>
+                                                <View style={styles.AvailableScroll}>
+                                                    <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
+                                                    <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
+                                                    <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
+                                                    <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
+                                                </View>
                                             </ScrollView>
                                         </View>
                                         <View style={styles.ContainerObservationAmount}>

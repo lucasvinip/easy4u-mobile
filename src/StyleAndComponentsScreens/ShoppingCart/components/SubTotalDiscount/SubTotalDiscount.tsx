@@ -4,6 +4,7 @@ import { AppTexts } from '../../../../assets/strings';
 import theme from '../../../../styles/theme';
 import { styles } from './style';
 import Button from '../../../../components/Button/Button'; // Import your custom Button component
+import { Link } from 'expo-router';
 
 
 const SubTotalDiscount = () => {
@@ -22,7 +23,9 @@ const SubTotalDiscount = () => {
             </View>
             <View style={styles.TextRow}>
               <Text style={styles.labelText}>{AppTexts.Total}</Text>
-              <Text style={styles.valueText}>R$ 14,50</Text>
+              <Link href={'/Checkout'} asChild>
+                <Text style={styles.valueText}>R$ 14,50</Text>
+              </Link>
             </View>
           </View>
         </View>

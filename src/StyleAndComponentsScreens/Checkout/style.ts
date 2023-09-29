@@ -3,24 +3,26 @@ import theme from "../../styles/theme";
 
 
 const styles = StyleSheet.create({
+  Screen: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: theme.COLORS.Whiteffffff
+  },
   Container: {
     backgroundColor: theme.COLORS.Whiteffffff,
     marginLeft: 15,
     marginRight: 15,
-    justifyContent: `center`
+    justifyContent: 'space-around'
   },
   ContainerHeader: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 60,
   },
   ContainerMain: {
     justifyContent: 'space-around',
-    height: '44%',
   },
   ContainerFooter: {
     alignItems: 'center',
-    height: '30%',
     justifyContent: 'space-evenly',
   },
   container: {

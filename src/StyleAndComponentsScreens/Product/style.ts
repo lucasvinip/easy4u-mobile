@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   ContainerIcon: {
-    width: '85%',
-    height: '61%',
+    // marginBottom: 430,
+    width: '90%',
     alignItems: 'flex-end',
-    position: 'absolute'
+    zIndex: 1
   },
   ContainerCircle: {
     alignItems: 'center',
@@ -53,39 +53,36 @@ const styles = StyleSheet.create({
     height: '58%',
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-    position: 'absolute',
   },
   Container: {
     height: '100%',
     marginRight: 15,
     marginLeft: 15,
     justifyContent: 'center',
-    zIndex: 3,
-
   },
   ContainerMain: {
     height: '99%',
-    justifyContent: 'center',
   },
   Main: {
-    height: '100%',
-    justifyContent: 'space-evenly',
-
+    height: '90%',
+    justifyContent: 'space-around',
   },
   TypeProductName: {
     fontFamily: theme.FONTS.Popp600,
-    fontSize: RFValue(18),
+    fontSize: RFValue(20),
+    width: '64%',
+    textAlign: 'center'
   },
   ContainerAvailable: {
     paddingBottom: 20
   },
   AvailableText: {
     fontFamily: theme.FONTS.Popp600,
-    fontSize: 16
+    fontSize: RFValue(14)
   },
   AvailableScroll: {
-    height: '15%',
-    width: '50%'
+    height: '20%',
+    width: '70%'
   },
   ScrollText: {
     fontFamily: theme.FONTS.Popp500,
@@ -110,13 +107,13 @@ const styles = StyleSheet.create({
     width: '85%',
     color: theme.COLORS.Gray37C7C7A,
     fontFamily: theme.FONTS.Popp600,
-    fontSize: 12
+    fontSize: RFValue(10.5)
   },
   AmountText: {
     width: '100%',
     color: theme.COLORS.Gray37C7C7A,
     fontFamily: theme.FONTS.Popp600,
-    fontSize: 12
+    fontSize: RFValue(10.5)
   },
   ContainerButton: {
     alignItems: 'center'

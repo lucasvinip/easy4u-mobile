@@ -42,7 +42,7 @@ const Layout = () => {
                 options={{
                     headerTransparent: true,
                     headerTitle: (props) => (
-                        <CustomHeaderTitle title={AppTexts.Profile_Settings.toLocaleUpperCase()} padding={5.5} textWith={200}/>),
+                        <CustomHeaderTitle title={AppTexts.Profile_Settings.toLocaleUpperCase()} padding={5.5} textWith={200} />),
                     headerTitleAlign: 'center',
                 }}
             />
@@ -51,7 +51,7 @@ const Layout = () => {
                 options={{
                     headerTransparent: true,
                     headerTitle: (props) => (
-                        <CustomHeaderTitle title={AppTexts.Orders.toLocaleUpperCase()} padding={5.5} textWith={200}/>),
+                        <CustomHeaderTitle title={AppTexts.Orders.toLocaleUpperCase()} padding={5.5} textWith={200} />),
                     headerTitleAlign: 'center',
                 }}
             />
@@ -59,7 +59,7 @@ const Layout = () => {
                 name='FavoriteItens'
                 options={{
                     headerTitle: (props) => (
-                        <CustomHeaderTitle title={AppTexts.Favorites.toLocaleUpperCase()} padding={5.5} textWith={200}/>),
+                        <CustomHeaderTitle title={AppTexts.Favorites.toLocaleUpperCase()} padding={5.5} textWith={200} />),
                     headerTitleAlign: 'center',
                 }}
             />
@@ -67,7 +67,7 @@ const Layout = () => {
                 name='ShoppingCart'
                 options={{
                     headerTitle: (props) => (
-                        <CustomHeaderTitle title={AppTexts.Shopping_Cart.toLocaleUpperCase()} padding={5.5}/>),
+                        <CustomHeaderTitle title={AppTexts.Shopping_Cart.toLocaleUpperCase()} padding={5.5} />),
                     headerTitleAlign: 'center',
                 }}
             />
@@ -77,6 +77,15 @@ const Layout = () => {
                     headerTransparent: true,
                     title: '',
                     headerTintColor: 'white'
+                }}
+            />
+            <Stack.Screen
+                name='Checkout'
+                options={{
+                    headerTransparent: true,
+                    headerTitle: (props) => (
+                        <CustomHeaderTitle title={AppTexts.Payment.toLocaleUpperCase()} padding={5.5} />),
+                    headerTitleAlign: 'center',
                 }}
             />
         </Stack>
