@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,6 +15,7 @@ import ButtonGoogle from '../StyleAndComponentsScreens/Login/components/ButtonGo
 import UseFonts from '../styles/useFonts';
 import TouchText from '../StyleAndComponentsScreens/Login/components/TouchText/TouchText';
 import { StatusBar } from 'expo-status-bar';
+import { performApi } from '../utils/api';
 
 const themeTextInput = {
   ...DefaultTheme,
@@ -29,13 +30,42 @@ const themeTextInput = {
 
 const Login = () => {
 
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [erro, setErro] = useState<string>("");
+
+  const handleEmailChange = (email: string) => {
+    console.log(email)
+    setEmail(email);
+    setErro("");
+  };
+
+  const handlePasswordChange = (password: string) => {
+    console.log(password);
+    setPassword(password);
+    setErro("");
+  };
+
+  const handleLogin = async () => {
+    try {
+      const data = await performApi.sendData("auth/signin", "POST", { email, password });
+      if (data.statusCode !== 201) {
+        setErro(data.message);
+      } else {
+        return <Link href={"/(drawer)/AllProducts"} asChild/>
+      }
+    } catch (error) {
+      setErro("Ocorreu um erro durante o login.");
+    }
+  };
+
   return (
     <UseFonts>
       <StatusBar
         style='dark'
         translucent backgroundColor={theme.COLORS.Whiteffffff}
       />
-      <SafeAreaView style={{backgroundColor: 'white'}}>
+      <SafeAreaView style={{ backgroundColor: 'white' }}>
         <View style={styles.Screen}>
           <View style={styles.Container}>
             <View style={styles.ContainerHeader}>
@@ -57,6 +87,8 @@ const Login = () => {
                 fontSize={12}
                 fontFamily={theme.FONTS.Popp400}
                 paddingTop={5}
+                data={email}
+                onChange={handleEmailChange}
               />
               <InputText
                 label='SENHA'
@@ -68,7 +100,11 @@ const Login = () => {
                 fontSize={12}
                 fontFamily={theme.FONTS.Popp400}
                 paddingTop={18}
+                data={password}
+                onChange={handlePasswordChange}
               />
+              {erro && <Text style={{color: theme.COLORS.RedF15050, fontFamily: theme.FONTS.Popp400}}>{erro}</Text>}
+
             </View>
             <View style={styles.ContainerClicks}>
               <TouchText title={AppTexts.Forgot_Password} href='/ForgotPassword' titleColor={theme.COLORS.Beige65E5959} />
@@ -80,6 +116,7 @@ const Login = () => {
                 height={40}
                 borderRadius={4}
                 fontSize={14}
+                onPress={handleLogin}
               />
               <View style={styles.ClicksContainer}>
                 <Text style={styles.ClicksText}>
@@ -96,7 +133,6 @@ const Login = () => {
             </View>
           </View>
         </View>
-        
       </SafeAreaView>
     </UseFonts>
   )

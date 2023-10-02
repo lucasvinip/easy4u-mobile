@@ -16,13 +16,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ma7hs.Easy4U"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FF6C40"
-      }
+      },
+      "package": "com.ma7hs.Easy4U"
     },
     "web": {
       "favicon": "./assets/favicon.png",

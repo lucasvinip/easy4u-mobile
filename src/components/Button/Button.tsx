@@ -1,15 +1,18 @@
+import React, { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
+import { performApi } from '../../utils/api';
 
+interface ButtonProps {
+  background: string;
+  width: number;
+  height: number;
+  borderRadius: number;
+  text: string;
+  fontFamily: string;
+  fontSize: number;
+  onPress: () => void;
+}
 
-interface ButtonProps{
-  background: string,
-  width: number
-  height: number,
-  borderRadius: number
-  text: string,
-  fontFamily: string,
-  fontSize: number,
-};
 const Button = ({
   background,
   width,
@@ -17,7 +20,9 @@ const Button = ({
   borderRadius,
   text,
   fontFamily,
-  fontSize
+  fontSize,
+  onPress,
+  ...props
 }: ButtonProps) => {
   const styles = StyleSheet.create({
     button: {
@@ -26,37 +31,31 @@ const Button = ({
       height: height,
       borderRadius: borderRadius,
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      ...Platform.select({
+        ios: {
+          shadowColor: 'black',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.5,
+          shadowRadius: 3,
+        },
+        android: {
+          elevation: 6,
+        },
+      }),
     },
     text: {
       color: 'white',
       fontFamily: fontFamily,
-      fontSize: fontSize
+      fontSize: fontSize,
     },
   });
-  const shadowStyle = {
-    ...Platform.select({
-      ios: {
-        shadowColor: '#ffff',
-        shadowOffset: { width: 2, height: 10 },
-        shadowOpacity: 40,
-        shadowRadius: 5,
-      },
-      android: {
-        elevation: 6,
-      },
-    }),
-  };
 
   return (
-    <TouchableOpacity style={[styles.button, shadowStyle]}>
+    <TouchableOpacity style={styles.button} onPress={onPress} {...props}>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
 };
 
 export default Button;
-
-
-
-
