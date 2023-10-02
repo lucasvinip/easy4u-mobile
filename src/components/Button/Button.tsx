@@ -1,14 +1,14 @@
 import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
 
-interface ButtonProps {
+interface ButtonProps{
   background: string,
   width: number
   height: number,
   borderRadius: number
   text: string,
   fontFamily: string,
-  fontSize: number
+  fontSize: number,
 };
 const Button = ({
   background,
@@ -49,7 +49,7 @@ const Button = ({
   };
 
   return (
-    <TouchableOpacity style={[styles.button, shadowStyle]} >
+    <TouchableOpacity style={[styles.button, shadowStyle]}>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );

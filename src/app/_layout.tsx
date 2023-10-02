@@ -15,7 +15,7 @@ const Layout = () => {
                 name='ForgotPassword'
                 options={{
                     headerTransparent: true,
-                    headerTitle: (props) => (
+                    headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Forgot_my_Password.toLocaleUpperCase()} padding={5.5} />),
                     headerTitleAlign: 'center',
 
@@ -25,7 +25,7 @@ const Layout = () => {
                 name='CreateAccount'
                 options={{
                     headerTransparent: true,
-                    headerTitle: (props) => (
+                    headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Create_a_Account.toLocaleUpperCase()} padding={5.5} />),
                     headerTitleAlign: 'center',
 
@@ -41,7 +41,7 @@ const Layout = () => {
                 name='ProfileSetting'
                 options={{
                     headerTransparent: true,
-                    headerTitle: (props) => (
+                    headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Profile_Settings.toLocaleUpperCase()} padding={5.5} textWith={200} />),
                     headerTitleAlign: 'center',
                 }}
@@ -50,7 +50,7 @@ const Layout = () => {
                 name='Orders'
                 options={{
                     headerTransparent: true,
-                    headerTitle: (props) => (
+                    headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Orders.toLocaleUpperCase()} padding={5.5} textWith={200} />),
                     headerTitleAlign: 'center',
                 }}
@@ -58,7 +58,7 @@ const Layout = () => {
             <Stack.Screen
                 name='FavoriteItens'
                 options={{
-                    headerTitle: (props) => (
+                    headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Favorites.toLocaleUpperCase()} padding={5.5} textWith={200} />),
                     headerTitleAlign: 'center',
                 }}
@@ -66,7 +66,7 @@ const Layout = () => {
             <Stack.Screen
                 name='ShoppingCart'
                 options={{
-                    headerTitle: (props) => (
+                    headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Shopping_Cart.toLocaleUpperCase()} padding={5.5} />),
                     headerTitleAlign: 'center',
                 }}
@@ -83,7 +83,7 @@ const Layout = () => {
                 name='Checkout'
                 options={{
                     headerTransparent: true,
-                    headerTitle: (props) => (
+                    headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Payment.toLocaleUpperCase()} padding={5.5} />),
                     headerTitleAlign: 'center',
                 }}
