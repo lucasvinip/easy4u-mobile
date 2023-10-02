@@ -32,9 +32,9 @@ const shadowStyle = {
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 2, height: 10 },
-        shadowOpacity: 40,
-        shadowRadius: 5,
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1,
       },
       android: {
         elevation: 2,

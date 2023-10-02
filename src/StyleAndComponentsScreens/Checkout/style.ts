@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 import theme from "../../styles/theme";
 
 
@@ -17,13 +18,22 @@ const styles = StyleSheet.create({
   ContainerHeader: {
     alignItems: 'center',
     justifyContent: 'center',
+    height: '28%'
   },
   ContainerMain: {
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
+    height: '45%'
+  },
+  TitleMain: {
+    textAlign: 'center',
+    width: '50%',
+    fontFamily: theme.FONTS.Raleway600,
+    fontSize: RFValue(15.5) 
   },
   ContainerFooter: {
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    height: '23.5%'
   },
   container: {
     flexDirection: 'row', // Para alinhar verticalmente as linhas
@@ -37,7 +47,6 @@ const styles = StyleSheet.create({
     width: 1, // Espessura da linha vertical
     height: '80%', // Altura da linha vertical (100% da altura da View)
     backgroundColor: theme.COLORS.Gray37C7C7A, // Cor da linha vertical
-
     right: '30%', // Posição horiz esquerda da linha vertical (aumentada para o lado direito)
   },
   horizontalLine: {
