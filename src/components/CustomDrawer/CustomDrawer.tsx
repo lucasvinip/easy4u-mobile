@@ -5,7 +5,7 @@ import { AppTexts } from '../../assets/strings';
 import ButtonNavigation from './components/ButtonNavigation/ButtonNavigation';
 import ButtonGetOut from './components/ButtonGetOut/ButtonGetOut';
 
-const CustomDrawer = () => {
+const  CustomDrawer = () => {
   return (
     <View style={styles.Drawer}>
       <View style={styles.Container}>

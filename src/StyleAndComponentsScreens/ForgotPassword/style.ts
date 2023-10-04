@@ -30,8 +30,18 @@ const styles = StyleSheet.create({
   },
   ContainerButton:{
     paddingTop: 25,
-    alignItems: 'center'
+    alignItems: 'center',
+    gap: 20,
+  },
+  TextError:{
+    fontFamily: theme.FONTS.Popp400,
+    color: theme.COLORS.RedF15050
+  },
+  TextSucess:{
+    fontFamily: theme.FONTS.Popp400,
+    color: theme.COLORS.Green23A26D
   }
+
 });
 
 export { styles };
