@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, ScrollView, View, TouchableOpacity } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,6 +12,7 @@ import InputText from '../components/CustomTextInput/CustomTextInput';
 import theme from '../styles/theme';
 import Button from '../components/Button/Button';
 import { StatusBar } from 'expo-status-bar';
+import { performApi } from '../utils/api';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -22,6 +23,31 @@ const themeTextInput = {
 };
 
 const CreateAccount = () => {
+    const [name, setName] = useState<string>("")
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+
+    const handleNameFromUser = (name: string) => {
+        setName(name)
+    }
+
+    const handleEmailFromUser = (email: string) => {
+        setEmail(email)
+    }
+
+    const handlePasswordFromUser = (password: string) => {
+        setPassword(password)
+    }
+
+    const sendNewRegister = async () => {
+        const data = await performApi.sendData("auth/signup/customer", "POST", {name, email, password})
+    }
+
+    const showModalInformations = async () => {
+
+    }
+
     return (
         <UseFonts>
             <StatusBar
@@ -55,6 +81,8 @@ const CreateAccount = () => {
                                 fontSize={12}
                                 fontFamily={theme.FONTS.Popp400}
                                 paddingTop={12}
+                                data={name}
+                                onChange={handleNameFromUser}
                             />
                             <InputText
                                 label='EMAIL'
@@ -66,6 +94,8 @@ const CreateAccount = () => {
                                 fontSize={12}
                                 fontFamily={theme.FONTS.Popp400}
                                 paddingTop={14}
+                                data={email}
+                                onChange={handleEmailFromUser}
                             />
                             <InputText
                                 label='SENHA'
@@ -77,6 +107,8 @@ const CreateAccount = () => {
                                 fontSize={12}
                                 fontFamily={theme.FONTS.Popp400}
                                 paddingTop={14}
+                                data={password}
+                                onChange={handlePasswordFromUser}
                             />
 
                             <View style={styles.ContainerButton}>
@@ -88,6 +120,7 @@ const CreateAccount = () => {
                                     height={43}
                                     borderRadius={8}
                                     fontSize={14}
+                                    onPress={sendNewRegister}
                                 />
                             </View>
 

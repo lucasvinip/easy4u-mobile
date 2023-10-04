@@ -23,12 +23,11 @@ const themeTextInput = {
     },
 };
 const AllProducts = () => {
-
     const getTokenFromUser = async () => {
         return await AsyncStorage.getItem("token")
-        
     }
 
+    
 
     return (
         <UseFonts>
