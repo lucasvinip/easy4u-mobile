@@ -11,6 +11,7 @@ import CardProduct from '../../StyleAndComponentsScreens/AllProducts/components/
 import UseFonts from '../../styles/useFonts';
 import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/components/CustomTextInput/CustomTextInput';
 import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -23,7 +24,11 @@ const themeTextInput = {
 };
 const AllProducts = () => {
 
-    console.log(localStorage.getItem("token"))
+    const getTokenFromUser = async () => {
+        return await AsyncStorage.getItem("token")
+        
+    }
+
 
     return (
         <UseFonts>

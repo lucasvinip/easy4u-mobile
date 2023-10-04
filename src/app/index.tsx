@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
+import AsyncStorage, {AsyncStorageStatic} from '@react-native-async-storage/async-storage'
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
@@ -27,10 +28,7 @@ const themeTextInput = {
   },
 };
 
-
 const Login = () => {
-
-
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -54,15 +52,13 @@ const Login = () => {
       if (data.statusCode !== 201) {
         setErro(data.message);
       } else {
-        localStorage.setItem("token", data.message)
+        await AsyncStorage.setItem("token", data.message)
         router.replace('/(drawer)/AllProducts')
       }
     } catch (error) {
       setErro("Ocorreu um erro durante o login.");
     }
   };
-
-
 
   return (
     <UseFonts>
