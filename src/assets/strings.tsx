@@ -86,7 +86,7 @@ export const AppTexts = {
     Order_Sucess: 'Pedido realizado com sucesso!',
     Thank_Order_Sucess: 'Seu pedido foi realizado com sucesso. Obrigado por usar nosso aplicativo. Aproveite sua comida :)',
 
-    Check_Order: 'Verificar meu pedido',
+    Check_Order: 'Verificar pedido',
     Check_QRcode: 'Verificar QRCode',
 
     Closed_Order: 'Pedido fechado',
@@ -99,5 +99,7 @@ export const AppTexts = {
     Continue: 'Continuar',
 
     Check_Baked_Snacks: 'Verifique nossa infinidade de salgados assados',
-    Get_Out: 'Sair'
+    Get_Out: 'Sair',
+
+    Order_Again: 'Pedir Novamente'
 }

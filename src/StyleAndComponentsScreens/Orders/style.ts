@@ -10,11 +10,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.Whiteffffff
   },
   Container: {
-    marginLeft: 18,
-    marginRight: 18,
-    justifyContent: 'center',
     alignItems:'center',
-    height: '100%'
+    height: 'auto'
   }
 
 });

@@ -1,51 +1,80 @@
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import theme from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     Container: {
-        height: RFPercentage(17),
-        width: RFPercentage(52),
-        backgroundColor: '#F3F3F3',
-        borderRadius: 20,
-        alignSelf: 'center',
+        paddingBottom: 30,
+        alignItems: 'center',
         justifyContent: 'center',
     },
-    ContainerItems: {
-        flexDirection: 'row', justifyContent: 'space-evenly'
+    Card: {
+        height: 140,
+        width: 360,
+        backgroundColor: '#F3F3F3',
+        borderRadius: 22,
     },
-    Img: {
-        width: RFValue(80),
-        height: RFValue(80),
+    DateOpen:{
+        width: '32%',
+        color: theme.COLORS.Gray949494,
+        fontSize: 13,
+        fontFamily: theme.FONTS.Popp400,
+        marginTop: 10,
+        textAlign: 'center',
+    },
+    DateClosed: {
+        color: theme.COLORS.Gray949494,
+        fontSize: 13,
+        fontFamily: theme.FONTS.Popp400,
+        textAlign: 'right',
+        marginTop: 10,
+        width: '96%'
+    },
+    ContainerItems: {
+        width: '100%',
+        alignItems: 'center',
         justifyContent: 'center'
     },
-    Title: {
-        fontSize: RFValue(16),
-        width: RFValue(128),
-        color: theme.COLORS.Black393939,
-        fontFamily: theme.FONTS.Popp500
+    Items: {
+        flexDirection: 'row',
+        width: '83%',
+        justifyContent: 'space-around'
     },
-    Date: {
-        color: theme.COLORS.Gray888888,
-        fontSize: RFValue(10),
-        fontFamily: theme.FONTS.Popp400,
-        paddingTop: RFValue(5)
+    Img: {
+        width: 80,
+        height: 80,
+        borderRadius: 25
     },
-    R$: {
-        color: theme.COLORS.Black393939,
-        fontSize: RFValue(12),
-        fontFamily: theme.FONTS.Popp700
+    Titles: {
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
-    Price: {
-        color: theme.COLORS.OrangeFF6C44,
-        fontSize: RFValue(12),
-        fontFamily: theme.FONTS.Popp600
+    OrderTitleOpen: {
+        fontSize: 16,
+        fontFamily: theme.FONTS.Popp500,
+        width: 185,
+        textAlign: 'right'
     },
-    Status: {
-        color: theme.COLORS.Gray949494,
-        fontSize: RFValue(11),
-        fontFamily: theme.FONTS.Popp600
-    }
+    OrderTitle: {
+        fontSize: 16,
+        fontFamily: theme.FONTS.Popp500,
+        width: 185,
+    },
+
 });
 
-export { styles }
+const shadowStyle = {
+    ...Platform.select({
+        ios: {
+            shadowColor: '#ffff',
+            shadowOffset: { width: 2, height: 10 },
+            shadowOpacity: 40,
+            shadowRadius: 5,
+        },
+        android: {
+            elevation: 2,
+        },
+    }),
+};
+
+export { styles, shadowStyle}

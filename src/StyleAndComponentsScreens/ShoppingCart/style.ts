@@ -12,12 +12,14 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.Whiteffffff,
     marginLeft: 15,
     marginRight: 15,
-    justifyContent: `center`
+    justifyContent: `space-evenly`,
+    height: 'auto',
+    marginTop: 44
   },
   ContainerHeader: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20
+    marginBottom: 8,
   },
   HeaderText: {
     color: theme.COLORS.Gray37C7C7A,
@@ -30,14 +32,14 @@ const styles = StyleSheet.create({
     width: '98%'
   },
   ContainerMain: {
-    marginBottom: 15,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    height: 'auto'
   },
   ConatinerFooter: {
     justifyContent: 'center',
-    paddingTop: 20,
-    height: 'auto'
-  }
+    paddingTop: 8,
+    height: 'auto',
+    }
 });
 
 export { styles }

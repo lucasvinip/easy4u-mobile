@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -14,18 +14,13 @@ const FavoriteItens = () => {
     <UseFonts>
       <StatusBar
         style='dark'
-        translucent backgroundColor={theme.COLORS.Whiteffffff}
+        translucent backgroundColor={theme.COLORS.GrayRgba255249243041}
       />
       <SafeAreaView style={{ backgroundColor: theme.COLORS.Whiteffffff }}>
         <View style={styles.Screen}>
           <View style={styles.Container}>
-            <View style={{ height: 'auto', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-              <View style={{ height: 'auto', width: '100%', justifyContent: 'flex-end'}}>
-                <View style={{}}>
-                  <FavoriteCard />
-                </View>
-              </View>
-
+            <View style={styles.ContainerItens}>
+                <FavoriteCard/>
             </View>
           </View>
         </View>

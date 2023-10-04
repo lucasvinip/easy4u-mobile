@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Image, Text, FlatList, TouchableOpacity } from 'react-native';
+import {
+    View,
+    Image,
+    Text,
+    FlatList,
+    TouchableOpacity,
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 
-import { styles } from './style';
+import { styles, shadowStyle } from './style';
 
 interface ItemsFavoriteProps {
     id: string;
@@ -74,27 +80,27 @@ const data: ItemsFavoriteProps[] = [
 ];
 
 function FavoriteCard() {
-    const renderItem = ({item}: {item: ItemsFavoriteProps}) => (
-        <TouchableOpacity style={styles.Container} >
-            <View style={styles.Card}>
+    const renderItem = ({ item }: { item: ItemsFavoriteProps }) => (
+        <View style={[styles.Container]} >
+            <TouchableOpacity style={[styles.Card, shadowStyle]}>
                 <View style={styles.ContainerItems}>
                     <Image source={{ uri: item.imageURL }} style={styles.Img} />
                     <View style={styles.ContainerTexts}>
                         <Text style={styles.Text}>
                             {item.title}
                         </Text>
-                        <View style={styles.ContainerPriceHeart}>
+                        <View style={styles.ContainerPrice}>
                             <Text>
                                 <Text style={styles.R$}>R$</Text> <Text style={styles.Price}>{item.price}</Text>
                             </Text>
                             <TouchableOpacity>
-                                <AntDesign name='delete' style={styles.Heart} />
+                                <AntDesign name='delete' style={styles.Delete} />
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
-            </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
+        </View>
     )
 
     return (
@@ -103,7 +109,6 @@ function FavoriteCard() {
             keyExtractor={(item) => item.id}
             renderItem={renderItem}
             showsVerticalScrollIndicator={false}
-
         />
     )
 }

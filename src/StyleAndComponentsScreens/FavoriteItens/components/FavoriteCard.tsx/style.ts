@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform} from 'react-native'
 import theme from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     Card: {
-        height: 140,
-        width: 350,
+        height: 135,
+        width: 360,
         backgroundColor: '#F3F3F3',
         borderRadius: 15,
         justifyContent: 'center',
@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
         color: theme.COLORS.Black393939,
         fontFamily: theme.FONTS.Popp500
     },
-    ContainerPriceHeart: {
+    ContainerPrice: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignContent: 'center'
+        alignContent: 'center',
     },
-    Heart: {
+    Delete: {
         color: theme.COLORS.Black000000,
         fontSize: 20,
         justifyContent: 'flex-end'
@@ -56,4 +56,18 @@ const styles = StyleSheet.create({
     },
 });
 
-export { styles }
+const shadowStyle = {
+    ...Platform.select({
+      ios: {
+        shadowColor: '#ffff',
+        shadowOffset: { width: 2, height: 10 },
+        shadowOpacity: 40,
+        shadowRadius: 5,
+      },
+      android: {
+        elevation: 2,
+      },
+    }),
+  };
+
+export { styles, shadowStyle}

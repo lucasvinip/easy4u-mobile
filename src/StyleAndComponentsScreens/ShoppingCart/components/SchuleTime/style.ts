@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         color: theme.COLORS.Gray5E5959,
         fontFamily: theme.FONTS.Popp600,
         fontSize: 12,
-        marginBottom: 6,
     },
     buttonContainer: {
         flexDirection: 'row',

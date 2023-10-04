@@ -10,7 +10,7 @@ interface ButtonProps {
   text: string;
   fontFamily: string;
   fontSize: number;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 const Button = ({

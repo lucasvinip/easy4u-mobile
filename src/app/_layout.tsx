@@ -49,6 +49,7 @@ const Layout = () => {
             <Stack.Screen
                 name='Orders'
                 options={{
+                    headerStyle: { backgroundColor: '#ffffff40' },
                     headerTransparent: true,
                     headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Orders.toLocaleUpperCase()} padding={5.5} textWith={200} />),
@@ -58,6 +59,8 @@ const Layout = () => {
             <Stack.Screen
                 name='FavoriteItens'
                 options={{
+                    headerStyle: { backgroundColor: '#ffffff40' },
+                    headerTransparent: true,
                     headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Favorites.toLocaleUpperCase()} padding={5.5} textWith={200} />),
                     headerTitleAlign: 'center',
@@ -66,6 +69,8 @@ const Layout = () => {
             <Stack.Screen
                 name='ShoppingCart'
                 options={{
+                    headerStyle: { backgroundColor: '#ffffff40' },
+                    headerTransparent: true,
                     headerTitle: () => (
                         <CustomHeaderTitle title={AppTexts.Shopping_Cart.toLocaleUpperCase()} padding={5.5} />),
                     headerTitleAlign: 'center',
