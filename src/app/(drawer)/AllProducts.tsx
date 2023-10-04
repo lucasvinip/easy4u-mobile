@@ -22,6 +22,9 @@ const themeTextInput = {
     },
 };
 const AllProducts = () => {
+
+    console.log(localStorage.getItem("token"))
+
     return (
         <UseFonts>
             <StatusBar

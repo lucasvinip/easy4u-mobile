@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link, Stack } from 'expo-router';
+import { router } from 'expo-router';
 
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
@@ -30,6 +30,8 @@ const themeTextInput = {
 
 const Login = () => {
 
+
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [erro, setErro] = useState<string>("");
@@ -52,12 +54,15 @@ const Login = () => {
       if (data.statusCode !== 201) {
         setErro(data.message);
       } else {
-        return <Link href={"/(drawer)/AllProducts"} asChild/>
+        localStorage.setItem("token", data.message)
+        router.replace('/(drawer)/AllProducts')
       }
     } catch (error) {
       setErro("Ocorreu um erro durante o login.");
     }
   };
+
+
 
   return (
     <UseFonts>
@@ -103,7 +108,7 @@ const Login = () => {
                 data={password}
                 onChange={handlePasswordChange}
               />
-              {erro && <Text style={{color: theme.COLORS.RedF15050, fontFamily: theme.FONTS.Popp400}}>{erro}</Text>}
+              {erro && <Text style={{ color: theme.COLORS.RedF15050, fontFamily: theme.FONTS.Popp400 }}>{erro}</Text>}
 
             </View>
             <View style={styles.ContainerClicks}>

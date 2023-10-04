@@ -1,6 +1,5 @@
 export class performApi {
     static sendData = async ( path: string, method: string, body?: object) => {
-        console.log("teste")
         const response = await fetch(`http://10.107.144.19:3000/${path}`, {
             method: method,
             headers: {
@@ -9,9 +8,7 @@ export class performApi {
             },
             body: JSON.stringify(body),
         })
-        console.log(response)
         const data = await response.json()
-        console.log(data)
         return data
     }
 
