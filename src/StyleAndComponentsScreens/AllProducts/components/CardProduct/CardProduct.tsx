@@ -10,7 +10,7 @@ interface ProductsProps {
     price: number
 }
 
-const CardProduct = ({name, } : ProductsProps) => {
+const CardProduct = ({name} : ProductsProps) => {
     return (
         <View style={[styles.Container, shadowStyle]}>
             <Link href={'/Product'} asChild>
