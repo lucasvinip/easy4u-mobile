@@ -6,18 +6,21 @@ const styles = StyleSheet.create({
     Container: {
         borderColor: theme.COLORS.YellowEEA734,
         borderWidth: .5,
-        borderRadius: 5,
-        width: 80,
-        height: 25,
+        borderRadius: 20,
+        width: 'auto',
+        height: '100%',
         backgroundColor: theme.COLORS.GrayRgba255249243041,
         alignItems: 'center',
         justifyContent: 'center',
+        marginRight: 16
     },
     Title: {
         fontFamily: theme.FONTS.Popp400,
-        fontSize: RFValue(13.5),
+        fontSize: RFValue(12.5),
         color: theme.COLORS.WhiteEDF3EDEB,
         textAlign: 'center',
+        paddingLeft: 20,
+        paddingRight: 20
     },
 });
 

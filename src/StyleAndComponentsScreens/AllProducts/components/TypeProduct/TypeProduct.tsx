@@ -8,9 +8,8 @@ import { styles } from './style';
 import { performApi } from '../../../../utils/api';
 
 interface FilterProductsProps{
-    productType: string
+    productType: string,
 }
-
 
 const TypeProduct = ({productType}: FilterProductsProps) => {
     return (

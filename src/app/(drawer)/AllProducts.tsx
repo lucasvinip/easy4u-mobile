@@ -24,7 +24,7 @@ const themeTextInput = {
     },
 };
 
-interface FilterProductProps {
+interface ProductProps {
     id: number,
     name: string,
     description: string,
@@ -35,7 +35,8 @@ interface FilterProductProps {
 }
 
 const AllProducts = () => {
-    const [typeProducts, setTypeProducts] = useState<any []>([]);
+    const [typeProducts, setTypeProducts] = useState<any[]>([]);
+    const [cardProducts, setCardProducts] = useState<any[]>([])
 
     const handleFilterProducts = async () => {
         const token = await AsyncStorage.getItem("token")
@@ -44,8 +45,13 @@ const AllProducts = () => {
         if (!apiData) {
             Alert.alert("Erro!")
         } else {
-            const filterProducts = apiData.map(({ productType }: FilterProductProps) => productType);
+            const filterProducts = apiData.map(({ productType }: ProductProps) => productType);
+            const allProducts = apiData.map(({ name, price}: ProductProps) => name);
+
+            console.log(allProducts);
+
             setTypeProducts(filterProducts);
+            setCardProducts(allProducts)
         }
     }
 
@@ -73,7 +79,8 @@ const AllProducts = () => {
                                 </View>
                                 <View style={styles.ContainerTypeProduct}>
                                     <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
-                                        {typeProducts.map(({productType}: FilterProductProps, index: number) => (
+                                        <TypeProduct productType='Todos' />
+                                        {typeProducts.map((productType: string, index: number) => (
                                             <TypeProduct key={index} productType={productType} />
                                         ))}
                                     </ScrollView>
@@ -82,12 +89,9 @@ const AllProducts = () => {
                         </View>
                         <ScrollView contentContainerStyle={styles.ContainerMain} showsVerticalScrollIndicator={false}>
                             <View style={styles.Main}>
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
+                                {cardProducts.map((name: string, index: number) => (
+                                    <CardProduct key={index} name={name}/>
+                                ))}
                             </View>
                         </ScrollView>
                     </View>
