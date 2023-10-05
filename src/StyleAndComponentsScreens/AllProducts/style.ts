@@ -35,23 +35,25 @@ const styles = StyleSheet.create({
         marginRight: 18,
     },
     ContainerHeader: {
-        height: '28%',
+        height: '25%',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
     },
     Header: {
         height: '60%',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     ContainerInput: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        
     },
     ContainerTypeProduct: {
         flexDirection: 'row',
         width: '98%',
         height: '20%',
-        alignItems: 'center'
+        alignItems: 'center',
+        
     },
     TypeProduct: {
         flexDirection: 'row',

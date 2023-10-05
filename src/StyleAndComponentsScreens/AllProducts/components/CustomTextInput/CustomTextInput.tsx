@@ -10,6 +10,7 @@ const CustomTextInput = () => {
     return (
         <View style={styles.Container}>
             <TextInput
+                
                 style={styles.Input}
                 placeholder={AppTexts.Search}
             />

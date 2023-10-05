@@ -23,11 +23,11 @@ const themeTextInput = {
     },
 };
 const AllProducts = () => {
-    const getTokenFromUser = async () => {
-        return await AsyncStorage.getItem("token")
-    }
+    // const getTokenFromUser = async () => {
+    //     console.log(await AsyncStorage.getItem("token"))
+    // // }
 
-    
+    // getTokenFromUser()
 
     return (
         <UseFonts>
@@ -48,17 +48,6 @@ const AllProducts = () => {
                                 </View>
                                 <View style={styles.ContainerTypeProduct}>
                                     <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
                                         <TypeProduct />
                                     </ScrollView>
                                 </View>

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   Img: {
     width: '100%',
-    height: '48%',
+    height: '70%',
     borderRadius: 15,
     position: 'absolute'
   },
@@ -37,22 +37,22 @@ const styles = StyleSheet.create({
   },
   Circle: {
     borderRadius: 100,
-    width: 48,
-    height: 48,
+    width: 55,
+    height: 55,
     backgroundColor: theme.COLORS.OrangeFF6C44,
     alignItems: 'center',
     justifyContent: 'center'
   },
   Icon: {
     color: theme.COLORS.Gray4F5F3EF,
-    fontSize: RFValue(25),
+    fontSize: RFValue(30),
   },
   Screen: {
     backgroundColor: theme.COLORS.Gray4F5F3EF,
     width: '100%',
-    height: '58%',
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+    height: '50%',
+    borderTopLeftRadius: 80,
+    borderTopRightRadius: 80,
   },
   Container: {
     height: '100%',
@@ -74,15 +74,17 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   ContainerAvailable: {
-    paddingBottom: 20
+    backgroundColor: 'green',
+    height: '50%',
   },
   AvailableText: {
     fontFamily: theme.FONTS.Popp600,
     fontSize: RFValue(14)
   },
   AvailableScroll: {
-    height: '20%',
-    width: '70%'
+    height: '100%',
+    width: '100%',
+    flexWrap: 'wrap'
   },
   ScrollText: {
     fontFamily: theme.FONTS.Popp500,
@@ -90,25 +92,11 @@ const styles = StyleSheet.create({
     color: theme.COLORS.Gray37C7C7A,
     textAlign: 'center',
   },
-  ContainerObservationAmount: {
-    height: '12%'
-  },
-  ObservationAmount: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '95%'
-  },
-  ContainerObservation: {
-    alignItems: 'center'
-  },
-  ObservationText: {
-    textAlign: 'left',
-    width: '85%',
-    color: theme.COLORS.Gray37C7C7A,
-    fontFamily: theme.FONTS.Popp600,
-    fontSize: RFValue(10.5)
-  },
+  ContainerAmount: {
+    height: '12%',
+    width: '100%',
+    alignItems: 'flex-end'
+  }, 
   AmountText: {
     width: '100%',
     color: theme.COLORS.Gray37C7C7A,
