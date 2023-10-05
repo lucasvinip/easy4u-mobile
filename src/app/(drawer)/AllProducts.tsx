@@ -45,11 +45,15 @@ const AllProducts = () => {
         if (!apiData) {
             Alert.alert("Erro!")
         } else {
+<<<<<<< Updated upstream
             const filterProducts = apiData.map(({ productType }: ProductProps) => productType);
             const allProducts = apiData.map(({ name, price}: ProductProps) => name);
 
             console.log(allProducts);
 
+=======
+            const filterProducts = apiData.map(({productType}: FilterProductProps) => (productType))
+>>>>>>> Stashed changes
             setTypeProducts(filterProducts);
             setCardProducts(allProducts)
         }
@@ -79,7 +83,10 @@ const AllProducts = () => {
                                 </View>
                                 <View style={styles.ContainerTypeProduct}>
                                     <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
+<<<<<<< Updated upstream
                                         <TypeProduct productType='Todos' />
+=======
+>>>>>>> Stashed changes
                                         {typeProducts.map((productType: string, index: number) => (
                                             <TypeProduct key={index} productType={productType} />
                                         ))}

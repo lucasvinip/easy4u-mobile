@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     color: theme.COLORS.Gray868686
   },
   ContainerInputs: {
+    position: "relative",
     paddingTop: 15
   },
   ContainerClicks: {

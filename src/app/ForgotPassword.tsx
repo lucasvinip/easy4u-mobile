@@ -1,53 +1,53 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DefaultTheme } from 'react-native-paper';
-import { Alert, Modal, Pressable, Text, View } from 'react-native'
-
-
+import { Text, View, ActivityIndicator } from 'react-native';
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import { AppTexts } from '../assets/strings';
-import {
-    styles
-} from '../StyleAndComponentsScreens/ForgotPassword/style';
+import { styles } from '../StyleAndComponentsScreens/ForgotPassword/style';
 import UseFonts from '../styles/useFonts';
 import { StatusBar } from 'expo-status-bar';
 import { performApi } from '../utils/api';
-
-
 
 const themeTextInput = {
     ...DefaultTheme,
     colors: {
         ...DefaultTheme.colors,
         primary: 'black',
-
-
     },
 };
 
-
-
 const ForgotPassword = () => {
-
     const [email, setEmail] = useState<string>("");
     const [sucess, setSucess] = useState<string>("");
     const [erro, setErro] = useState<string>("");
-    const [modalVisible, setModalVisible] = useState<boolean>(false);
-
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleEmailFromUser = (email: string) => {
         setEmail(email);
     };
 
     const sendForgotPassword = async () => {
-        const data = await performApi.sendData("forgot-password", "POST", { email })
-        if (data.statusCode === 201) {
-            setModalVisible(true)
-            setSucess("Email enviado com sucesso!")
-        } else {
-            setErro("Houve um erro ao enviar o email, tente novamente!")
+        setLoading(true);
+
+        try {
+            const data = await performApi.sendData("forgot-password", "POST", { email });
+            if (data.statusCode === 201) {
+                setLoading(false);
+                setSucess("Email enviado com sucesso!");
+                setErro("");
+            } else {
+                setLoading(false);
+                setErro("Houve um erro ao enviar o email, tente novamente!");
+                setSucess("");
+            }
+        } catch (error) {
+            setErro("Houve um erro ao enviar o email, tente novamente!");
+            setSucess(""); // Limpar mensagem de sucesso se houver
+        } finally {
+            setLoading(false); // Desativar o indicador de carregamento quando a solicitação for concluída
         }
     };
 
@@ -58,27 +58,14 @@ const ForgotPassword = () => {
                 translucent backgroundColor={theme.COLORS.Whiteffffff}
             />
             <SafeAreaView style={{ backgroundColor: 'white' }}>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed.');
-                        setModalVisible(!modalVisible);
-                    }}
-                    style={{flex: 1, justifyContent: 'center', alignItems: "center"}}
-                    >
-                    <View>
-                        <View>
-                            <Text style={styles.TextSucess}>{sucess}</Text>
-                            <Pressable
-                                onPress={() => setModalVisible(!modalVisible)}>
-                                <Text >Hide Modal</Text>
-                            </Pressable>
-                        </View>
-                    </View>
-                </Modal>
                 <View style={styles.Screen}>
+                    {loading && (
+                        <ActivityIndicator
+                            style={{ justifyContent: 'center', alignItems: 'center', height: "100%", width:"100%"  }}
+                            size={75}
+                            color={theme.COLORS.OrangeFF6C44}
+                        />
+                    )}
                     <View style={styles.Container}>
                         <View style={styles.ContainerHeader}>
                             <Text style={styles.HeaderText}>
@@ -99,9 +86,10 @@ const ForgotPassword = () => {
                             fontFamily={theme.FONTS.Popp400}
                             data={email}
                             onChange={handleEmailFromUser}
-
                         />
                         <View style={styles.ContainerButton}>
+                        {sucess && <Text style={styles.TextSucess}>{sucess}</Text>}
+                        {erro && <Text style={styles.TextError}>{erro}</Text>}
                             <Button
                                 text={AppTexts.Reset_Password.toUpperCase()}
                                 fontFamily={theme.FONTS.Popp700}
@@ -112,8 +100,6 @@ const ForgotPassword = () => {
                                 fontSize={14}
                                 onPress={sendForgotPassword}
                             />
-                            {erro && <Text style={styles.TextError}>{erro}</Text>}
-                            
                         </View>
                     </View>
                 </View>
