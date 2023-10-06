@@ -24,6 +24,10 @@ const CreateAccount = () => {
     const [name, setName] = useState<string>("")
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [sucess, setSucess] = useState<string>("");
+    const [error, setError] = useState<string>("");
+
+
 
 
     const handleNameFromUser = (name: string) => {
@@ -40,6 +44,7 @@ const CreateAccount = () => {
 
     const sendNewRegister = async () => {
         const data = await performApi.sendData("auth/signup/customer", "POST", {name, email, password})
+        console.log(data)
     }
 
     const showModalInformations = async () => {
