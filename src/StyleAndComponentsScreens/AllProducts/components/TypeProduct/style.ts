@@ -3,11 +3,24 @@ import { StyleSheet } from 'react-native'
 import theme from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
+    Container: {
+        borderColor: theme.COLORS.YellowEEA734,
+        borderWidth: .5,
+        borderRadius: 20,
+        width: 'auto',
+        height: '100%',
+        backgroundColor: theme.COLORS.GrayRgba255249243041,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 16
+    },
     Title: {
-        paddingRight: 15,
         fontFamily: theme.FONTS.Popp400,
-        fontSize: RFValue(13.5),
-        color: theme.COLORS.WhiteEDF3EDEB
+        fontSize: RFValue(12.5),
+        color: theme.COLORS.WhiteEDF3EDEB,
+        textAlign: 'center',
+        paddingLeft: 20,
+        paddingRight: 20
     },
 });
 

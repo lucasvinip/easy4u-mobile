@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Text, ScrollView, View, TouchableOpacity } from 'react-native';
+import { Text, ScrollView, View, ActivityIndicator } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { Link } from 'expo-router';
-
 import UseFonts from '../styles/useFonts';
 import { styles } from '../StyleAndComponentsScreens/CreateAccount/style';
 import { AppTexts } from '../assets/strings';
@@ -56,7 +54,6 @@ const CreateAccount = () => {
             />
             <SafeAreaView style={{ backgroundColor: 'white' }}>
                 <View style={styles.Screen}>
-
                     <View style={styles.Container}>
                         <View style={styles.ContainerHeader}>
                             <Text style={styles.HeaderText}>

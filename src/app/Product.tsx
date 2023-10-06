@@ -51,30 +51,9 @@ const Product = () => {
                                             <Text style={styles.AvailableText}>
                                                 {AppTexts.Available}
                                             </Text>
-                                            <ScrollView  showsVerticalScrollIndicator={false}>
-                                                <View style={styles.AvailableScroll}>
-                                                    <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                    <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                    <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                    <Text style={styles.ScrollText} >{AppTexts.Croassaint_Chocolate}</Text>
-                                                </View>
-                                            </ScrollView>
                                         </View>
-                                        <View style={styles.ContainerObservationAmount}>
-                                            <View style={styles.ObservationAmount}>
-                                                <View style={styles.ContainerObservation}>
-                                                    <Text style={styles.ObservationText}> {AppTexts.Any_Observation}</Text>
-                                                    <InputText
-                                                        mode='flat'
-                                                        keyboardType='default'
-                                                        theme={themeTextInput}
-                                                        background='white'
-                                                        fontSize={12}
-                                                        fontFamily={theme.FONTS.Popp400}
-                                                        width={200}
-                                                        height={21}
-                                                    />
-                                                </View>
+                                        <View style={styles.ContainerAmount}>
+                                            <View>
                                                 <View>
                                                     <Text style={styles.AmountText}>
                                                         {AppTexts.Amount}

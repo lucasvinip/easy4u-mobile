@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TextInput, DefaultTheme } from 'react-native-paper';
 import theme from '../../styles/theme';
 import { StyleSheet } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+
 
 interface CustomTextInputProps {
   label?: string;
@@ -17,8 +19,10 @@ interface CustomTextInputProps {
   width?: number;
   height?: number;
   borderColor?: string;
-  onChange?: (value: string) => void; // Use onChangeText em vez disso
+  onChange?: (value: string) => void;
+  onFocus?: () => void;
   data: string;
+  isPassword?: boolean;
 }
 
 const CustomTextInput = ({
@@ -35,8 +39,10 @@ const CustomTextInput = ({
   width,
   height,
   borderColor,
-  onChange, // Renomeie para onChangeText
-  data
+  onChange,
+  onFocus,
+  data,
+  isPassword
 }: CustomTextInputProps) => {
 
   const [inputValue, setInputValue] = useState<string>(data);
@@ -49,6 +55,15 @@ const CustomTextInput = ({
     }
   };
 
+  const handleInputFocus = () => {
+    if (onFocus) {
+      onFocus();
+    }
+  };
+
+
+
+
   const styles = StyleSheet.create({
     TextInput: {
       backgroundColor: background,
@@ -58,7 +73,7 @@ const CustomTextInput = ({
       borderRadius: borderRadius,
       borderColor: borderColor,
       width: width,
-      height: height,
+      height: height
     },
   });
 
@@ -72,6 +87,7 @@ const CustomTextInput = ({
       style={styles.TextInput}
       value={inputValue} 
       onChangeText={handleInputChange}
+      onFocus={handleInputFocus}
     />
   );
 };

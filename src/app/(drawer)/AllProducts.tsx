@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DefaultTheme } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
@@ -12,6 +12,7 @@ import UseFonts from '../../styles/useFonts';
 import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/components/CustomTextInput/CustomTextInput';
 import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { performApi } from '../../utils/api';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -22,12 +23,42 @@ const themeTextInput = {
 
     },
 };
+
+interface ProductProps {
+    id: number,
+    name: string,
+    description: string,
+    price: number,
+    photo: string,
+    productType: string,
+    preparationTime: number
+}
+
 const AllProducts = () => {
-    const getTokenFromUser = async () => {
-        return await AsyncStorage.getItem("token")
+    const [typeProducts, setTypeProducts] = useState<any[]>([]);
+    const [cardProducts, setCardProducts] = useState<any[]>([])
+
+    const handleFilterProducts = async () => {
+        const token = await AsyncStorage.getItem("token")
+        const apiData = await performApi.getData("products", token)
+
+        if (!apiData) {
+            Alert.alert("Erro!")
+        } else {
+            const filterProducts = apiData.map(({ productType }: ProductProps) => productType);
+            const allProducts = apiData.map(({ name, price}: ProductProps) => name);
+
+            console.log(allProducts);
+
+            setTypeProducts(filterProducts);
+            setCardProducts(allProducts)
+        }
     }
 
-    
+    useEffect(() => {
+        handleFilterProducts()
+    }, [])
+
 
     return (
         <UseFonts>
@@ -48,30 +79,19 @@ const AllProducts = () => {
                                 </View>
                                 <View style={styles.ContainerTypeProduct}>
                                     <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
-                                        <TypeProduct />
+                                        <TypeProduct productType='Todos' />
+                                        {typeProducts.map((productType: string, index: number) => (
+                                            <TypeProduct key={index} productType={productType} />
+                                        ))}
                                     </ScrollView>
                                 </View>
                             </View>
                         </View>
                         <ScrollView contentContainerStyle={styles.ContainerMain} showsVerticalScrollIndicator={false}>
                             <View style={styles.Main}>
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
-                                <CardProduct />
+                                {/* {cardProducts.map((name: string, index: number) => (
+                                    <CardProduct key={index} name={name}/>
+                                ))} */}
                             </View>
                         </ScrollView>
                     </View>

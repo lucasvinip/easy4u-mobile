@@ -5,8 +5,8 @@ import { StyleSheet, Platform} from 'react-native'
 
 const styles = StyleSheet.create({
     Container: {
-        width: 360,
-        height: 140,
+        width: 345,
+        height: 132,
         backgroundColor: theme.COLORS.Whiteffffff,
         borderRadius: 15,
         marginBottom: 37
