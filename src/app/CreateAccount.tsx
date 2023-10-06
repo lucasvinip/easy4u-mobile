@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { Text, ScrollView, View, ActivityIndicator } from 'react-native';
+import { Text, ScrollView, View, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import UseFonts from '../styles/useFonts';
-import { styles } from '../StyleAndComponentsScreens/CreateAccount/style';
+import { styles } from '../StyleAndComponentsScreens/CreateAccount/style'
 import { AppTexts } from '../assets/strings';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import theme from '../styles/theme';
 import Button from '../components/Button/Button';
 import { StatusBar } from 'expo-status-bar';
 import { performApi } from '../utils/api';
+import ModalPoup from '../components/ModalPoup/Modal';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -26,29 +27,24 @@ const CreateAccount = () => {
     const [password, setPassword] = useState<string>("");
     const [sucess, setSucess] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const [visible, setVisible] = useState<boolean>(false)
 
-
-
-
-    const handleNameFromUser = (name: string) => {
-        setName(name)
-    }
-
-    const handleEmailFromUser = (email: string) => {
-        setEmail(email)
-    }
-
-    const handlePasswordFromUser = (password: string) => {
-        setPassword(password)
-    }
+    const handleNameFromUser = (name: string) => setName(name)
+    const handleEmailFromUser = (email: string) => setEmail(email)
+    const handlePasswordFromUser = (password: string) => setPassword(password)
 
     const sendNewRegister = async () => {
-        const data = await performApi.sendData("auth/signup/customer", "POST", {name, email, password})
-        console.log(data)
-    }
-
-    const showModalInformations = async () => {
-
+        try {
+            const data = await performApi.sendData("auth/signup/customer", "POST", { name, email, password })
+            if (data.statusCode !== 201) {
+                setError("Email ou senha inválido!");
+            } else {
+                setVisible(true)
+                setSucess("Falta pouco para seu cadastro! Verifique seu email")
+            }
+        } catch {
+            setError("Houve um erro ao criar sua conta!")
+        }
     }
 
     return (
@@ -59,6 +55,21 @@ const CreateAccount = () => {
             />
             <SafeAreaView style={{ backgroundColor: 'white' }}>
                 <View style={styles.Screen}>
+                    {visible && (
+                        <ModalPoup visible={visible}>
+                            <View style={{ alignItems: "center" }}>
+                                <View style={styles.headerModal}>
+                                    <TouchableOpacity onPress={() => { setVisible(false) }}>
+                                        <Image source={require('../assets/img/x.png')} style={{ height: 30, width: 30 }} />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            <View style={{ alignItems: 'center', gap: 20 }}>
+                                <Image source={(require("../assets/img/success.png"))} style={{ height: 150, width: 150, marginVertical: 10 }} />
+                                <Text style={styles.TextSucess}>{sucess}</Text>
+                            </View>
+                        </ModalPoup>
+                    )}
                     <View style={styles.Container}>
                         <View style={styles.ContainerHeader}>
                             <Text style={styles.HeaderText}>
@@ -112,8 +123,8 @@ const CreateAccount = () => {
                                 data={password}
                                 onChange={handlePasswordFromUser}
                             />
-
                             <View style={styles.ContainerButton}>
+                                {error && (<Text style={styles.TextError}>{error}</Text>)}
                                 <Button
                                     text={AppTexts.Join}
                                     fontFamily={theme.FONTS.Popp700}
@@ -125,7 +136,6 @@ const CreateAccount = () => {
                                     onPress={sendNewRegister}
                                 />
                             </View>
-
                             <Text style={styles.PrivacySecurityText}>
                                 {AppTexts.Privacy_Security}
                             </Text>
