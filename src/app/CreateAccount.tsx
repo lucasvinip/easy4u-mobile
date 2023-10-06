@@ -12,6 +12,7 @@ import Button from '../components/Button/Button';
 import { StatusBar } from 'expo-status-bar';
 import { performApi } from '../utils/api';
 import ModalPoup from '../components/ModalPoup/Modal';
+import {router} from "expo-router"
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -32,6 +33,7 @@ const CreateAccount = () => {
     const handleNameFromUser = (name: string) => setName(name)
     const handleEmailFromUser = (email: string) => setEmail(email)
     const handlePasswordFromUser = (password: string) => setPassword(password)
+    const clearMessageErro = () => setError("")
 
     const sendNewRegister = async () => {
         try {
@@ -65,8 +67,18 @@ const CreateAccount = () => {
                                 </View>
                             </View>
                             <View style={{ alignItems: 'center', gap: 20 }}>
-                                <Image source={(require("../assets/img/success.png"))} style={{ height: 150, width: 150, marginVertical: 10 }} />
+                                <Image source={(require("../assets/img/7efs.gif"))} style={{ height: 150, width: 150, marginVertical: 10 }} />
                                 <Text style={styles.TextSucess}>{sucess}</Text>
+                                <Button
+                                    text={AppTexts.Back_to_Index}
+                                    fontFamily={theme.FONTS.Popp700}
+                                    background={theme.COLORS.OrangeF6752C}
+                                    width={150}
+                                    height={30}
+                                    borderRadius={8}
+                                    fontSize={10}
+                                    onPress={() => router.push("/")}
+                                />
                             </View>
                         </ModalPoup>
                     )}
@@ -96,6 +108,7 @@ const CreateAccount = () => {
                                 paddingTop={12}
                                 data={name}
                                 onChange={handleNameFromUser}
+                                onFocus={clearMessageErro}
                             />
                             <InputText
                                 label='EMAIL'
@@ -109,6 +122,7 @@ const CreateAccount = () => {
                                 paddingTop={14}
                                 data={email}
                                 onChange={handleEmailFromUser}
+                                onFocus={clearMessageErro}
                             />
                             <InputText
                                 label='SENHA'
@@ -122,6 +136,7 @@ const CreateAccount = () => {
                                 paddingTop={14}
                                 data={password}
                                 onChange={handlePasswordFromUser}
+                                onFocus={clearMessageErro}
                             />
                             <View style={styles.ContainerButton}>
                                 {error && (<Text style={styles.TextError}>{error}</Text>)}
