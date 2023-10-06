@@ -3,7 +3,7 @@ import { View, Text, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DefaultTheme } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
-
+import { router } from 'expo-router';
 
 import { styles } from '../../StyleAndComponentsScreens/AllProducts/style'
 import theme from '../../styles/theme';
@@ -34,24 +34,32 @@ interface ProductProps {
     preparationTime: number
 }
 
+interface TypeProductProps{
+    id: number,
+    type: string;
+}
+
 const AllProducts = () => {
     const [typeProducts, setTypeProducts] = useState<any[]>([]);
-    const [cardProducts, setCardProducts] = useState<any[]>([])
+    const [products, setProducts] = useState<any[]>([])
 
     const handleFilterProducts = async () => {
         const token = await AsyncStorage.getItem("token")
-        const apiData = await performApi.getData("products", token)
+
+        if(!token){
+            router.push('/')
+        }
+
+        const apiData = await performApi.getData("products/types", token)
 
         if (!apiData) {
             Alert.alert("Erro!")
         } else {
-            const filterProducts = apiData.map(({ productType }: ProductProps) => productType);
-            const allProducts = apiData.map(({ name, price}: ProductProps) => name);
-
-            console.log(allProducts);
+            const filterProducts = apiData.map(({ type }: TypeProductProps) => type);
+            const allProductsTypes = apiData.map(({ name, }: ProductProps) => name);
 
             setTypeProducts(filterProducts);
-            setCardProducts(allProducts)
+            setProducts(allProductsTypes)
         }
     }
 
@@ -89,7 +97,7 @@ const AllProducts = () => {
                         </View>
                         <ScrollView contentContainerStyle={styles.ContainerMain} showsVerticalScrollIndicator={false}>
                             <View style={styles.Main}>
-                                {/* {cardProducts.map((name: string, index: number) => (
+                                {/* {products.map((name: string, index: number) => (
                                     <CardProduct key={index} name={name}/>
                                 ))} */}
                             </View>
