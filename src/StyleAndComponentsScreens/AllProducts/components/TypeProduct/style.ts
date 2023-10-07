@@ -4,12 +4,11 @@ import theme from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     Container: {
-        borderColor: theme.COLORS.YellowEEA734,
+        borderColor: theme.COLORS.Whiteffffff,
         borderWidth: .5,
         borderRadius: 20,
         width: 'auto',
         height: '100%',
-        backgroundColor: theme.COLORS.GrayRgba255249243041,
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 16

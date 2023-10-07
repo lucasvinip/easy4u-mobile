@@ -103,5 +103,6 @@ export const AppTexts = {
     Check_Baked_Snacks: 'Verifique nossa infinidade de salgados assados',
     Get_Out: 'Sair',
 
-    Order_Again: 'Pedir Novamente'
+    Order_Again: 'Pedir Novamente',
+    Didnt_Choose_Image: 'Você não selecionou nenhuma imagem'
 }

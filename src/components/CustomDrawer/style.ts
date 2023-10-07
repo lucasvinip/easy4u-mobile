@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
     Container: {
         height: '90%',
         width: '98%',
+        justifyContent: 'center',
+        
     },
     Content: {
         alignItems: 'center',

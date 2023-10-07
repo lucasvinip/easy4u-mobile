@@ -1,21 +1,17 @@
-import * as React from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, } from 'react-native';
 import { Card, DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AntDesign } from '@expo/vector-icons';
-
-
-
+import * as ImagePicker from 'expo-image-picker';
 
 import theme from '../styles/theme';
-import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter'
+import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter/TouchTextAlter';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import { AppTexts } from '../assets/strings';
 import Button from '../components/Button/Button';
-import {
-    styles
-} from '../StyleAndComponentsScreens/ProfileSetting/style'
+import { styles } from '../StyleAndComponentsScreens/ProfileSetting/style';
 import UseFonts from '../styles/useFonts';
+import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camera/Camera';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -25,26 +21,36 @@ const themeTextInput = {
     },
 };
 
-const ProfileSetting = () => (
-    <UseFonts>
-        <SafeAreaView>
-            <View style={styles.Screen}>
-                <View style={styles.Container}>
-                    <View style={styles.ContainerHeader}>
-                        <View style={{height: '75%', alignItems: 'center', justifyContent: 'flex-end'}}>
-                            <Card style={styles.HeaderCard}>
-                                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} style={styles.CardImg} />
-                                <TouchableOpacity>
-                                    <AntDesign name='camera' style={{
-                                        color: theme.COLORS.BlackRgba3419081,
-                                        fontSize: 20,
-                                        textAlign: 'right',
-                                    }} />
-                                </TouchableOpacity>
-                            </Card>
+const ProfileSetting = () => {
+    const [email, setEmail] = useState<string>("");
+    const [name, setName] = useState<string>("");
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+    const pickImageAsync = async () => {
+        try {
+            const result = await ImagePicker.launchImageLibraryAsync({
+                allowsEditing: true,
+                quality: 1,
+            });
+
+            if (!result.canceled) {
+                setSelectedImage(result.assets[0].uri);
+            } else {
+                alert(AppTexts.Didnt_Choose_Image);
+            }
+        } catch (error) {
+            console.error('Error picking an image:', error);
+        }
+    };
+
+    return (
+        <UseFonts>
+            <SafeAreaView style={{backgroundColor: theme.COLORS.White2F3F3F3}}>
+                <View style={styles.Screen}>
+                    <View style={styles.Container}>
+                        <View style={styles.ContainerHeader}>
+                            <Camera onPress={pickImageAsync} selectedImage={selectedImage} placeholderImageSource={require('../assets/img/user.png')} />
                         </View>
-                    </View>
-                    <ScrollView showsVerticalScrollIndicator={false}>
                         <InputText
                             label='NOME COMPLETO'
                             mode='flat'
@@ -54,8 +60,8 @@ const ProfileSetting = () => (
                             background='white'
                             fontSize={12}
                             fontFamily={theme.FONTS.Popp400}
-                            paddingTop={18}
-
+                            paddingTop={30}
+                            data={name}
                         />
                         <InputText
                             label='EMAIL'
@@ -66,25 +72,12 @@ const ProfileSetting = () => (
                             background='white'
                             fontSize={12}
                             fontFamily={theme.FONTS.Popp400}
-                            paddingTop={18}
+                            paddingTop={30}
+                            data={email}
                         />
                         <View style={{ alignItems: 'flex-end' }}>
                             <TouchTextAlter />
                         </View>
-                        <InputText
-                            label='SENHA'
-                            mode='flat'
-                            keyboardType='default'
-                            underlineColor={theme.COLORS.Gray868686}
-                            theme={themeTextInput}
-                            background='white'
-                            fontSize={12}
-                            fontFamily={theme.FONTS.Popp400}
-                        />
-                        <View style={{ alignItems: 'flex-end', paddingBottom: 15 }}>
-                            <TouchTextAlter />
-                        </View>
-
                         <View style={styles.ContainerButton}>
                             <Button
                                 text={AppTexts.Change_Settings}
@@ -96,11 +89,12 @@ const ProfileSetting = () => (
                                 fontSize={14}
                             />
                         </View>
-                    </ScrollView>
+
+                    </View>
                 </View>
-            </View>
-        </SafeAreaView >
-    </UseFonts>
-);
+            </SafeAreaView>
+        </UseFonts>
+    );
+};
 
 export default ProfileSetting;

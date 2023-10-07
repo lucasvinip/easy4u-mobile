@@ -41,7 +41,8 @@
     "react-native-web": "~0.19.6",
     "sharp-cli": "^4.1.1",
     "styled-components": "^6.0.7",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "expo-image-picker": "~14.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
