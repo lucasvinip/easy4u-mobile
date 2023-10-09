@@ -3,7 +3,7 @@ import { Modal, View, Animated } from 'react-native';
 import { styles } from "./style";
 
 interface ModalPoupProps {
-    visible: any,
+    visible: boolean,
     children: React.ReactNode
 }
 
