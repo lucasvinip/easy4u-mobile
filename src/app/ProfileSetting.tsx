@@ -33,11 +33,11 @@ const ProfileSetting = () => {
                 quality: 1,
             });
 
-            if (!result.canceled) {
+            if (!result.canceled)
                 setSelectedImage(result.assets[0].uri);
-            } else {
+            else
                 alert(AppTexts.Didnt_Choose_Image);
-            }
+
         } catch (error) {
             console.error('Error picking an image:', error);
         }
@@ -45,7 +45,7 @@ const ProfileSetting = () => {
 
     return (
         <UseFonts>
-            <SafeAreaView style={{backgroundColor: theme.COLORS.White2F3F3F3}}>
+            <SafeAreaView style={{ backgroundColor: theme.COLORS.White2F3F3F3 }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
                         <View style={styles.ContainerHeader}>
