@@ -38,7 +38,6 @@ const CreateAccount = () => {
     const sendNewRegister = async () => {
         try {
             const data = await performApi.sendData("auth/signup/customer", "POST", { name, email, password })
-            console.log(data)
             if (data.statusCode !== 201) {
                 setError("Email ou senha inválido!");
             } else {

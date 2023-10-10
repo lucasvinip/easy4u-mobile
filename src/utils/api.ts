@@ -27,7 +27,7 @@ export class performApi {
     }
 
     static deleteData = async (path: string | number, token: string | null) => {
-        const response = await fetch(`http://10.107.144.19:3000/${path}`, {
+        const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

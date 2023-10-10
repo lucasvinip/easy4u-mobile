@@ -2,6 +2,8 @@ export const AppTexts = {
     Welcome: 'Bem vindo ao Easy4U',
     Enjoy_Cafeteria: 'Entre com seu email ou com suas redes sociais. Aproveite a cantina!',
 
+    Exclude_Favorite: "Tem certeza que deseja tirar esse item do seus favoritos?",
+
     Forgot_Password: 'Esqueceu a senha?',
     Join: 'ENTRAR',
 

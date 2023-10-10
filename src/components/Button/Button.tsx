@@ -10,7 +10,8 @@ interface ButtonProps {
   text: string;
   fontFamily: string;
   fontSize: number;
-  onPress?: () => void;
+  color?: string;
+  onPress?: (value: any) => void;
 }
 
 const Button = ({
@@ -22,7 +23,7 @@ const Button = ({
   fontFamily,
   fontSize,
   onPress,
-  ...props
+  color
 }: ButtonProps) => {
   const styles = StyleSheet.create({
     button: {
@@ -45,14 +46,14 @@ const Button = ({
       }),
     },
     text: {
-      color: 'white',
+      color: "white",
       fontFamily: fontFamily,
       fontSize: fontSize,
     },
   });
 
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress} {...props}>
+    <TouchableOpacity style={styles.button} onPress={onPress} >
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
