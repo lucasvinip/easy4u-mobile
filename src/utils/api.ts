@@ -23,7 +23,7 @@ export class performApi {
         return data
     }
 
-    static deleteData = async (path: string, token: string | null) => {
+    static deleteData = async (path: string | number, token: string | null) => {
         const response = await fetch(`http://10.107.144.19:3000/${path}`, {
             method: "DELETE",
             headers: {

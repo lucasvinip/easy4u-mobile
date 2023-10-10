@@ -15,13 +15,14 @@ interface ItemsFavoriteProps {
     name: string;
     price: string;
     photo: string;
-    onPress: () => void;
+    onDeleteFavorite: () => void;
+    onSelectItem: () => void;
 }
 
-function FavoriteCard({name, photo, price, onPress}:ItemsFavoriteProps) {
+function FavoriteCard({name, photo, price, onDeleteFavorite, onSelectItem}:ItemsFavoriteProps) {
     return (
         <View style={[styles.Container]} >
-            <TouchableOpacity style={[styles.Card, shadowStyle]}>
+            <TouchableOpacity style={[styles.Card, shadowStyle]} onPress={onSelectItem}>
                 <View style={styles.ContainerItems}>
                     <Image source={{ uri: photo }} style={styles.Img} />
                     <View style={styles.ContainerTexts}>
@@ -32,7 +33,7 @@ function FavoriteCard({name, photo, price, onPress}:ItemsFavoriteProps) {
                             <Text>
                                 <Text style={styles.R$}>R$</Text> <Text style={styles.Price}>{price}</Text>
                             </Text>
-                            <TouchableOpacity onPress={onPress}>
+                            <TouchableOpacity style={{backgroundColor: "blue"}} onPress={onDeleteFavorite}>
                                 <AntDesign name='delete' style={styles.Delete} />
                             </TouchableOpacity>
                         </View>

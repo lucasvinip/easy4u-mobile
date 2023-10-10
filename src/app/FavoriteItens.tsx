@@ -15,6 +15,7 @@ interface ProductsProps {
 }
 
 interface FavoritesProps {
+  id: number;
   name: string;
   price: string;
   photo: string;
@@ -23,10 +24,12 @@ interface FavoritesProps {
 const FavoriteItens = () => {
   const [favorites, setFavorites] = useState<any>([]);
   const [token, setToken] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
       const storedToken = await AsyncStorage.getItem("token");
+
       if (!storedToken) {
         router.push("/");
       } else {
@@ -43,9 +46,19 @@ const FavoriteItens = () => {
   }, []);
 
 
-  const handleDeleteFavoriteItem = async (product: string) => {
-    console.log(`voce clickou em ${product}`)
+  const handleDeleteFavoriteItem = async (productId: number) => {
+    try{
+      await performApi.deleteData(`favorites/${productId}`, token);
+      const updatedFavorites = favorites.filter((item: ProductsProps) => item.product.id !== productId);
+      setFavorites(updatedFavorites)
+    }catch(erro){
+      console.log(erro)
+    }
   };
+
+  const handleSelectItem = (productId: number) => {
+    console.log(`navegando para o produto de numero` + productId)
+  }
 
   return (
     <UseFonts>
@@ -64,9 +77,8 @@ const FavoriteItens = () => {
                     name={product.name}
                     price={product.price}
                     photo={product.photo}
-                    onPress={() => {
-                      handleDeleteFavoriteItem(product.name)
-                    }}
+                    onDeleteFavorite={() => handleDeleteFavoriteItem(product.id)}
+                    onSelectItem={() => handleSelectItem(product.id)}
                   />
                 ))}
               </ScrollView>
