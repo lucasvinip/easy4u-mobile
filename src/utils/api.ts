@@ -25,4 +25,17 @@ export class performApi {
         const data = await response.json()
         return data
     }
+
+    static deleteData = async (path: string | number, token: string | null) => {
+        const response = await fetch(`http://10.107.144.19:3000/${path}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        const data = await response.json()
+        return data
+    }
+    
 }

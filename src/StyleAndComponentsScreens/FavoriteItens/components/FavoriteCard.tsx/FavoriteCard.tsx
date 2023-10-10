@@ -12,88 +12,28 @@ import { AntDesign } from '@expo/vector-icons';
 import { styles, shadowStyle } from './style';
 
 interface ItemsFavoriteProps {
-    id: string;
-    title: string;
-    date: string;
+    name: string;
     price: string;
-    status: string;
-    imageURL: string;
+    photo: string;
+    onDeleteFavorite: () => void;
+    onSelectItem: () => void;
 }
 
-const data: ItemsFavoriteProps[] = [
-    {
-        id: '1',
-        title: 'Croissant de Chocolate',
-        date: '10/08/2023',
-        price: '5,50',
-        status: 'Pedido Aberto',
-        imageURL: 'https://picsum.photos/700',
-    },
-    {
-        id: '2',
-        title: 'Croissant de Morango',
-        date: '12/08/2023',
-        price: '4,80',
-        status: 'Pedido Fechado',
-        imageURL: 'https://picsum.photos/701',
-    },
-    {
-        id: '3',
-        title: 'Croissant de Morango',
-        date: '12/08/2023',
-        price: '4,80',
-        status: 'Pedido Fechado',
-        imageURL: 'https://picsum.photos/701',
-    },
-    {
-        id: '4',
-        title: 'Croissant de Morango',
-        date: '12/08/2023',
-        price: '4,80',
-        status: 'Pedido Fechado',
-        imageURL: 'https://picsum.photos/701',
-    },
-    {
-        id: '5',
-        title: 'Croissant de Morango',
-        date: '12/08/2023',
-        price: '4,80',
-        status: 'Pedido Fechado',
-        imageURL: 'https://picsum.photos/701',
-    },
-    {
-        id: '6',
-        title: 'Croissant de Morango',
-        date: '12/08/2023',
-        price: '4,80',
-        status: 'Pedido Fechado',
-        imageURL: 'https://picsum.photos/701',
-    },
-    {
-        id: '7',
-        title: 'Croissant de Morango',
-        date: '12/08/2023',
-        price: '4,80',
-        status: 'Pedido Fechado',
-        imageURL: 'https://picsum.photos/701',
-    },
-];
-
-function FavoriteCard() {
-    const renderItem = ({ item }: { item: ItemsFavoriteProps }) => (
+function FavoriteCard({name, photo, price, onDeleteFavorite, onSelectItem}:ItemsFavoriteProps) {
+    return (
         <View style={[styles.Container]} >
-            <TouchableOpacity style={[styles.Card, shadowStyle]}>
+            <TouchableOpacity style={[styles.Card, shadowStyle]} onPress={onSelectItem}>
                 <View style={styles.ContainerItems}>
-                    <Image source={{ uri: item.imageURL }} style={styles.Img} />
+                    <Image source={{ uri: photo }} style={styles.Img} />
                     <View style={styles.ContainerTexts}>
                         <Text style={styles.Text}>
-                            {item.title}
+                            {name}
                         </Text>
                         <View style={styles.ContainerPrice}>
                             <Text>
-                                <Text style={styles.R$}>R$</Text> <Text style={styles.Price}>{item.price}</Text>
+                                <Text style={styles.R$}>R$</Text> <Text style={styles.Price}>{price}</Text>
                             </Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity style={{backgroundColor: "blue"}} onPress={onDeleteFavorite}>
                                 <AntDesign name='delete' style={styles.Delete} />
                             </TouchableOpacity>
                         </View>
@@ -102,15 +42,6 @@ function FavoriteCard() {
             </TouchableOpacity>
         </View>
     )
-
-    return (
-        <FlatList
-            data={data}
-            keyExtractor={(item) => item.id}
-            renderItem={renderItem}
-            showsVerticalScrollIndicator={false}
-        />
-    )
 }
 
-export { FavoriteCard };
+export default FavoriteCard;

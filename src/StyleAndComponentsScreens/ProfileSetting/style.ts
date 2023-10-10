@@ -6,24 +6,26 @@ const styles = StyleSheet.create({
   Screen: {
     height: '100%',
     width: '100%',
-    backgroundColor: theme.COLORS.Whiteffffff
+    backgroundColor: theme.COLORS.Whiteffffff,
+    marginTop: 20
   },
   Container: {
     marginLeft: 18,
     marginRight: 18,
-    justifyContent: `center`
+    height: '100%',
+    backgroundColor: theme.COLORS.Whiteffffff,
+
   },
   ContainerHeader: {
     justifyContent: 'center',
-    height: '42%',
-    alignItems: 'center',
+    height: '35%',
   },
   HeaderCard: {
     width: 125,
     height: 120,
     borderRadius: 100,
     alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: theme.COLORS.GrayRgba255249243041
   },
   CardImg: {
     width: 118,
@@ -33,9 +35,11 @@ const styles = StyleSheet.create({
     borderColor: 'black'
   },
   ContainerButton: {
-    paddingTop: 20,
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+    height: '20%',
+    justifyContent: 'flex-end'
+  },
+
 });
 
 export { styles };
