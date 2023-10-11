@@ -33,7 +33,7 @@ function FavoriteCard({name, photo, price, onDeleteFavorite, onSelectItem}:Items
                             <Text>
                                 <Text style={styles.R$}>R$</Text> <Text style={styles.Price}>{price}</Text>
                             </Text>
-                            <TouchableOpacity style={{backgroundColor: "blue"}} onPress={onDeleteFavorite}>
+                            <TouchableOpacity onPress={onDeleteFavorite}>
                                 <AntDesign name='delete' style={styles.Delete} />
                             </TouchableOpacity>
                         </View>

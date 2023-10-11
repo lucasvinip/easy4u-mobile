@@ -4,85 +4,39 @@ import {
     View,
     Text,
     Image,
-    FlatList
 } from 'react-native';
 
 
-import { styles, shadowStyle} from './style';
+import { styles, shadowStyle } from './style';
 import theme from '../../../../styles/theme';
 import { AppTexts } from '../../../../assets/strings';
 import Button from '../../../../components/Button/Button';
 
 interface OrderCardProps {
-    id: string,
+    id: number,
     date: string,
-    imageURL: string,
+    photo: string,
     status: string
 }
 
-const data: OrderCardProps[] = [
-    {
-        id: '1',
-        date: '10/08/2023',
-        imageURL: 'https://picsum.photos/700',
-        status: 'Check Order'
-    },
-    {
-        id: '2',
-        date: '12/08/2023',
-        imageURL: 'https://picsum.photos/701',
-        status: 'Order Again'
-    },
-    {
-        id: '3',
-        date: '12/08/2023',
-        imageURL: 'https://picsum.photos/701',
-        status: 'Order Again'
-    },
-    {
-        id: '4',
-        date: '12/08/2023',
-        imageURL: 'https://picsum.photos/701',
-        status: 'Order Again'
-    },
-    {
-        id: '5',
-        date: '12/08/2023',
-        imageURL: 'https://picsum.photos/701',
-        status: 'Order Again'
-    },
-    {
-        id: '6',
-        date: '12/08/2023',
-        imageURL: 'https://picsum.photos/701',
-        status: 'Order Again'
-    },
-    {
-        id: '7',
-        date: '12/08/2023',
-        imageURL: 'https://picsum.photos/701',
-        status: 'Order Again'
-    },
-];
-
-const OrderCard = () => {
-    const renderItem = ({ item }: { item: OrderCardProps }) => (
-        item.status == 'Check Order' ? (
+export function OrderCard({ status, date, id, photo }: OrderCardProps) {
+    return (
+        status === 'ACTIVE' ? (
             <View style={styles.Container}>
                 <TouchableOpacity style={[styles.Card, shadowStyle]}>
                     <View>
                         <View>
                             <Text style={styles.DateOpen}>
-                                {item.date}
+                                {date}
                             </Text>
                         </View>
                         <View style={styles.ContainerItems}>
                             <View style={styles.Items}>
-
+                            
                                 <View style={styles.Titles}>
                                     <Text
                                         style={styles.OrderTitleOpen}>
-                                        Pedido #00{item.id}
+                                        Pedido #00{id}
                                     </Text>
                                     <Button
                                         text={AppTexts.Check_Order.toLocaleUpperCase()}
@@ -94,7 +48,7 @@ const OrderCard = () => {
                                         fontSize={10}
                                     />
                                 </View>
-                                <Image source={{ uri: item.imageURL }} style={styles.Img} />
+                                <Image source={{ uri: photo }} style={styles.Img} />
                             </View>
                         </View>
                     </View>
@@ -106,16 +60,16 @@ const OrderCard = () => {
                     <View>
                         <View>
                             <Text style={styles.DateClosed}>
-                                {item.date}
+                                {date}
                             </Text>
                         </View>
                         <View style={styles.ContainerItems}>
                             <View style={styles.Items}>
-                                <Image source={{ uri: item.imageURL }} style={styles.Img} />
+                            <Image source={{ uri: photo }} style={styles.Img} />
                                 <View style={styles.Titles}>
                                     <Text
                                         style={styles.OrderTitle}>
-                                        Pedido #00{item.id}
+                                        Pedido #00{id}
                                     </Text>
                                     <Button
                                         text={AppTexts.Order_Again.toLocaleUpperCase()}
@@ -134,15 +88,6 @@ const OrderCard = () => {
             </View>
         )
     )
-    return (
-        <FlatList
-            data={data}
-            keyExtractor={(item) => item.id}
-            renderItem={renderItem}
-            showsVerticalScrollIndicator={false}
-        />
-    );
 };
 
-export { OrderCard };
 
