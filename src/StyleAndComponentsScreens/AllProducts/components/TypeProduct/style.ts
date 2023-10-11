@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 16
+        marginRight: 11
     },
     Title: {
         fontFamily: theme.FONTS.Popp400,

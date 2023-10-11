@@ -77,11 +77,11 @@ const Layout = () => {
                 }}
             />
             <Stack.Screen
-                name='Product'
+                name='product/[name-price-photo]'
                 options={{
                     headerTransparent: true,
                     title: '',
-                    headerTintColor: 'white'
+                    headerTintColor: theme.COLORS.Gray5E5959
                 }}
             />
             <Stack.Screen

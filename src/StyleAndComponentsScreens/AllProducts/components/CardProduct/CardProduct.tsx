@@ -4,6 +4,7 @@ import { AppTexts } from '../../../../assets/strings';
 
 import { styles, shadowStyle } from './style';
 import { Link } from 'expo-router';
+import { setParams } from 'expo-router/src/global-state/routing';
 
 interface ProductsProps {
     name: string,
@@ -12,32 +13,35 @@ interface ProductsProps {
     photo: any
 }
 
-
-
 const CardProduct = ({ name, price, description, photo }: ProductsProps) => {
+    console.log(price);
     return (
         <View style={[styles.Container, shadowStyle]}>
-            <TouchableOpacity>
-                <View style={styles.ContainerCard}>
-                    <View style={styles.CardItems}>
-                        <View style={styles.Description}>
-                            <Text style={styles.Title1}>
-                                {name}
-                            </Text>
-                            <Text style={styles.Title2}>
-                                {description}
-                            </Text>
-                            <Text>
-                                <Text style={styles.Title3}>R$</Text> <Text style={styles.Title4}> {price}</Text>
-                            </Text>
-                        </View>
-                        <View style={styles.ContainerImg}>
-                            <Image source={{ uri: photo }} style={styles.Img} />
+            <Link href={{
+                pathname: '/product/[name-price-photo]',
+                params: {name: name, price: price, photo: photo}
+            }} asChild>
+                <TouchableOpacity>
+                    <View style={styles.ContainerCard}>
+                        <View style={styles.CardItems}>
+                            <View style={styles.Description}>
+                                <Text style={styles.Title1}>
+                                    {name}
+                                </Text>
+                                <Text style={styles.Title2}>
+                                    {description}
+                                </Text>
+                                <Text>
+                                    <Text style={styles.Title3}>R$</Text> <Text style={styles.Title4}> {price}</Text>
+                                </Text>
+                            </View>
+                            <View style={styles.ContainerImg}>
+                                <Image source={{ uri: photo }} style={styles.Img} />
+                            </View>
                         </View>
                     </View>
-                </View>
-            </TouchableOpacity>
-
+                </TouchableOpacity>
+            </Link>
         </View>
     )
 };

@@ -5,7 +5,11 @@ import { AppTexts } from '../../../../assets/strings';
 
 import { styles, shadowStyle } from './style'
 
-const ButtonAddCart = () => {
+interface ButtonAddCartProps{
+    price: any
+}
+
+const ButtonAddCart = ({price} : ButtonAddCartProps) => {
     return (
         <TouchableOpacity style={[styles.Container, shadowStyle]}>
             <View style={styles.Touchable}>
@@ -13,7 +17,7 @@ const ButtonAddCart = () => {
                     {AppTexts.Add_Cart}
                 </Text>
                 <Text style={styles.TouchableIcon}>
-                    R$ 5,00
+                    {price}
                 </Text>
             </View>
         </TouchableOpacity>
