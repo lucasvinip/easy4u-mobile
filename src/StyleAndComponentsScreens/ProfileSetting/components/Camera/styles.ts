@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
         height: 120,
         borderRadius: 100,
         alignItems: 'flex-end',
-        backgroundColor:theme.COLORS.OrangeF6752C
-
+        backgroundColor:theme.COLORS.OrangeF6752C,
+        position: 'absolute'
     },
     CardImg: {
         width: 118,

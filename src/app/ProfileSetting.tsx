@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { View, } from 'react-native';
+import { ActivityIndicator, TouchableOpacity, View, } from 'react-native';
 import { Card, DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
+import { storage } from '../../firebaseConfig';
+import { getDownloadURL, uploadBytes, ref, deleteObject } from 'firebase/storage'
+import { AntDesign } from '@expo/vector-icons';
 
 import theme from '../styles/theme';
 import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter/TouchTextAlter';
@@ -12,6 +15,7 @@ import Button from '../components/Button/Button';
 import { styles } from '../StyleAndComponentsScreens/ProfileSetting/style';
 import UseFonts from '../styles/useFonts';
 import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camera/Camera';
+import { resolve } from 'expo-router/src/link/path';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -24,17 +28,26 @@ const themeTextInput = {
 const ProfileSetting = () => {
     const [email, setEmail] = useState<string>("");
     const [name, setName] = useState<string>("");
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [selectedImage, setSelectedImage] = useState<string | any>(null);
+    const [loading, setLoading] = useState<boolean>(false);
 
-    const pickImageAsync = async () => {
+
+    const pickImage = async () => {
         try {
             const result = await ImagePicker.launchImageLibraryAsync({
                 allowsEditing: true,
                 quality: 1,
             });
 
-            if (!result.canceled)
-                setSelectedImage(result.assets[0].uri);
+            if (!result.canceled) {
+                setLoading(true)
+                const uploadURL = await uploadImage(result.assets[0].uri)
+                setLoading(true)
+                setInterval(() =>{
+                    setLoading(false)
+                }, 2000)
+                setSelectedImage(uploadURL)
+            }
             else
                 alert(AppTexts.Didnt_Choose_Image);
 
@@ -43,13 +56,61 @@ const ProfileSetting = () => {
         }
     };
 
+    const uploadImage = async (uri: string) => {
+        const blob = await new Promise<Blob>((resolve, reject) => {
+            const xhr = new XMLHttpRequest()
+            xhr.onload = function () {
+                resolve(xhr.response)
+            }
+            xhr.onerror = function (e) {
+                console.log(e);
+                reject(new TypeError('Network request failed'))
+            }
+            xhr.responseType = 'blob'
+            xhr.open('GET', uri, true)
+            xhr.send(null)
+        })
+
+        try {
+            const storageRef = ref(storage, `image-${Date.now()}`)
+            const result = await uploadBytes(storageRef, blob)
+
+            return await getDownloadURL(storageRef)
+        } catch (error) {
+            alert(`Error : ${error}`)
+        }
+    };
+
+    const deleteImage = async () => {
+        const deleteRef = ref(storage, selectedImage)
+
+        try {
+            deleteObject(deleteRef).then(() => {
+                setSelectedImage(null)
+                setLoading(true)
+                setInterval(() =>{
+                    setLoading(false)
+                }, 200)
+            })
+        } catch (error) {
+            alert(`Error : ${error}`)
+        }
+    }
+
     return (
         <UseFonts>
             <SafeAreaView style={{ backgroundColor: theme.COLORS.White2F3F3F3 }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
                         <View style={styles.ContainerHeader}>
-                            <Camera onPress={pickImageAsync} selectedImage={selectedImage} placeholderImageSource={require('../assets/img/user.png')} />
+                        {loading && <ActivityIndicator style={{justifyContent: 'flex-end', alignItems: 'center', height: "50%", width:"100%", position: 'absolute', zIndex: 1}} size={40} color={theme.COLORS.GrayRgba255249243041}/>}
+                            <Camera
+                                selectedImage={selectedImage}
+                                placeholderImageSource={require('../assets/img/user.png')}
+                                buttuTypeIcon={selectedImage}
+                                postPhoto={pickImage}
+                                deletePhoto={deleteImage}
+                            />
                         </View>
                         <InputText
                             label='NOME COMPLETO'
@@ -89,7 +150,6 @@ const ProfileSetting = () => {
                                 fontSize={14}
                             />
                         </View>
-
                     </View>
                 </View>
             </SafeAreaView>

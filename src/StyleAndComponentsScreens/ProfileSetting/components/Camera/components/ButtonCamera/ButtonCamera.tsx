@@ -5,16 +5,26 @@ import { AntDesign } from '@expo/vector-icons';
 import { styles } from './style';
 import { ButtonProps } from 'react-native-paper';
 
-interface CameraProps{
-    onPress: () => void,
+interface ButtonCameraProps {
+    postPhoto: () => void,
+    deletePhoto: () => void,
+    buttuTypeIcon: any
 }
 
-const ButtonCamera = ({onPress} : ButtonProps) => {
-    
+const ButtonCamera = ({ postPhoto, buttuTypeIcon, deletePhoto}: ButtonCameraProps) => {
+
     return (
-        <TouchableOpacity onPress={onPress}>
-            <AntDesign name='camera' style={styles.Icon} />
-        </TouchableOpacity>
+        buttuTypeIcon ? (
+            <TouchableOpacity onPress={deletePhoto}>
+                <AntDesign name='delete' style={styles.Icon} />
+            </TouchableOpacity>
+        ) :
+        (
+            <TouchableOpacity onPress={postPhoto}>
+                <AntDesign name='camera' style={styles.Icon} />
+            </TouchableOpacity>
+        )
+        
     );
 }
 
