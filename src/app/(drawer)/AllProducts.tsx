@@ -68,12 +68,13 @@ const AllProducts = () => {
         if (!apiDataProducts)
             Alert.alert("Erro!")
         else {
-            const allProductsTypes = apiDataProducts.map(({ name, price, description, photo}: ProductProps) => {
+            const allProductsTypes = apiDataProducts.map(({ name, price, description, photo, id}: ProductProps) => {
                 return {
                     name,
                     price,
                     description,
-                    photo
+                    photo,
+                    id
                 }
             });
             setProducts(allProductsTypes)
@@ -115,8 +116,8 @@ const AllProducts = () => {
                         </View>
                         <ScrollView contentContainerStyle={styles.ContainerMain} showsVerticalScrollIndicator={false}>
                             <View style={styles.Main}>
-                                {products.map(({ name, price, description, photo}: ProductProps, index: number) => (
-                                    <CardProduct key={index} name={name} price={price} description={description} photo={photo}/>
+                                {products.map(({ name, price, description, photo, id}: ProductProps, index: number) => (
+                                    <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id}/>
                                 ))}
                             </View>
                         </ScrollView>

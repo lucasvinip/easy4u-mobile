@@ -1,25 +1,23 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Image } from 'react-native';
-import { AppTexts } from '../../../../assets/strings';
 
 import { styles, shadowStyle } from './style';
 import { Link } from 'expo-router';
-import { setParams } from 'expo-router/src/global-state/routing';
 
 interface ProductsProps {
+    id: number
     name: string,
     price: number,
     description: string,
     photo: any
 }
 
-const CardProduct = ({ name, price, description, photo }: ProductsProps) => {
-    console.log(price);
+const CardProduct = ({ name, price, description, photo, id}: ProductsProps) => {
     return (
         <View style={[styles.Container, shadowStyle]}>
             <Link href={{
-                pathname: '/product/[name-price-photo]',
-                params: {name: name, price: price, photo: photo}
+                pathname: '/product/[id]',
+                params: {id: id}
             }} asChild>
                 <TouchableOpacity>
                     <View style={styles.ContainerCard}>
