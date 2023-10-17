@@ -19,7 +19,7 @@ interface OrderCardProps {
     status: string
 }
 
-export function OrderCard({ status, date, id, photo }: OrderCardProps) {
+function OrderCard({ status, date, id, photo }: OrderCardProps) {
     return (
         status === 'ACTIVE' ? (
             <View style={styles.Container}>
@@ -32,7 +32,6 @@ export function OrderCard({ status, date, id, photo }: OrderCardProps) {
                         </View>
                         <View style={styles.ContainerItems}>
                             <View style={styles.Items}>
-                            
                                 <View style={styles.Titles}>
                                     <Text
                                         style={styles.OrderTitleOpen}>
@@ -91,3 +90,4 @@ export function OrderCard({ status, date, id, photo }: OrderCardProps) {
 };
 
 
+export default OrderCard

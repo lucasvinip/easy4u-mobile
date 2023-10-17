@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         height: 140,
         width: 360,
         backgroundColor: '#F3F3F3',
-        borderRadius: 22,
+        borderRadius: 22
     },
     DateOpen:{
         width: '32%',

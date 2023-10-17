@@ -10,21 +10,20 @@ import theme from '../styles/theme';
 import { AppTexts } from '../assets/strings';
 import UseFonts from '../styles/useFonts';
 import Button from '../components/Button/Button';
-import { OrderCard } from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
+import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
 import { performApi } from '../utils/api';
 import { useEffect } from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 
-interface Cart {
+type Cart = {
     status: string;
     products: Product[];
     total: number;
-    createdAt: string;
 }
 
-interface Product {
+type Product = {
     product: {
         name: string;
         photo: string;
@@ -36,47 +35,39 @@ interface Product {
     total_value: number;
 }
 
-interface CartResponseProps {
+type CartResponseProps = {
     id: number;
     cart: Cart;
+    createdAt: string;
 }
 
 
 const Orders = () => {
-    
+
     const [token, setToken] = useState<string>("");
     const [orders, setOrders] = useState<any>([])
     const [photo, setPhoto] = useState<string>("")
 
     useEffect(() => {
         const fetchData = async () => {
-          const storedToken = await AsyncStorage.getItem("token");
-    
-          if (!storedToken) {
-            router.push("/");
-          } else {
-            setToken(storedToken);
-            try {
-              const getOrdersFromUser  = await performApi.getData("carts-by-user", storedToken);
-              setOrders(getOrdersFromUser);
-              handlePhotoFromProduct()
-            } catch (error) {
-              console.error("Erro ao buscar favoritos:", error);
+            const storedToken = await AsyncStorage.getItem("token");
+
+            if (!storedToken) {
+                router.push("/");
+            } else {
+                setToken(storedToken);
+                try {
+                    const getOrdersFromUser = await performApi.getData("carts-by-user", storedToken);
+                    setOrders(getOrdersFromUser)
+                } catch (error) {
+                    console.error("Erro ao buscar favoritos:", error);
+                }
             }
-          }
         };
         fetchData();
     }, []);
 
-    const handlePhotoFromProduct = () => {
-        orders.map(({product}: Product) => {
-             setPhoto(product.photo)
-        })
-    }
-
-
     return (
-
         <UseFonts>
             <StatusBar
                 style='dark'
@@ -86,13 +77,26 @@ const Orders = () => {
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
                         <View style={{ marginTop: 42 }}>
-                            {orders.map((order: CartResponseProps) => {
-                                <OrderCard 
-                                id={order.id} 
-                                date={order.cart.createdAt} 
-                                photo={photo} 
-                                status={order.cart.status}/>
-                            })}
+                            {orders.length > 0 ? (
+                                orders.map((order: CartResponseProps, index: number) => {
+                                    console.log(order.id)
+                                    return (
+                                        <OrderCard
+                                            id={order.id}
+                                            key={index}
+                                            photo=""
+                                            date={order.createdAt}
+                                            status={order.cart.status} />
+                                    );
+                                })
+                            ) : (
+                                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                                    <Text
+                                        style={{ textAlign: "center", color: "black", fontSize: 20 }}>
+                                        Você não tem nenhum item adicionado aos favoritos!
+                                    </Text>
+                                </View>
+                            )}
                         </View>
                     </View>
                 </View>
