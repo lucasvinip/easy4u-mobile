@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, ScrollView, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
+import {
+    View,
+    Image,
+    TouchableOpacity,
+    SafeAreaView,
+    Alert,
+} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { AntDesign } from '@expo/vector-icons';
-import { DefaultTheme } from 'react-native-paper';
 
 import { styles, shadowStyle } from '../../StyleAndComponentsScreens/Product/style';
-import theme from '../../styles/theme';
-import { AppTexts } from '../../assets/strings';
-import ButtonMoreOrLess from '../../components/ButtonMoreOrLess/ButtonMoreOrLess';
-import ButtonAddCart from '../../StyleAndComponentsScreens/Product/components/ButtonCart/ButtonAddCart';
 import UseFonts from '../../styles/useFonts';
 import { router, useGlobalSearchParams } from 'expo-router';
 import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { performApi } from '../../utils/api';
+import theme from '../../styles/theme';
 
 const Product = () => {
     const { id } = useGlobalSearchParams();
+    const idProduct = Number(id)
+    console.log(id);
+
     const [productsName, setProductsName] = useState<String | null>(null)
     const [productsPrice, setProductsPrice] = useState<String | null>(null)
     const [productsPhoto, setProductsPhoto] = useState<any>(null)
-    const [urlApi, setUrlApi] = useState<String>()
+    const [idApi, setIdApi] = useState<any>()
 
     const url = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
@@ -35,32 +40,36 @@ const Product = () => {
     }
 
     const handleCardProducts = async () => {
-        const apiDataProducts = await url(`products/${id}`);
+        if (idProduct) {
+            setIdApi(idProduct)
+            setIdApi(null)
+            const apiDataProducts = await url(`products/${idProduct}`);
 
-        if (!apiDataProducts)
-            Alert.alert("Erro!");
-        else {
-            setProductsName(null);
-            setProductsPrice(null);
-            setProductsPhoto(null);
-            const productName = apiDataProducts.name;
-            const productPrice = apiDataProducts.price;
-            const productsPhoto = apiDataProducts.photo;
-            setProductsName(productName);
-            setProductsPrice(productPrice);
-            setProductsPhoto(productsPhoto);
+            if (!apiDataProducts) {
+                Alert.alert("Erro!");
+            } else {
+                const productName = apiDataProducts.name;
+                const productPrice = apiDataProducts.price;
+                const productsPhoto = apiDataProducts.photo;
+                setProductsName(productName);
+                setProductsPrice(productPrice);
+                setProductsPhoto(productsPhoto);
+            }
         }
+
     }
 
+    const handleResetIdChangePage = async () => {
+        setIdApi(0)
+        console.log(idProduct);
+        router.replace('/(drawer)/AllProducts')
+    }
 
     useEffect(() => {
         handleCardProducts()
-
     }, [])
 
     return (
-
-
         <UseFonts>
             <StatusBar
                 style='dark'
@@ -69,6 +78,11 @@ const Product = () => {
             <SafeAreaView>
                 <View style={styles.Background}>
                     <Image source={{ uri: String(productsPhoto) }} style={styles.Img} />
+                    <View style={{ height: '9%', width: '15%', justifyContent: 'flex-end', alignItems: 'center' }}>
+                        <TouchableOpacity style={{ width: '40%' }} onPress={handleResetIdChangePage}>
+                            <AntDesign name='arrowleft' style={{ fontSize: 22, color: theme.COLORS.Gray5E5959 }} />
+                        </TouchableOpacity>
+                    </View>
                     <View style={styles.Backgroung2}>
                         <View style={styles.Screen}>
                             <View style={styles.Container}>

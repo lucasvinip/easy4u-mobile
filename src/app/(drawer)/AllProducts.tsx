@@ -63,7 +63,7 @@ const AllProducts = () => {
         }
     }
     const handleCardProducts = async () => {
-        const apiDataProducts = await url("products")
+        const apiDataProducts = await url("products?disponibility=true")
 
         if (!apiDataProducts)
             Alert.alert("Erro!")

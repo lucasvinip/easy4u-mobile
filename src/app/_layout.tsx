@@ -1,7 +1,6 @@
 import { Stack } from 'expo-router';
 import theme from '../styles/theme';
 import { AppTexts } from '../assets/strings';
-import { RFValue } from 'react-native-responsive-fontsize';
 import CustomHeaderTitle from '../components/CustomHeaderTitle/CustomHeaderTitle';
 
 const Layout = () => {
@@ -81,7 +80,8 @@ const Layout = () => {
                 options={{
                     headerTransparent: true,
                     title: '',
-                    headerTintColor: theme.COLORS.Gray5E5959
+                    headerTintColor: theme.COLORS.Gray5E5959,
+                    headerShown: false
                 }}
             />
             <Stack.Screen
