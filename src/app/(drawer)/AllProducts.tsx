@@ -14,16 +14,6 @@ import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { performApi } from '../../utils/api';
 
-const themeTextInput = {
-    ...DefaultTheme,
-    colors: {
-        ...DefaultTheme.colors,
-        primary: 'black',
-
-
-    },
-};
-
 interface ProductProps {
     id: number,
     name: string,

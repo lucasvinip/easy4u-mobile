@@ -76,7 +76,7 @@ const Layout = () => {
                 }}
             />
             <Stack.Screen
-                name='product/[id]'
+                name='Product'
                 options={{
                     headerTransparent: true,
                     title: '',

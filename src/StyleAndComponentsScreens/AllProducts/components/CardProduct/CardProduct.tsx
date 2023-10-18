@@ -9,14 +9,18 @@ interface ProductsProps {
     name: string,
     price: number,
     description: string,
-    photo: any
+    photo: any,
+    navigation?: any
 }
 
-const CardProduct = ({ name, price, description, photo, id}: ProductsProps) => {
+const CardProduct = ({ name, price, description, photo, id, navigation}: ProductsProps) => {
+
+    navigation.replace('MainUserScreen', { id: id});
+    
     return (
         <View style={[styles.Container, shadowStyle]}>
             <Link href={{
-                pathname: '/product/[id]',
+                pathname: '/Product',
                 params: {id: id}
             }} asChild>
                 <TouchableOpacity>

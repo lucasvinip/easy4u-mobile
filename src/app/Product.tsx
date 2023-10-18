@@ -9,18 +9,20 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { AntDesign } from '@expo/vector-icons';
 
-import { styles, shadowStyle } from '../../StyleAndComponentsScreens/Product/style';
-import UseFonts from '../../styles/useFonts';
+import { styles, shadowStyle } from '../StyleAndComponentsScreens/Product/style';
+import UseFonts from '../styles/useFonts';
 import { router, useGlobalSearchParams } from 'expo-router';
-import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain';
+import CardMain from '../StyleAndComponentsScreens/Product/components/CardMain/CardMain';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { performApi } from '../../utils/api';
-import theme from '../../styles/theme';
+import { performApi } from '../utils/api';
+import theme from '../styles/theme';
 
-const Product = () => {
-    const { id } = useGlobalSearchParams();
-    const idProduct = Number(id)
-    console.log(id);
+interface ProductProps {
+    route: any;
+  }
+
+const Product = ({ route}: ProductProps) => {
+    const id = route.params && route.params.id ? route.params.id : 0
 
     const [productsName, setProductsName] = useState<String | null>(null)
     const [productsPrice, setProductsPrice] = useState<String | null>(null)
@@ -40,11 +42,11 @@ const Product = () => {
     }
 
     const handleCardProducts = async () => {
-        if (idProduct) {
-            setIdApi(idProduct)
-            setIdApi(null)
-            const apiDataProducts = await url(`products/${idProduct}`);
-
+        if (id) {
+            setIdApi(id)
+            const apiDataProducts = await url(`products/${id}`);
+            console.log(apiDataProducts);
+            
             if (!apiDataProducts) {
                 Alert.alert("Erro!");
             } else {
@@ -61,7 +63,7 @@ const Product = () => {
 
     const handleResetIdChangePage = async () => {
         setIdApi(0)
-        console.log(idProduct);
+        console.log(id);
         router.replace('/(drawer)/AllProducts')
     }
 
