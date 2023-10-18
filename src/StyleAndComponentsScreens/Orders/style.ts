@@ -7,9 +7,10 @@ const styles = StyleSheet.create({
   Screen: {
     height: '100%',
     width: '100%',
-    backgroundColor: theme.COLORS.Whiteffffff
+    backgroundColor: theme.COLORS.Whiteffffff,
   },
   Container: {
+    flexDirection: "column-reverse", 
     alignItems:'center',
     height: 'auto'
   }

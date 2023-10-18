@@ -7,15 +7,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
-import { AppTexts } from '../assets/strings';
 import UseFonts from '../styles/useFonts';
-import Button from '../components/Button/Button';
 import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
 import { performApi } from '../utils/api';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { router } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
+
 
 type Cart = {
     status: string;
@@ -46,7 +45,9 @@ const Orders = () => {
 
     const [token, setToken] = useState<string>("");
     const [orders, setOrders] = useState<any>([])
-    const [photo, setPhoto] = useState<string>("")
+    const router = useRouter();
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -76,17 +77,26 @@ const Orders = () => {
             <SafeAreaView style={{ backgroundColor: theme.COLORS.Whiteffffff }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
-                        <View style={{ marginTop: 42 }}>
+                        <View style={{ marginTop: 42, display: "flex", flexDirection: "column-reverse" }}>
                             {orders.length > 0 ? (
                                 orders.map((order: CartResponseProps, index: number) => {
-                                    console.log(order.id)
+                                    const getDate = order.createdAt.split("T")[0]
+                                    const [y, m, d] = getDate.split("-")
+                                    const date = `${d}/${m}/${y}`
+
                                     return (
-                                        <OrderCard
-                                            id={order.id}
-                                            key={index}
-                                            photo=""
-                                            date={order.createdAt}
-                                            status={order.cart.status} />
+                                        <Link href={{
+                                            pathname: "/order/[id]",
+                                            params: { id: order.id }
+                                        }}>
+                                            <OrderCard
+                                                id={order.id}
+                                                key={index}
+                                                photo={order.cart?.products[0]?.product?.photo}
+                                                date={date}
+                                                status={order.cart.status}
+                                            />
+                                        </Link>
                                     );
                                 })
                             ) : (

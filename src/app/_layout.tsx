@@ -84,6 +84,15 @@ const Layout = () => {
                     headerShown: false
                 }}
             />
+             <Stack.Screen
+                name='order/[id]'
+                options={{
+                    headerTransparent: true,
+                    title: 'PEDIDO',
+                    headerTintColor: theme.COLORS.Gray5E5959,
+                    headerShown: false
+                }}
+            />
             <Stack.Screen
                 name='Checkout'
                 options={{

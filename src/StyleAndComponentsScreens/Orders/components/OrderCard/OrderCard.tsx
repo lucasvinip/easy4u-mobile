@@ -16,14 +16,15 @@ interface OrderCardProps {
     id: number,
     date: string,
     photo: string,
-    status: string
+    status: string,
+    onPress?: () => void
 }
 
-function OrderCard({ status, date, id, photo }: OrderCardProps) {
+function OrderCard({ status, date, id, photo, onPress }: OrderCardProps) {
     return (
         status === 'ACTIVE' ? (
             <View style={styles.Container}>
-                <TouchableOpacity style={[styles.Card, shadowStyle]}>
+                <TouchableOpacity style={[styles.Card, shadowStyle]} onPress={onPress}>
                     <View>
                         <View>
                             <Text style={styles.DateOpen}>
@@ -55,7 +56,7 @@ function OrderCard({ status, date, id, photo }: OrderCardProps) {
             </View>
         ) : (
             <View style={styles.Container}>
-                <TouchableOpacity style={[styles.Card, shadowStyle]}>
+                <TouchableOpacity style={[styles.Card, shadowStyle]} onPress={onPress}>
                     <View>
                         <View>
                             <Text style={styles.DateClosed}>
