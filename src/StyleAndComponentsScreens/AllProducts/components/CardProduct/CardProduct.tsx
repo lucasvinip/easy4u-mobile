@@ -10,7 +10,6 @@ interface ProductsProps {
     price: number,
     description: string,
     photo: any,
-<<<<<<< Updated upstream
 
 }
 
@@ -20,14 +19,6 @@ const CardProduct = ({ id, name, price, description, photo }: ProductsProps) => 
     //     await AsyncStorage.setItem('productId', productId.toString())
     //     router.push('/Product')
     // }
-=======
-}
-
-const CardProduct = ({ name, price, description, photo, id}: ProductsProps) => {
-
-
-    
->>>>>>> Stashed changes
     return (
         <Link href={{
             pathname: '/product/[id]',
