@@ -7,14 +7,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
+import { AppTexts } from '../assets/strings';
 import UseFonts from '../styles/useFonts';
+import Button from '../components/Button/Button';
 import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
 import { performApi } from '../utils/api';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Link, useRouter } from 'expo-router';
-
+import { router } from 'expo-router';
 
 type Cart = {
     status: string;
@@ -42,11 +43,14 @@ type CartResponseProps = {
 
 
 const Orders = () => {
-
     const [token, setToken] = useState<string>("");
     const [orders, setOrders] = useState<any>([])
-    const router = useRouter();
 
+    const handleOrderClick = async (orderId: string) => {
+        await AsyncStorage.setItem("orderId", orderId)
+        router.push('/FullOrder')
+
+    }
 
 
     useEffect(() => {
@@ -85,18 +89,14 @@ const Orders = () => {
                                     const date = `${d}/${m}/${y}`
 
                                     return (
-                                        <Link href={{
-                                            pathname: "/order/[id]",
-                                            params: { id: order.id }
-                                        }}>
-                                            <OrderCard
-                                                id={order.id}
-                                                key={index}
-                                                photo={order.cart?.products[0]?.product?.photo}
-                                                date={date}
-                                                status={order.cart.status}
-                                            />
-                                        </Link>
+                                        <OrderCard
+                                            id={order.id}
+                                            key={index}
+                                            photo={order.cart?.products[0]?.product?.photo}
+                                            date={date}
+                                            status={order.cart.status} 
+                                            onPress={ () => handleOrderClick(order.id.toString())}/>
+
                                     );
                                 })
                             ) : (

@@ -7,7 +7,7 @@ import { styles } from './style'
 const ContainerTotal = () => {
     return (
         <View style={styles.Container}>
-                
+
         </View>
     );
 };

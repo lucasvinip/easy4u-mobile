@@ -84,7 +84,7 @@ const Layout = () => {
                 }}
             />
              <Stack.Screen
-                name='order/[id]'
+                name='FullOrder'
                 options={{
                     headerTransparent: true,
                     title: 'PEDIDO',
