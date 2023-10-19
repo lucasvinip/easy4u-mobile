@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { Text, View, ActivityIndicator, TextInput, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  ActivityIndicator,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
@@ -13,7 +18,6 @@ import { styles } from '../StyleAndComponentsScreens/Login/style';
 import ButtonGoogle from '../StyleAndComponentsScreens/Login/components/ButtonGoogle/ButtonGoogle';
 import UseFonts from '../styles/useFonts';
 import TouchText from '../StyleAndComponentsScreens/Login/components/TouchText/TouchText';
-import { StatusBar } from 'expo-status-bar';
 import { performApi } from '../utils/api';
 
 const themeTextInput = {
@@ -70,7 +74,7 @@ const Login = () => {
       />
       <SafeAreaView style={{ backgroundColor: 'white' }}>
         <View style={styles.Screen}>
-        {loading && <ActivityIndicator style={{justifyContent: 'center', alignItems: 'center', height: "100%", width:"100%" }} size={75} color={theme.COLORS.OrangeFF6C44}/>}
+          {loading && <ActivityIndicator style={{ justifyContent: 'center', alignItems: 'center', height: "100%", width: "100%" }} size={75} color={theme.COLORS.OrangeFF6C44} />}
           <View style={styles.Container}>
             <View style={styles.ContainerHeader}>
               <Text style={styles.HeaderText}>
@@ -109,8 +113,8 @@ const Login = () => {
                 onChange={handlePasswordChange}
                 onFocus={disableErrorMessage}
               />
-              {erro && 
-              <Text style={{ color: theme.COLORS.RedF15050, fontFamily: theme.FONTS.Popp500, justifyContent: "center", textAlign: "center", marginTop: 15, fontSize: 12 }}>{erro}</Text>}
+              {erro &&
+                <Text style={{ color: theme.COLORS.RedF15050, fontFamily: theme.FONTS.Popp500, justifyContent: "center", textAlign: "center", marginTop: 15, fontSize: 12 }}>{erro}</Text>}
             </View>
             <View style={styles.ContainerClicks}>
               <TouchText title={AppTexts.Forgot_Password} href='/ForgotPassword' titleColor={theme.COLORS.Beige65E5959} />

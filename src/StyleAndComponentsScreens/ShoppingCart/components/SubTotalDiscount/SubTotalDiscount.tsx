@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { Link } from 'expo-router';
+
 import { AppTexts } from '../../../../assets/strings';
 import theme from '../../../../styles/theme';
 import { styles } from './style';
-import Button from '../../../../components/Button/Button'; // Import your custom Button component
-import { Link } from 'expo-router';
-
+import Button from '../../../../components/Button/Button';
 
 const SubTotalDiscount = () => {
   return (

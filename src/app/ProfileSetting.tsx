@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, TouchableOpacity, View, } from 'react-native';
-import { Card, DefaultTheme } from 'react-native-paper';
+import { ActivityIndicator, View } from 'react-native';
+import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import { storage } from '../../firebaseConfig';
-import { getDownloadURL, uploadBytes, ref, deleteObject } from 'firebase/storage'
-import { AntDesign } from '@expo/vector-icons';
+import {
+    getDownloadURL,
+    uploadBytes,
+    ref,
+    deleteObject
+} from 'firebase/storage'
 
 import theme from '../styles/theme';
 import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter/TouchTextAlter';
@@ -15,7 +19,6 @@ import Button from '../components/Button/Button';
 import { styles } from '../StyleAndComponentsScreens/ProfileSetting/style';
 import UseFonts from '../styles/useFonts';
 import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camera/Camera';
-import { resolve } from 'expo-router/src/link/path';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -43,7 +46,7 @@ const ProfileSetting = () => {
                 setLoading(true)
                 const uploadURL = await uploadImage(result.assets[0].uri)
                 setLoading(true)
-                setInterval(() =>{
+                setInterval(() => {
                     setLoading(false)
                 }, 2000)
                 setSelectedImage(uploadURL)
@@ -88,7 +91,7 @@ const ProfileSetting = () => {
             deleteObject(deleteRef).then(() => {
                 setSelectedImage(null)
                 setLoading(true)
-                setInterval(() =>{
+                setInterval(() => {
                     setLoading(false)
                 }, 200)
             })
@@ -103,7 +106,7 @@ const ProfileSetting = () => {
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
                         <View style={styles.ContainerHeader}>
-                        {loading && <ActivityIndicator style={{justifyContent: 'flex-end', alignItems: 'center', height: "50%", width:"100%", position: 'absolute', zIndex: 1}} size={40} color={theme.COLORS.GrayRgba255249243041}/>}
+                            {loading && <ActivityIndicator style={{ justifyContent: 'flex-end', alignItems: 'center', height: "50%", width: "100%", position: 'absolute', zIndex: 1 }} size={40} color={theme.COLORS.GrayRgba255249243041} />}
                             <Camera
                                 selectedImage={selectedImage}
                                 placeholderImageSource={require('../assets/img/user.png')}

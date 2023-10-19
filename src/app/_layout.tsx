@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+
 import theme from '../styles/theme';
 import { AppTexts } from '../assets/strings';
 import CustomHeaderTitle from '../components/CustomHeaderTitle/CustomHeaderTitle';

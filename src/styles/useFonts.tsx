@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-
 import {
     useFonts,
     Poppins_300Light,
@@ -14,17 +13,21 @@ import {
     Raleway_600SemiBold,
     Raleway_700Bold
 } from '@expo-google-fonts/raleway';
-import COLORS from './theme'
-import { Keyboard, Pressable, View } from 'react-native';
+import {
+    Keyboard,
+    Pressable,
+    View
+} from 'react-native';
 import { ThemeProvider } from 'styled-components/native'
-import { StatusBar } from 'expo-status-bar';
+
+import COLORS from './theme'
 
 
-interface UseFontsProps{
+interface UseFontsProps {
     children: React.ReactNode
 }
 
-const UseFonts = ({children} : UseFontsProps) => {
+const UseFonts = ({ children }: UseFontsProps) => {
     const [fontsLoaded, fontError] = useFonts({
         Poppins_300Light,
         Poppins_400Regular,

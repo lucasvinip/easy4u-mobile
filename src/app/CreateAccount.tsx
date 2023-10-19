@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { Text, ScrollView, View, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
+import {
+    Text,
+    ScrollView,
+    View,
+    Image,
+    TouchableOpacity
+} from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link } from 'expo-router';
+import { Link, router} from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+
+
 import UseFonts from '../styles/useFonts';
 import { styles } from '../StyleAndComponentsScreens/CreateAccount/style'
 import { AppTexts } from '../assets/strings';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import theme from '../styles/theme';
 import Button from '../components/Button/Button';
-import { StatusBar } from 'expo-status-bar';
 import { performApi } from '../utils/api';
 import ModalPoup from '../components/ModalPoup/Modal';
-import {router} from "expo-router"
 
 const themeTextInput = {
     ...DefaultTheme,

@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
-import { TouchableOpacity, Text, Alert, ToastAndroid } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { TouchableOpacity, Text,  } from 'react-native';
 
 
-import { AppTexts } from '../../../../assets/strings';
 import { styles } from './style';
-import { performApi } from '../../../../utils/api';
 
 interface FilterProductsProps{
     productType: string,
+    onPress?: () => void 
 }
 
-const TypeProduct = ({productType}: FilterProductsProps) => {
+const TypeProduct = ({productType, onPress}: FilterProductsProps) => {
     return (
-        <TouchableOpacity style={styles.Container}>
+        <TouchableOpacity style={styles.Container} onPress={onPress}>
             <Text style={styles.Title}>
                 {productType}
             </Text>

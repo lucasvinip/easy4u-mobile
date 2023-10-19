@@ -1,8 +1,11 @@
 import React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
-import theme from '../../../../styles/theme';
-import { AppTexts } from '../../../../assets/strings';
+import {
+    TouchableOpacity,
+    View,
+    Text
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { AppTexts } from '../../../../assets/strings';
 
 import { styles } from './style'
 import { Link } from 'expo-router';

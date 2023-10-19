@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Image, View, Text, TouchableOpacity } from 'react-native';
+import {
+    Image,
+    View,
+    Text,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AppTexts } from '../assets/strings';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
 import ButtonCredit from '../StyleAndComponentsScreens/Checkout/components/ButtonCredit/ButtonCredit';
 import ContainerTotal from '../StyleAndComponentsScreens/Checkout/components/ContainerTotal/ContainerTotal';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { performApi } from '../utils/api';
 import ContainerFullOrder from '../components/FullOrders/CardFullOrders';
 
@@ -74,11 +78,11 @@ const FullOrder = () => {
                         <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
                         <View style={{ alignItems: 'center' }}>
                             {order?.ProductsByCart ? (
-                                <ContainerFullOrder 
-                                    ProductsByCart={order.ProductsByCart} 
-                                    created_at={order.created_at} 
-                                    id={order.id} 
-                                    status={order.status} 
+                                <ContainerFullOrder
+                                    ProductsByCart={order.ProductsByCart}
+                                    created_at={order.created_at}
+                                    id={order.id}
+                                    status={order.status}
                                     total={order.total} />
                             ) : (
                                 <Text>No items in the cart</Text>

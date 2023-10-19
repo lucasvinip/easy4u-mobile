@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { View, Image, ImageSourcePropType} from 'react-native';
-
+import { View, Image} from 'react-native';
 
 import {styles} from './styles'
 import ButtonCamera from './components/ButtonCamera/ButtonCamera';

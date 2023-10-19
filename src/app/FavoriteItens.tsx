@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "../StyleAndComponentsScreens/FavoriteItens/style";
-import UseFonts from "../styles/useFonts";
-import theme from "../styles/theme";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
+
 import { performApi } from "../utils/api";
 import FavoriteCard from "../StyleAndComponentsScreens/FavoriteItens/components/FavoriteCard.tsx/FavoriteCard";
 import ModalPoup from "../components/ModalPoup/Modal";
 import { AppTexts } from "../assets/strings";
 import Button from "../components/Button/Button";
+import theme from "../styles/theme";
+import UseFonts from "../styles/useFonts";
+import { styles } from "../StyleAndComponentsScreens/FavoriteItens/style";
 
 interface ProductsProps {
   product: FavoritesProps;
@@ -65,7 +72,10 @@ const FavoriteItens = () => {
   };
 
   const handleSelectItem = (productId: number) => {
-    
+    router.push({
+      pathname: '/product/[id]',
+      params: { id: productId, }
+    })
   };
 
   return (
@@ -96,7 +106,7 @@ const FavoriteItens = () => {
                 <Text style={{ fontSize: 20, textAlign: "center" }}>
                   {AppTexts.Exclude_Favorite}
                 </Text>
-                <View style={{ justifyContent: "center", alignItems: "center", flexDirection: "row", gap: 50}}>
+                <View style={{ justifyContent: "center", alignItems: "center", flexDirection: "row", gap: 50 }}>
                   <Button
                     text="Sim"
                     background="transparent"

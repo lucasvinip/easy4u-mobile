@@ -1,5 +1,14 @@
-import { useEffect, useRef, useState } from "react"
-import { Modal, View, Animated } from 'react-native';
+import {
+    useEffect,
+    useRef,
+    useState
+} from "react"
+import {
+    Modal,
+    View,
+    Animated
+} from 'react-native';
+
 import { styles } from "./style";
 
 interface ModalPoupProps {

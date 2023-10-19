@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
-import { performApi } from '../../utils/api';
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  Platform
+} from 'react-native';
 
 interface ButtonProps {
   background: string;

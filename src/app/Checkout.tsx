@@ -1,5 +1,9 @@
 import React from 'react';
-import { Image, View, Text, TouchableOpacity } from 'react-native';
+import {
+    Image,
+    View,
+    Text
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppTexts } from '../assets/strings';
 
@@ -21,7 +25,7 @@ const Checkout = () => {
                     <View style={styles.ContainerMain}>
                         <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
                         <View style={{ alignItems: 'center' }}>
-                           <ContainerTotal/>
+                            <ContainerTotal />
                         </View>
                     </View>
                     <View style={styles.ContainerFooter}>

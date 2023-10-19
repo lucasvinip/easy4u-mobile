@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, Alert } from 'react-native';
+import {
+    View,
+    ScrollView,
+    Alert
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { DefaultTheme } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import { router } from 'expo-router';
 
@@ -19,7 +22,8 @@ interface ProductProps {
     name: string,
     description: string,
     price: number,
-    photo: any
+    photo: any,
+    productType: string
 }
 
 interface TypeProductProps {
@@ -37,8 +41,13 @@ const AllProducts = () => {
         if (!token)
             router.push('/')
         else {
-            const data = await performApi.getData(path, token)
-            return data
+            try {
+                const data = await performApi.getData(path, token)
+                return data
+            } catch (error) {
+                alert("data not get:" + error)
+            }
+
         }
 
     }
@@ -48,32 +57,63 @@ const AllProducts = () => {
         if (!apiDataProductsType)
             Alert.alert("Erro!")
         else {
-            const filterProducts = apiDataProductsType.map(({ type }: TypeProductProps) => type);
-            setTypeProducts(filterProducts);
+            try {
+                const filterProducts = apiDataProductsType.map(({ type }: TypeProductProps) => type);
+                setTypeProducts(filterProducts);
+            } catch (error) {
+                alert("filterProducts not get:" + error)
+            }
+
         }
     }
+    const filterCardProdut = async (productType: any) => {
+        const apiDataFilterProductsByName = await url(`products?productType=${productType}`)
+        console.log(apiDataFilterProductsByName);
+        
+        console.log("o que é" + productType);
+        
+
+        if (!apiDataFilterProductsByName)
+            alert("Erro!")
+        else {
+            try {
+                const typeProduct = await apiDataFilterProductsByName
+                setProducts(typeProduct)
+            } catch (error) {
+                alert("typeProduct not get:" + error)
+            }
+
+        }
+
+    }
+
     const handleCardProducts = async () => {
         const apiDataProducts = await url("products?disponibility=true")
 
         if (!apiDataProducts)
             Alert.alert("Erro!")
         else {
-            const allProductsTypes = apiDataProducts.map(({ name, price, description, photo, id}: ProductProps) => {
-                return {
-                    name,
-                    price,
-                    description,
-                    photo,
-                    id
-                }
-            });
-            setProducts(allProductsTypes)
+            try {
+                const allProductsTypes = apiDataProducts.map(({ name, price, description, photo, id }: ProductProps) => {
+                    return {
+                        name,
+                        price,
+                        description,
+                        photo,
+                        id
+                    }
+                });
+                setProducts(allProductsTypes)
+            } catch (error) {
+                alert("allProductsTypes not get:" + error)
+            }
+
         }
     }
 
     useEffect(() => {
-        handleFilterProductsTypes()
-        handleCardProducts()
+        handleFilterProductsTypes(),
+            handleCardProducts()
     }, [])
 
 
@@ -96,9 +136,9 @@ const AllProducts = () => {
                                 </View>
                                 <View style={styles.ContainerTypeProduct}>
                                     <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
-                                        <TypeProduct productType='Todos' />
-                                        {typeProducts.map((productType: string, index: number) => (
-                                            <TypeProduct key={index} productType={productType} />
+                                        <TypeProduct productType='Todos' onPress={handleCardProducts} />
+                                        {typeProducts.map(( productType: any, index: number) => (
+                                            <TypeProduct key={index} productType={productType} onPress={() => filterCardProdut(productType)} />
                                         ))}
                                     </ScrollView>
                                 </View>
@@ -106,8 +146,8 @@ const AllProducts = () => {
                         </View>
                         <ScrollView contentContainerStyle={styles.ContainerMain} showsVerticalScrollIndicator={false}>
                             <View style={styles.Main}>
-                                {products.map(({ name, price, description, photo, id}: ProductProps, index: number) => (
-                                    <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id}/>
+                                {products.map(({ name, price, description, photo, id }: ProductProps, index: number) => (
+                                    <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id} />
                                 ))}
                             </View>
                         </ScrollView>

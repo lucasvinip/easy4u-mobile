@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DefaultTheme } from 'react-native-paper';
-import { Text, View, ActivityIndicator } from 'react-native';
+import {
+    Text,
+    View,
+    ActivityIndicator
+} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+
+
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/ForgotPassword/style';
 import UseFonts from '../styles/useFonts';
-import { StatusBar } from 'expo-status-bar';
 import { performApi } from '../utils/api';
 
 const themeTextInput = {
@@ -45,9 +51,9 @@ const ForgotPassword = () => {
             }
         } catch (error) {
             setErro("Houve um erro ao enviar o email, tente novamente!");
-            setSucess(""); // Limpar mensagem de sucesso se houver
+            setSucess("");
         } finally {
-            setLoading(false); // Desativar o indicador de carregamento quando a solicitação for concluída
+            setLoading(false);
         }
     };
 
@@ -61,7 +67,7 @@ const ForgotPassword = () => {
                 <View style={styles.Screen}>
                     {loading && (
                         <ActivityIndicator
-                            style={{ justifyContent: 'center', alignItems: 'center', height: "100%", width:"100%"  }}
+                            style={{ justifyContent: 'center', alignItems: 'center', height: "100%", width: "100%" }}
                             size={75}
                             color={theme.COLORS.OrangeFF6C44}
                         />
@@ -88,8 +94,8 @@ const ForgotPassword = () => {
                             onChange={handleEmailFromUser}
                         />
                         <View style={styles.ContainerButton}>
-                        {sucess && <Text style={styles.TextSucess}>{sucess}</Text>}
-                        {erro && <Text style={styles.TextError}>{erro}</Text>}
+                            {sucess && <Text style={styles.TextSucess}>{sucess}</Text>}
+                            {erro && <Text style={styles.TextError}>{erro}</Text>}
                             <Button
                                 text={AppTexts.Reset_Password.toUpperCase()}
                                 fontFamily={theme.FONTS.Popp700}

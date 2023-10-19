@@ -8,12 +8,13 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { AntDesign } from '@expo/vector-icons';
+import { router, useLocalSearchParams } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 import { styles, shadowStyle } from '../../StyleAndComponentsScreens/Product/style';
 import UseFonts from '../../styles/useFonts';
-import { router, useLocalSearchParams } from 'expo-router';
 import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { performApi } from '../../utils/api';
 
 interface CardProductProps{
@@ -37,7 +38,7 @@ const Product = () => {
                 const data = await performApi.getData(path, token)
                 return data
             } catch (error) {
-                return null;
+                alert("data not get:" + error)
             }
         }
 
@@ -54,7 +55,7 @@ const Product = () => {
                 setDataProduct(data)
             }
         } catch (error) {
-            
+            alert("data not get:" + error)
         }
     }
 

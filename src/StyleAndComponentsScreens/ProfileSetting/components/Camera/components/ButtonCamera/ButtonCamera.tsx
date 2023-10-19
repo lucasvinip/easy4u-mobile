@@ -1,9 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import { styles } from './style';
-import { ButtonProps } from 'react-native-paper';
 
 interface ButtonCameraProps {
     postPhoto: () => void,

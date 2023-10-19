@@ -5,17 +5,15 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { styles } from '../StyleAndComponentsScreens/Orders/style';
-import theme from '../styles/theme';
-import { AppTexts } from '../assets/strings';
-import UseFonts from '../styles/useFonts';
-import Button from '../components/Button/Button';
-import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
-import { performApi } from '../utils/api';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
+
+import UseFonts from '../styles/useFonts';
+import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
+import { performApi } from '../utils/api';
+import { styles } from '../StyleAndComponentsScreens/Orders/style';
+import theme from '../styles/theme';
 
 type Cart = {
     status: string;

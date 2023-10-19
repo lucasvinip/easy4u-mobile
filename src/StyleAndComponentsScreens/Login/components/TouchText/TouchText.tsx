@@ -1,10 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-
+import {
+    TouchableOpacity,
+    Text,
+    StyleSheet
+} from 'react-native';
+import { Href, Link } from 'expo-router';
 import { RFValue } from 'react-native-responsive-fontsize';
+
 import theme from '../../../../styles/theme';
-import { Href, Link, useRouter } from 'expo-router';
-import { AppTexts } from '../../../../assets/strings';
 
 interface TouchTextProps {
     titleColor: string,
@@ -12,7 +15,7 @@ interface TouchTextProps {
     title: string
 }
 
-const TouchText = ({ title, titleColor, href}: TouchTextProps) => {
+const TouchText = ({ title, titleColor, href }: TouchTextProps) => {
     const styles = StyleSheet.create({
         Title: {
             fontSize: RFValue(12),
