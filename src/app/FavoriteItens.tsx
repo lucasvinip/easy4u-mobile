@@ -65,7 +65,7 @@ const FavoriteItens = () => {
   };
 
   const handleSelectItem = (productId: number) => {
-    console.log(productId);
+    
   };
 
   return (

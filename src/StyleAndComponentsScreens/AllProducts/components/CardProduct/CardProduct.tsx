@@ -1,29 +1,31 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Link, router } from 'expo-router';
 import React from 'react';
 import { TouchableOpacity, View, Text, Image } from 'react-native';
-
 import { styles, shadowStyle } from './style';
-import { Link } from 'expo-router';
 
 interface ProductsProps {
-    id: number
+    id: number,
     name: string,
     price: number,
     description: string,
     photo: any,
-    navigation?: any
+
 }
 
-const CardProduct = ({ name, price, description, photo, id, navigation}: ProductsProps) => {
+const CardProduct = ({ id, name, price, description, photo }: ProductsProps) => {
 
-    navigation.replace('MainUserScreen', { id: id});
-    
+    // const handleProductClick = async (productId: number) => {
+    //     await AsyncStorage.setItem('productId', productId.toString())
+    //     router.push('/Product')
+    // }
     return (
-        <View style={[styles.Container, shadowStyle]}>
-            <Link href={{
-                pathname: '/Product',
-                params: {id: id}
-            }} asChild>
-                <TouchableOpacity>
+        <Link href={{
+            pathname: '/product/[id]',
+            params: {id: id}
+        }} asChild>
+            <TouchableOpacity >
+                <View style={[styles.Container, shadowStyle]}>
                     <View style={styles.ContainerCard}>
                         <View style={styles.CardItems}>
                             <View style={styles.Description}>
@@ -42,9 +44,9 @@ const CardProduct = ({ name, price, description, photo, id, navigation}: Product
                             </View>
                         </View>
                     </View>
-                </TouchableOpacity>
-            </Link>
-        </View>
+                </View>
+            </TouchableOpacity>
+        </Link>
     )
 };
 

@@ -33,7 +33,7 @@ const Layout = () => {
             <Stack.Screen
                 name='(drawer)'
                 options={{
-                    headerShown: false
+                    headerShown: false,
                 }}
             />
             <Stack.Screen
@@ -76,12 +76,11 @@ const Layout = () => {
                 }}
             />
             <Stack.Screen
-                name='Product'
+                name='product/[id]'
                 options={{
                     headerTransparent: true,
                     title: '',
-                    headerTintColor: theme.COLORS.Gray5E5959,
-                    headerShown: false
+                    headerTintColor: theme.COLORS.Orange2FFA24B,
                 }}
             />
              <Stack.Screen
