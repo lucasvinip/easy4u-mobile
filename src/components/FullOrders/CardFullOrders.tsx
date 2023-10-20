@@ -19,23 +19,25 @@ type Product = {
 
 type ProductByCartResponse = {
     id: number;
-    ProductsByCart: Product[];
+    productsByCart: Product[];
     created_at: Date;
     status: string;
     total: number;
 };
 
 const ContainerFullOrder = ({
-    ProductsByCart,
+    productsByCart,
     created_at,
     status,
     total,
     id
 }: ProductByCartResponse) => {
+
+    console.log("Products By Cart - Full Order" + productsByCart)
     return (
         <View style={styles.Container}>
-            {ProductsByCart.length > 0 ? (
-                ProductsByCart.map(({ product, qntd, total_value }: Product, index: number) => (
+            {productsByCart.length > 0 ? (
+                productsByCart.map(({ product, qntd, total_value }: Product, index: number) => (
                     <View key={index}>
                         <Text>Nome do Produto</Text>
                         <View>

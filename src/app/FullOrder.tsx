@@ -15,6 +15,9 @@ import ButtonCredit from '../StyleAndComponentsScreens/Checkout/components/Butto
 import ContainerTotal from '../StyleAndComponentsScreens/Checkout/components/ContainerTotal/ContainerTotal';
 import { performApi } from '../utils/api';
 import ContainerFullOrder from '../components/FullOrders/CardFullOrders';
+import CustomQRCode from '../components/QRCode/QRCode';
+import QRCode from 'react-native-qrcode-svg';
+import ModalPoup from '../components/ModalPoup/Modal';
 
 type Details = {
     name: string;
@@ -32,7 +35,7 @@ type Product = {
 
 type ProductByCartResponse = {
     id: number;
-    ProductsByCart: Product[] | undefined;
+    products: Product[];
     created_at: Date;
     status: string;
     total: number;
@@ -41,7 +44,9 @@ type ProductByCartResponse = {
 const FullOrder = () => {
     const [idOrder, setIdOrder] = useState<string | null>("");
     const [token, setToken] = useState<string | null>("");
-    const [order, setOrder] = useState<ProductByCartResponse | null>(null);
+    const [order, setOrder] = useState<ProductByCartResponse>();
+    const [isModalVisible, setModalVisible] = useState(false);
+
 
     const getIdFromLocalStorage = async () => {
         const orderId = await AsyncStorage.getItem("orderId");
@@ -49,23 +54,30 @@ const FullOrder = () => {
         setToken(getToken);
         setIdOrder(orderId);
     }
+    
 
     const getProductInfo = async (orderId: string) => {
         try {
             const data = await performApi.getData(`carts-by-user/${orderId}`, token);
             setOrder(data);
+            
         } catch (error) {
             console.error("Error fetching product information:", error);
         }
     }
 
+
     useEffect(() => {
         getIdFromLocalStorage();
-
+    
         if (idOrder) {
+            
             getProductInfo(idOrder);
         }
     }, [idOrder, token]);
+
+
+    
 
     return (
         <SafeAreaView>
@@ -77,9 +89,9 @@ const FullOrder = () => {
                     <View style={styles.ContainerMain}>
                         <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
                         <View style={{ alignItems: 'center' }}>
-                            {order?.ProductsByCart ? (
+                            {order?.products ? (
                                 <ContainerFullOrder
-                                    ProductsByCart={order.ProductsByCart}
+                                    productsByCart={order.products}
                                     created_at={order.created_at}
                                     id={order.id}
                                     status={order.status}
@@ -99,9 +111,10 @@ const FullOrder = () => {
                                 height={40}
                                 borderRadius={48}
                                 fontSize={14}
+                                onPress={() => setModalVisible(true)}
                             />
                         ) : (
-                            <Button
+                            <Button     
                                 text={AppTexts.Order_Again}
                                 fontFamily={theme.FONTS.Popp700}
                                 background={theme.COLORS.OrangeFF6C44}
@@ -111,8 +124,12 @@ const FullOrder = () => {
                                 fontSize={14}
                             />
                         )}
-
                     </View>
+                    {isModalVisible && (
+                    <ModalPoup visible={isModalVisible}>
+                        <CustomQRCode value={order} />
+                    </ModalPoup>
+                )}
                 </View>
             </View>
         </SafeAreaView>
