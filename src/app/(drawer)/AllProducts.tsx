@@ -67,17 +67,17 @@ const AllProducts = () => {
         }
     }
     const filterCardProdut = async (productType: any) => {
-        const apiDataFilterProductsByName = await url(`products?productType=${productType}`)
-        console.log(apiDataFilterProductsByName);
+        const apiDataFilterProductsByType = await url(`products?productType=${productType}`)
+        console.log(apiDataFilterProductsByType);
         
         console.log("o que é" + productType);
         
 
-        if (!apiDataFilterProductsByName)
+        if (!apiDataFilterProductsByType)
             alert("Erro!")
         else {
             try {
-                const typeProduct = await apiDataFilterProductsByName
+                const typeProduct = await apiDataFilterProductsByType
                 setProducts(typeProduct)
             } catch (error) {
                 alert("typeProduct not get:" + error)

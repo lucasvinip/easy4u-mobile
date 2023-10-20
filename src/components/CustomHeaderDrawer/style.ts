@@ -4,9 +4,13 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 const styles = StyleSheet.create({
     ContainerHeader: {
-        height: 115,
-        justifyContent: 'center',
-        alignItems: 'center'
+        height: '165%',
+        justifyContent: 'flex-end',
+    },
+    Header:{
+        width: '100%',
+        alignItems: 'center',
+        height: '60%'
     },
     Title: {
         alignItems: 'center',
@@ -24,16 +28,14 @@ const styles = StyleSheet.create({
     Icons:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-
-
     },  
     MenuIcon:{
-        fontSize: 25,
+        fontSize: 28,
         color: theme.COLORS.WhiteEDF3EDEB,
         paddingTop: 6
     },
     ShoppingCartIcon:{
-        fontSize: 25,
+        fontSize: 28,
         color: theme.COLORS.WhiteEDF3EDEB,
     }
 });
