@@ -57,7 +57,7 @@ const Layout = () => {
                 }}
             />
             <Stack.Screen
-                name='FavoriteItens'
+                name='FavoriteItems'
                 options={{
                     headerStyle: { backgroundColor: '#ffffff40' },
                     headerTransparent: true,

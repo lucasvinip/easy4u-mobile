@@ -50,7 +50,7 @@ const CustomTextInput = ({
 
   const handleInputChange = (text: string) => {
     setInputValue(text);
-
+   
     if (onChange) {
       onChange(text);
     }
@@ -61,9 +61,6 @@ const CustomTextInput = ({
       onFocus();
     }
   };
-
-
-
 
   const styles = StyleSheet.create({
     TextInput: {

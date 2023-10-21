@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },  
     MenuIcon:{
-        fontSize: 28,
+        fontSize: 27,
         color: theme.COLORS.WhiteEDF3EDEB,
         paddingTop: 6
     },
     ShoppingCartIcon:{
-        fontSize: 28,
+        fontSize: 27,
         color: theme.COLORS.WhiteEDF3EDEB,
     }
 });

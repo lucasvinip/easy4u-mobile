@@ -3,9 +3,12 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { styles } from './style'
 import { AntDesign } from '@expo/vector-icons';
 import { AppTexts } from '../../assets/strings';
-import { Link, useNavigation } from 'expo-router';
+import { Link } from 'expo-router';
+import { NavigationProp, useNavigation, DrawerActionType} from '@react-navigation/native';
 
 const CustomHeaderDrawer = () => {
+
+    const navigation = useNavigation<NavigationProp<DrawerActionType>>();
 
     return (
         <View style={styles.ContainerHeader}>
@@ -17,8 +20,8 @@ const CustomHeaderDrawer = () => {
                 </View>
                 <View style={styles.ContainerIcons}>
                     <View style={styles.Icons}>
-                        <TouchableOpacity >
-                            <AntDesign name='menu-fold' style={styles.MenuIcon} />
+                        <TouchableOpacity onPressOut={() => navigation.dispatch({ type: 'OPEN_DRAWER' })}>
+                            <AntDesign name='menufold' style={styles.MenuIcon} />
                         </TouchableOpacity>
                         <View>
                             <Link href={'/ShoppingCart'} asChild>

@@ -19,7 +19,7 @@ import { performApi } from '../../utils/api';
 
 interface ProductProps {
     id: number,
-    name: string,
+    name: any,
     description: string,
     price: number,
     photo: any,
@@ -31,11 +31,18 @@ interface TypeProductProps {
     type: string;
 }
 
-const AllProducts = () => {
-    const [typeProducts, setTypeProducts] = useState<any[]>([]);
-    const [products, setProducts] = useState<any[]>([])
+interface SearcProductProps {
+    id: number,
+    name: any,
+    productType: any,
+}
 
-    const url = async (path: string) => {
+const AllProducts = () => {
+    const [typeProducts, setTypeProducts] = useState<any[]>([])
+    const [products, setProducts] = useState<any[]>([])
+    const [text, setText] = useState<string>("");
+
+    const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
 
         if (!token)
@@ -52,7 +59,7 @@ const AllProducts = () => {
 
     }
     const handleFilterProductsTypes = async () => {
-        const apiDataProductsType = await url("products/types")
+        const apiDataProductsType = await getUrl("products/types")
 
         if (!apiDataProductsType)
             Alert.alert("Erro!")
@@ -66,29 +73,8 @@ const AllProducts = () => {
 
         }
     }
-    const filterCardProdut = async (productType: any) => {
-        const apiDataFilterProductsByType = await url(`products?productType=${productType}`)
-        console.log(apiDataFilterProductsByType);
-        
-        console.log("o que é" + productType);
-        
-
-        if (!apiDataFilterProductsByType)
-            alert("Erro!")
-        else {
-            try {
-                const typeProduct = await apiDataFilterProductsByType
-                setProducts(typeProduct)
-            } catch (error) {
-                alert("typeProduct not get:" + error)
-            }
-
-        }
-
-    }
-
     const handleCardProducts = async () => {
-        const apiDataProducts = await url("products?disponibility=true")
+        const apiDataProducts = await getUrl("products?disponibility=true")
 
         if (!apiDataProducts)
             Alert.alert("Erro!")
@@ -109,6 +95,45 @@ const AllProducts = () => {
             }
 
         }
+    }
+    const handleSearchProduct = async () => {
+        const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
+        console.log(apiDataFilterProductsByTypeAndName);
+
+        if (!apiDataFilterProductsByTypeAndName) {
+            Alert.alert("Erro!")
+        } else {
+            try {
+                const lowerCaseText = text.toLowerCase()
+
+                const filter = apiDataFilterProductsByTypeAndName.filter(({ name, productType }: SearcProductProps) => {
+                    const lowerCaseName = name.toLowerCase()
+                    const lowerCaseProductType = productType.toLowerCase()
+                    return lowerCaseName.includes(lowerCaseText) || lowerCaseProductType.includes(lowerCaseText)
+                });
+
+                console.log(filter);
+                setProducts(filter);
+            } catch (error) {
+                alert('filter name and productType not get:' + error);
+            }
+        }
+    }
+    const handleClickFilterProductType = async (productType: any) => {
+        const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}`)
+
+        if (!apiDataFilterProductsByType)
+            alert("Erro!")
+        else {
+            try {
+                const typeProduct = await apiDataFilterProductsByType
+                setProducts(typeProduct)
+            } catch (error) {
+                alert("typeProduct not get:" + error)
+            }
+
+        }
+
     }
 
     useEffect(() => {
@@ -132,13 +157,17 @@ const AllProducts = () => {
                         <View style={styles.ContainerHeader}>
                             <View style={styles.Header}>
                                 <View style={styles.ContainerInput}>
-                                    <CustomTextInput />
+                                    <CustomTextInput
+                                        data={text}
+                                        onChange={setText}
+                                        onPress={handleSearchProduct}
+                                    />
                                 </View>
                                 <View style={styles.ContainerTypeProduct}>
                                     <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
                                         <TypeProduct productType='Todos' onPress={handleCardProducts} />
-                                        {typeProducts.map(( productType: any, index: number) => (
-                                            <TypeProduct key={index} productType={productType} onPress={() => filterCardProdut(productType)} />
+                                        {typeProducts.map((productType: any, index: number) => (
+                                            <TypeProduct key={index} productType={productType} onPress={() => handleClickFilterProductType(productType)} />
                                         ))}
                                     </ScrollView>
                                 </View>

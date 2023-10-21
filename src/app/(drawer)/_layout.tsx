@@ -10,7 +10,7 @@ const Layout = () => {
     <Drawer
       drawerContent={() => <CustomDrawer />}
       screenOptions={{
-        drawerType: 'slide',
+        drawerType: 'back',
       }}
       >
       <Drawer.Screen

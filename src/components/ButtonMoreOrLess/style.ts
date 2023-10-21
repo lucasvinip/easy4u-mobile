@@ -9,15 +9,15 @@ const styles = StyleSheet.create({
   },
   MinusButton: {
     backgroundColor: theme.COLORS.Orange2FFA24B,
-    height: 21.5,
-    width: 21.5,
+    height: 26,
+    width: 26,
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
   },
   MinusIcon: {
     color: theme.COLORS.White2F3F3F3,
-    fontSize: 20,
+    fontSize: 21,
     textAlign: 'right',
   },
   QuantityTextContainer: {
@@ -29,21 +29,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   QuantityText: {
-    fontSize: 12,
+    fontSize: 14,
     color: theme.COLORS.Black393939,
     fontFamily: theme.FONTS.Popp600,
   },
   PlusButton: {
     backgroundColor: theme.COLORS.Orange2FFA24B,
-    height: 21.5,
-    width: 21.5,
+    height: 26,
+    width: 26,
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
   },
   PlusIcon: {
     color: theme.COLORS.White2F3F3F3,
-    fontSize: 15,
+    fontSize: 21,
     textAlign: 'right',
   },
 });

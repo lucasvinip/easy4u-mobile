@@ -16,19 +16,22 @@ import { styles, shadowStyle } from '../../StyleAndComponentsScreens/Product/sty
 import UseFonts from '../../styles/useFonts';
 import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain';
 import { performApi } from '../../utils/api';
+import ButtonFavoriteHeart from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';
+import ButtonFavoriteProduct from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';
 
-interface CardProductProps{
+interface CardProductProps {
     name: string,
     price: number,
-    photo: string
+    photo: string,
+    description: string
 }
 
 const Product = () => {
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
 
     const { id } = useLocalSearchParams()
-    
-    const url = async (path: string) => {
+
+    const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
 
         if (!token) {
@@ -43,19 +46,18 @@ const Product = () => {
         }
 
     }
-
     const handleCardProducts = async () => {
-        const apiDataProducts = await url(`products/${id}`)
-        
-        try {
-            if(!apiDataProducts)
-                alert("erro!")
-            else{
+        const apiDataProducts = await getUrl(`products/${id}`)
+
+        if (!apiDataProducts)
+            alert("erro!")
+        else {
+            try {
                 const data = await apiDataProducts
                 setDataProduct(data)
+            } catch (error) {
+                alert("data not get:" + error)
             }
-        } catch (error) {
-            alert("data not get:" + error)
         }
     }
 
@@ -71,21 +73,15 @@ const Product = () => {
             />
             <SafeAreaView>
                 <View style={styles.Background}>
-                    <Image source={{uri: String(dataProduct?.photo)}} style={styles.Img} />
-                    <View style={{ height: '9%', width: '15%', justifyContent: 'flex-end', alignItems: 'center' }}>
-                    </View>
+                    <Image source={{ uri: String(dataProduct?.photo) }} style={styles.Img} />
                     <View style={styles.Backgroung2}>
                         <View style={styles.Screen}>
                             <View style={styles.Container}>
-                                <View style={styles.ContainerIcon}>
-                                    <TouchableOpacity style={styles.ContainerCircle}>
-                                        <View style={[styles.Circle, , shadowStyle]}>
-                                            <AntDesign name='heart' style={styles.Icon} />
-                                        </View>
-                                    </TouchableOpacity>
+                                <View style={styles.ContainerFavorite}>
+                                    <ButtonFavoriteProduct idProduct={id} />
                                 </View>
                                 <View style={styles.ContainerMain}>
-                                    <CardMain name={dataProduct?.name} price={dataProduct?.price} />
+                                    <CardMain name={dataProduct?.name} price={dataProduct?.price} description={dataProduct?.description} />
                                 </View>
                             </View>
                         </View>

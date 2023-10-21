@@ -2,7 +2,7 @@
 //http://10.107.144.27
 
 export class performApi {
-    static sendData = async ( path: string, method: string, body?: object) => {
+    static sendData = async (path: string, method: string, body?: object | any) => {
         const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             method: method,
             headers: {
@@ -14,7 +14,17 @@ export class performApi {
         const data = await response.json()
         return data
     }
-
+    static sendIdData = async (path: string, method: string, token: string | null) => {
+        const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
+            method: method,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        const data = await response.json()
+        return data
+    }
     static getData = async (path: string, token: string | null) => {
         const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             headers: {

@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     Input: {
-        width: 310,
-        height: 40,
+        width: 330,
+        height: 50,
         borderColor: 'gray',
         paddingLeft: 12,
         paddingTop: 5,
@@ -20,10 +20,14 @@ const styles = StyleSheet.create({
         fontFamily: theme.FONTS.Popp400,
         color: theme.COLORS.White2F3F3F3
     },
+    ButtonSearch:{
+        flexDirection: 'column',
+        justifyContent: 'center'
+    },
     Icon: {
         position: 'absolute',
         right: 14,
-        fontSize: 20,
+        fontSize: 25,
         color: theme.COLORS.Whiteffffff
     }
 

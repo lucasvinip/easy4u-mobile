@@ -31,7 +31,7 @@ interface FavoritesProps {
   photo: string;
 }
 
-const FavoriteItens = () => {
+const FavoriteItems = () => {
   const [favorites, setFavorites] = useState<any>([]);
   const [token, setToken] = useState<string>("");
   const [visible, setVisible] = useState<boolean>(false);
@@ -178,4 +178,4 @@ const FavoriteItens = () => {
   );
 };
 
-export default FavoriteItens;
+export default FavoriteItems;
