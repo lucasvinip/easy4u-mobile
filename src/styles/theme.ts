@@ -37,6 +37,7 @@ export default{
         Gray888888: '#888888',
         Gray949494: '#949494',
         Gray5E5959: '#5E5959',
+        GrayC4C4C4: '#C4C4C4',
         Green23A26D: "#23A26D",
 
         YellowFFAA2C: '#FFAA2C',

@@ -60,7 +60,7 @@ const FullOrder = () => {
         try {
             const data = await performApi.getData(`carts-by-user/${orderId}`, token);
             setOrder(data);
-            
+            console.log(JSON.stringify(order))
         } catch (error) {
             console.error("Error fetching product information:", error);
         }
@@ -127,7 +127,7 @@ const FullOrder = () => {
                     </View>
                     {isModalVisible && (
                     <ModalPoup visible={isModalVisible}>
-                        <CustomQRCode value={order} />
+                        <CustomQRCode value={order?.id} onClose={() => setModalVisible(false)}/>
                     </ModalPoup>
                 )}
                 </View>

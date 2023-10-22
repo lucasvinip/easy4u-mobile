@@ -7,6 +7,8 @@ export const AppTexts = {
     Forgot_Password: 'Esqueceu a senha?',
     Join: 'ENTRAR',
 
+    Close: "Fechar",
+
     Back_to_Index: "Ir para o Login",
 
     Dont_Have_Account: 'Não tem uma conta?',
