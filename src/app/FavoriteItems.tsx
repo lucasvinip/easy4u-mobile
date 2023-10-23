@@ -64,7 +64,7 @@ const FavoriteItems = () => {
       await performApi.deleteData(`favorites/${productId}`, token);
       const updatedFavorites = favorites.filter(
         (item: ProductsProps) => item.product.id !== productId
-      );
+      )
       setFavorites(updatedFavorites);
     } catch (erro) {
       console.log(erro);

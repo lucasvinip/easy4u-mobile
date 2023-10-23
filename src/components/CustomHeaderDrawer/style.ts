@@ -5,12 +5,13 @@ import { RFValue } from 'react-native-responsive-fontsize';
 const styles = StyleSheet.create({
     ContainerHeader: {
         height: '165%',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
     },
     Header:{
         width: '100%',
         alignItems: 'center',
-        height: '60%'
+        justifyContent: 'center',
+        height: '60%',
     },
     Title: {
         alignItems: 'center',
@@ -32,10 +33,10 @@ const styles = StyleSheet.create({
     MenuIcon:{
         fontSize: 27,
         color: theme.COLORS.WhiteEDF3EDEB,
-        paddingTop: 6
+        paddingTop: 1
     },
     ShoppingCartIcon:{
-        fontSize: 27,
+        fontSize: 28,
         color: theme.COLORS.WhiteEDF3EDEB,
     }
 });
