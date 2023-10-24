@@ -10,14 +10,15 @@ import theme from '../../../../styles/theme';
 import { performApi } from '../../../../utils/api';
 
 interface ButtonFavoriteProductProps {
-    idProduct: any
+    idProduct: any,
+    favorite: boolean
 }
 
-const ButtonFavoriteProduct = ({ idProduct }: ButtonFavoriteProductProps) => {
+const ButtonFavoriteProduct = ({ idProduct, favorite}: ButtonFavoriteProductProps) => {
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
+    favorite = isFavorite
 
-
-    const getUrl = async (path: string) => {
+    const postUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
 
         if (!token) {
@@ -47,26 +48,18 @@ const ButtonFavoriteProduct = ({ idProduct }: ButtonFavoriteProductProps) => {
     }
     const handleFavotiteProduct = async (id: any) => {
         setIsFavorite(!isFavorite)
-        const apiDataFavoriteItem = await getUrl(`favorites/${id}`)
-        console.log(apiDataFavoriteItem)
-        console.log(id);
-        
-        if (!apiDataFavoriteItem)
-            alert("erro!")
-        else {
-            try {
-                if(!isFavorite == true)
-                    apiDataFavoriteItem
-                else{
-                    const apiDataDeleteItem = await deleteUrl(`favorites/${id}`)
-                    apiDataDeleteItem
-                    console.log(apiDataDeleteItem);
-                    
-                }
-            } catch (error) {
-                alert("delete not get:" + error)
-            }
+
+        if (!isFavorite === true) {
+            const apiDataPostFavoriteItem = await postUrl(`favorites/${id}`)
+            apiDataPostFavoriteItem
+            console.log(apiDataPostFavoriteItem)
         }
+        else{
+            const apiDataDeleteFavoriteItem = await deleteUrl(`favorites/${id}`)
+            apiDataDeleteFavoriteItem
+            console.log(apiDataDeleteFavoriteItem);
+        }
+
     }
 
     return (

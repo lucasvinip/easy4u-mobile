@@ -5,7 +5,7 @@ import theme from '../../../../styles/theme';
 const styles = StyleSheet.create({
     ContainerHeart: {
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     Heart: {
         borderRadius: 100,

@@ -60,9 +60,16 @@ const Product = () => {
             }
         }
     }
+    // const handlePruductIsFavorite = async () => {
+    //     const apiDataFavoriteItem = await getUrl('favorites')
+    //     apiDataFavoriteItem
+    //     console.log('ola' + apiDataFavoriteItem);
+        
+    // }
 
     useEffect(() => {
         handleCardProducts()
+        
     }, []);
 
     return (
@@ -78,7 +85,7 @@ const Product = () => {
                         <View style={styles.Screen}>
                             <View style={styles.Container}>
                                 <View style={styles.ContainerFavorite}>
-                                    <ButtonFavoriteProduct idProduct={id} />
+                                    <ButtonFavoriteProduct idProduct={id} favorite={false} />
                                 </View>
                                 <View style={styles.ContainerMain}>
                                     <CardMain name={dataProduct?.name} price={dataProduct?.price} description={dataProduct?.description} />
