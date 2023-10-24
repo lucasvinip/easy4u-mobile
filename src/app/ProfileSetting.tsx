@@ -19,6 +19,9 @@ import Button from '../components/Button/Button';
 import { styles } from '../StyleAndComponentsScreens/ProfileSetting/style';
 import UseFonts from '../styles/useFonts';
 import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camera/Camera';
+import { useEffect } from 'react';
+import { performApi } from '../utils/api';
+import { useToken } from '../hooks/useToken';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -28,11 +31,23 @@ const themeTextInput = {
     },
 };
 
-const ProfileSetting = () => {
-    const [email, setEmail] = useState<string>("");
-    const [name, setName] = useState<string>("");
+type userInfo = {
+    name: string;
+    email: string;
+    photo: string;
+}
+
+const defaultPhoto = require("../assets/img/user.png")
+
+const ProfileSetting = () => {  
+    const [userSetting, setUserSetting] = useState<userInfo>({
+        email: "",
+        name: "",
+        photo: defaultPhoto
+    });
     const [selectedImage, setSelectedImage] = useState<string | any>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const token = useToken();
 
 
     const pickImage = async () => {
@@ -77,7 +92,7 @@ const ProfileSetting = () => {
         try {
             const storageRef = ref(storage, `image-${Date.now()}`)
             const result = await uploadBytes(storageRef, blob)
-
+            
             return await getDownloadURL(storageRef)
         } catch (error) {
             alert(`Error : ${error}`)
@@ -100,6 +115,14 @@ const ProfileSetting = () => {
         }
     }
 
+    useEffect(() => {
+        const getSettings = async () => {
+            const data =  await performApi.getData("auth/me", token)
+            setUserSetting(data)
+        }
+        getSettings()
+    }, [token])
+
     return (
         <UseFonts>
             <SafeAreaView style={{ backgroundColor: theme.COLORS.White2F3F3F3 }}>
@@ -109,7 +132,7 @@ const ProfileSetting = () => {
                             {loading && <ActivityIndicator style={{ justifyContent: 'flex-end', alignItems: 'center', height: "50%", width: "100%", position: 'absolute', zIndex: 1 }} size={40} color={theme.COLORS.GrayRgba255249243041} />}
                             <Camera
                                 selectedImage={selectedImage}
-                                placeholderImageSource={require('../assets/img/user.png')}
+                                placeholderImageSource={userSetting.photo}
                                 buttuTypeIcon={selectedImage}
                                 postPhoto={pickImage}
                                 deletePhoto={deleteImage}
@@ -125,7 +148,7 @@ const ProfileSetting = () => {
                             fontSize={12}
                             fontFamily={theme.FONTS.Popp400}
                             paddingTop={30}
-                            data={name}
+                            data={userSetting?.name}
                         />
                         <InputText
                             label='EMAIL'
@@ -137,7 +160,7 @@ const ProfileSetting = () => {
                             fontSize={12}
                             fontFamily={theme.FONTS.Popp400}
                             paddingTop={30}
-                            data={email}
+                            data={userSetting?.email}
                         />
                         <View style={{ alignItems: 'flex-end' }}>
                             <TouchTextAlter />

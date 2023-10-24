@@ -3,6 +3,7 @@ import { TextInput, DefaultTheme } from 'react-native-paper';
 
 import theme from '../../styles/theme';
 import { StyleSheet } from 'react-native';
+import { useEffect } from 'react';
 
 
 
@@ -22,7 +23,7 @@ interface CustomTextInputProps {
   borderColor?: string;
   onChange?: (value: string) => void;
   onFocus?: () => void;
-  data: string;
+  data?: string;
   isPassword?: boolean;
 }
 
@@ -46,11 +47,18 @@ const CustomTextInput = ({
   isPassword
 }: CustomTextInputProps) => {
 
-  const [inputValue, setInputValue] = useState<string>(data);
+  const [inputValue, setInputValue] = useState<string>(data || "");
+
+  useEffect(() => {
+    if (data !== undefined) {
+      setInputValue(data);
+    }
+  }, [data]);
+  
 
   const handleInputChange = (text: string) => {
     setInputValue(text);
-   
+
     if (onChange) {
       onChange(text);
     }
@@ -83,7 +91,7 @@ const CustomTextInput = ({
       underlineColor={underlineColor}
       theme={theme}
       style={styles.TextInput}
-      value={inputValue} 
+      value={inputValue}
       onChangeText={handleInputChange}
       onFocus={handleInputFocus}
     />

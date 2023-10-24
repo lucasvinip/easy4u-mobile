@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     Header: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
+        gap: 15,
         height: '45%',
     },
     Image: {
