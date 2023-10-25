@@ -17,17 +17,13 @@ type userData = {
   userType: string;
 }
 
+const defaultPhoto = require("../../assets/img/user.png")
+
 const CustomDrawer = () => {
 
 
   const token = useToken()
-  const [user, setUser] = useState<userData>({
-    balance: 0,
-    email: "",
-    name: "",
-    photo: "",
-    userType: "",
-  })
+  const [user, setUser] = useState<userData>()
 
   useEffect(() => {
     const getUserData = async () => {
@@ -43,16 +39,16 @@ const CustomDrawer = () => {
         <View style={styles.Content}>
           <View style={styles.ContainerHeader}>
             <View style={styles.Header}>
-              <Image source={{uri: user.photo}} style={styles.Image} />
+              <Image source={{uri: user?.photo}} style={styles.Image} />
               <View style={styles.Texts}>
                 <Text style={styles.Name}>
-                  {user.name}
+                  {user?.name}
                 </Text>
                 <Text style={styles.Email}>
-                {user.email}
+                {user?.email}
                 </Text>
                 <Text style={styles.Balance}>
-                  {`Saldo: R$ ${user.balance}`}
+                  {`Saldo: R$ ${user?.balance}`}
                 </Text>
               </View>
             </View>
