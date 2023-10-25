@@ -33,13 +33,15 @@ const CustomDrawer = () => {
     getUserData()
   }, [token])
 
+  const userPhotoProfile = user?.photo ? {uri: user?.photo} : defaultPhoto 
+
   return (
     <View style={styles.Drawer}>
       <View style={styles.Container}>
         <View style={styles.Content}>
           <View style={styles.ContainerHeader}>
             <View style={styles.Header}>
-              <Image source={{uri: user?.photo}} style={styles.Image} />
+              <Image source={userPhotoProfile} style={styles.Image} />
               <View style={styles.Texts}>
                 <Text style={styles.Name}>
                   {user?.name}

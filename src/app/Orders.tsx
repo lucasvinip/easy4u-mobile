@@ -1,7 +1,8 @@
 import React from 'react';
 import {
     View,
-    Text
+    Text,
+    ScrollView
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -85,7 +86,6 @@ const Orders = () => {
                                     const getDate = order.createdAt.split("T")[0]
                                     const [y, m, d] = getDate.split("-")
                                     const date = `${d}/${m}/${y}`
-
                                     return (
                                         <OrderCard
                                             id={order.id}
@@ -94,7 +94,6 @@ const Orders = () => {
                                             date={date}
                                             status={order.cart.status} 
                                             onPress={ () => handleOrderClick(order.id.toString())}/>
-
                                     );
                                 })
                             ) : (

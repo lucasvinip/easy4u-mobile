@@ -40,15 +40,12 @@ type userInfo = {
 const defaultPhoto = require("../assets/img/user.png")
 
 const ProfileSetting = () => {  
-    const [userSetting, setUserSetting] = useState<userInfo>({
-        email: "",
-        name: "",
-        photo: defaultPhoto
-    });
+    const [userSetting, setUserSetting] = useState<userInfo>();
     const [selectedImage, setSelectedImage] = useState<string | any>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const token = useToken();
 
+    const userPhotoProfile = userSetting?.photo ? {uri: userSetting?.photo} : defaultPhoto 
 
     const pickImage = async () => {
         try {
@@ -132,7 +129,7 @@ const ProfileSetting = () => {
                             {loading && <ActivityIndicator style={{ justifyContent: 'flex-end', alignItems: 'center', height: "50%", width: "100%", position: 'absolute', zIndex: 1 }} size={40} color={theme.COLORS.GrayRgba255249243041} />}
                             <Camera
                                 selectedImage={selectedImage}
-                                placeholderImageSource={userSetting.photo}
+                                placeholderImageSource={userPhotoProfile}
                                 buttuTypeIcon={selectedImage}
                                 postPhoto={pickImage}
                                 deletePhoto={deleteImage}
