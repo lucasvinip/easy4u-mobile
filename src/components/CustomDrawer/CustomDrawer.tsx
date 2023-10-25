@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import {
+  Text,
+  View,
+  Image
+} from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+
 import { styles } from './style'
 import { AppTexts } from '../../assets/strings';
 import ButtonNavigation from './components/ButtonNavigation/ButtonNavigation';
 import ButtonGetOut from './components/ButtonGetOut/ButtonGetOut';
 import { useToken } from '../../hooks/useToken';
 import { useEffect } from 'react';
-import { storage } from '../../../firebaseConfig';
 import { performApi } from '../../utils/api';
 
 type userData = {
@@ -39,13 +45,13 @@ const CustomDrawer = () => {
         <View style={styles.Content}>
           <View style={styles.ContainerHeader}>
             <View style={styles.Header}>
-              <Image source={{uri: user?.photo}} style={styles.Image} />
+              <Image source={{ uri: user?.photo }} style={styles.Image} />
               <View style={styles.Texts}>
                 <Text style={styles.Name}>
                   {user?.name}
                 </Text>
                 <Text style={styles.Email}>
-                {user?.email}
+                  {user?.email}
                 </Text>
                 <Text style={styles.Balance}>
                   {`Saldo: R$ ${user?.balance}`}
@@ -55,14 +61,14 @@ const CustomDrawer = () => {
           </View>
           <View style={styles.ContainerMain}>
             <View style={styles.Main}>
-              <ButtonNavigation title={AppTexts.Start} icon='home' href='/(drawer)/AllProducts'/>
-              <ButtonNavigation title={AppTexts.Orders} icon='filetext1' href='/Orders'/>
-              <ButtonNavigation title={AppTexts.Favorites} icon='heart' href='/FavoriteItems'/>
-              <ButtonNavigation title={AppTexts.Profile_Settings} icon='setting' href='/ProfileSetting'/>
+              <ButtonNavigation title={AppTexts.Start} icon='home-outline' href='/(drawer)/AllProducts' />
+              <ButtonNavigation title={AppTexts.Orders} icon='cog-outline' href='/Orders' />
+              <ButtonNavigation title={AppTexts.Favorites} icon='cards-heart' href='/FavoriteItems' />
+              <ButtonNavigation title={AppTexts.Profile_Settings} icon='cog-outline' href='/ProfileSetting' />
             </View>
           </View>
           <View style={styles.ContainerFooter}>
-            <ButtonGetOut/>
+            <ButtonGetOut />
           </View>
         </View>
       </View>

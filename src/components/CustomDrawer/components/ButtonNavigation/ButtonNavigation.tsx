@@ -1,19 +1,21 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { styles } from './style'
 import { Href, Link } from 'expo-router';
 
 interface ButtonNavigationProps {
-    icon: 'filetext1' | 'heart' | 'home' | 'setting',
+    icon: React.Component<any>,
     title: string,
     href: Href<string>
 }
-const ButtonNavigation = ({ icon, title, href}: ButtonNavigationProps) => {
+const ButtonNavigation = ({ icon, title, href }: ButtonNavigationProps) => {
     return (
         <Link href={href} asChild>
             <TouchableOpacity style={styles.Button}>
-                <AntDesign name={icon} style={styles.Icon} />
+                <MaterialCommunityIcons name={icon} style={styles.Icon} />
                 <Text style={styles.Title}>{title}</Text>
             </TouchableOpacity>
         </Link>
@@ -23,3 +25,5 @@ const ButtonNavigation = ({ icon, title, href}: ButtonNavigationProps) => {
 export default ButtonNavigation;
 
 // heart home setting containerOutlined fileTextOutlined
+
+// home-outline list-box cards-heart cog-outline
