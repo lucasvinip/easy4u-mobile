@@ -4,9 +4,12 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { NavigationProp, useNavigation, DrawerActionType } from '@react-navigation/native';
+import {
+    NavigationProp,
+    useNavigation, DrawerActionType
+} from '@react-navigation/native';
 import { Badge } from 'react-native-paper';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { AppTexts } from '../../assets/strings';
 import { styles } from './style'
@@ -26,16 +29,14 @@ const CustomHeaderDrawer = () => {
                 <View style={styles.ContainerIcons}>
                     <View style={styles.Icons}>
                         <TouchableOpacity onPressOut={() => navigation.dispatch({ type: 'OPEN_DRAWER' })}>
-                            <AntDesign name='menufold' style={styles.MenuIcon} />
+                            <MaterialCommunityIcons name='menu' style={styles.MenuIcon} />
                         </TouchableOpacity>
-                        <View>
-                            <TouchableOpacity>
-                                <AntDesign name='shoppingcart' style={styles.ShoppingCartIcon} />
-                            </TouchableOpacity>
-                            <View style={{ position: 'absolute', backgroundColor: 'green', paddingBottom: 20}}>
-                                <Badge >100</Badge>
+                        <TouchableOpacity>
+                            <View>
+                                <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
+                                <Badge style={styles.Badge}>100</Badge>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View >
             </View>

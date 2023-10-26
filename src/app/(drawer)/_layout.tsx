@@ -1,6 +1,7 @@
 import React from 'react';
 import { Drawer } from 'expo-router/drawer'
 
+
 import CustomDrawer from '../../components/CustomDrawer/CustomDrawer';
 import { AppTexts } from '../../assets/strings';
 import CustomHeaderDrawer from '../../components/CustomHeaderDrawer/CustomHeaderDrawer';

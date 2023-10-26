@@ -31,13 +31,23 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },  
     MenuIcon:{
-        fontSize: 27,
+        fontSize: 28,
         color: theme.COLORS.WhiteEDF3EDEB,
         paddingTop: 1
     },
     ShoppingCartIcon:{
-        fontSize: 28,
+        fontSize: 26,
         color: theme.COLORS.WhiteEDF3EDEB,
+    },
+    Badge:{
+        position: 'absolute',
+        bottom: 25,
+        left: 15, 
+        backgroundColor: theme.COLORS.RedF15050,
+        fontFamily: theme.FONTS.Popp600,
+        fontSize: 12,
+        paddingTop: 2,
+        color: theme.COLORS.Whiteffffff,
     }
 });
 
