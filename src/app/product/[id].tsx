@@ -73,7 +73,6 @@ const Product = () => {
         if (favorites && favorites.length > 0) {
             const productIds = favorites.map((favorite: Favorite) => favorite.product.id);
             setIsFavorite(productIds);
-            console.log(productIds);
         }
 
     }
