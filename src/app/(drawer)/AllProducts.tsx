@@ -57,7 +57,8 @@ const AllProducts = () => {
 
         }
 
-    }
+    };
+
     const handleFilterProductsTypes = async () => {
         const apiDataProductsType = await getUrl("products/types")
 
@@ -72,7 +73,8 @@ const AllProducts = () => {
             }
 
         }
-    }
+    };
+
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
 
@@ -95,7 +97,8 @@ const AllProducts = () => {
             }
 
         }
-    }
+    };
+
     const handleSearchProduct = async () => {
         const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
         console.log(apiDataFilterProductsByTypeAndName);
@@ -118,7 +121,8 @@ const AllProducts = () => {
                 alert('filter name and productType not get:' + error);
             }
         }
-    }
+    };
+
     const handleClickFilterProductType = async (productType: any) => {
         const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}`)
 
@@ -133,8 +137,7 @@ const AllProducts = () => {
             }
 
         }
-
-    }
+    };
 
     useEffect(() => {
         handleFilterProductsTypes(),

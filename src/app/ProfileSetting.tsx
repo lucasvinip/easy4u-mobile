@@ -4,13 +4,7 @@ import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import { storage } from '../../firebaseConfig';
-import {
-    getDownloadURL,
-    uploadBytes,
-    ref,
-    deleteObject
-} from 'firebase/storage'
-
+import { getDownloadURL, uploadBytes, ref, deleteObject } from 'firebase/storage'
 import theme from '../styles/theme';
 import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter/TouchTextAlter';
 import InputText from '../components/CustomTextInput/CustomTextInput';
@@ -22,6 +16,7 @@ import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camer
 import { useEffect } from 'react';
 import { performApi } from '../utils/api';
 import { useToken } from '../hooks/useToken';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -39,39 +34,16 @@ type userInfo = {
 
 const defaultPhoto = require("../assets/img/user.png")
 
-const ProfileSetting = () => {  
+const ProfileSetting = () => {
     const [userSetting, setUserSetting] = useState<userInfo>();
     const [selectedImage, setSelectedImage] = useState<string | any>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const token = useToken();
 
-    const userPhotoProfile = userSetting?.photo ? {uri: userSetting?.photo} : defaultPhoto 
+    const userPhotoProfile = userSetting?.photo ? { uri: userSetting?.photo } : defaultPhoto
 
-    const pickImage = async () => {
-        try {
-            const result = await ImagePicker.launchImageLibraryAsync({
-                allowsEditing: true,
-                quality: 1,
-            });
 
-            if (!result.canceled) {
-                setLoading(true)
-                const uploadURL = await uploadImage(result.assets[0].uri)
-                setLoading(true)
-                setInterval(() => {
-                    setLoading(false)
-                }, 2000)
-                setSelectedImage(uploadURL)
-            }
-            else
-                alert(AppTexts.Didnt_Choose_Image);
-
-        } catch (error) {
-            console.error('Error picking an image:', error);
-        }
-    };
-
-    const uploadImage = async (uri: string) => {
+    const uploadImage = async (uri: string): Promise<any> => {
         const blob = await new Promise<Blob>((resolve, reject) => {
             const xhr = new XMLHttpRequest()
             xhr.onload = function () {
@@ -88,14 +60,43 @@ const ProfileSetting = () => {
 
         try {
             const storageRef = ref(storage, `image-${Date.now()}`)
+            console.log("Storage REF: " + storageRef)
             const result = await uploadBytes(storageRef, blob)
-            
+
             return await getDownloadURL(storageRef)
         } catch (error) {
             alert(`Error : ${error}`)
         }
     };
 
+    const pickImage = async () => {
+        try {
+            const result = await ImagePicker.launchImageLibraryAsync({
+                allowsEditing: true,
+                quality: 1,
+            });
+
+            if (!result.canceled) {
+                setLoading(true)
+                const uploadURL = await uploadImage(result.assets[0].uri);
+                await AsyncStorage.setItem("savedImage", uploadURL)
+
+
+                setTimeout(() => {
+                    setLoading(false);
+         
+                }, 2000);
+
+                setSelectedImage(uploadURL);
+            } else {
+                alert(AppTexts.Didnt_Choose_Image);
+            }
+        } catch (error) {
+            console.error('Error picking an image:', error);
+        }
+    };
+
+    
     const deleteImage = async () => {
         const deleteRef = ref(storage, selectedImage)
 
@@ -112,9 +113,15 @@ const ProfileSetting = () => {
         }
     }
 
+    const saveImage = async () => {
+        const foto = await AsyncStorage.getItem("savedImage")
+        const updateUserImage = await performApi.updateData("users", token, {photo: foto })
+        return updateUserImage
+    }
+
     useEffect(() => {
         const getSettings = async () => {
-            const data =  await performApi.getData("auth/me", token)
+            const data = await performApi.getData("auth/me", token)
             setUserSetting(data)
         }
         getSettings()
@@ -171,6 +178,7 @@ const ProfileSetting = () => {
                                 height={42}
                                 borderRadius={8}
                                 fontSize={14}
+                                onPress={() => saveImage()}
                             />
                         </View>
                     </View>

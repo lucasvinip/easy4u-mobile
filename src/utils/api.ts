@@ -47,15 +47,18 @@ export class performApi {
         const data = await response.json()
         return data
     }
-    static updatedata = async (path: string | number, token: string | null) => {
+    static updateData = async (path: string, token: string | null, body: object | any) => {
+        console.log("body" + JSON.stringify(body))
         const response = await fetch(`http://10.107.144.27:3000/${path}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
-            }
+            },
+            body: JSON.stringify(body)
         })
         const data = await response.json()
+        console.log(data)
         return data
     }
 }

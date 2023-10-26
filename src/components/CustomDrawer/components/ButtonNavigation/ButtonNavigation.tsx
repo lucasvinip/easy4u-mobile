@@ -7,7 +7,7 @@ import { styles } from './style'
 import { Href, Link } from 'expo-router';
 
 interface ButtonNavigationProps {
-    icon: React.Component<any>,
+    icon: any,
     title: string,
     href: Href<string>
 }

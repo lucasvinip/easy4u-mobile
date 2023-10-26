@@ -24,7 +24,6 @@ const defaultPhoto = require("../../assets/img/user.png")
 
 const CustomDrawer = () => {
 
-
   const token = useToken()
   const [user, setUser] = useState<userData>()
 
