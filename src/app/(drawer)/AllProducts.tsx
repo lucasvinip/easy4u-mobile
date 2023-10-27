@@ -7,14 +7,14 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { router } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { styles } from '../../StyleAndComponentsScreens/AllProducts/style'
 import theme from '../../styles/theme';
 import CardProduct from '../../StyleAndComponentsScreens/AllProducts/components/CardProduct/CardProduct';
-import UseFonts from '../../styles/useFonts';
+import UseFonts from '../../hooks/useFonts';
 import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/components/CustomTextInput/CustomTextInput';
 import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { performApi } from '../../utils/api';
 
 interface ProductProps {

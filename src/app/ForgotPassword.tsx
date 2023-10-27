@@ -14,7 +14,7 @@ import theme from '../styles/theme';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/ForgotPassword/style';
-import UseFonts from '../styles/useFonts';
+import UseFonts from '../hooks/useFonts';
 import { performApi } from '../utils/api';
 
 const themeTextInput = {

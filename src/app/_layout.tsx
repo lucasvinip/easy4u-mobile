@@ -82,9 +82,10 @@ const Layout = () => {
                     headerTransparent: true,
                     title: '',
                     headerTintColor: theme.COLORS.Orange2FFA24B,
+                    
                 }}
             />
-             <Stack.Screen
+            <Stack.Screen
                 name='FullOrder'
                 options={{
                     headerTransparent: true,

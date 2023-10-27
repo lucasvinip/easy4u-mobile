@@ -11,7 +11,7 @@ import InputText from '../components/CustomTextInput/CustomTextInput';
 import { AppTexts } from '../assets/strings';
 import Button from '../components/Button/Button';
 import { styles } from '../StyleAndComponentsScreens/ProfileSetting/style';
-import UseFonts from '../styles/useFonts';
+import UseFonts from '../hooks/useFonts';
 import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camera/Camera';
 import { useEffect } from 'react';
 import { performApi } from '../utils/api';

@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     Icon: {
-        fontSize: RFValue(18),
         color: theme.COLORS.Gray37C7C7A
     },
     Title: {

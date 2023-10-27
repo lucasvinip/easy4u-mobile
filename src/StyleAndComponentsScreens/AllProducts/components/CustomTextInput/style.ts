@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     Input: {
-        width: 330,
-        height: 50,
+        width: 340,
+        height: 42,
         borderColor: 'gray',
         paddingLeft: 12,
         paddingTop: 5,
@@ -20,15 +20,24 @@ const styles = StyleSheet.create({
         fontFamily: theme.FONTS.Popp400,
         color: theme.COLORS.White2F3F3F3
     },
-    ButtonSearch:{
+    ButtonSearch: {
         flexDirection: 'column',
         justifyContent: 'center'
     },
+    Cirle: {
+        width: 32,
+        backgroundColor: theme.COLORS.Whiteffffff,
+        height: 32,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 5,
+        position: 'absolute',
+        borderRadius: 50
+    },
     Icon: {
         position: 'absolute',
-        right: 14,
         fontSize: 25,
-        color: theme.COLORS.Whiteffffff
+        color: theme.COLORS.Orange2FFA24B
     }
 
 });

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {View, Image, TouchableOpacity, SafeAreaView, Alert} from 'react-native';
+import { View, Image, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { AntDesign } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles, shadowStyle } from '../../StyleAndComponentsScreens/Product/style';
-import UseFonts from '../../styles/useFonts';
+import UseFonts from '../../hooks/useFonts';
 import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain';
 import { performApi } from '../../utils/api';
 import ButtonFavoriteHeart from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';
@@ -69,7 +69,7 @@ const Product = () => {
 
     const handleFavoriteItem = async () => {
         const favorites = await getUrl('favorites');
-    
+
         if (favorites && favorites.length > 0) {
             const productIds = favorites.map((favorite: Favorite) => favorite.product.id);
             setIsFavorite(productIds);
@@ -82,7 +82,7 @@ const Product = () => {
     //         if (isFavorite) {
     //            console.log("oi")
     //             const productIdsInFavorites = isFavorite.products.map((favorite) => favorite.product.id);
-    
+
     //             if (productIdsInFavorites.includes(Number(id))) {
     //                 console.log("Este produto está nos favoritos.");
     //             } else {
@@ -93,7 +93,7 @@ const Product = () => {
     //         console.error("Erro ao validar o produto nos favoritos: " + error);
     //     }
     // }
-    
+
 
 
     useEffect(() => {
@@ -101,7 +101,7 @@ const Product = () => {
         handleFavoriteItem()
     }, []);
 
-   
+
 
     return (
         <UseFonts>

@@ -16,7 +16,7 @@ import { AppTexts } from '../assets/strings';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import { styles } from '../StyleAndComponentsScreens/Login/style';
 import ButtonGoogle from '../StyleAndComponentsScreens/Login/components/ButtonGoogle/ButtonGoogle';
-import UseFonts from '../styles/useFonts';
+import UseFonts from '../hooks/useFonts';
 import TouchText from '../StyleAndComponentsScreens/Login/components/TouchText/TouchText';
 import { performApi } from '../utils/api';
 

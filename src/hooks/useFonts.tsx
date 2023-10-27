@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 import { ThemeProvider } from 'styled-components/native'
 
-import COLORS from './theme'
+import COLORS from '../styles/theme'
 
 
 interface UseFontsProps {

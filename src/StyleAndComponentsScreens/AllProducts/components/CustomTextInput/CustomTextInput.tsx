@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import theme from '../../../../styles/theme';
 import { AppTexts } from '../../../../assets/strings';
 import { styles } from './style';
+import theme from '../../../../styles/theme';
 
 interface CustomTextInputProps {
     onPress?: () => void
@@ -47,7 +47,9 @@ const CustomTextInput = ({
                 onFocus={handleInputFocus}
             />
             <TouchableOpacity style={styles.ButtonSearch} onPress={onPress}>
-                <AntDesign name='search1' style={styles.Icon}/>
+                <View style={styles.Cirle}>
+                    <MaterialCommunityIcons name='magnify' style={styles.Icon} />
+                </View>
             </TouchableOpacity>
         </View>
     );
