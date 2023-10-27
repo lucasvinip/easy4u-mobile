@@ -30,9 +30,10 @@ type Favorite = {
 };
 
 
+
 const Product = () => {
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
-    const [isFavorite, setIsFavorite] = useState<any>()
+    const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
     const { id } = useLocalSearchParams()
 
@@ -72,29 +73,13 @@ const Product = () => {
     
         if (favorites && favorites.length > 0) {
             const productIds = favorites.map((favorite: Favorite) => favorite.product.id);
-            setIsFavorite(productIds);
+            productIds.find((productId: number ) => {
+                if(productId === +id){
+                    setIsFavorite(true)
+                }
+            })
         }
-
-    }
-
-    // const validateProduct = async () => {
-    //     try {
-    //         if (isFavorite) {
-    //            console.log("oi")
-    //             const productIdsInFavorites = isFavorite.products.map((favorite) => favorite.product.id);
-    
-    //             if (productIdsInFavorites.includes(Number(id))) {
-    //                 console.log("Este produto está nos favoritos.");
-    //             } else {
-    //                 console.log("Este produto NÃO está nos favoritos.");
-    //             }
-    //         }
-    //     } catch (error) {
-    //         console.error("Erro ao validar o produto nos favoritos: " + error);
-    //     }
-    // }
-    
-
+    };
 
     useEffect(() => {
         handleCardProducts()
@@ -116,7 +101,7 @@ const Product = () => {
                         <View style={styles.Screen}>
                             <View style={styles.Container}>
                                 <View style={styles.ContainerFavorite}>
-                                    <ButtonFavoriteProduct idProduct={id} favorite={false} />
+                                    <ButtonFavoriteProduct idProduct={id} favorite={isFavorite} />
                                 </View>
                                 <View style={styles.ContainerMain}>
                                     <CardMain name={dataProduct?.name} price={dataProduct?.price} description={dataProduct?.description} />
