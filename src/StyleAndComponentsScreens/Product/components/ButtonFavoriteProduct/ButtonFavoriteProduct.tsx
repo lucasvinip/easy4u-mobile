@@ -46,7 +46,7 @@ const ButtonFavoriteProduct = ({ idProduct, favorite }: ButtonFavoriteProductPro
         }
     };
 
-    const handleFavoriteProduct = async (id: any) => {
+    const handleFavoriteProduct = async (id: number) => {
         if (!isFavorite) {
             const apiDataPostFavoriteItem = await postUrl(`favorites/${id}`);
             console.log(apiDataPostFavoriteItem);
