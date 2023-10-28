@@ -1,19 +1,51 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { AppTexts } from '../../../../assets/strings';
 import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMoreOrLess';
 import ButtonAddCart from '../ButtonCart/ButtonAddCart';
 
-import { styles } from './style'
+import { styles } from './style';
+import { ShoppingContext } from '../../../../context/shoppingCart';
 
 interface CardMainProps {
-    name: any,
+    name: string | undefined,
     price: any,
-    description: any
+    description: string | undefined
 }
 
-
 const CardMain = ({ name, price, description }: CardMainProps) => {
+    const [quantity, setQuantity] = useState<number>(1)
+    const [totalPrice, setTotalPrice] = useState<any>(price)
+
+    const { cart, setCart} = useContext(ShoppingContext)
+
+    const aaa = useContext(ShoppingContext)
+
+    const currentPrice = () => {
+        setTotalPrice(price)
+    }
+    const handleButtonMinus = () => {
+        if (quantity > 1) {
+            const updatedQuantity = quantity - 1;
+            setQuantity(updatedQuantity);
+            const updatedPrice = price * updatedQuantity
+            setTotalPrice(updatedPrice);
+        }
+    }
+    const handleButtonPlus = () => {
+        const updatedQuantity = quantity + 1;
+        setQuantity(updatedQuantity);
+
+        if (updatedQuantity >= 2) {
+            const updatedPrice = price * updatedQuantity
+            setTotalPrice(updatedPrice)
+        }
+    }
+
+    useEffect(() => {
+        currentPrice()
+    }, [price]);
+
     return (
         <View style={styles.Container}>
             <View style={styles.ContainerHeader}>
@@ -24,12 +56,15 @@ const CardMain = ({ name, price, description }: CardMainProps) => {
                     <Text style={styles.AmountText}>
                         {AppTexts.Amount}
                     </Text>
-                    <ButtonMoreOrLess />
+                    <ButtonMoreOrLess
+                        quantity={quantity}
+                        onPressMinus={handleButtonMinus}
+                        onPressPlus={handleButtonPlus} />
                 </View>
             </View>
             <View style={styles.ContainerDescription}>
                 <Text style={styles.TitleDescription}>
-                    {description} 
+                    {description}
                 </Text>
             </View>
             <View style={styles.ContainerMain}>
@@ -38,7 +73,7 @@ const CardMain = ({ name, price, description }: CardMainProps) => {
                 </Text>
             </View>
             <View style={styles.ContainerButton}>
-                <ButtonAddCart price={price} />
+                <ButtonAddCart price={totalPrice} onPress={() => setCart(10)} />
             </View>
         </View>
     );

@@ -95,8 +95,6 @@ const ProfileSetting = () => {
             console.error('Error picking an image:', error);
         }
     };
-
-    
     const deleteImage = async () => {
         const deleteRef = ref(storage, selectedImage)
 
@@ -112,7 +110,6 @@ const ProfileSetting = () => {
             alert(`Error : ${error}`)
         }
     }
-
     const saveImage = async () => {
         const foto = await AsyncStorage.getItem("savedImage")
         const updateUserImage = await performApi.updateData("users", token, {photo: foto })

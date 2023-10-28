@@ -82,7 +82,6 @@ const Layout = () => {
                     headerTransparent: true,
                     title: '',
                     headerTintColor: theme.COLORS.Orange2FFA24B,
-                    
                 }}
             />
             <Stack.Screen
@@ -104,6 +103,7 @@ const Layout = () => {
                 }}
             />
         </Stack>
+
     );
 }
 
