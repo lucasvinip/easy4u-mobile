@@ -7,13 +7,12 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: theme.COLORS.Whiteffffff,
-    marginTop: 20
   },
   Container: {
     marginLeft: 18,
     marginRight: 18,
     height: '100%',
-    backgroundColor: theme.COLORS.Whiteffffff,
+
 
   },
   ContainerHeader: {
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 100,
     alignItems: 'center',
-    backgroundColor: theme.COLORS.GrayRgba255249243041
   },
   CardImg: {
     width: 118,

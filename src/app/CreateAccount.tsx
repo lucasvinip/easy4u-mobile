@@ -12,7 +12,7 @@ import { Link, router} from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 
-import UseFonts from '../styles/useFonts';
+import UseFonts from '../hooks/useFonts';
 import { styles } from '../StyleAndComponentsScreens/CreateAccount/style'
 import { AppTexts } from '../assets/strings';
 import InputText from '../components/CustomTextInput/CustomTextInput';

@@ -11,7 +11,7 @@ import InputText from '../components/CustomTextInput/CustomTextInput';
 import { AppTexts } from '../assets/strings';
 import Button from '../components/Button/Button';
 import { styles } from '../StyleAndComponentsScreens/ProfileSetting/style';
-import UseFonts from '../styles/useFonts';
+import UseFonts from '../hooks/useFonts';
 import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camera/Camera';
 import { useEffect } from 'react';
 import { performApi } from '../utils/api';
@@ -95,8 +95,6 @@ const ProfileSetting = () => {
             console.error('Error picking an image:', error);
         }
     };
-
-    
     const deleteImage = async () => {
         const deleteRef = ref(storage, selectedImage)
 
@@ -112,7 +110,6 @@ const ProfileSetting = () => {
             alert(`Error : ${error}`)
         }
     }
-
     const saveImage = async () => {
         const foto = await AsyncStorage.getItem("savedImage")
         const updateUserImage = await performApi.updateData("users", token, {photo: foto })

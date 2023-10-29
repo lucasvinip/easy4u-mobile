@@ -1,10 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Href, Link } from 'expo-router';
 
 import { styles } from './style'
-import { Href, Link } from 'expo-router';
+
 
 interface ButtonNavigationProps {
     icon: any,
@@ -15,7 +15,7 @@ const ButtonNavigation = ({ icon, title, href }: ButtonNavigationProps) => {
     return (
         <Link href={href} asChild>
             <TouchableOpacity style={styles.Button}>
-                <MaterialCommunityIcons name={icon} style={styles.Icon} />
+                <MaterialCommunityIcons name={icon} size={19} style={styles.Icon} />
                 <Text style={styles.Title}>{title}</Text>
             </TouchableOpacity>
         </Link>

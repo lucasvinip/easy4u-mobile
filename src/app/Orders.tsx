@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 
-import UseFonts from '../styles/useFonts';
+import UseFonts from '../hooks/useFonts';
 import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
 import { performApi } from '../utils/api';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';

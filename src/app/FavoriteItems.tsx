@@ -17,7 +17,7 @@ import ModalPoup from "../components/ModalPoup/Modal";
 import { AppTexts } from "../assets/strings";
 import Button from "../components/Button/Button";
 import theme from "../styles/theme";
-import UseFonts from "../styles/useFonts";
+import UseFonts from "../hooks/useFonts";
 import { styles } from "../StyleAndComponentsScreens/FavoriteItens/style";
 
 interface ProductsProps {

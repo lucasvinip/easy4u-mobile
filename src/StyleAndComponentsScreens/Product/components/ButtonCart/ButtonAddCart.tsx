@@ -6,12 +6,15 @@ import { AppTexts } from '../../../../assets/strings';
 import { styles, shadowStyle } from './style'
 
 interface ButtonAddCartProps{
-    price: any
+    price: any,
+    onPress: () => void
 }
 
-const ButtonAddCart = ({price} : ButtonAddCartProps) => {
+const ButtonAddCart = ({price, onPress} : ButtonAddCartProps) => {
+
+    
     return (
-        <TouchableOpacity style={[styles.Container, shadowStyle]}>
+        <TouchableOpacity style={[styles.Container, shadowStyle]} onPress={onPress}>
             <View style={styles.Touchable}>
                 <Text style={styles.TouchableText}>
                     {AppTexts.Add_Cart}

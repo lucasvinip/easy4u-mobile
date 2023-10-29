@@ -13,7 +13,7 @@ interface ButtonFavoriteProductProps {
     favorite: boolean;
 }
 
-const ButtonFavoriteProduct = ({ idProduct, favorite }: ButtonFavoriteProductProps) => {
+const ButtonFavoriteProduct = ({idProduct, favorite}: ButtonFavoriteProductProps) => {
     const [isFavorite, setIsFavorite] = useState<boolean>();
 
     const postUrl = async (path: string) => {

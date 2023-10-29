@@ -84,7 +84,7 @@ const Layout = () => {
                     headerTintColor: theme.COLORS.Orange2FFA24B,
                 }}
             />
-             <Stack.Screen
+            <Stack.Screen
                 name='FullOrder'
                 options={{
                     headerTransparent: true,
@@ -103,6 +103,7 @@ const Layout = () => {
                 }}
             />
         </Stack>
+
     );
 }
 

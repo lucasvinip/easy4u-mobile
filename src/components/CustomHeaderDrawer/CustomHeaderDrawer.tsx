@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     Text,
     View,
@@ -13,10 +13,15 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { AppTexts } from '../../assets/strings';
 import { styles } from './style'
+import { useRouter } from 'expo-router';
+import { ShoppingContext } from '../../context/shoppingCart';
 const CustomHeaderDrawer = () => {
 
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
+    const { cart, setCart} = useContext(ShoppingContext)
 
+    
+    const router = useRouter()
     return (
         <View style={styles.ContainerHeader}>
             <View style={styles.Header}>
@@ -31,10 +36,10 @@ const CustomHeaderDrawer = () => {
                         <TouchableOpacity onPressOut={() => navigation.dispatch({ type: 'OPEN_DRAWER' })}>
                             <MaterialCommunityIcons name='menu' style={styles.MenuIcon} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
                             <View>
                                 <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
-                                <Badge style={styles.Badge}>100</Badge>
+                                <Badge style={styles.Badge}>{cart}</Badge>
                             </View>
                         </TouchableOpacity>
                     </View>

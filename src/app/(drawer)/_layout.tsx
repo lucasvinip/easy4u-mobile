@@ -7,23 +7,23 @@ import { AppTexts } from '../../assets/strings';
 import CustomHeaderDrawer from '../../components/CustomHeaderDrawer/CustomHeaderDrawer';
 
 const Layout = () => {
-  return (
-    <Drawer
-      drawerContent={() => <CustomDrawer />}
-      screenOptions={{
-        drawerType: 'back',
-      }}
-      >
-      <Drawer.Screen
-        name='AllProducts'
-        options={{
-          title: '',
-          headerTransparent: true,
-          drawerLabel: AppTexts.Start,
-          header: () => (<CustomHeaderDrawer/>)
-        }} />
 
-    </Drawer>
+  return (
+      <Drawer
+        drawerContent={() => <CustomDrawer />}
+        screenOptions={{
+          drawerType: 'back',
+        }}
+      >
+        <Drawer.Screen
+          name='AllProducts'
+          options={{
+            title: '',
+            headerTransparent: true,
+            drawerLabel: AppTexts.Start,
+            header: () => (<CustomHeaderDrawer />)
+          }} />
+      </Drawer>
   );
 };
 
