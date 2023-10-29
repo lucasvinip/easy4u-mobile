@@ -16,6 +16,7 @@ import UseFonts from '../../hooks/useFonts';
 import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/components/CustomTextInput/CustomTextInput';
 import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
 import { performApi } from '../../utils/api';
+import { RefreshControl } from 'react-native-gesture-handler';
 
 interface ProductProps {
     id: number,
@@ -38,6 +39,7 @@ interface SearcProductProps {
 }
 
 const AllProducts = () => {
+    const [refresh, setRefresh] = useState<boolean>(false)
     const [typeProducts, setTypeProducts] = useState<any[]>([])
     const [products, setProducts] = useState<any[]>([])
     const [text, setText] = useState<string>("");
@@ -139,6 +141,16 @@ const AllProducts = () => {
         }
     };
 
+    
+  const pullMeDown = async () => {
+    setRefresh(true);
+    await handleCardProducts();
+    setTimeout(() => {
+      setRefresh(false);
+    }, 2000);
+  };
+
+
     useEffect(() => {
         handleFilterProductsTypes(),
             handleCardProducts()
@@ -176,7 +188,15 @@ const AllProducts = () => {
                                 </View>
                             </View>
                         </View>
-                        <ScrollView contentContainerStyle={styles.ContainerMain} showsVerticalScrollIndicator={false}>
+                        <ScrollView  refreshControl={
+                             <RefreshControl 
+                                refreshing={refresh}
+                                onRefresh={() => pullMeDown()}
+                                size={100}
+                                tintColor={'black'}
+                            />} 
+                            contentContainerStyle={styles.ContainerMain} 
+                            showsVerticalScrollIndicator={false}>
                             <View style={styles.Main}>
                                 {products.map(({ name, price, description, photo, id }: ProductProps, index: number) => (
                                     <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id} />

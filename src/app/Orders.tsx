@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     Text,
-    ScrollView
+    ScrollView,
+    RefreshControl
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -15,6 +16,7 @@ import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/
 import { performApi } from '../utils/api';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
+import { useToken } from '../hooks/useToken';
 
 type Cart = {
     status: string;
@@ -42,34 +44,43 @@ type CartResponseProps = {
 
 
 const Orders = () => {
-    const [token, setToken] = useState<string>("");
+    const token = useToken()
+    const [refresh, setRefresh] = useState<boolean>(false);
     const [orders, setOrders] = useState<any>([])
 
     const handleOrderClick = async (orderId: string) => {
         await AsyncStorage.setItem("orderId", orderId)
         router.push('/FullOrder')
+    };
 
-    }
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const storedToken = await AsyncStorage.getItem("token");
-
-            if (!storedToken) {
-                router.push("/");
-            } else {
-                setToken(storedToken);
-                try {
-                    const getOrdersFromUser = await performApi.getData("carts-by-user", storedToken);
-                    setOrders(getOrdersFromUser)
-                } catch (error) {
-                    console.error("Erro ao buscar favoritos:", error);
-                }
+    const fetchData = async () => {
+        if (!token) {
+            router.push("/");
+        } else {
+            try {
+                const getOrdersFromUser = await performApi.getData("carts-by-user", token);
+                setOrders(getOrdersFromUser.reverse())
+            } catch (error) {
+                console.error("Erro ao buscar favoritos:", error);
             }
-        };
+        }
+    };
+
+    useEffect(() => {        
         fetchData();
     }, []);
+
+    const pullMeDown = async () => {
+        setRefresh(true);
+    
+        try {
+          await fetchData(); 
+          setRefresh(false);
+        } catch (error) {
+          console.error("Erro ao atualizar os dados:", error);
+          setRefresh(false);
+        }
+      };
 
     return (
         <UseFonts>
@@ -80,7 +91,13 @@ const Orders = () => {
             <SafeAreaView style={{ backgroundColor: theme.COLORS.Whiteffffff }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
-                        <View style={{ marginTop: 42, display: "flex", flexDirection: "column-reverse" }}>
+                        <ScrollView style={{ marginTop: 42, height:'100%'}}  
+                        refreshControl={
+                            <RefreshControl 
+                            refreshing={refresh}
+                            onRefresh={() => pullMeDown()}
+                            size={100}
+                            tintColor={'black'}/>}>
                             {orders.length > 0 ? (
                                 orders.map((order: CartResponseProps, index: number) => {
                                     const getDate = order.createdAt.split("T")[0]
@@ -104,7 +121,7 @@ const Orders = () => {
                                     </Text>
                                 </View>
                             )}
-                        </View>
+                        </ScrollView>
                     </View>
                 </View>
             </SafeAreaView>

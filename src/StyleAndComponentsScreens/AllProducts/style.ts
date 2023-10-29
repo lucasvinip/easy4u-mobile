@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     },
     Container: {
         height: '100%',
+        flex: 1,
         marginTop: 10,
         marginLeft: 18,
         marginRight: 18,

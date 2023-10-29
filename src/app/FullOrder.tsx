@@ -55,7 +55,6 @@ const FullOrder = () => {
         setIdOrder(orderId);
     }
     
-
     const getProductInfo = async (orderId: string) => {
         try {
             const data = await performApi.getData(`carts-by-user/${orderId}`, token);
@@ -75,6 +74,8 @@ const FullOrder = () => {
             getProductInfo(idOrder);
         }
     }, [idOrder, token]);
+
+
 
 
     

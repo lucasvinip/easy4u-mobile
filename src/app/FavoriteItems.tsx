@@ -19,6 +19,7 @@ import Button from "../components/Button/Button";
 import theme from "../styles/theme";
 import UseFonts from "../hooks/useFonts";
 import { styles } from "../StyleAndComponentsScreens/FavoriteItens/style";
+import { RefreshControl } from "react-native-gesture-handler";
 
 interface ProductsProps {
   product: FavoritesProps;
@@ -32,30 +33,29 @@ interface FavoritesProps {
 }
 
 const FavoriteItems = () => {
+  const [refresh, setRefresh] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<any>([]);
   const [token, setToken] = useState<string>("");
   const [visible, setVisible] = useState<boolean>(false);
   const [id, setId] = useState<number>();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const storedToken = await AsyncStorage.getItem("token");
+  const fetchData = async () => {
+    const storedToken = await AsyncStorage.getItem("token");
 
-      if (!storedToken) {
-        router.push("/");
-      } else {
-        setToken(storedToken);
-        try {
-          const getFavorites = await performApi.getData(
-            "favorites",
-            storedToken
-          );
-          setFavorites(getFavorites);
-        } catch (error) {
-          console.error("Erro ao buscar favoritos:", error);
-        }
+    if (!storedToken) {
+      router.push("/");
+    } else {
+      setToken(storedToken);
+      try {
+        const getFavorites = await performApi.getData("favorites", storedToken);
+        setFavorites(getFavorites);
+      } catch (error) {
+        console.error("Erro ao buscar favoritos:", error);
       }
-    };
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -64,7 +64,7 @@ const FavoriteItems = () => {
       await performApi.deleteData(`favorites/${productId}`, token);
       const updatedFavorites = favorites.filter(
         (item: ProductsProps) => item.product.id !== productId
-      )
+      );
       setFavorites(updatedFavorites);
     } catch (erro) {
       console.log(erro);
@@ -76,6 +76,18 @@ const FavoriteItems = () => {
       pathname: '/product/[id]',
       params: { id: productId, }
     })
+  };
+
+  const pullMeDown = async () => {
+    setRefresh(true);
+
+    try {
+      await fetchData(); 
+      setRefresh(false);
+    } catch (error) {
+      console.error("Erro ao atualizar os dados:", error);
+      setRefresh(false);
+    }
   };
 
   return (
@@ -90,8 +102,7 @@ const FavoriteItems = () => {
           <ModalPoup visible={visible}>
             <View style={{ alignItems: "center" }}>
               <View style={styles.headerModal}>
-                <TouchableOpacity
-                  onPress={() => setVisible(false)}>
+                <TouchableOpacity onPress={() => setVisible(false)}>
                   <Image
                     source={require("../assets/img/x.png")}
                     style={{ height: 30, width: 30 }}
@@ -136,7 +147,13 @@ const FavoriteItems = () => {
           </ModalPoup>
           <View style={styles.Container}>
             <View style={styles.ContainerItens}>
-              <ScrollView>
+              <ScrollView
+                refreshControl={
+                  <RefreshControl
+                    refreshing={refresh}
+                    onRefresh={() => pullMeDown()}
+                  />}
+              >
                 {favorites.length > 0 ? (
                   favorites.map(({ product }: ProductsProps, index: number) => (
                     <FavoriteCard

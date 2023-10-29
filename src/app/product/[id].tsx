@@ -84,7 +84,7 @@ const Product = () => {
     useEffect(() => {
         handleCardProducts()
         handleFavoriteItem()
-    }, []);
+    }, [id]);
 
 
 

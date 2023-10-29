@@ -2,7 +2,7 @@
 //http://10.107.144.27
 
 export class performApi {
-    static sendData = async (path: string, method: string, body?: object | any) => {
+    public static sendData = async (path: string, method: string, body?: object | any) => {
         const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             method: method,
             headers: {
@@ -13,8 +13,9 @@ export class performApi {
         })
         const data = await response.json()
         return data
-    }
-    static sendIdData = async (path: string, method: string, token: string | null) => {
+    };
+    
+    public static sendIdData = async (path: string, method: string, token: string | null) => {
         const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             method: method,
             headers: {
@@ -24,8 +25,9 @@ export class performApi {
         })
         const data = await response.json()
         return data
-    }
-    static getData = async (path: string, token: string | null) => {
+    };
+
+    public static getData = async (path: string, token: string | null) => {
         const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             headers: {
                 "Content-Type": "application/json",
@@ -34,9 +36,9 @@ export class performApi {
         })
         const data = await response.json()
         return data
-    }
+    };
 
-    static deleteData = async (path: string | number, token: string | null) => {
+    public static deleteData = async (path: string | number, token: string | null) => {
         const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             method: "DELETE",
             headers: {
@@ -46,9 +48,9 @@ export class performApi {
         })
         const data = await response.json()
         return data
-    }
-    static updateData = async (path: string, token: string | null, body: object | any) => {
-        console.log("body" + JSON.stringify(body))
+    };
+    
+    public static updateData = async (path: string, token: string | null, body: object | any) => {
         const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             method: "PATCH",
             headers: {
