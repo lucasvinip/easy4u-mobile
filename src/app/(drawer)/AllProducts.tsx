@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     ScrollView,
-    Alert
+    Alert,
+    KeyboardAvoidingView
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -195,7 +196,10 @@ const AllProducts = () => {
                                 tintColor={'black'}
                             />} 
                             contentContainerStyle={styles.ContainerMain} 
-                            showsVerticalScrollIndicator={false}>
+                            showsVerticalScrollIndicator={false}
+                            keyboardShouldPersistTaps={'handled'}
+
+                            >
                             <View style={styles.Main}>
                                 {products.map(({ name, price, description, photo, id }: ProductProps, index: number) => (
                                     <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id} />

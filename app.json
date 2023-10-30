@@ -24,7 +24,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FF6C40"
       },
-      "package": "com.ma7hs.Easy4U"
+      "package": "com.ma7hs.Easy4U",
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "favicon": "./assets/favicon.png",
