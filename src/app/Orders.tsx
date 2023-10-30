@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 
@@ -42,45 +41,32 @@ type CartResponseProps = {
     createdAt: string;
 }
 
-
 const Orders = () => {
-    const token = useToken()
+    const token = useToken();
     const [refresh, setRefresh] = useState<boolean>(false);
-    const [orders, setOrders] = useState<any>([])
-
-    const handleOrderClick = async (orderId: string) => {
-        await AsyncStorage.setItem("orderId", orderId)
-        router.push('/FullOrder')
-    };
+    const [orders, setOrders] = useState<any>([]);
 
     const fetchData = async () => {
-        if (!token) {
-            router.push("/");
-        } else {
-            try {
-                const getOrdersFromUser = await performApi.getData("carts-by-user", token);
-                setOrders(getOrdersFromUser.reverse())
-            } catch (error) {
-                console.error("Erro ao buscar favoritos:", error);
-            }
+        const getOrdersFromUser = await performApi.getData("carts-by-user", token);
+        if (Array.isArray(getOrdersFromUser)) {
+            setOrders(getOrdersFromUser.slice().reverse());
         }
     };
 
-    useEffect(() => {        
-        fetchData();
-    }, []);
+    const handleOrderClick = async (orderId: string) => {
+        await AsyncStorage.setItem("orderId", orderId);
+        router.push('/FullOrder');
+    };
 
     const pullMeDown = async () => {
         setRefresh(true);
-    
-        try {
-          await fetchData(); 
-          setRefresh(false);
-        } catch (error) {
-          console.error("Erro ao atualizar os dados:", error);
-          setRefresh(false);
-        }
-      };
+        await fetchData();
+        setRefresh(false);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [token]);
 
     return (
         <UseFonts>
@@ -91,12 +77,12 @@ const Orders = () => {
             <SafeAreaView style={{ backgroundColor: theme.COLORS.Whiteffffff }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
-                        <ScrollView style={{ marginTop: 42, height:'100%'}}  
-                        refreshControl={
-                            <RefreshControl 
-                            refreshing={refresh}
-                            onRefresh={() => pullMeDown()}
-                            tintColor={'black'}/>}>
+                        <ScrollView style={{ marginTop: 42, height: '100%' }}
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={refresh}
+                                    onRefresh={pullMeDown}
+                                    tintColor={'orange'} />}>
                             {orders.length > 0 ? (
                                 orders.map((order: CartResponseProps, index: number) => {
                                     const getDate = order.createdAt.split("T")[0]
@@ -108,8 +94,8 @@ const Orders = () => {
                                             key={index}
                                             photo={order.cart?.products[0]?.product?.photo}
                                             date={date}
-                                            status={order.cart.status} 
-                                            onPress={ () => handleOrderClick(order.id.toString())}/>
+                                            status={order.cart.status}
+                                            onPress={() => handleOrderClick(order.id.toString())} />
                                     );
                                 })
                             ) : (
