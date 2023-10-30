@@ -6,7 +6,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles, shadowStyle } from '../../StyleAndComponentsScreens/Product/style';
 import UseFonts from '../../hooks/useFonts';
-import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain';
+import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain'
 import { performApi } from '../../utils/api';
 import ButtonFavoriteHeart from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';
 import ButtonFavoriteProduct from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';

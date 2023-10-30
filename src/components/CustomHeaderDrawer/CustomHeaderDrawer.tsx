@@ -14,11 +14,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AppTexts } from '../../assets/strings';
 import { styles } from './style'
 import { useRouter } from 'expo-router';
-import { ShoppingContext } from '../../context/shoppingCart';
 const CustomHeaderDrawer = () => {
 
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
-    const { cart, setCart} = useContext(ShoppingContext)
 
     
     const router = useRouter()
@@ -39,7 +37,7 @@ const CustomHeaderDrawer = () => {
                         <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
                             <View>
                                 <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
-                                <Badge style={styles.Badge}>{cart}</Badge>
+                                <Badge style={styles.Badge}>{4}</Badge>
                             </View>
                         </TouchableOpacity>
                     </View>

@@ -55,10 +55,6 @@ const FavoriteItems = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const deleteFavoriteItem = async (productId: number | undefined) => {
     try {
       await performApi.deleteData(`favorites/${productId}`, token);
@@ -89,6 +85,10 @@ const FavoriteItems = () => {
       setRefresh(false);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <UseFonts>

@@ -152,8 +152,8 @@ const AllProducts = () => {
 
 
     useEffect(() => {
-        handleFilterProductsTypes(),
-            handleCardProducts()
+        handleFilterProductsTypes();
+        handleCardProducts()
     }, [])
 
 
@@ -192,7 +192,6 @@ const AllProducts = () => {
                              <RefreshControl 
                                 refreshing={refresh}
                                 onRefresh={() => pullMeDown()}
-                                size={100}
                                 tintColor={'black'}
                             />} 
                             contentContainerStyle={styles.ContainerMain} 

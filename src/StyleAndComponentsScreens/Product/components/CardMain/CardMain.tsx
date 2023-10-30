@@ -5,7 +5,7 @@ import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMore
 import ButtonAddCart from '../ButtonCart/ButtonAddCart';
 
 import { styles } from './style';
-import { ShoppingContext } from '../../../../context/shoppingCart';
+// import { ShoppingContext } from '../../../../context/shoppingCart';
 
 interface CardMainProps {
     name: string | undefined,
@@ -16,10 +16,6 @@ interface CardMainProps {
 const CardMain = ({ name, price, description }: CardMainProps) => {
     const [quantity, setQuantity] = useState<number>(1)
     const [totalPrice, setTotalPrice] = useState<any>(price)
-
-    const { cart, setCart} = useContext(ShoppingContext)
-
-    const aaa = useContext(ShoppingContext)
 
     const currentPrice = () => {
         setTotalPrice(price)
@@ -73,7 +69,7 @@ const CardMain = ({ name, price, description }: CardMainProps) => {
                 </Text>
             </View>
             <View style={styles.ContainerButton}>
-                <ButtonAddCart price={totalPrice} onPress={() => setCart(10)} />
+                <ButtonAddCart price={totalPrice} onPress={() => console.log("oi")} />
             </View>
         </View>
     );
