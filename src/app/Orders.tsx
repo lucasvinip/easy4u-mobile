@@ -96,7 +96,6 @@ const Orders = () => {
                             <RefreshControl 
                             refreshing={refresh}
                             onRefresh={() => pullMeDown()}
-                            size={100}
                             tintColor={'black'}/>}>
                             {orders.length > 0 ? (
                                 orders.map((order: CartResponseProps, index: number) => {

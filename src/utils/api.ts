@@ -1,5 +1,6 @@
 //http://easy4u-server.online:3000
 //http://10.107.144.14
+//products?productType=Natural&disponibility=true
 
 export class performApi {
     public static sendData = async (path: string, method: string, body?: object | any) => {
