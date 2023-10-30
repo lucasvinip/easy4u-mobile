@@ -127,7 +127,7 @@ const AllProducts = () => {
     };
 
     const handleClickFilterProductType = async (productType: any) => {
-        const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}`)
+        const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}&disponibility=true`)
 
         if (!apiDataFilterProductsByType)
             alert("Erro!")
