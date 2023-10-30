@@ -16,9 +16,8 @@ export const useToken = () => {
                 }
             } catch (error) {
                 console.error("Erro ao recuperar o token:", error);
-            }
+           } 
         };
-
         getToken();
     }, []);
 

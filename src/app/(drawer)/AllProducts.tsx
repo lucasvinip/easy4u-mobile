@@ -18,6 +18,7 @@ import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/compone
 import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
 import { performApi } from '../../utils/api';
 import { RefreshControl } from 'react-native-gesture-handler';
+import SkeletonProducts from '../../components/Skeleton/Skeleton';
 
 interface ProductProps {
     id: number,
@@ -142,14 +143,12 @@ const AllProducts = () => {
         }
     };
 
-    
-  const pullMeDown = async () => {
-    setRefresh(true);
-    await handleCardProducts();
-    setTimeout(() => {
-      setRefresh(false);
-    }, 2000);
-  };
+
+    const pullMeDown = async () => {
+        setRefresh(true);
+        await handleCardProducts();
+        setRefresh(false);
+    };
 
 
     useEffect(() => {
@@ -189,21 +188,22 @@ const AllProducts = () => {
                                 </View>
                             </View>
                         </View>
-                        <ScrollView  refreshControl={
-                             <RefreshControl 
+                        <ScrollView refreshControl={
+                            <RefreshControl
                                 refreshing={refresh}
                                 onRefresh={() => pullMeDown()}
                                 tintColor={'black'}
-                            />} 
-                            contentContainerStyle={styles.ContainerMain} 
+                            />}
+                            contentContainerStyle={styles.ContainerMain}
                             showsVerticalScrollIndicator={false}
                             keyboardShouldPersistTaps={'handled'}
 
-                            >
+                        >
                             <View style={styles.Main}>
                                 {products.map(({ name, price, description, photo, id }: ProductProps, index: number) => (
                                     <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id} />
                                 ))}
+                                <SkeletonProducts/>
                             </View>
                         </ScrollView>
                     </View>
