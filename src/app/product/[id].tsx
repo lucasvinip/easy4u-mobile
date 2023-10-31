@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
+import {
+    View,
+    Image,
+    SafeAreaView
+} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { AntDesign } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styles, shadowStyle } from '../../StyleAndComponentsScreens/Product/style';
+
+import { styles } from '../../StyleAndComponentsScreens/Product/style';
 import UseFonts from '../../hooks/useFonts';
 import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain'
 import { performApi } from '../../utils/api';
-import ButtonFavoriteHeart from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';
 import ButtonFavoriteProduct from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';
 
 type CardProductProps = {
@@ -32,10 +35,13 @@ type Favorite = {
 
 
 const Product = () => {
+    const { id } = useLocalSearchParams()
+
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
-    const { id } = useLocalSearchParams()
+
+
 
     const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
@@ -73,8 +79,8 @@ const Product = () => {
 
         if (favorites && favorites.length > 0) {
             const productIds = favorites.map((favorite: Favorite) => favorite.product.id);
-            productIds.find((productId: number ) => {
-                if(productId === +id){
+            productIds.find((productId: number) => {
+                if (productId === +id) {
                     setIsFavorite(true)
                 }
             })
@@ -104,7 +110,11 @@ const Product = () => {
                                     <ButtonFavoriteProduct idProduct={id} favorite={isFavorite} />
                                 </View>
                                 <View style={styles.ContainerMain}>
-                                    <CardMain name={dataProduct?.name} price={dataProduct?.price} description={dataProduct?.description} />
+                                    <CardMain
+                                        name={dataProduct?.name}
+                                        price={dataProduct?.price}
+                                        description={dataProduct?.description}
+                                    />
                                 </View>
                             </View>
                         </View>
