@@ -10,10 +10,14 @@ import { styles } from './style';
 interface CardMainProps {
     name: string | undefined,
     price: any,
-    description: string | undefined
+    description: string | undefined,
 }
 
-const CardMain = ({ name, price, description }: CardMainProps) => {
+const CardMain = ({
+    name,
+    price,
+    description,
+}: CardMainProps) => {
     const [quantity, setQuantity] = useState<number>(1)
     const [totalPrice, setTotalPrice] = useState<any>(price)
 
@@ -69,7 +73,7 @@ const CardMain = ({ name, price, description }: CardMainProps) => {
                 </Text>
             </View>
             <View style={styles.ContainerButton}>
-                <ButtonAddCart price={totalPrice} onPress={() => console.log("oi")} />
+                <ButtonAddCart price={totalPrice} />
             </View>
         </View>
     );

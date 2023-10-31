@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     Text,
     View,
@@ -10,15 +10,22 @@ import {
 } from '@react-navigation/native';
 import { Badge } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import type { RootState } from '../../redux/store'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'expo-router';
 
 import { AppTexts } from '../../assets/strings';
 import { styles } from './style'
-import { useRouter } from 'expo-router';
+
+
+
 const CustomHeaderDrawer = () => {
+    const count = useSelector((state: RootState) => state.counter.value)
+
 
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
 
-    
+
     const router = useRouter()
     return (
         <View style={styles.ContainerHeader}>
@@ -37,7 +44,7 @@ const CustomHeaderDrawer = () => {
                         <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
                             <View>
                                 <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
-                                <Badge style={styles.Badge}>{4}</Badge>
+                                <Badge style={styles.Badge}>{count}</Badge>
                             </View>
                         </TouchableOpacity>
                     </View>
