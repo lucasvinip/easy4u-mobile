@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
     View,
     Text,
@@ -16,6 +16,8 @@ import { performApi } from '../utils/api';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
 import { useToken } from '../hooks/useToken';
+import SkeletonProducts from '../components/Skeleton/Skeleton';
+import NotFoundExecption from '../components/NotFound/NotFound';
 
 type Cart = {
     status: string;
@@ -45,12 +47,31 @@ const Orders = () => {
     const token = useToken();
     const [refresh, setRefresh] = useState<boolean>(false);
     const [orders, setOrders] = useState<any>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+
+    const memoizedOrders = useMemo(() => {
+        return orders.map((order: CartResponseProps, index: number) => {
+            const getDate = order.createdAt.split("T")[0];
+            const [y, m, d] = getDate.split("-");
+            const date = `${d}/${m}/${y}`;
+            return (
+                <OrderCard
+                    id={order.id}
+                    key={index}
+                    photo={order.cart?.products[0]?.product?.photo}
+                    date={date}
+                    status={order.cart.status}
+                    onPress={() => handleOrderClick(order.id.toString())} />
+            );
+        });
+    }, [orders]);
 
     const fetchData = async () => {
         const getOrdersFromUser = await performApi.getData("carts-by-user", token);
         if (Array.isArray(getOrdersFromUser)) {
             setOrders(getOrdersFromUser.slice().reverse());
         }
+        setIsLoading(false);
     };
 
     const handleOrderClick = async (orderId: string) => {
@@ -83,29 +104,23 @@ const Orders = () => {
                                     refreshing={refresh}
                                     onRefresh={pullMeDown}
                                     tintColor={'orange'} />}>
-                            {orders.length > 0 ? (
-                                orders.map((order: CartResponseProps, index: number) => {
-                                    const getDate = order.createdAt.split("T")[0]
-                                    const [y, m, d] = getDate.split("-")
-                                    const date = `${d}/${m}/${y}`
-                                    return (
-                                        <OrderCard
-                                            id={order.id}
-                                            key={index}
-                                            photo={order.cart?.products[0]?.product?.photo}
-                                            date={date}
-                                            status={order.cart.status}
-                                            onPress={() => handleOrderClick(order.id.toString())} />
-                                    );
-                                })
-                            ) : (
-                                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                                    <Text
-                                        style={{ textAlign: "center", color: "black", fontSize: 20 }}>
-                                        Você não tem nenhum item adicionado aos favoritos!
-                                    </Text>
-                                </View>
-                            )}
+                            {isLoading ?
+                                <>
+                                    <View style={{ gap: 20 }}>
+                                        <SkeletonProducts />
+                                        <SkeletonProducts />
+                                        <SkeletonProducts />
+                                        <SkeletonProducts />
+                                    </View>
+                                </>
+                                : (
+                                    orders.length > 0 ? memoizedOrders : (
+                                        <View>
+                                            <NotFoundExecption/>
+                                        </View>
+                                    )
+                                )
+                            }
                         </ScrollView>
                     </View>
                 </View>

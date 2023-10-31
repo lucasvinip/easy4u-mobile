@@ -45,6 +45,7 @@ const AllProducts = () => {
     const [typeProducts, setTypeProducts] = useState<any[]>([])
     const [products, setProducts] = useState<any[]>([])
     const [text, setText] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(true)
 
     const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
@@ -81,7 +82,6 @@ const AllProducts = () => {
 
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
-
         if (!apiDataProducts)
             Alert.alert("Erro!")
         else {
@@ -95,6 +95,7 @@ const AllProducts = () => {
                         id
                     }
                 });
+                setIsLoading(false)
                 setProducts(allProductsTypes)
             } catch (error) {
                 alert("allProductsTypes not get:" + error)
@@ -200,16 +201,27 @@ const AllProducts = () => {
 
                         >
                             <View style={styles.Main}>
-                                {products.map(({ name, price, description, photo, id }: ProductProps, index: number) => (
-                                    <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id} />
-                                ))}
-                                <SkeletonProducts/>
+                                {isLoading ?
+                                    <>
+                                        <View style={{ gap: 20 }}>
+                                            <SkeletonProducts />
+                                            <SkeletonProducts />
+                                            <SkeletonProducts />
+                                            <SkeletonProducts />
+                                        </View>
+                                    </>
+                                    : (
+                                        products.map(({ name, price, description, photo, id }: ProductProps, index: number) => (
+                                            <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id} />
+                                        ))
+                                    )
+                                }
                             </View>
                         </ScrollView>
                     </View>
                 </View>
-            </SafeAreaView>
-        </UseFonts>
+            </SafeAreaView >
+        </UseFonts >
     );
 };
 
