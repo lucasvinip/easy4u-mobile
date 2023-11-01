@@ -4,8 +4,8 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 const styles = StyleSheet.create({
     ContainerHeader: {
-        height: '165%',
-        justifyContent: 'center',
+        height: 100,
+        justifyContent: 'space-around',
     },
     Header:{
         width: '100%',

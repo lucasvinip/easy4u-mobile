@@ -5,10 +5,13 @@ import { Drawer } from 'expo-router/drawer'
 import CustomDrawer from '../../components/CustomDrawer/CustomDrawer';
 import { AppTexts } from '../../assets/strings';
 import CustomHeaderDrawer from '../../components/CustomHeaderDrawer/CustomHeaderDrawer';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 const Layout = () => {
 
   return (
+    <Provider store={store}>
       <Drawer
         drawerContent={() => <CustomDrawer />}
         screenOptions={{
@@ -24,6 +27,7 @@ const Layout = () => {
             header: () => (<CustomHeaderDrawer />)
           }} />
       </Drawer>
+    </Provider>
   );
 };
 

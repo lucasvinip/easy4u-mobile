@@ -9,25 +9,34 @@ import { addCartItem } from '../../../../redux/features/counter/counterSlice';
 
 interface ButtonAddCartProps {
     id: number
-    price: any,
-    quantity: number
+    price: number,
+    quantity: number,
+    photo: string | undefined,
+    name: string | undefined
+
 }
 
-const ButtonAddCart = ({ price, id, quantity}: ButtonAddCartProps) => {
+const ButtonAddCart = ({
+    price,
+    id,
+    quantity,
+    photo,
+    name
+}: ButtonAddCartProps) => {
 
     const dispatch = useDispatch();
 
-    const addedItems = useSelector(state => state)
-    console.log(addedItems);
-    
+    // const addedItems: any = useSelector(state => state)
+    // console.log(addedItems.cart);
 
-    const handleAddCart = () =>{
-        const item: any = {id, price, quantity}
+
+    const handleAddCart = () => {
+        const item: any = { id, price, quantity, name, photo}
         console.log(item);
-        
+
         dispatch(addCartItem(item))
     }
-    
+
     return (
         <TouchableOpacity style={[styles.Container, shadowStyle]} onPress={handleAddCart}>
             <View style={styles.Touchable}>
