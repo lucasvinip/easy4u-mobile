@@ -18,7 +18,7 @@ import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/compone
 import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
 import { performApi } from '../../utils/api';
 import { RefreshControl } from 'react-native-gesture-handler';
-import SkeletonProducts from '../../components/Skeleton/Skeleton';
+import SkeletonProducts from '../../components/Skeleton/SkeletonProducts';
 
 interface ProductProps {
     id: number,

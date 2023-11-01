@@ -46,6 +46,7 @@ function OrderCard({ status, date, id, photo, onPress }: OrderCardProps) {
                                         height={30}
                                         borderRadius={30}
                                         fontSize={10}
+                                        onPress={onPress}
                                     />
                                 </View>
                                 <Image source={{ uri: photo }} style={styles.Img} />
@@ -79,6 +80,7 @@ function OrderCard({ status, date, id, photo, onPress }: OrderCardProps) {
                                         height={30}
                                         borderRadius={30}
                                         fontSize={10}
+                                        onPress={onPress}
                                     />
                                 </View>
                             </View>

@@ -60,7 +60,7 @@ const CustomDrawer = () => {
           <View style={styles.ContainerMain}>
             <View style={styles.Main}>
               <ButtonNavigation title={AppTexts.Start} icon='home-outline' href='/(drawer)/AllProducts' />
-              <ButtonNavigation title={AppTexts.Orders} icon='cog-outline' href='/Orders' />
+              <ButtonNavigation title={AppTexts.Orders} icon='cart-outline' href='/Orders' />
               <ButtonNavigation title={AppTexts.Favorites} icon='cards-heart' href='/FavoriteItems' />
               <ButtonNavigation title={AppTexts.Profile_Settings} icon='cog-outline' href='/ProfileSetting' />
             </View>

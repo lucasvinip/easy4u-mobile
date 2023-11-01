@@ -16,8 +16,9 @@ import { performApi } from '../utils/api';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
 import { useToken } from '../hooks/useToken';
-import SkeletonProducts from '../components/Skeleton/Skeleton';
+import SkeletonProducts from '../components/Skeleton/SkeletonProducts';
 import NotFoundExecption from '../components/NotFound/NotFound';
+import SkeletonOrders from '../components/Skeleton/SkeletonOrders';
 
 type Cart = {
     status: string;
@@ -61,17 +62,23 @@ const Orders = () => {
                     photo={order.cart?.products[0]?.product?.photo}
                     date={date}
                     status={order.cart.status}
-                    onPress={() => handleOrderClick(order.id.toString())} />
+                    onPress={() => handleOrderClick(order.id.toString())}
+                />
             );
         });
     }, [orders]);
 
     const fetchData = async () => {
-        const getOrdersFromUser = await performApi.getData("carts-by-user", token);
-        if (Array.isArray(getOrdersFromUser)) {
-            setOrders(getOrdersFromUser.slice().reverse());
+        const storedToken = await AsyncStorage.getItem("token");
+        if (!storedToken) {
+            router.push("/");
+        } else {
+            const getOrdersFromUser = await performApi.getData("carts-by-user", storedToken);
+            if (Array.isArray(getOrdersFromUser)) {
+                setOrders(getOrdersFromUser.slice().reverse());
+            }
+            setIsLoading(false);
         }
-        setIsLoading(false);
     };
 
     const handleOrderClick = async (orderId: string) => {
@@ -107,16 +114,18 @@ const Orders = () => {
                             {isLoading ?
                                 <>
                                     <View style={{ gap: 20 }}>
-                                        <SkeletonProducts />
-                                        <SkeletonProducts />
-                                        <SkeletonProducts />
-                                        <SkeletonProducts />
+                                        <SkeletonOrders/>
+                                        <SkeletonOrders/>
+                                        <SkeletonOrders/>
+                                        <SkeletonOrders/>
                                     </View>
                                 </>
                                 : (
-                                    orders.length > 0 ? memoizedOrders : (
+                                    orders.length > 0 ? (
+                                        memoizedOrders
+                                    ) : (
                                         <View>
-                                            <NotFoundExecption/>
+                                            <Text>Ola</Text>
                                         </View>
                                     )
                                 )

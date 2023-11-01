@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Image,
   ScrollView,
@@ -20,6 +20,8 @@ import theme from "../styles/theme";
 import UseFonts from "../hooks/useFonts";
 import { styles } from "../StyleAndComponentsScreens/FavoriteItens/style";
 import { RefreshControl } from "react-native-gesture-handler";
+import { useToken } from "../hooks/useToken";
+import SkeletonFavorites from "../components/Skeleton/SkeletonFavorites";
 
 interface ProductsProps {
   product: FavoritesProps;
@@ -35,9 +37,27 @@ interface FavoritesProps {
 const FavoriteItems = () => {
   const [refresh, setRefresh] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<any>([]);
-  const [token, setToken] = useState<string>("");
+  const token = useToken();
   const [visible, setVisible] = useState<boolean>(false);
+  const [isSkeleton, setSkeleton] = useState<boolean>(true);
   const [id, setId] = useState<number>();
+
+  const memoFavoriteItems = useMemo(() => {
+    return favorites.map(({ product }: ProductsProps, index: number) => {
+      return (
+        <FavoriteCard
+          key={index}
+          name={product.name}
+          price={product.price}
+          photo={product.photo}
+          onDeleteFavorite={() => {
+            setVisible(true), setId(product.id);
+          }}
+          onSelectItem={() => handleSelectItem(product.id)}
+        />
+      )
+    })
+  }, [favorites])
 
   const fetchData = async () => {
     const storedToken = await AsyncStorage.getItem("token");
@@ -45,9 +65,9 @@ const FavoriteItems = () => {
     if (!storedToken) {
       router.push("/");
     } else {
-      setToken(storedToken);
       try {
         const getFavorites = await performApi.getData("favorites", storedToken);
+        setSkeleton(false)
         setFavorites(getFavorites);
       } catch (error) {
         console.error("Erro ao buscar favoritos:", error);
@@ -78,7 +98,7 @@ const FavoriteItems = () => {
     setRefresh(true);
 
     try {
-      await fetchData(); 
+      await fetchData();
       setRefresh(false);
     } catch (error) {
       console.error("Erro ao atualizar os dados:", error);
@@ -88,7 +108,7 @@ const FavoriteItems = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [token]);
 
   return (
     <UseFonts>
@@ -148,43 +168,34 @@ const FavoriteItems = () => {
           <View style={styles.Container}>
             <View style={styles.ContainerItens}>
               <ScrollView
+                showsHorizontalScrollIndicator={false}
                 refreshControl={
                   <RefreshControl
                     refreshing={refresh}
                     onRefresh={() => pullMeDown()}
                   />}
               >
-                {favorites.length > 0 ? (
-                  favorites.map(({ product }: ProductsProps, index: number) => (
-                    <FavoriteCard
-                      key={index}
-                      name={product.name}
-                      price={product.price}
-                      photo={product.photo}
-                      onDeleteFavorite={() => {
-                        setVisible(true), setId(product.id);
-                      }}
-                      onSelectItem={() => handleSelectItem(product.id)}
-                    />
-                  ))
+                {isSkeleton ? (
+                  <>
+                    <View style={{ gap: 20 }}>
+                      <SkeletonFavorites />
+                      <SkeletonFavorites />
+                      <SkeletonFavorites />
+                      <SkeletonFavorites />
+                      <SkeletonFavorites />
+                    </View>
+                  </>
                 ) : (
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text
-                      style={{
-                        textAlign: "center",
-                        color: "black",
-                        fontSize: 20,
-                      }}
-                    >
-                      Você não tem nenhum item adicionado aos favoritos!
-                    </Text>
-                  </View>
+                  favorites.length > 0 ?
+                    memoFavoriteItems
+                    : (
+                      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                        <Text
+                          style={{ textAlign: "center", color: "black", fontSize: 20, fontFamily: theme.FONTS.Popp500 }}>
+                          Você não tem nenhum item adicionado aos favoritos!
+                        </Text>
+                      </View>
+                    )
                 )}
               </ScrollView>
             </View>
@@ -196,3 +207,5 @@ const FavoriteItems = () => {
 };
 
 export default FavoriteItems;
+
+//memoFavoriteItems

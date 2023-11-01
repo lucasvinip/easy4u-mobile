@@ -26,13 +26,14 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     ContainerTexts: {
-        justifyContent: 'space-evenly'
+        width: 200,
+        justifyContent: 'space-evenly',
     },
     Text: {
         fontSize: 16,
-        width: '60%',
+        width: 'auto',
         color: theme.COLORS.Black393939,
-        fontFamily: theme.FONTS.Popp500
+        fontFamily: theme.FONTS.Popp500, 
     },
     ContainerPrice: {
         flexDirection: 'row',
