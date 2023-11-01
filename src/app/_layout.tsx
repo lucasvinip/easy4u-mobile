@@ -59,6 +59,7 @@ const Layout = () => {
                         headerTitle: () => (
                             <CustomHeaderTitle title={AppTexts.Shopping_Cart.toLocaleUpperCase()} padding={5.5} />),
                         headerTitleAlign: 'center',
+                        presentation: 'formSheet'
                     }}
                 />
 

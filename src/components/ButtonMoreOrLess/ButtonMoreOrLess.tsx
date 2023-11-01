@@ -8,9 +8,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { styles } from './style';
 interface ButtonMoreOrLessProps {
-    onPressMinus: () => void,
-    onPressPlus: () => void,
-    quantity: any,
+    onPressMinus?: () => void,
+    onPressPlus?: () => void,
+    quantity?: any,
 }
 
 const ButtonMoreOrLess = ({onPressMinus, onPressPlus, quantity}:ButtonMoreOrLessProps) => {

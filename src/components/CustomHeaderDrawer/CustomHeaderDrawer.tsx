@@ -20,10 +20,8 @@ import { styles } from './style'
 
 
 const CustomHeaderDrawer = () => {
-    const count = useSelector((state: RootState) => state.counter.value)
-
-
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
+    const amount = useSelector((state: RootState) => state.cart.amount)
 
 
     const router = useRouter()
@@ -44,7 +42,7 @@ const CustomHeaderDrawer = () => {
                         <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
                             <View>
                                 <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
-                                <Badge style={styles.Badge}>{count}</Badge>
+                                <Badge style={styles.Badge}>{amount}</Badge>
                             </View>
                         </TouchableOpacity>
                     </View>

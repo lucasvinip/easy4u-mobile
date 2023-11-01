@@ -114,6 +114,7 @@ const Product = () => {
                                         name={dataProduct?.name}
                                         price={dataProduct?.price}
                                         description={dataProduct?.description}
+                                        id={+id}
                                     />
                                 </View>
                             </View>

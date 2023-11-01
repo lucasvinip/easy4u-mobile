@@ -11,12 +11,14 @@ interface CardMainProps {
     name: string | undefined,
     price: any,
     description: string | undefined,
+    id: number
 }
 
 const CardMain = ({
     name,
     price,
     description,
+    id
 }: CardMainProps) => {
     const [quantity, setQuantity] = useState<number>(1)
     const [totalPrice, setTotalPrice] = useState<any>(price)
@@ -73,7 +75,11 @@ const CardMain = ({
                 </Text>
             </View>
             <View style={styles.ContainerButton}>
-                <ButtonAddCart price={totalPrice} />
+                <ButtonAddCart
+                 price={totalPrice} 
+                 quantity={quantity}
+                 id={id}
+                 />
             </View>
         </View>
     );
