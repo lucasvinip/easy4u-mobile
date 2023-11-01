@@ -13,10 +13,10 @@ interface ProductItemProps{
     price: number | undefined,
     name: string | undefined,
     photo: string | undefined,
-
+    quantity: number
 }
 
-const ProductItem = ({price, photo, name} : ProductItemProps) => {
+const ProductItem = ({price, photo, name, quantity} : ProductItemProps) => {
 
     return (
         <View>
@@ -35,7 +35,7 @@ const ProductItem = ({price, photo, name} : ProductItemProps) => {
                         </Text>
                     </View>
                 </View>
-                <ButtonMoreOrLess />
+                <ButtonMoreOrLess quantity={quantity}/>
             </View>
             <View style={styles.SeparatorContainer}>
                 <View style={styles.Separator} />

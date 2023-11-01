@@ -17,7 +17,8 @@ interface ProductProps {
     name: any,
     price: number | undefined,
     photo: any,
-    productType: string
+    productType: string,
+    quantity: number
 }
 
 const ShoppingCart = () => {
@@ -28,11 +29,12 @@ const ShoppingCart = () => {
 
     const getCardProduct = () => {
     
-        const data = itemsCard.map(({ name, price, photo }: ProductProps) => {
+        const data = itemsCard.map(({ name, price, photo, quantity}: ProductProps) => {
             return {
                 name,
                 price,
                 photo,
+                quantity
             }
         });
         setProducts(data)
@@ -53,8 +55,8 @@ const ShoppingCart = () => {
                         </View>
                         <View style={styles.ContainerMain}>
                             {
-                                products.map(({ name, price, photo }: ProductProps, index: number) => (
-                                    <ProductItem key={index} name={name} price={price} photo={photo} />
+                                products.map(({ name, price, photo, quantity}: ProductProps, index: number) => (
+                                    <ProductItem key={index} name={name} price={price} photo={photo} quantity={quantity}/>
                                 ))
                             }
                         </View>

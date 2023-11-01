@@ -10,7 +10,7 @@ import { styles } from './style';
 interface ButtonMoreOrLessProps {
     onPressMinus?: () => void,
     onPressPlus?: () => void,
-    quantity?: any,
+    quantity: any,
 }
 
 const ButtonMoreOrLess = ({onPressMinus, onPressPlus, quantity}:ButtonMoreOrLessProps) => {
