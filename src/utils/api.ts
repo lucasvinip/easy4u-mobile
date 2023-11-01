@@ -1,10 +1,10 @@
 //http://easy4u-server.online:3000
-//http://easy4u-server.online
+//http://10.107
 //products?productType=Natural&disponibility=true
 
 export class performApi {
     public static sendData = async (path: string, method: string, body?: object | any) => {
-        const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
+        const response = await fetch(`http://10.107.144.14:3000/${path}`, {
             method: method,
             headers: {
                 Accept: "application/json",
@@ -17,7 +17,7 @@ export class performApi {
     };
     
     public static sendIdData = async (path: string, method: string, token: string | null) => {
-        const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
+        const response = await fetch(`http://10.107.144.14:3000/${path}`, {
             method: method,
             headers: {
                 "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export class performApi {
     };
 
     public static getData = async (path: string, token: string | null) => {
-        const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
+        const response = await fetch(`http://10.107.144.14:3000/${path}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
@@ -40,7 +40,7 @@ export class performApi {
     };
 
     public static deleteData = async (path: string | number, token: string | null) => {
-        const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
+        const response = await fetch(`http://10.107.144.14:3000/${path}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export class performApi {
     };
     
     public static updateData = async (path: string, token: string | null, body: object | any) => {
-        const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
+        const response = await fetch(`http://10.107.144.14:3000/${path}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

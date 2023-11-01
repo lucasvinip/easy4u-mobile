@@ -2,7 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 
-const initialState: any[] = []
+export interface CartState {
+  amount: number,
+  items: any[]
+}
+
+const initialState: CartState = {
+  amount: 0,
+  items: []
+}
 
 
 export const cartSlice = createSlice({
@@ -10,8 +18,8 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addCartItem (state, action: PayloadAction<number>) {
-      state.push(action.payload)
-      
+      state.items.push(action.payload)
+      state.amount += 1
     }
   }
 })

@@ -15,7 +15,6 @@ interface ProductsProps {
     price: number,
     description: string,
     photo: any,
-
 }
 
 const CardProduct = ({ id, name, price, description, photo }: ProductsProps) => {
