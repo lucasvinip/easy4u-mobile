@@ -16,7 +16,7 @@ import { performApi } from '../utils/api';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
 import { useToken } from '../hooks/useToken';
-import SkeletonProducts from '../components/Skeleton/SkeletonProducts';
+import SkeletonProducts from '../components/Skeleton/SkeletonProducts/SkeletonProducts';
 import NotFoundExecption from '../components/NotFound/NotFound';
 import SkeletonOrders from '../components/Skeleton/SkeletonOrders';
 

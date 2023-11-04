@@ -10,7 +10,6 @@ import {
 } from '@react-navigation/native';
 import { Badge } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import type { RootState } from '../../redux/store'
 import { useSelector } from 'react-redux'
 import { useRouter } from 'expo-router';
 

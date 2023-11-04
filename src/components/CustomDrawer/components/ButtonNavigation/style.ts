@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     Icon: {
-        color: theme.COLORS.Gray37C7C7A
+        color: theme.COLORS.Gray37C7C7A,
+        fontSize: 23
     },
     Title: {
         color: theme.COLORS.Gray37C7C7A,

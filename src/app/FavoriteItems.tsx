@@ -10,6 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
+import { RefreshControl } from "react-native-gesture-handler";
 
 import { performApi } from "../utils/api";
 import FavoriteCard from "../StyleAndComponentsScreens/FavoriteItens/components/FavoriteCard.tsx/FavoriteCard";
@@ -19,9 +20,8 @@ import Button from "../components/Button/Button";
 import theme from "../styles/theme";
 import UseFonts from "../hooks/useFonts";
 import { styles } from "../StyleAndComponentsScreens/FavoriteItens/style";
-import { RefreshControl } from "react-native-gesture-handler";
 import { useToken } from "../hooks/useToken";
-import SkeletonFavorites from "../components/Skeleton/SkeletonFavorites";
+import SkeletonFavorites from "../components/Skeleton/SkeletonFavorites/SkeletonFavorites";
 
 interface ProductsProps {
   product: FavoritesProps;

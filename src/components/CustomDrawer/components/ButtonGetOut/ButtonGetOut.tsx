@@ -15,7 +15,7 @@ const ButtonGetOut = () => {
             <TouchableOpacity style={styles.Button} onPress={() => {
                 AsyncStorage.removeItem("token")
             }}>
-                <MaterialCommunityIcons name={"logout"} size={19} style={styles.Icon} />
+                <MaterialCommunityIcons name={"logout"} style={styles.Icon} />
                 <Text style={styles.Title}>{AppTexts.Get_Out}</Text>
             </TouchableOpacity>
         </Link>

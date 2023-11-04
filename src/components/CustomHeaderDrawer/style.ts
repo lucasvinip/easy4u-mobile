@@ -4,7 +4,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 const styles = StyleSheet.create({
     ContainerHeader: {
-        height: 100,
+        height: 120,
         justifyContent: 'space-around',
     },
     Header:{
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     MenuIcon:{
         fontSize: 28,
         color: theme.COLORS.WhiteEDF3EDEB,
-        paddingTop: 1
+        paddingTop: 5
     },
     ShoppingCartIcon:{
         fontSize: 26,

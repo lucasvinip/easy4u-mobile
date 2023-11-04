@@ -15,7 +15,7 @@ const ButtonNavigation = ({ icon, title, href }: ButtonNavigationProps) => {
     return (
         <Link href={href} asChild>
             <TouchableOpacity style={styles.Button}>
-                <MaterialCommunityIcons name={icon} size={19} style={styles.Icon} />
+                <MaterialCommunityIcons name={icon} style={styles.Icon} />
                 <Text style={styles.Title}>{title}</Text>
             </TouchableOpacity>
         </Link>
