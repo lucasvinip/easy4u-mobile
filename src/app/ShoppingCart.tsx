@@ -11,6 +11,7 @@ import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/Pr
 import ScheduleTime from '../StyleAndComponentsScreens/ShoppingCart/components/SchuleTime/SchuleTime';
 import SubTotalDiscount from '../StyleAndComponentsScreens/ShoppingCart/components/SubTotalDiscount/SubTotalDiscount';
 import { useSelector } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface ProductProps {
     id: number,
@@ -22,14 +23,28 @@ interface ProductProps {
 }
 
 const ShoppingCart = () => {
-    const itemsCard: any = useSelector((state: any) => state.cart.items)
-    console.log(itemsCard);
-    
+    // const itemsCard: any = useSelector((state: any) => state.cart.items)
+    // console.log(itemsCard);
     const [products, setProducts] = useState<any[]>([])
 
-    const getCardProduct = () => {
-    
-        const data = itemsCard.map(({ name, price, photo, quantity}: ProductProps) => {
+    // const getCardProduct = () => {
+    //     const data = itemsCard.map(({ name, price, photo, quantity}: ProductProps) => {
+    //         return {
+    //             name,
+    //             price,
+    //             photo,
+    //             quantity
+    //         }
+    //     });
+    //     setProducts(data)
+    // }
+
+    const fetchData = async () => {
+        const items: any = await AsyncStorage.getItem("items")
+        console.log(items)
+        const getProduct = JSON.parse(items)
+        const productInfo = getProduct.map(({ name, price, photo, quantity}: ProductProps) => {
+            console.log(name)
             return {
                 name,
                 price,
@@ -37,11 +52,11 @@ const ShoppingCart = () => {
                 quantity
             }
         });
-        setProducts(data)
+        setProducts(productInfo)
     }
 
     useEffect(() => {
-        getCardProduct()
+        fetchData()
     }, [])
 
     return (

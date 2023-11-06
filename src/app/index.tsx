@@ -44,22 +44,22 @@ const Login = () => {
     setErro("");
   };
 
-  // const handleLogin = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const data = await performApi.sendData("auth/signin", "POST", { email, password });
-  //     if (data.statusCode !== 201) {
-  //       setErro("Email ou Senha inserido de maneira inválida!");
-  //     } else {
-  //       await AsyncStorage.setItem("token", data.message);
-  //       router.replace('/(drawer)/AllProducts');
-  //     }
-  //   } catch (error) {
-  //     setErro("Ocorreu um erro durante o login.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const handleLogin = async () => {
+    try {
+      setLoading(true);
+      const data = await performApi.sendData("auth/signin", "POST", { email, password });
+      if (data.statusCode !== 201) {
+        setErro("Email ou Senha inserido de maneira inválida!");
+      } else {
+        await AsyncStorage.setItem("token", data.message);
+        router.replace('/(drawer)/AllProducts');
+      }
+    } catch (error) {
+      setErro("Ocorreu um erro durante o login.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const disableErrorMessage = () => {
     setErro("")
@@ -126,7 +126,7 @@ const Login = () => {
                 height={40}
                 borderRadius={4}
                 fontSize={14}
-                //onPress={handleLogin}
+                onPress={handleLogin}
               />
               <View style={styles.ClicksContainer}>
                 <Text style={styles.ClicksText}>

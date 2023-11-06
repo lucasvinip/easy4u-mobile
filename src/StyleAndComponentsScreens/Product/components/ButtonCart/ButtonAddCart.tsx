@@ -27,12 +27,19 @@ const ButtonAddCart = ({
     const dispatch = useDispatch();
 
     // const addedItems: any = useSelector(state => state)
-    // console.log(addedItems.cart);
+    // const checkCart = () => {addedItems.cart.items.map((i: any) => {
+    //     products.push(i.id)
+    //     const uniqueArray = [...new Set(products)];
+    //     return uniqueArray
+    // })}
+
+    // checkCart()
+
 
 
     const handleAddCart = () => {
         const item: any = { id, price, quantity, name, photo}
-        console.log(item);
+        console.log("id "+ item.id);
 
         dispatch(addCartItem(item))
     }

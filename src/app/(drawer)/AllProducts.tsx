@@ -47,123 +47,115 @@ const AllProducts = () => {
     const [text, setText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
-    function handleClickFilterProductType(productType: any): void {
-        throw new Error('Function not implemented.');
-    }
+    const getUrl = async (path: string) => {
+        const token = await AsyncStorage.getItem("token")
 
-    function pullMeDown(): void {
-        throw new Error('Function not implemented.');
-    }
+        if (!token)
+            router.push('/')
+        else {
+            try {
+                const data = await performApi.getData(path, token)
+                return data
+            } catch (error) {
+                alert("data not get:" + error)
+            }
 
-    // const getUrl = async (path: string) => {
-    //     const token = await AsyncStorage.getItem("token")
+        }
 
-    //     if (!token)
-    //         router.push('/')
-    //     else {
-    //         try {
-    //             const data = await performApi.getData(path, token)
-    //             return data
-    //         } catch (error) {
-    //             alert("data not get:" + error)
-    //         }
+    };
 
-    //     }
+    const handleFilterProductsTypes = async () => {
+        const apiDataProductsType = await getUrl("products/types")
 
-    // };
+        if (!apiDataProductsType)
+            Alert.alert("Erro!")
+        else {
+            try {
+                const filterProducts = apiDataProductsType.map(({ type }: TypeProductProps) => type);
+                setTypeProducts(filterProducts);
+            } catch (error) {
+                alert("filterProducts not get:" + error)
+            }
 
-    // const handleFilterProductsTypes = async () => {
-    //     const apiDataProductsType = await getUrl("products/types")
+        }
+    };
 
-    //     if (!apiDataProductsType)
-    //         Alert.alert("Erro!")
-    //     else {
-    //         try {
-    //             const filterProducts = apiDataProductsType.map(({ type }: TypeProductProps) => type);
-    //             setTypeProducts(filterProducts);
-    //         } catch (error) {
-    //             alert("filterProducts not get:" + error)
-    //         }
+    const handleCardProducts = async () => {
+        const apiDataProducts = await getUrl("products?disponibility=true")
+        if (!apiDataProducts)
+            Alert.alert("Erro!")
+        else {
+            try {
+                const allProductsTypes = apiDataProducts.map(({ name, price, description, photo, id }: ProductProps) => {
+                    return {
+                        name,
+                        price,
+                        description,
+                        photo,
+                        id
+                    }
+                });
+                setIsLoading(false)
+                setProducts(allProductsTypes)
+            } catch (error) {
+                alert("allProductsTypes not get:" + error)
+            }
 
-    //     }
-    // };
+        }
+    };
 
-    // const handleCardProducts = async () => {
-    //     const apiDataProducts = await getUrl("products?disponibility=true")
-    //     if (!apiDataProducts)
-    //         Alert.alert("Erro!")
-    //     else {
-    //         try {
-    //             const allProductsTypes = apiDataProducts.map(({ name, price, description, photo, id }: ProductProps) => {
-    //                 return {
-    //                     name,
-    //                     price,
-    //                     description,
-    //                     photo,
-    //                     id
-    //                 }
-    //             });
-    //             setIsLoading(false)
-    //             setProducts(allProductsTypes)
-    //         } catch (error) {
-    //             alert("allProductsTypes not get:" + error)
-    //         }
+    const handleSearchProduct = async () => {
+        const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
+        console.log(apiDataFilterProductsByTypeAndName);
 
-    //     }
-    // };
+        if (!apiDataFilterProductsByTypeAndName) {
+            Alert.alert("Erro!")
+        } else {
+            try {
+                const lowerCaseText = text.toLowerCase()
 
-    // const handleSearchProduct = async () => {
-    //     const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
-    //     console.log(apiDataFilterProductsByTypeAndName);
+                const filter = apiDataFilterProductsByTypeAndName.filter(({ name, productType }: SearcProductProps) => {
+                    const lowerCaseName = name.toLowerCase()
+                    const lowerCaseProductType = productType.toLowerCase()
+                    return lowerCaseName.includes(lowerCaseText) || lowerCaseProductType.includes(lowerCaseText)
+                });
 
-    //     if (!apiDataFilterProductsByTypeAndName) {
-    //         Alert.alert("Erro!")
-    //     } else {
-    //         try {
-    //             const lowerCaseText = text.toLowerCase()
+                console.log(filter);
+                setProducts(filter);
+            } catch (error) {
+                alert('filter name and productType not get:' + error);
+            }
+        }
+    };
 
-    //             const filter = apiDataFilterProductsByTypeAndName.filter(({ name, productType }: SearcProductProps) => {
-    //                 const lowerCaseName = name.toLowerCase()
-    //                 const lowerCaseProductType = productType.toLowerCase()
-    //                 return lowerCaseName.includes(lowerCaseText) || lowerCaseProductType.includes(lowerCaseText)
-    //             });
+    const handleClickFilterProductType = async (productType: any) => {
+        const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}&disponibility=true`)
 
-    //             console.log(filter);
-    //             setProducts(filter);
-    //         } catch (error) {
-    //             alert('filter name and productType not get:' + error);
-    //         }
-    //     }
-    // };
+        if (!apiDataFilterProductsByType)
+            alert("Erro!")
+        else {
+            try {
+                const typeProduct = await apiDataFilterProductsByType
+                setProducts(typeProduct)
+            } catch (error) {
+                alert("typeProduct not get:" + error)
+            }
 
-    // const handleClickFilterProductType = async (productType: any) => {
-    //     const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}&disponibility=true`)
-
-    //     if (!apiDataFilterProductsByType)
-    //         alert("Erro!")
-    //     else {
-    //         try {
-    //             const typeProduct = await apiDataFilterProductsByType
-    //             setProducts(typeProduct)
-    //         } catch (error) {
-    //             alert("typeProduct not get:" + error)
-    //         }
-
-    //     }
-    // };
+        }
+    };
 
 
-    // const pullMeDown = async () => {
-    //     setRefresh(true);
-    //     await handleCardProducts();
-    //     setRefresh(false);
-    // };
+    const pullMeDown = async () => {
+        setRefresh(true);
+        await handleCardProducts();
+        setRefresh(false);
+    };
 
 
-    // useEffect(() => {
-    //     handleFilterProductsTypes();
-    //     handleCardProducts()
-    // }, [])
+    useEffect(() => {
+        handleFilterProductsTypes();
+        handleCardProducts()
+    }, [])
 
 
     return (
@@ -184,7 +176,7 @@ const AllProducts = () => {
                                     <CustomTextInput
                                         data={text}
                                         onChange={setText}
-                                       // onPress={handleSearchProduct}
+                                        onPress={handleSearchProduct}
                                     />
                                 </View>
                                 <View style={styles.ContainerTypeProduct}>

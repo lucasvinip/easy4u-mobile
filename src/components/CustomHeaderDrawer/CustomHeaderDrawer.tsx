@@ -11,18 +11,42 @@ import {
 import { Badge } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux'
-import { useRouter } from 'expo-router';
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { createSelector } from 'reselect';
 import { AppTexts } from '../../assets/strings';
 import { styles } from './style'
-
-
+import { useRouter } from 'expo-router';
 
 const CustomHeaderDrawer = () => {
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
-    const amount: any = useSelector((state: any) => state.cart.items.length)
+    const router = useRouter();
 
-    const router = useRouter()
+    const selectCartItems = (state: any) => state.cart.items;
+    const getCartInfo = createSelector(
+        [selectCartItems], (items) => {
+            const uniqueItems = Array.from(new Set(items.map((item: any) => item.id))).map((uniqueId) => {
+                const quantity = items.filter((item: any) => item.id === uniqueId).length;
+                const itemInfo = items.find((item: any) => item.id === uniqueId);
+                return {
+                    id: uniqueId,
+                    name: itemInfo.name,
+                    photo: itemInfo.photo,
+                    price: itemInfo.price, 
+                    quantity: quantity,
+                };
+            });
+
+            AsyncStorage.setItem("items", JSON.stringify(uniqueItems))
+
+            return {
+                cartSize: items.length,
+                uniqueItems: uniqueItems,
+            };
+        }
+    );
+
+    const cartInfo = useSelector(getCartInfo);
+
     return (
         <View style={styles.ContainerHeader}>
             <View style={styles.Header}>
@@ -40,7 +64,7 @@ const CustomHeaderDrawer = () => {
                         <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
                             <View>
                                 <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
-                                <Badge style={styles.Badge}>{amount}</Badge>
+                                <Badge style={styles.Badge}>{cartInfo.cartSize}</Badge>
                             </View>
                         </TouchableOpacity>
                     </View>
