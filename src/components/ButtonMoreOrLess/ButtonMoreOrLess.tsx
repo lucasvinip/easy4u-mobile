@@ -7,17 +7,26 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { styles } from './style';
+import { useDispatch } from 'react-redux';
+import { handleButtonMinus, handleButtonPlus } from '../../redux/features/shoppingCart/shoppingCartSlice';
 interface ButtonMoreOrLessProps {
-    onPressMinus?: () => void,
-    onPressPlus?: () => void,
+    price: number
     quantity: any,
 }
 
-const ButtonMoreOrLess = ({onPressMinus, onPressPlus, quantity}:ButtonMoreOrLessProps) => {
+const ButtonMoreOrLess = ({ quantity, price}:ButtonMoreOrLessProps) => {
+
+    const dispatch = useDispatch()
+    const buttonMinus = () => dispatch(handleButtonMinus(price))
+    const buttonPlus = () => dispatch(handleButtonPlus(price))
+
+    console.log(buttonMinus());
+    console.log(buttonPlus());
+
     return (
         <View style={styles.QuantityContainer}>
             <View style={styles.MinusButton}>
-                <TouchableOpacity onPress={onPressMinus}>
+                <TouchableOpacity onPress={buttonMinus}>
                     <MaterialCommunityIcons name={'minus-thick'} style={styles.MinusIcon} />
                 </TouchableOpacity>
             </View>
@@ -25,7 +34,7 @@ const ButtonMoreOrLess = ({onPressMinus, onPressPlus, quantity}:ButtonMoreOrLess
                 <Text style={styles.QuantityText}>{quantity}</Text>
             </View>
             <View style={styles.PlusButton}>
-                <TouchableOpacity onPress={onPressPlus}>
+                <TouchableOpacity onPress={buttonPlus}>
                     <MaterialCommunityIcons name={'plus-thick'} style={styles.PlusIcon} />
                 </TouchableOpacity>
             </View>

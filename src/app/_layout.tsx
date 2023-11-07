@@ -2,8 +2,6 @@ import { Stack } from 'expo-router';
 import { store } from '../redux/store'
 import { Provider } from 'react-redux'
 
-
-
 import theme from '../styles/theme';
 import { AppTexts } from '../assets/strings';
 import CustomHeaderTitle from '../components/CustomHeaderTitle/CustomHeaderTitle';

@@ -20,8 +20,9 @@ import { useRouter } from 'expo-router';
 const CustomHeaderDrawer = () => {
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
     const router = useRouter();
-
     const selectCartItems = (state: any) => state.cart.items;
+
+    
     const getCartInfo = createSelector(
         [selectCartItems], (items) => {
             const uniqueItems = Array.from(new Set(items.map((item: any) => item.id))).map((uniqueId) => {

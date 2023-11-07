@@ -177,7 +177,7 @@ const FavoriteItems = () => {
               >
                 {isSkeleton ? (
                   <>
-                    <View style={{ gap: 20 }}>
+                    <View style={{ gap: 20 } }>
                       <SkeletonFavorites />
                       <SkeletonFavorites />
                       <SkeletonFavorites />

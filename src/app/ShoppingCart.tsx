@@ -36,34 +36,29 @@ const ShoppingCart = () => {
 
     const fetchData = async () => {
         const itemsProducts = await getProductsItems()
-        const productInfo = itemsProducts.map(({ name, price, photo, quantity }: ProductProps) => {
-            console.log(name)
-            return {
-                name,
-                price,
-                photo,
-                quantity
-            }
-        });
+        const productInfo = itemsProducts.map((item: ProductProps) => ({
+            name: item.name,
+            price: item.price,
+            photo: item.photo,
+            quantity: item.quantity
+        }));
         setProducts(productInfo)
     }
-    const handleTotalProducts = async () => {
+    const handleSubTotalAndTotalProducts = async () => {
         const itemsProducts = await getProductsItems()
+
         console.log("meuu o " + itemsProducts);
 
-        const totalSum = itemsProducts.filter((item: ProductProps) => {
-            const price: any[] = item.price
-            
-            
-        }, 0);
-
-        console.log("olaaaaaa aa" + totalSum)
-
+        const filterPrice = itemsProducts.map((item: ProductProps) => {
+            return item.price
+        })
+        const totalPrice = filterPrice.reduce((total: number, price: number) => total + price, 0)
+        setSubTotalAndTotal(totalPrice)
     }
 
     useEffect(() => {
         fetchData()
-        handleTotalProducts()
+        handleSubTotalAndTotalProducts()
     }, [])
 
     return (

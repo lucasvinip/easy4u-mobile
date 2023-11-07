@@ -5,6 +5,8 @@ import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMore
 import ButtonAddCart from '../ButtonCart/ButtonAddCart';
 
 import { styles } from './style';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleButtonMinus } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
 // import { ShoppingContext } from '../../../../context/shoppingCart';
 
 interface CardMainProps {
@@ -15,7 +17,7 @@ interface CardMainProps {
     photo: string | undefined
 }
 
-const CardMain = ({ 
+const CardMain = ({
     name,
     price,
     description,
@@ -25,17 +27,13 @@ const CardMain = ({
     const [quantity, setQuantity] = useState<number>(1)
     const [totalPrice, setTotalPrice] = useState<any>(price)
 
+    
+   //const buttonPlus = dispatch(handleButtonPlus(price))
+
     const currentPrice = () => {
         setTotalPrice(price)
     }
-    const handleButtonMinus = () => {
-        if (quantity > 1) {
-            const updatedQuantity = quantity - 1;
-            setQuantity(updatedQuantity);
-            const updatedPrice = price * updatedQuantity
-            setTotalPrice(updatedPrice);
-        }
-    }
+   
     const handleButtonPlus = () => {
         const updatedQuantity = quantity + 1;
         setQuantity(updatedQuantity);
@@ -62,8 +60,7 @@ const CardMain = ({
                     </Text>
                     <ButtonMoreOrLess
                         quantity={quantity}
-                        onPressMinus={handleButtonMinus}
-                        onPressPlus={handleButtonPlus} />
+                        price={price} />
                 </View>
             </View>
             <View style={styles.ContainerDescription}>

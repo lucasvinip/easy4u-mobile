@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppTexts } from '../../../../assets/strings';
 import { styles, shadowStyle } from './style'
-import { addCartItem } from '../../../../redux/features/counter/counterSlice';
+import { addCartItem } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
 
 
 interface ButtonAddCartProps {
