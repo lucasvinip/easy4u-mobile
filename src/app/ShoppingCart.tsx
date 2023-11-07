@@ -16,34 +16,27 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 interface ProductProps {
     id: number,
     name: any,
-    price: number | undefined,
+    price: number,
     photo: any,
     productType: string,
     quantity: number
 }
 
 const ShoppingCart = () => {
-    // const itemsCard: any = useSelector((state: any) => state.cart.items)
-    // console.log(itemsCard);
     const [products, setProducts] = useState<any[]>([])
+    const [subTotalAndTotal, setSubTotalAndTotal] = useState<string>("")
 
-    // const getCardProduct = () => {
-    //     const data = itemsCard.map(({ name, price, photo, quantity}: ProductProps) => {
-    //         return {
-    //             name,
-    //             price,
-    //             photo,
-    //             quantity
-    //         }
-    //     });
-    //     setProducts(data)
-    // }
-
-    const fetchData = async () => {
+    const getProductsItems = async () => {
         const items: any = await AsyncStorage.getItem("items")
         console.log(items)
         const getProduct = JSON.parse(items)
-        const productInfo = getProduct.map(({ name, price, photo, quantity}: ProductProps) => {
+
+        return getProduct
+    }
+
+    const fetchData = async () => {
+        const itemsProducts = await getProductsItems()
+        const productInfo = itemsProducts.map(({ name, price, photo, quantity }: ProductProps) => {
             console.log(name)
             return {
                 name,
@@ -54,9 +47,23 @@ const ShoppingCart = () => {
         });
         setProducts(productInfo)
     }
+    const handleTotalProducts = async () => {
+        const itemsProducts = await getProductsItems()
+        console.log("meuu o " + itemsProducts);
+
+        const totalSum = itemsProducts.filter((item: ProductProps) => {
+            const price: any[] = item.price
+            
+            
+        }, 0);
+
+        console.log("olaaaaaa aa" + totalSum)
+
+    }
 
     useEffect(() => {
         fetchData()
+        handleTotalProducts()
     }, [])
 
     return (
@@ -70,8 +77,8 @@ const ShoppingCart = () => {
                         </View>
                         <View style={styles.ContainerMain}>
                             {
-                                products.map(({ name, price, photo, quantity}: ProductProps, index: number) => (
-                                    <ProductItem key={index} name={name} price={price} photo={photo} quantity={quantity}/>
+                                products.map(({ name, price, photo, quantity }: ProductProps, index: number) => (
+                                    <ProductItem key={index} name={name} price={price} photo={photo} quantity={quantity} />
                                 ))
                             }
                         </View>
@@ -80,7 +87,9 @@ const ShoppingCart = () => {
                         </View>
                         <View style={styles.ConatinerFooter}>
                             <View style={{}}>
-                                <SubTotalDiscount />
+                                <SubTotalDiscount
+                                    subtotal={subTotalAndTotal} discount={"00,00"} total={subTotalAndTotal}
+                                />
                             </View>
                         </View>
                     </ScrollView>

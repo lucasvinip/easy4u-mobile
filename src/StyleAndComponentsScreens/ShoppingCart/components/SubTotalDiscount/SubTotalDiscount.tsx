@@ -7,23 +7,29 @@ import theme from '../../../../styles/theme';
 import { styles } from './style';
 import Button from '../../../../components/Button/Button';
 
-const SubTotalDiscount = () => {
+interface SubTotalDiscountProps {
+  subtotal: string,
+  discount: string,
+  total: string,
+}
+
+const SubTotalDiscount = ({subtotal, discount, total}: SubTotalDiscountProps) => {
   return (
     <View style={styles.Card}>
       <View style={styles.ContentContainer}>
         <View style={{ width: '90%', height: '66%', justifyContent: 'space-around' }}>
           <View style={styles.TextRow}>
             <Text style={styles.labelText}>{AppTexts.Subtotal}</Text>
-            <Text style={styles.valueText}>R$ 14,50</Text>
+            <Text style={styles.valueText}>R$ {subtotal}</Text>
           </View>
           <View style={styles.TextRow}>
             <Text style={styles.labelText}>{AppTexts.Discount}</Text>
-            <Text style={styles.valueText}>R$ 0,00</Text>
+            <Text style={styles.valueText}>R$ {discount}</Text>
           </View>
           <View style={styles.TextRow}>
             <Text style={styles.labelText}>{AppTexts.Total}</Text>
             <Link href={'/Checkout'} asChild>
-              <Text style={styles.valueText}>R$ 14,50</Text>
+              <Text style={styles.valueText}>R$ {total}</Text>
             </Link>
           </View>
         </View>
