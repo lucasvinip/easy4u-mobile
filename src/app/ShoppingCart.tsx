@@ -28,20 +28,28 @@ const ShoppingCart = () => {
 
     const getProductsItems = async () => {
         const items: any = await AsyncStorage.getItem("items")
-        console.log(items)
+        console.log("diidd " + items)
         const getProduct = JSON.parse(items)
 
         return getProduct
     }
 
     const fetchData = async () => {
-        const itemsProducts = await getProductsItems()
-        const productInfo = itemsProducts.map((item: ProductProps) => ({
-            name: item.name,
-            price: item.price,
-            photo: item.photo,
-            quantity: item.quantity
-        }));
+        const itemsProducts = await getProductsItems()        
+        const productInfo = itemsProducts.map((item: ProductProps) => {
+            console.log(" meu nome é " + item.quantity);
+            
+            return item  
+        });
+
+        // const productInfo = itemsProducts.map((item: ProductProps) => ({
+        //     name: item.name,
+        //     price: item.price,
+        //     photo: item.photo,
+        //     quantity: item.quantity
+        // }));
+        console.log(" naooo " + productInfo.quantity);
+
         setProducts(productInfo)
     }
     const handleSubTotalAndTotalProducts = async () => {
@@ -72,8 +80,13 @@ const ShoppingCart = () => {
                         </View>
                         <View style={styles.ContainerMain}>
                             {
-                                products.map(({ name, price, photo, quantity }: ProductProps, index: number) => (
-                                    <ProductItem key={index} name={name} price={price} photo={photo} quantity={quantity} />
+                                products.map((item: ProductProps, index: number) => (
+                                    <ProductItem
+                                        key={index}
+                                        name={item.name}
+                                        price={item.price}
+                                        photo={item.photo}
+                                        quantity={item.quantity} />
                                 ))
                             }
                         </View>

@@ -82,6 +82,7 @@ const AllProducts = () => {
 
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
+        
         if (!apiDataProducts)
             Alert.alert("Erro!")
         else {

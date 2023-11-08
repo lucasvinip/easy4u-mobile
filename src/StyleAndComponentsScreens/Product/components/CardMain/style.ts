@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   TypeProductName: {
     fontFamily: theme.FONTS.Popp600,
     fontSize: RFValue(20),
-    width: '60%',
+    width: '90%',
     height: 'auto',
   },
   AmountText: {
@@ -27,12 +27,14 @@ const styles = StyleSheet.create({
   },
   ContainerDescription: {
     width: '100%',
-    height:'12%'
+    height:'12%',
   },
   TitleDescription:{
     fontFamily: theme.FONTS.Raleway600,
     color: theme.COLORS.Gray37C7C7A,
-    fontSize: 14
+    fontSize: 14,
+    width: 'auto',
+    marginLeft: 30
   },
   ContainerMain: {
     backgroundColor: 'green',

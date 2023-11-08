@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -8,22 +8,32 @@ import {
 import { AppTexts } from '../../../../assets/strings';
 import { styles } from './style'
 import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMoreOrLess';
+import { useDispatch } from 'react-redux';
+// import { decrementQuantity, incrementQuantity } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
 
-interface ProductItemProps{
-    price: number | undefined,
+interface ProductItemProps {
+    price: number,
     name: string | undefined,
     photo: string | undefined,
     quantity: number
 }
 
-const ProductItem = ({price, photo, name, quantity} : ProductItemProps) => {
+const ProductItem = ({
+    price,
+    photo,
+    name,
+    quantity
+}: ProductItemProps) => {
+
+    console.log("bababa" + quantity);
+
 
     return (
         <View>
             <View style={styles.Container}>
                 <View style={styles.ProductInfoContainer}>
                     <Image
-                        source={{uri: photo}}
+                        source={{ uri: photo }}
                         style={[styles.ProductImage]}
                     />
                     <View style={styles.ProductTextContainer}>
@@ -35,7 +45,12 @@ const ProductItem = ({price, photo, name, quantity} : ProductItemProps) => {
                         </Text>
                     </View>
                 </View>
-                <ButtonMoreOrLess quantity={quantity}/>
+                <ButtonMoreOrLess
+                    onPressMinus={() => console.log("minus")}
+                    onPressPlus={() => console.log("plus")}
+                    quantity={quantity}
+                    price={price}
+                />
             </View>
             <View style={styles.SeparatorContainer}>
                 <View style={styles.Separator} />
