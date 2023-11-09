@@ -10,13 +10,16 @@ import { styles } from './style';
 import { useDispatch } from 'react-redux';
 // import { handleButtonMinus, handleButtonPlus } from '../../redux/features/shoppingCart/shoppingCartSlice';
 interface ButtonMoreOrLessProps {
-    price: number
     quantity: any,
     onPressPlus: () => void,
     onPressMinus: () => void,
 }
 
-const ButtonMoreOrLess = ({ quantity, price, onPressPlus, onPressMinus }: ButtonMoreOrLessProps) => {
+const ButtonMoreOrLess = ({
+    quantity,
+    onPressPlus,
+    onPressMinus
+}: ButtonMoreOrLessProps) => {
 
     return (
         <View style={styles.QuantityContainer}>

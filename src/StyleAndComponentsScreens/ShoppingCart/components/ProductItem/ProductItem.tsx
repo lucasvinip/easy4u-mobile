@@ -15,18 +15,19 @@ interface ProductItemProps {
     price: number,
     name: string | undefined,
     photo: string | undefined,
-    quantity: number
+    quantity: number,
+    onPressPlus: () => void,
+    onPressMinus: () =>void
 }
 
 const ProductItem = ({
     price,
     photo,
     name,
-    quantity
+    quantity,
+    onPressMinus,
+    onPressPlus
 }: ProductItemProps) => {
-
-    console.log("bababa" + quantity);
-
 
     return (
         <View>
@@ -46,10 +47,9 @@ const ProductItem = ({
                     </View>
                 </View>
                 <ButtonMoreOrLess
-                    onPressMinus={() => console.log("minus")}
-                    onPressPlus={() => console.log("plus")}
+                    onPressMinus={onPressMinus}
+                    onPressPlus={onPressPlus}
                     quantity={quantity}
-                    price={price}
                 />
             </View>
             <View style={styles.SeparatorContainer}>

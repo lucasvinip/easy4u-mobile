@@ -43,7 +43,7 @@ const ContainerFullOrder = ({
           ({ product, qntd, total_value }: Product, index: number) => (
             <View key={index}>
               <View style={styles.ProductInfo}>
-                <View style={{ width: 231, flexDirection: "row", gap: 25 }}>
+                <View style={{ width: '70%', flexDirection: "row", gap: 25 }}>
                   <Text style={styles.ProductName}>{product.name}</Text>
                   <Text style={styles.ProductQntd}>x{qntd}</Text>
                 </View>

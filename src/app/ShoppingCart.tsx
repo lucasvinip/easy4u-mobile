@@ -25,6 +25,35 @@ interface ProductProps {
 const ShoppingCart = () => {
     const [products, setProducts] = useState<any[]>([])
     const [subTotalAndTotal, setSubTotalAndTotal] = useState<string>("")
+    const [productsQuantity, setProductsQuantity] = useState<any>()
+    const [newPrice, setNewPrice] = useState<any>()
+
+    const teste = async () => {
+        const itemsProducts = await getProductsItems()
+        const filterQuantity = itemsProducts.map((item: ProductProps) => (item.quantity))
+        const filterPrice = itemsProducts.map((item: ProductProps) => (item.price))
+        
+        console.log(filterQuantity)
+        console.log(filterPrice)
+        
+        
+        setProductsQuantity(filterQuantity)
+        console.log("Quantidade"+   productsQuantity)
+        setNewPrice(filterPrice)
+        console.log("New Price"+ newPrice)
+    }
+
+    const handleButtonMinus = async () => {
+        if (productsQuantity > 1) {
+            const updatedQuantity = productsQuantity - 1;
+            setProductsQuantity(updatedQuantity)
+            const updatedPrice = newPrice * updatedQuantity
+            console.log("dDENOV"+ newPrice);
+            setNewPrice(updatedPrice);
+        }
+    }
+
+
 
     const getProductsItems = async () => {
         const items: any = await AsyncStorage.getItem("items")
@@ -33,21 +62,14 @@ const ShoppingCart = () => {
 
         return getProduct
     }
-
     const fetchData = async () => {
-        const itemsProducts = await getProductsItems()        
+        const itemsProducts = await getProductsItems()
         const productInfo = itemsProducts.map((item: ProductProps) => {
             console.log(" meu nome é " + item.quantity);
-            
-            return item  
+
+            return item
         });
 
-        // const productInfo = itemsProducts.map((item: ProductProps) => ({
-        //     name: item.name,
-        //     price: item.price,
-        //     photo: item.photo,
-        //     quantity: item.quantity
-        // }));
         console.log(" naooo " + productInfo.quantity);
 
         setProducts(productInfo)
@@ -67,6 +89,7 @@ const ShoppingCart = () => {
     useEffect(() => {
         fetchData()
         handleSubTotalAndTotalProducts()
+        teste()
     }, [])
 
     return (
@@ -84,9 +107,12 @@ const ShoppingCart = () => {
                                     <ProductItem
                                         key={index}
                                         name={item.name}
-                                        price={item.price}
+                                        price={newPrice}
                                         photo={item.photo}
-                                        quantity={item.quantity} />
+                                        quantity={productsQuantity}
+                                        onPressPlus={() => console.log("addPlus" + (productsQuantity + 1))}
+                                        onPressMinus={handleButtonMinus}
+                                    />
                                 ))
                             }
                         </View>

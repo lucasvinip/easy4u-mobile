@@ -15,7 +15,8 @@ interface CardMainProps {
     price: any,
     description: string | undefined,
     id: number,
-    photo: string | undefined
+    photo: string | undefined,
+    quantity: number
 }
 
 const CardMain = ({
@@ -23,36 +24,34 @@ const CardMain = ({
     price,
     description,
     id,
-    photo
+    photo,
+    quantity
 }: CardMainProps) => {
 
-    const [quantity, setQuantity] = useState<number>(1)
-    const [totalPrice, setTotalPrice] = useState<any>(price)
+    // const currentPrice = () => {
+    //     setTotalPrice(price)
+    // }
+    // const handleButtonMinus = () => {
+    //     if (quantity > 1) {
+    //         const updatedQuantity = quantity - 1;
+    //         setQuantity(updatedQuantity);            
+    //         const updatedPrice = price * updatedQuantity
+    //         setTotalPrice(updatedPrice);
+    //     }
+    // }
+    // const handleButtonPlus = () => {
+    //     const updatedQuantity = quantity + 1;
+    //     setQuantity(updatedQuantity);
 
-    const currentPrice = () => {
-        setTotalPrice(price)
-    }
-    const handleButtonMinus = () => {
-        if (quantity > 1) {
-            const updatedQuantity = quantity - 1;
-            setQuantity(updatedQuantity);            
-            const updatedPrice = price * updatedQuantity
-            setTotalPrice(updatedPrice);
-        }
-    }
-    const handleButtonPlus = () => {
-        const updatedQuantity = quantity + 1;
-        setQuantity(updatedQuantity);
+    //     if (updatedQuantity >= 2) {
+    //         const updatedPrice = price * updatedQuantity
+    //         setTotalPrice(updatedPrice)
+    //     }
+    // }
 
-        if (updatedQuantity >= 2) {
-            const updatedPrice = price * updatedQuantity
-            setTotalPrice(updatedPrice)
-        }
-    }
-
-    useEffect(() => {
-        currentPrice()
-    }, [price]);
+    // useEffect(() => {
+    //     currentPrice()
+    // }, [price]);
 
     return (
         <View style={styles.Container}>
@@ -73,7 +72,7 @@ const CardMain = ({
             </View>
             <View style={styles.ContainerButton}>
                 <ButtonAddCart
-                    price={totalPrice}
+                    price={price}
                     quantity={quantity}
                     id={id}
                     name={name}

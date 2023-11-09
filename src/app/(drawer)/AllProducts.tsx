@@ -82,7 +82,7 @@ const AllProducts = () => {
 
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
-        
+
         if (!apiDataProducts)
             Alert.alert("Erro!")
         else {
@@ -160,7 +160,7 @@ const AllProducts = () => {
 
 
     return (
-        <UseFonts>
+        <UseFonts >
             <StatusBar
                 style='light'
                 translucent backgroundColor={theme.COLORS.Orange4FE724C}
@@ -182,7 +182,7 @@ const AllProducts = () => {
                                 </View>
                                 <View style={styles.ContainerTypeProduct}>
                                     <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
-                                        <TypeProduct productType='Todos' onPress={() => console.log('ola handleCardProducts')} />
+                                        <TypeProduct productType='Todos' onPress={handleCardProducts} />
                                         {typeProducts.map((productType: any, index: number) => (
                                             <TypeProduct key={index} productType={productType} onPress={() => handleClickFilterProductType(productType)} />
                                         ))}
@@ -213,7 +213,13 @@ const AllProducts = () => {
                                     </>
                                     : (
                                         products.map(({ name, price, description, photo, id }: ProductProps, index: number) => (
-                                            <CardProduct key={index} name={name} price={price} description={description} photo={photo} id={id} />
+                                            <CardProduct
+                                                key={index}
+                                                name={name}
+                                                price={price}
+                                                description={description}
+                                                photo={photo}
+                                                id={id} />
                                         ))
                                     )
                                 }
@@ -222,7 +228,7 @@ const AllProducts = () => {
                     </View>
                 </View>
             </SafeAreaView >
-        </UseFonts >
+        </UseFonts>
     );
 };
 
