@@ -33,6 +33,7 @@ const CustomHeaderDrawer = () => {
                     name: itemInfo.name,
                     photo: itemInfo.photo,
                     price: itemInfo.price, 
+                    productQuantity: itemInfo.quantity,
                     quantity: quantity,
                 };
             });

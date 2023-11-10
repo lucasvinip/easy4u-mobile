@@ -16,7 +16,6 @@ interface CardMainProps {
     description: string | undefined,
     id: number,
     photo: string | undefined,
-    quantity: number
 }
 
 const CardMain = ({
@@ -25,34 +24,7 @@ const CardMain = ({
     description,
     id,
     photo,
-    quantity
 }: CardMainProps) => {
-
-    // const currentPrice = () => {
-    //     setTotalPrice(price)
-    // }
-    // const handleButtonMinus = () => {
-    //     if (quantity > 1) {
-    //         const updatedQuantity = quantity - 1;
-    //         setQuantity(updatedQuantity);            
-    //         const updatedPrice = price * updatedQuantity
-    //         setTotalPrice(updatedPrice);
-    //     }
-    // }
-    // const handleButtonPlus = () => {
-    //     const updatedQuantity = quantity + 1;
-    //     setQuantity(updatedQuantity);
-
-    //     if (updatedQuantity >= 2) {
-    //         const updatedPrice = price * updatedQuantity
-    //         setTotalPrice(updatedPrice)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     currentPrice()
-    // }, [price]);
-
     return (
         <View style={styles.Container}>
             <View style={styles.ContainerHeader}>
@@ -73,7 +45,6 @@ const CardMain = ({
             <View style={styles.ContainerButton}>
                 <ButtonAddCart
                     price={price}
-                    quantity={quantity}
                     id={id}
                     name={name}
                     photo={photo}

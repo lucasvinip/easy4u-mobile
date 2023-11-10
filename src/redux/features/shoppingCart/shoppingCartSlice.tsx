@@ -19,25 +19,6 @@ export const cartSlice = createSlice({
     addCartItem(state, action: PayloadAction<number>) {
       state.items.push(action.payload)
     },
-    // incrementQuantity: (state, action: PayloadAction<any>) => {
-    //   const updatedQuantity = state.quantityProducts += 1
-      
-    //   if(updatedQuantity >= 2){
-    //     const updatePrice = action.payload * updatedQuantity
-    //     state.price = updatePrice
-    //   }
-    // }, 
-    // decrementQuantity: (state, action: PayloadAction<any>) => {
-    //   if(state.quantityProducts >= 2){
-    //     state.quantityProducts -=1
-    //     const updatePrice = action.payload * state.quantityProducts
-    //     console.log("eu sou " + updatePrice);
-        
-    //     let newPrice = state.price = updatePrice
-    //     console.log("aaaa " + newPrice);
-        
-    //   }
-    // },
   }
 })
 

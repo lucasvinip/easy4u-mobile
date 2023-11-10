@@ -26,6 +26,7 @@ type Product = {
     name: string;
     photo: string;
     price: number;
+
 };
 
 type Favorite = {
@@ -39,7 +40,6 @@ const Product = () => {
 
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
-
 
 
 
@@ -88,8 +88,12 @@ const Product = () => {
     };
 
     useEffect(() => {
-        handleCardProducts()
-        handleFavoriteItem()
+        const fetchData = async() =>{
+            await handleCardProducts()
+            await handleFavoriteItem()
+        }
+        
+        fetchData()
     }, [id]);
 
 
@@ -115,8 +119,8 @@ const Product = () => {
                                         price={dataProduct?.price}
                                         description={dataProduct?.description}
                                         id={+id}
-                                        photo={dataProduct?.photo}
-                                    />
+                                        photo={dataProduct?.photo}      
+                                        />
                                 </View>
                             </View>
                         </View>

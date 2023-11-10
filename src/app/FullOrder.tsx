@@ -75,11 +75,6 @@ const FullOrder = () => {
         }
     }, [idOrder, token]);
 
-
-
-
-    
-
     return (
         <SafeAreaView>
             <View style={styles.Screen}>

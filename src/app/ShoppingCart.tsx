@@ -24,40 +24,13 @@ interface ProductProps {
 
 const ShoppingCart = () => {
     const [products, setProducts] = useState<any[]>([])
-    const [subTotalAndTotal, setSubTotalAndTotal] = useState<string>("")
-    const [productsQuantity, setProductsQuantity] = useState<any>()
-    const [newPrice, setNewPrice] = useState<any>()
+    const [subTotalAndTotal, setSubTotalAndTotal] = useState<any>(0)
+    const [productsQuantity, setProductsQuantity] = useState<any>(0)
 
-    const teste = async () => {
-        const itemsProducts = await getProductsItems()
-        const filterQuantity = itemsProducts.map((item: ProductProps) => (item.quantity))
-        const filterPrice = itemsProducts.map((item: ProductProps) => (item.price))
-        
-        console.log(filterQuantity)
-        console.log(filterPrice)
-        
-        
-        setProductsQuantity(filterQuantity)
-        console.log("Quantidade"+   productsQuantity)
-        setNewPrice(filterPrice)
-        console.log("New Price"+ newPrice)
-    }
-
-    const handleButtonMinus = async () => {
-        if (productsQuantity > 1) {
-            const updatedQuantity = productsQuantity - 1;
-            setProductsQuantity(updatedQuantity)
-            const updatedPrice = newPrice * updatedQuantity
-            console.log("dDENOV"+ newPrice);
-            setNewPrice(updatedPrice);
-        }
-    }
-
-
+    const quantityItems = useSelector((state: any) => state.cart.items.length)
 
     const getProductsItems = async () => {
         const items: any = await AsyncStorage.getItem("items")
-        console.log("diidd " + items)
         const getProduct = JSON.parse(items)
 
         return getProduct
@@ -65,31 +38,82 @@ const ShoppingCart = () => {
     const fetchData = async () => {
         const itemsProducts = await getProductsItems()
         const productInfo = itemsProducts.map((item: ProductProps) => {
-            console.log(" meu nome é " + item.quantity);
-
             return item
-        });
-
-        console.log(" naooo " + productInfo.quantity);
-
+        })
         setProducts(productInfo)
     }
+    
+    const handleMultiplicationPriceAndQuantity = async () => {
+        try {
+            const itemsProducts = await getProductsItems();
+
+            const filterPrice = itemsProducts.map((item: ProductProps) => item.price)
+            const filterQuantity = itemsProducts.map((item: ProductProps) => item.quantity)
+
+            const multiplication: number[] = filterQuantity.map((quantity: number, index: string | number) => quantity * filterPrice[index])
+
+            console.log(multiplication);
+
+            return multiplication
+
+        } catch (error) {
+            console.error("Error in test:", error);
+        }
+    }
     const handleSubTotalAndTotalProducts = async () => {
-        const itemsProducts = await getProductsItems()
+        try {
+            const multiplication: any = await handleMultiplicationPriceAndQuantity()
 
-        console.log("meuu o " + itemsProducts);
+            console.log("meuu o " + multiplication);
 
-        const filterPrice = itemsProducts.map((item: ProductProps) => {
-            return item.price
-        })
-        const totalPrice = filterPrice.reduce((total: number, price: number) => total + price, 0)
-        setSubTotalAndTotal(totalPrice)
+            // Assuming multiplication is an array of numbers, not ProductProps
+            const totalPrice = multiplication.reduce((total: number, value: number) => total + value, 0);
+
+            setSubTotalAndTotal(totalPrice);
+        } catch (error) {
+            console.error("Error in handleSubTotalAndTotalProducts:", error);
+            // Handle the error, perhaps set a default value for total or show an error message
+        }
+
+    }
+
+
+    const handleButtonMinus = async () => {
+        // const itemsProducts = await getProductsItems();
+
+        // const filterQuantity = itemsProducts.map((item: ProductProps) => item.quantity)
+
+        // if (filterQuantity > 1) {
+        //     const updatedQuantity = productsQuantity - 1;
+        //     setProductsQuantity(updatedQuantity);
+        //     const updatedPrice = products * updatedQuantity
+        //     setTotalPrice(updatedPrice)
+        // }
+        console.log("aaaa");
+
+    }
+    const handleButtonPlus = () => {
+        // const updatedQuantity = productsQuantity + 1;
+        // setProductsQuantity(updatedQuantity);
+
+        // if (updatedQuantity >= 2) {
+        //     const updatedPrice = products * updatedQuantity
+        //     setTotalPrice(updatedPrice)
+
+        // }
+        console.log("AAAA");
+
+
     }
 
     useEffect(() => {
-        fetchData()
-        handleSubTotalAndTotalProducts()
-        teste()
+        const fetchDataAsync = async () => {
+            await fetchData();
+            await handleSubTotalAndTotalProducts();
+        };
+
+        fetchDataAsync()
+
     }, [])
 
     return (
@@ -98,7 +122,7 @@ const ShoppingCart = () => {
                 <View style={styles.Container}>
                     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ height: 'auto' }}>
                         <View style={styles.ContainerHeader}>
-                            <Text style={styles.HeaderText}>3 items</Text>
+                            <Text style={styles.HeaderText}>{quantityItems} items</Text>
                             <View style={styles.HeaderLine} />
                         </View>
                         <View style={styles.ContainerMain}>
@@ -107,11 +131,11 @@ const ShoppingCart = () => {
                                     <ProductItem
                                         key={index}
                                         name={item.name}
-                                        price={newPrice}
+                                        price={item.price}
                                         photo={item.photo}
-                                        quantity={productsQuantity}
-                                        onPressPlus={() => console.log("addPlus" + (productsQuantity + 1))}
+                                        quantity={item.quantity}
                                         onPressMinus={handleButtonMinus}
+                                        onPressPlus={handleButtonPlus}
                                     />
                                 ))
                             }
@@ -134,3 +158,7 @@ const ShoppingCart = () => {
 };
 
 export default ShoppingCart;
+function state(state: unknown): unknown {
+    throw new Error('Function not implemented.');
+}
+

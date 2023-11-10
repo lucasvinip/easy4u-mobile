@@ -10,7 +10,7 @@ import { addCartItem } from '../../../../redux/features/shoppingCart/shoppingCar
 interface ButtonAddCartProps {
     id: number
     price: number,
-    quantity: number,
+    quantity?: number,
     photo: string | undefined,
     name: string | undefined
 
