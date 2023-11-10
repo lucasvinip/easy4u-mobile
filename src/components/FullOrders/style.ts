@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     Container: {
         borderColor: theme.COLORS.Black393939,
         borderWidth: 0.5,
-        height: 250,
-        width: 346,
+        height: '90%',
+        width: "90%",
         borderRadius: 18
     },
     HeaderContainer: {
@@ -47,18 +47,14 @@ const styles = StyleSheet.create({
         fontFamily: theme.FONTS.Popp500,
     },
     TotalOrder: {
-        gap: 260,
-        marginTop: 120,
+        gap: 235,
+        marginTop: "25%",
         marginLeft: 15,
         marginVertical: 6,
         justifyContent: 'flex-start',
         flexDirection: 'row',
         alignItems: 'center',
     }
-
-
-
-    
 });
 
 export default styles;

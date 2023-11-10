@@ -9,15 +9,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
-
 import UseFonts from '../hooks/useFonts';
 import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
 import { performApi } from '../utils/api';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
-import { useToken } from '../hooks/useToken';
-import SkeletonProducts from '../components/Skeleton/SkeletonProducts/SkeletonProducts';
-import NotFoundExecption from '../components/NotFound/NotFound';
 import SkeletonOrders from '../components/Skeleton/SkeletonOrders';
 
 type Cart = {
@@ -45,10 +41,10 @@ type CartResponseProps = {
 }
 
 const Orders = () => {
-    const token = useToken();
     const [refresh, setRefresh] = useState<boolean>(false);
     const [orders, setOrders] = useState<any>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [token, setToken] = useState<string | null>("")
 
     const memoizedOrders = useMemo(() => {
         return orders.map((order: CartResponseProps, index: number) => {
@@ -70,6 +66,7 @@ const Orders = () => {
 
     const fetchData = async () => {
         const storedToken = await AsyncStorage.getItem("token");
+        setToken(storedToken);
         if (!storedToken) {
             router.push("/");
         } else {
@@ -125,7 +122,7 @@ const Orders = () => {
                                         memoizedOrders
                                     ) : (
                                         <View>
-                                            <Text>Ola</Text>
+                                            <Text>Você não tem nenhum pedido ainda! Realize já</Text>
                                         </View>
                                     )
                                 )

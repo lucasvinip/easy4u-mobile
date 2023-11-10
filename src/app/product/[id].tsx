@@ -33,15 +33,10 @@ type Favorite = {
     product: Product;
 };
 
-
-
 const Product = () => {
     const { id } = useLocalSearchParams()
-
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
-
-
 
     const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")

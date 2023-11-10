@@ -11,12 +11,9 @@ import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
-import ButtonCredit from '../StyleAndComponentsScreens/Checkout/components/ButtonCredit/ButtonCredit';
-import ContainerTotal from '../StyleAndComponentsScreens/Checkout/components/ContainerTotal/ContainerTotal';
 import { performApi } from '../utils/api';
 import ContainerFullOrder from '../components/FullOrders/CardFullOrders';
 import CustomQRCode from '../components/QRCode/QRCode';
-import QRCode from 'react-native-qrcode-svg';
 import ModalPoup from '../components/ModalPoup/Modal';
 
 type Details = {
@@ -47,7 +44,6 @@ const FullOrder = () => {
     const [order, setOrder] = useState<ProductByCartResponse>();
     const [isModalVisible, setModalVisible] = useState(false);
 
-
     const getIdFromLocalStorage = async () => {
         const orderId = await AsyncStorage.getItem("orderId");
         const getToken = await AsyncStorage.getItem("token");
@@ -65,14 +61,13 @@ const FullOrder = () => {
         }
     }
 
-
     useEffect(() => {
         getIdFromLocalStorage();
     
         if (idOrder) {
-            
             getProductInfo(idOrder);
-        }
+        };
+
     }, [idOrder, token]);
 
     return (
@@ -93,7 +88,7 @@ const FullOrder = () => {
                                     status={order.status}
                                     total={order.total} />
                             ) : (
-                                <Text>No items in the cart</Text>
+                                <Text>Não há items no carrinho!</Text>
                             )}
                         </View>
                     </View>
