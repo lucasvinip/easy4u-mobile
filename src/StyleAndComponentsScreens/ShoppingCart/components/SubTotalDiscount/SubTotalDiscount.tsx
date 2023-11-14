@@ -8,12 +8,16 @@ import { styles } from './style';
 import Button from '../../../../components/Button/Button';
 
 interface SubTotalDiscountProps {
-  subtotal: string,
-  discount: string,
-  total: string,
+  subtotal: number,
+  discount: number,
+  total: number,
 }
 
-const SubTotalDiscount = ({subtotal, discount, total}: SubTotalDiscountProps) => {
+const SubTotalDiscount = ({
+  subtotal,
+  discount,
+  total
+}: SubTotalDiscountProps) => {
   return (
     <View style={styles.Card}>
       <View style={styles.ContentContainer}>

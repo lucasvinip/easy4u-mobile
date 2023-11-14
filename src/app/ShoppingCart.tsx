@@ -5,28 +5,29 @@ import {
     ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RootState } from '../redux/store';
 
 import { styles } from '../StyleAndComponentsScreens/ShoppingCart/style';
 import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/ProductItem/ProductItem'
 import ScheduleTime from '../StyleAndComponentsScreens/ShoppingCart/components/SchuleTime/SchuleTime';
 import SubTotalDiscount from '../StyleAndComponentsScreens/ShoppingCart/components/SubTotalDiscount/SubTotalDiscount';
-import { useSelector } from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface ProductProps {
     id: number,
     name: any,
     price: number,
-    photo: any,
+    photo: string,
     productType: string,
     quantity: number
 }
 
 const ShoppingCart = () => {
     const [products, setProducts] = useState<any[]>([])
-    const [subTotalAndTotal, setSubTotalAndTotal] = useState<any>(0)
 
-    const quantityItems = useSelector((state: any) => state.cart.items.length)
+    const quantityItems = useSelector((state: RootState) => state.cart.items.length)
+    const total = useSelector((state: RootState) => state.cart.total)
 
     const getProductsItems = async () => {
         const items: any = await AsyncStorage.getItem("items")
@@ -43,43 +44,9 @@ const ShoppingCart = () => {
         })
         setProducts(productInfo)
     }
-
-    const handleMultiplicationPriceAndQuantity = async () => {
-        try {
-            const itemsProducts = await getProductsItems();
-
-            const filterPrice = itemsProducts.map((item: ProductProps) => item.price)
-            const filterQuantity = itemsProducts.map((item: ProductProps) => item.quantity)
-
-            const multiplication: number[] = filterQuantity.map((quantity: number, index: string | number) => quantity * filterPrice[index])
-
-            console.log(multiplication);
-
-            return multiplication
-
-        } catch (error) {
-            console.error("Error in test:", error);
-        }
-    }
-    const handleSubTotalAndTotalProducts = async () => {
-        try {
-            const multiplication: any = await handleMultiplicationPriceAndQuantity()
-
-            console.log("meuu o " + multiplication);
-
-            const totalPrice = multiplication.reduce((total: number, value: number) => total + value, 0);
-
-            setSubTotalAndTotal(totalPrice);
-        } catch (error) {
-            console.error("Error in handleSubTotalAndTotalProducts:", error);
-        }
-
-    }
-
     useEffect(() => {
         const fetchDataAsync = async () => {
             await fetchData();
-            await handleSubTotalAndTotalProducts();
         };
 
         fetchDataAsync()
@@ -114,7 +81,7 @@ const ShoppingCart = () => {
                         <View style={styles.ConatinerFooter}>
                             <View style={{}}>
                                 <SubTotalDiscount
-                                    subtotal={subTotalAndTotal} discount={"00,00"} total={subTotalAndTotal}
+                                    subtotal={total} discount={0} total={total}
                                 />
                             </View>
                         </View>

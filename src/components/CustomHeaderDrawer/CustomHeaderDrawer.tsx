@@ -13,16 +13,18 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createSelector } from 'reselect';
+import { RootState } from '../../redux/store';
+import { useRouter } from 'expo-router';
+
 import { AppTexts } from '../../assets/strings';
 import { styles } from './style'
-import { useRouter } from 'expo-router';
 
 const CustomHeaderDrawer = () => {
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
     const router = useRouter();
-    const selectCartItems = (state: any) => state.cart.items;
+    const selectCartItems = (state: RootState) => state.cart.items;
 
-    
+
     const getCartInfo = createSelector(
         [selectCartItems], (items) => {
             const uniqueItems = Array.from(new Set(items.map((item: any) => item.id))).map((uniqueId) => {
@@ -32,7 +34,7 @@ const CustomHeaderDrawer = () => {
                     id: uniqueId,
                     name: itemInfo.name,
                     photo: itemInfo.photo,
-                    price: itemInfo.price, 
+                    price: itemInfo.price,
                     productQuantity: itemInfo.quantity,
                     quantity: quantity,
                 };

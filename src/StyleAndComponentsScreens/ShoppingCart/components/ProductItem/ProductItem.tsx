@@ -42,7 +42,6 @@ const ProductItem = ({
                     </View>
                 </View>
                 <ButtonMoreOrLess
-                    product={{ name, price, photo }}
                     id={id}
                 />
             </View>

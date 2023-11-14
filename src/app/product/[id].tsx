@@ -83,14 +83,13 @@ const Product = () => {
     };
 
     useEffect(() => {
-        const fetchData = async() =>{
+        const fetchData = async () => {
             await handleCardProducts()
             await handleFavoriteItem()
         }
-        
+
         fetchData()
     }, [id]);
-
 
 
     return (
@@ -114,8 +113,8 @@ const Product = () => {
                                         price={dataProduct?.price}
                                         description={dataProduct?.description}
                                         id={+id}
-                                        photo={dataProduct?.photo}      
-                                        />
+                                        photo={dataProduct?.photo}
+                                    />
                                 </View>
                             </View>
                         </View>
