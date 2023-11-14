@@ -1,32 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     View,
     Text,
     Image,
 } from 'react-native';
 
-import { AppTexts } from '../../../../assets/strings';
-import { styles } from './style'
+import { styles } from './style';
 import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMoreOrLess';
 import { useDispatch } from 'react-redux';
-// import { decrementQuantity, incrementQuantity } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
+import { decrementItem, incrementItem } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
 
 interface ProductItemProps {
     price: number,
     name: string | undefined,
     photo: string | undefined,
-    quantity: number,
-    onPressPlus: () => void,
-    onPressMinus: () =>void
+    id: number
 }
 
 const ProductItem = ({
     price,
     photo,
     name,
-    quantity,
-    onPressMinus,
-    onPressPlus
+    id
 }: ProductItemProps) => {
 
     return (
@@ -47,9 +42,8 @@ const ProductItem = ({
                     </View>
                 </View>
                 <ButtonMoreOrLess
-                    onPressMinus={onPressMinus}
-                    onPressPlus={onPressPlus}
-                    quantity={quantity}
+                    product={{ name, price, photo }}
+                    id={id}
                 />
             </View>
             <View style={styles.SeparatorContainer}>

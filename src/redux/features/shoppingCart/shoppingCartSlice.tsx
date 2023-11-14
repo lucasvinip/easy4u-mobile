@@ -3,12 +3,13 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface CartState {
   items: any[],
-  // quantityProducts: number,
+  qty: number
   // price?: number
 }
 
 const initialState: CartState = {
   items: [],
+  qty: 0
   // quantityProducts: 1,
 }
 
@@ -18,30 +19,25 @@ export const cartSlice = createSlice({
   reducers: {
     addCartItem(state, action: PayloadAction<number>) {
       state.items.push(action.payload)
+      state.qty += 1
     },
+    incrementItem(state, action: PayloadAction<{ productId: number }>) {
+      const item = state.items.find(item => item.id === action.payload.productId);
+
+      if (item) {
+        item.quantity += 1;
+        state.qty += 1;
+      }
+    },
+    decrementItem(state) {
+      if (state.qty > 1) {
+        state.qty -= 1
+      }
+
+    }
   }
 })
 
-export const { addCartItem } = cartSlice.actions
+export const { addCartItem, incrementItem, decrementItem } = cartSlice.actions
 
 export default cartSlice.reducer
-
-
-// const handleButtonPlus = () => {
-//   const updatedQuantity = quantity + 1;
-//   setQuantity(updatedQuantity);
-
-//   if (updatedQuantity >= 2) {
-//       const updatedPrice = price * updatedQuantity
-//       setTotalPrice(updatedPrice)
-//   }
-// }
-
-// const handleButtonMinus = () => {
-//   if (quantity > 1) {
-//       const updatedQuantity = quantity - 1;
-//       setQuantity(updatedQuantity);
-//       const updatedPrice = price * updatedQuantity
-//       setTotalPrice(updatedPrice);
-//   }
-// }

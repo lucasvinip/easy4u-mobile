@@ -25,13 +25,14 @@ interface ProductProps {
 const ShoppingCart = () => {
     const [products, setProducts] = useState<any[]>([])
     const [subTotalAndTotal, setSubTotalAndTotal] = useState<any>(0)
-    const [productsQuantity, setProductsQuantity] = useState<any>(0)
 
     const quantityItems = useSelector((state: any) => state.cart.items.length)
 
     const getProductsItems = async () => {
         const items: any = await AsyncStorage.getItem("items")
         const getProduct = JSON.parse(items)
+
+        console.log(getProduct);
 
         return getProduct
     }
@@ -42,7 +43,7 @@ const ShoppingCart = () => {
         })
         setProducts(productInfo)
     }
-    
+
     const handleMultiplicationPriceAndQuantity = async () => {
         try {
             const itemsProducts = await getProductsItems();
@@ -66,43 +67,12 @@ const ShoppingCart = () => {
 
             console.log("meuu o " + multiplication);
 
-            // Assuming multiplication is an array of numbers, not ProductProps
             const totalPrice = multiplication.reduce((total: number, value: number) => total + value, 0);
 
             setSubTotalAndTotal(totalPrice);
         } catch (error) {
             console.error("Error in handleSubTotalAndTotalProducts:", error);
-            // Handle the error, perhaps set a default value for total or show an error message
         }
-
-    }
-
-
-    const handleButtonMinus = async () => {
-        // const itemsProducts = await getProductsItems();
-
-        // const filterQuantity = itemsProducts.map((item: ProductProps) => item.quantity)
-
-        // if (filterQuantity > 1) {
-        //     const updatedQuantity = productsQuantity - 1;
-        //     setProductsQuantity(updatedQuantity);
-        //     const updatedPrice = products * updatedQuantity
-        //     setTotalPrice(updatedPrice)
-        // }
-        console.log("aaaa");
-
-    }
-    const handleButtonPlus = () => {
-        // const updatedQuantity = productsQuantity + 1;
-        // setProductsQuantity(updatedQuantity);
-
-        // if (updatedQuantity >= 2) {
-        //     const updatedPrice = products * updatedQuantity
-        //     setTotalPrice(updatedPrice)
-
-        // }
-        console.log("AAAA");
-
 
     }
 
@@ -133,9 +103,7 @@ const ShoppingCart = () => {
                                         name={item.name}
                                         price={item.price}
                                         photo={item.photo}
-                                        quantity={item.quantity}
-                                        onPressMinus={handleButtonMinus}
-                                        onPressPlus={handleButtonPlus}
+                                        id={item.id}
                                     />
                                 ))
                             }
@@ -158,7 +126,3 @@ const ShoppingCart = () => {
 };
 
 export default ShoppingCart;
-function state(state: unknown): unknown {
-    throw new Error('Function not implemented.');
-}
-

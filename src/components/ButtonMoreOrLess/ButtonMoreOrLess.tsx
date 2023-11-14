@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     TouchableOpacity,
     View,
@@ -7,32 +7,45 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { styles } from './style';
-import { useDispatch } from 'react-redux';
-// import { handleButtonMinus, handleButtonPlus } from '../../redux/features/shoppingCart/shoppingCartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrementItem, incrementItem } from '../../redux/features/shoppingCart/shoppingCartSlice';
+
 interface ButtonMoreOrLessProps {
-    quantity: any,
-    onPressPlus: () => void,
-    onPressMinus: () => void,
+    product: {
+        name: string | undefined;
+        price: number;
+        photo: string | undefined,
+    },
+    id: number
 }
 
 const ButtonMoreOrLess = ({
-    quantity,
-    onPressPlus,
-    onPressMinus
+    product,
+    id
 }: ButtonMoreOrLessProps) => {
+    const dispatch = useDispatch();
+    const cartQty = useSelector((state: any) => state.cart.qty);
+
+    const handleMinus = () => {
+        dispatch(decrementItem());
+    }
+
+    const handlePlus = () => {
+        dispatch(incrementItem({productId: id}));
+    }
 
     return (
         <View style={styles.QuantityContainer}>
             <View style={styles.MinusButton}>
-                <TouchableOpacity onPress={onPressMinus}>
+                <TouchableOpacity onPress={handleMinus}>
                     <MaterialCommunityIcons name={'minus-thick'} style={styles.MinusIcon} />
                 </TouchableOpacity>
             </View>
             <View style={styles.QuantityTextContainer}>
-                <Text style={styles.QuantityText}>{quantity}</Text>
+                <Text style={styles.QuantityText}>{cartQty}</Text>
             </View>
             <View style={styles.PlusButton}>
-                <TouchableOpacity onPress={onPressPlus}>
+                <TouchableOpacity onPress={handlePlus}>
                     <MaterialCommunityIcons name={'plus-thick'} style={styles.PlusIcon} />
                 </TouchableOpacity>
             </View>

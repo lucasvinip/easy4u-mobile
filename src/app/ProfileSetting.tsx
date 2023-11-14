@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
-import { storage } from '../../firebaseConfig';
-import { getDownloadURL, uploadBytes, ref, deleteObject } from 'firebase/storage'
+import {
+    getDownloadURL,
+    uploadBytes,
+    ref,
+    deleteObject
+} from 'firebase/storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import theme from '../styles/theme';
 import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter/TouchTextAlter';
 import InputText from '../components/CustomTextInput/CustomTextInput';
@@ -13,10 +19,10 @@ import Button from '../components/Button/Button';
 import { styles } from '../StyleAndComponentsScreens/ProfileSetting/style';
 import UseFonts from '../hooks/useFonts';
 import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camera/Camera';
-import { useEffect } from 'react';
 import { performApi } from '../utils/api';
 import { useToken } from '../hooks/useToken';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { storage } from '../../firebaseConfig';
+
 
 const themeTextInput = {
     ...DefaultTheme,
@@ -84,7 +90,7 @@ const ProfileSetting = () => {
 
                 setTimeout(() => {
                     setLoading(false);
-         
+
                 }, 2000);
 
                 setSelectedImage(uploadURL);
@@ -112,7 +118,7 @@ const ProfileSetting = () => {
     }
     const saveImage = async () => {
         const foto = await AsyncStorage.getItem("savedImage")
-        const updateUserImage = await performApi.updateData("users", token, {photo: foto })
+        const updateUserImage = await performApi.updateData("users", token, { photo: foto })
         return updateUserImage
     }
 

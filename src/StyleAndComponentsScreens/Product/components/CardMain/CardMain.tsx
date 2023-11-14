@@ -1,14 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import { AppTexts } from '../../../../assets/strings';
-import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMoreOrLess';
-import ButtonAddCart from '../ButtonCart/ButtonAddCart';
 
 import { styles } from './style';
-import { useDispatch, useSelector } from 'react-redux';
-// import { decrementQuantity, incrementQuantity } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
-// import { handleButtonMinus } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
-// import { ShoppingContext } from '../../../../context/shoppingCart';
+import { AppTexts } from '../../../../assets/strings';
+import ButtonAddCart from '../ButtonCart/ButtonAddCart';
 
 interface CardMainProps {
     name: string | undefined,
