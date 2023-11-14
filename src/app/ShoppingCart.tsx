@@ -27,7 +27,6 @@ const ShoppingCart = () => {
     const [products, setProducts] = useState<any[]>([])
 
     const quantityItems = useSelector((state: RootState) => state.cart.items.length)
-    const total = useSelector((state: RootState) => state.cart.total)
 
     const getProductsItems = async () => {
         const items: any = await AsyncStorage.getItem("items")
@@ -79,10 +78,8 @@ const ShoppingCart = () => {
                             <ScheduleTime />
                         </View>
                         <View style={styles.ConatinerFooter}>
-                            <View style={{}}>
-                                <SubTotalDiscount
-                                    subtotal={total} discount={0} total={total}
-                                />
+                            <View>
+                                <SubTotalDiscount/>
                             </View>
                         </View>
                     </ScrollView>

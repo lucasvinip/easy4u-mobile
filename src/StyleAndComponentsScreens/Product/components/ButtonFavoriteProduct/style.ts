@@ -1,5 +1,4 @@
 import { StyleSheet, Platform } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import theme from '../../../../styles/theme';
 
 const styles = StyleSheet.create({
@@ -9,14 +8,14 @@ const styles = StyleSheet.create({
     },
     Heart: {
         borderRadius: 100,
-        width: 55,
-        height: 55,
+        width: 60,
+        height: 60,
         alignItems: 'center',
         justifyContent: 'center'
     },
     Icon: {
         color: theme.COLORS.Gray4F5F3EF,
-        fontSize: RFValue(30),
+        fontSize: 40,
     }
 });
 

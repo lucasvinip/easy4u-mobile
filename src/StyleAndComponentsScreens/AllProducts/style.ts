@@ -47,14 +47,14 @@ const styles = StyleSheet.create({
     ContainerInput: {
         justifyContent: 'center',
         alignItems: 'center',
-        
+
     },
     ContainerTypeProduct: {
         flexDirection: 'row',
         width: '98%',
         height: '20%',
         alignItems: 'center',
-        
+
     },
     TypeProduct: {
         flexDirection: 'row',

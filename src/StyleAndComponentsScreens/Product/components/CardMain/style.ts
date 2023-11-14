@@ -1,49 +1,58 @@
 import { StyleSheet, Platform } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import theme from '../../../../styles/theme';
 
 const styles = StyleSheet.create({
   Container: {
-    height: '92%',
-    justifyContent: 'space-around',
+    height: '85%',
+    justifyContent: 'space-evenly',
     alignItems: 'center'
   },
   ContainerHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     width: '95%',
+    height: 'auto'
   },
   TypeProductName: {
     fontFamily: theme.FONTS.Popp600,
-    fontSize: RFValue(20),
-    width: '90%',
+    fontSize: 26,
+    width: '60%',
+    textAlign: 'center',
     height: 'auto',
-  },
-  AmountText: {
-    color: theme.COLORS.Gray37C7C7A,
-    fontFamily: theme.FONTS.Popp600,
-    fontSize: RFValue(10),
-    textAlign: 'center'
   },
   ContainerDescription: {
     width: '100%',
-    height:'12%',
+    height: '30%',
   },
-  TitleDescription:{
+  TitleDescription: {
     fontFamily: theme.FONTS.Raleway600,
     color: theme.COLORS.Gray37C7C7A,
-    fontSize: 14,
+    fontSize: 15,
     width: 'auto',
-    marginLeft: 30
+    height: 'auto',
+    textAlign:'left',
+    marginLeft: 5
   },
   ContainerMain: {
-    backgroundColor: 'green',
     height: '57%',
-    width: '100%'
+    width: '100%',
+    justifyContent: 'center'
   },
   AvailableText: {
     fontFamily: theme.FONTS.Popp600,
-    fontSize: RFValue(15)
+    color: theme.COLORS.GrayC4C4C4,
+    fontSize: 15,
+    width: '35%',
+    textAlign: 'right'
+  },
+  AvailableProducts: {
+    height: '70%',
+    width: 'auto',
+    justifyContent: 'center'
+  },
+  ContainerProducts: {
+    height: '85%',
+    width: '100%',
+    flexDirection: 'row'
   },
   ContainerButton: {
     alignItems: 'center'

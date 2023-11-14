@@ -1,4 +1,4 @@
-import { StyleSheet, Platform} from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import theme from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
@@ -26,14 +26,14 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     ContainerTexts: {
-        width: 200,
+        width: '55%',
         justifyContent: 'space-evenly',
     },
     Text: {
         fontSize: 16,
         width: 'auto',
         color: theme.COLORS.Black393939,
-        fontFamily: theme.FONTS.Popp500, 
+        fontFamily: theme.FONTS.Popp500,
     },
     ContainerPrice: {
         flexDirection: 'row',
@@ -59,16 +59,16 @@ const styles = StyleSheet.create({
 
 const shadowStyle = {
     ...Platform.select({
-      ios: {
-        shadowColor: '#ffff',
-        shadowOffset: { width: 2, height: 10 },
-        shadowOpacity: 40,
-        shadowRadius: 5,
-      },
-      android: {
-        elevation: 2,
-      },
+        ios: {
+            shadowColor: '#ffff',
+            shadowOffset: { width: 2, height: 10 },
+            shadowOpacity: 40,
+            shadowRadius: 5,
+        },
+        android: {
+            elevation: 2,
+        },
     }),
-  };
+};
 
-export { styles, shadowStyle}
+export { styles, shadowStyle }

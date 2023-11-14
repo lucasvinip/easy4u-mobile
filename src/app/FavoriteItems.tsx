@@ -1,4 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import {
   Image,
   ScrollView,
@@ -168,7 +172,7 @@ const FavoriteItems = () => {
           <View style={styles.Container}>
             <View style={styles.ContainerItens}>
               <ScrollView
-                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
                 refreshControl={
                   <RefreshControl
                     refreshing={refresh}
@@ -177,7 +181,7 @@ const FavoriteItems = () => {
               >
                 {isSkeleton ? (
                   <>
-                    <View style={{ gap: 20 } }>
+                    <View>
                       <SkeletonFavorites />
                       <SkeletonFavorites />
                       <SkeletonFavorites />

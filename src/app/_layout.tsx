@@ -34,7 +34,6 @@ const Layout = () => {
 
                     }}
                 />
-
                 <Stack.Screen
                     name='product/[id]'
                     options={{
@@ -93,10 +92,10 @@ const Layout = () => {
                 <Stack.Screen
                     name='FullOrder'
                     options={{
+                        headerStyle: { backgroundColor: '#ffffff40' },
                         headerTransparent: true,
-                        title: 'PEDIDO',
-                        headerTintColor: theme.COLORS.Gray5E5959,
-                        headerShown: false
+                        headerTitleAlign: 'center',
+                        headerTitle: ''
                     }}
                 />
                 <Stack.Screen

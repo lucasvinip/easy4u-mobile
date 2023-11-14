@@ -1,8 +1,14 @@
-import { View, Text } from 'react-native';
+import {
+    View,
+    Text,
+    Image,
+    ScrollView
+} from 'react-native';
 
 import { styles } from './style';
 import { AppTexts } from '../../../../assets/strings';
 import ButtonAddCart from '../ButtonCart/ButtonAddCart';
+import ProductsDisponibility from './components/ProductsDisponibility/ProductsDisponibility';
 
 interface CardMainProps {
     name: string | undefined,
@@ -25,16 +31,26 @@ const CardMain = ({
                 <Text style={styles.TypeProductName}>
                     {name}
                 </Text>
-            </View>
-            <View style={styles.ContainerDescription}>
-                <Text style={styles.TitleDescription}>
-                    {description}
-                </Text>
+                <View style={styles.ContainerDescription}>
+                    <Text style={styles.TitleDescription}>
+                        {description} aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    </Text>
+                </View>
             </View>
             <View style={styles.ContainerMain}>
-                <Text style={styles.AvailableText}>
-                    {AppTexts.Available}
-                </Text>
+                <View style={styles.AvailableProducts}>
+                    <Text style={styles.AvailableText}>
+                        {AppTexts.Available}
+                    </Text>
+                    <ScrollView contentContainerStyle={styles.ContainerProducts} horizontal={true}>
+                        <ProductsDisponibility />
+                        <ProductsDisponibility />
+                        <ProductsDisponibility />
+                        <ProductsDisponibility />
+                        <ProductsDisponibility />
+                        <ProductsDisponibility />
+                    </ScrollView>
+                </View>
             </View>
             <View style={styles.ContainerButton}>
                 <ButtonAddCart

@@ -108,5 +108,7 @@ export const AppTexts = {
     Get_Out: 'Sair',
 
     Order_Again: 'Pedir Novamente',
-    Didnt_Choose_Image: 'Você não selecionou nenhuma imagem'
+    Didnt_Choose_Image: 'Você não selecionou nenhuma imagem',
+
+    Order_Progress: 'Pedido em Andamento'
 }
