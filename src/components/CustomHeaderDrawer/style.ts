@@ -3,11 +3,11 @@ import theme from '../../styles/theme';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 const styles = StyleSheet.create({
-    ContainerHeader: {
-        height: 120,
+    Container: {
+        height: 115,
         justifyContent: 'space-around',
     },
-    Header:{
+    Header: {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
@@ -26,23 +26,23 @@ const styles = StyleSheet.create({
         width: '90%',
         justifyContent: 'center'
     },
-    Icons:{
+    Icons: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-    },  
-    MenuIcon:{
+    },
+    MenuIcon: {
         fontSize: 28,
         color: theme.COLORS.WhiteEDF3EDEB,
         paddingTop: 5
     },
-    ShoppingCartIcon:{
+    ShoppingCartIcon: {
         fontSize: 26,
         color: theme.COLORS.WhiteEDF3EDEB,
     },
-    Badge:{
+    Badge: {
         position: 'absolute',
         bottom: 25,
-        left: 15, 
+        left: 15,
         backgroundColor: theme.COLORS.RedF15050,
         fontFamily: theme.FONTS.Popp600,
         fontSize: 12,

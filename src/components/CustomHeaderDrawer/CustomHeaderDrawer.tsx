@@ -18,6 +18,7 @@ import { useRouter } from 'expo-router';
 
 import { AppTexts } from '../../assets/strings';
 import { styles } from './style'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CustomHeaderDrawer = () => {
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
@@ -52,29 +53,31 @@ const CustomHeaderDrawer = () => {
     const cartInfo = useSelector(getCartInfo);
 
     return (
-        <View style={styles.ContainerHeader}>
-            <View style={styles.Header}>
-                <View style={styles.Title}>
-                    <Text style={styles.TitleProduct}>
-                        {AppTexts.Products}
-                    </Text>
-                </View>
-
-                <View style={styles.ContainerIcons}>
-                    <View style={styles.Icons}>
-                        <TouchableOpacity onPressOut={() => navigation.dispatch({ type: 'OPEN_DRAWER' })}>
-                            <MaterialCommunityIcons name='menu' style={styles.MenuIcon} />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
-                            <View>
-                                <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
-                                <Badge style={styles.Badge}>{cartInfo.cartSize}</Badge>
-                            </View>
-                        </TouchableOpacity>
+        <SafeAreaView style={styles.Container}>
+            <View>
+                <View style={styles.Header}>
+                    <View style={styles.Title}>
+                        <Text style={styles.TitleProduct}>
+                            {AppTexts.Products}
+                        </Text>
                     </View>
-                </View >
+
+                    <View style={styles.ContainerIcons}>
+                        <View style={styles.Icons}>
+                            <TouchableOpacity onPressOut={() => navigation.dispatch({ type: 'OPEN_DRAWER' })}>
+                                <MaterialCommunityIcons name='menu' style={styles.MenuIcon} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
+                                <View>
+                                    <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
+                                    <Badge style={styles.Badge}>{cartInfo.cartSize}</Badge>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    </View >
+                </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 

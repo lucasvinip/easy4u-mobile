@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
     Container: {
         backgroundColor: theme.COLORS.Whiteffffff,
         borderRadius: 100,
-        width: 90,
-        height: 90,
+        width: '35%',
+        height: '90%',
         alignItems: 'center',
         justifyContent: 'center'
     },

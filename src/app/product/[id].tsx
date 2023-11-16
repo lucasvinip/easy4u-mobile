@@ -116,7 +116,7 @@ const Product = () => {
                                     <ButtonFavoriteProduct idProduct={id} favorite={isFavorite} />
                                 </View>
                                 <View style={styles.ContainerMain}>
-                                    <CardMain
+                                    <CardMain    
                                         name={dataProduct?.name}
                                         price={dataProduct?.price}
                                         description={dataProduct?.description}

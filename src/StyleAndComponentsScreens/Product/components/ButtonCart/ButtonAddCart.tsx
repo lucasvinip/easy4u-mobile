@@ -10,7 +10,6 @@ import { addCartItem } from '../../../../redux/features/shoppingCart/shoppingCar
 interface ButtonAddCartProps {
     id: number
     price: number,
-    quantity?: number,
     photo: string | undefined,
     name: string | undefined
 
@@ -19,14 +18,13 @@ interface ButtonAddCartProps {
 const ButtonAddCart = ({
     price,
     id,
-    quantity,
     photo,
     name
 }: ButtonAddCartProps) => {
     const dispatch = useDispatch();
 
     const handleAddCart = () => {
-        const item: any = { id, price, quantity, name, photo }
+        const item: any = { id, price, name, photo }
         dispatch(addCartItem(item))
     }
     

@@ -7,8 +7,6 @@ import {
 
 import { styles } from './style';
 import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMoreOrLess';
-import { useDispatch } from 'react-redux';
-import { decrementItem, incrementItem } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
 
 interface ProductItemProps {
     price: number,

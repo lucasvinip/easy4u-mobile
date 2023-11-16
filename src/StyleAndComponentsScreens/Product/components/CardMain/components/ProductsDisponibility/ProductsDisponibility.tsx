@@ -4,6 +4,8 @@ import {
     Image,
     Text
 } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 import { styles, shadowStyle } from './style';
 
@@ -15,6 +17,9 @@ const ProductsDisponibility = () => {
                 <View style={styles.NameAndDescription}>
                     <Text style={styles.Name}>Coxinha de Frango</Text>
                     <Text style={styles.Description}>Verifique nossa infinidade de salgados fritos</Text>
+                    <View style={styles.ContainerIcon}>
+                        <MaterialCommunityIcons name={'cart-plus'} style={styles.Icon}/>
+                    </View>
                 </View>
             </View>
         </View>

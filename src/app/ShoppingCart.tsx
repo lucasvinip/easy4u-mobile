@@ -19,8 +19,6 @@ interface ProductProps {
     name: string,
     price: number,
     photo: string,
-    productType: string,
-    quantity: number
 }
 
 const ShoppingCart = () => {
@@ -43,6 +41,7 @@ const ShoppingCart = () => {
         })
         setProducts(productInfo)
     }
+    
     useEffect(() => {
         const fetchDataAsync = async () => {
             await fetchData();

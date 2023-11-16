@@ -18,7 +18,7 @@ const PaymentMethodCredit = () => {
       <View style={styles.Touchable}>
         <MaterialCommunityIcons name={'credit-card-fast'} style={styles.TouchableIcon} />
         <Text style={styles.TouchableText}>
-          {AppTexts.Cafeteria_Credits}
+          {AppTexts.Credits}
         </Text>
       </View>
     </TouchableOpacity>

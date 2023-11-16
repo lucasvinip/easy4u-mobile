@@ -27,17 +27,22 @@ const styles = StyleSheet.create({
     Name: {
         fontFamily: theme.FONTS.Popp600,
         fontSize: 12,
-        width: '50%',
         textAlign: 'center',
 
     },
     Description: {
         fontFamily: theme.FONTS.Popp500,
         fontSize: 9,
-        textAlign: 'center',
         color: theme.COLORS.Gray37C7C7A
     },
-
+    ContainerIcon:{
+        width: "100%",
+        alignItems: 'flex-end'
+    },
+    Icon:{
+        fontSize: 14,
+        color: theme.COLORS.Orange4FE724C
+    }
 });
 
 const shadowStyle = {

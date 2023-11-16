@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 
 import { AppTexts } from '../../../../assets/strings';
 import theme from '../../../../styles/theme';
@@ -9,12 +9,25 @@ import Button from '../../../../components/Button/Button';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 
+interface CheckoutProps {
+  id: number,
+  name: string,
+  price: number,
+}
+
 const SubTotalDiscount = () => {
+  const router = useRouter()
+
   const total = useSelector((state: RootState) => state.cart.total)
   const formattedTotal = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   }).format(total);
+
+  const handleFinalizeOrder = ({id, name, price}: CheckoutProps) => {
+    const items = {id, name, price}
+    router.push('/Checkout')
+  }
 
   return (
     <View style={styles.Card}>
@@ -30,9 +43,7 @@ const SubTotalDiscount = () => {
           </View>
           <View style={styles.TextRow}>
             <Text style={styles.labelText}>{AppTexts.Total}</Text>
-            <Link href={'/Checkout'} asChild>
               <Text style={styles.valueText}>{formattedTotal}</Text>
-            </Link>
           </View>
         </View>
       </View>
@@ -45,6 +56,7 @@ const SubTotalDiscount = () => {
           height={30}
           borderRadius={48}
           fontSize={14}
+          onPress={handleFinalizeOrder}
         />
       </View>
     </View>

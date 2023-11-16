@@ -28,6 +28,84 @@ const styles = StyleSheet.create({
     fontFamily: theme.FONTS.Raleway600,
     fontSize: 18
   },
+  ContainerCard: {
+    borderColor: theme.COLORS.Black393939,
+    borderWidth: 0.5,
+    height: '90%',
+    width: '90%',
+    borderRadius: 18,
+    justifyContent: 'space-between',
+  },
+  Card: {
+    width: '95%',
+    justifyContent: 'flex-end',
+    alignSelf: 'center'
+  },
+  CardContent: {
+    height: '70%',
+    width: '100%',
+  },
+  ContainerContent: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  Content: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    width: '100%',
+    borderBottomColor: theme.COLORS.Gray949494
+  },
+  TitleName: {
+    fontFamily: theme.FONTS.Popp400,
+    fontSize: 15,
+  },
+  ContainerSeparator: {
+    position: 'relative',
+    marginLeftLeft: 200,
+    flexDirection: 'row'
+  },
+  LineSeparator: {
+    borderRightWidth: 1,
+    height: 150,
+    marginHorizontal: 10,
+    position: 'absolute',
+    borderRightColor: theme.COLORS.Gray949494
+  },
+  TitleTotal: {
+    fontFamily: theme.FONTS.Popp400,
+    fontSize: 15,
+  },
+  ContainerCardMain: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+  },
+  CardFooter: {
+    backgroundColor: theme.COLORS.Orange4FE724C,
+    width: '100%',
+    borderBottomLeftRadius: 18,
+    borderBottomRightRadius: 18,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+    height: '12%',
+    justifyContent: 'center'
+  },
+  ContentFooter: {
+    alignItems: 'center'
+  },
+  TitlesFooter: {
+    flexDirection: 'row',
+    width: '90%',
+    justifyContent: 'space-between',
+  },
+  TitleCardFooter: {
+    color: theme.COLORS.Whiteffffff,
+    fontFamily: theme.FONTS.Raleway700,
+    fontSize: 15
+  },
   ContainerFooter: {
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -47,7 +125,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: '65%',
     alignContent: 'center'
-  }
+  },
+
 });
 
 
