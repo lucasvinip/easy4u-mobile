@@ -6,7 +6,7 @@ import { styles } from './style';
 
 interface FilterProductsProps{
     productType: string,
-    onPress?: () => void 
+    onPress: () => void 
 }
 
 const TypeProduct = ({productType, onPress}: FilterProductsProps) => {

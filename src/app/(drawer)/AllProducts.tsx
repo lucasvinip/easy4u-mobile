@@ -22,10 +22,10 @@ import SkeletonProducts from '../../components/Skeleton/SkeletonProducts/Skeleto
 
 interface ProductProps {
     id: number,
-    name: any,
+    name: string,
     description: string,
     price: number,
-    photo: any,
+    photo: string,
     productType: string
 }
 
@@ -36,16 +36,16 @@ interface TypeProductProps {
 
 interface SearcProductProps {
     id: number,
-    name: any,
-    productType: any,
+    name: string,
+    productType: string,
 }
 
 const AllProducts = () => {
     const [refresh, setRefresh] = useState<boolean>(false)
-    const [typeProducts, setTypeProducts] = useState<any[]>([])
-    const [products, setProducts] = useState<any[]>([])
-    const [text, setText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [typeProducts, setTypeProducts] = useState<string[]>([])
+    const [products, setProducts] = useState<ProductProps[]>([])
+    const [text, setText] = useState<string>("");
 
     const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
@@ -87,15 +87,25 @@ const AllProducts = () => {
             Alert.alert("Erro!")
         else {
             try {
-                const allProductsTypes = apiDataProducts.map(({ name, price, description, photo, id }: ProductProps) => {
+                const allProductsTypes = apiDataProducts.map(({
+                    name,
+                    price,
+                    description,
+                    photo,
+                    id
+                }: ProductProps) => {
+                    const formattedPrice = new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                    }).format(price);
                     return {
                         name,
-                        price,
+                        price: formattedPrice,
                         description,
                         photo,
                         id
                     }
-                });
+                })
                 setIsLoading(false)
                 setProducts(allProductsTypes)
             } catch (error) {
@@ -183,8 +193,12 @@ const AllProducts = () => {
                                 <View style={styles.ContainerTypeProduct}>
                                     <ScrollView horizontal={true} contentContainerStyle={styles.TypeProduct} showsHorizontalScrollIndicator={false}>
                                         <TypeProduct productType='Todos' onPress={handleCardProducts} />
-                                        {typeProducts.map((productType: any, index: number) => (
-                                            <TypeProduct key={index} productType={productType} onPress={() => handleClickFilterProductType(productType)} />
+                                        {typeProducts.map((productType: string, index: number) => (
+                                            <TypeProduct
+                                                key={index}
+                                                productType={productType}
+                                                onPress={() => handleClickFilterProductType(productType)}
+                                            />
                                         ))}
                                     </ScrollView>
                                 </View>
@@ -199,7 +213,6 @@ const AllProducts = () => {
                             contentContainerStyle={styles.ContainerMain}
                             showsVerticalScrollIndicator={false}
                             keyboardShouldPersistTaps={'handled'}
-
                         >
                             <View style={styles.Main}>
                                 {isLoading ?
@@ -212,14 +225,21 @@ const AllProducts = () => {
                                         </View>
                                     </>
                                     : (
-                                        products.map(({ name, price, description, photo, id }: ProductProps, index: number) => (
+                                        products.map(({
+                                            name,
+                                            price,
+                                            description,
+                                            photo,
+                                            id
+                                        }: ProductProps, index: number) => (
                                             <CardProduct
                                                 key={index}
                                                 name={name}
                                                 price={price}
                                                 description={description}
                                                 photo={photo}
-                                                id={id} />
+                                                id={id}
+                                            />
                                         ))
                                     )
                                 }

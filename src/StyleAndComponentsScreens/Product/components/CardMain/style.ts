@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
     fontSize: 15,
     width: 'auto',
     height: 'auto',
-    textAlign:'left',
+    textAlign: 'left',
     marginLeft: 5
   },
   ContainerMain: {
     height: '57%',
     width: '100%',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   AvailableText: {
     fontFamily: theme.FONTS.Popp600,
@@ -45,14 +45,13 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   AvailableProducts: {
-    height: '70%',
+    height: '70%', // You can adjust this as needed
     width: 'auto',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   ContainerProducts: {
-    height: '85%',
-    width: '100%',
-    flexDirection: 'row'
+    height: '100%',
+    flexDirection: 'row',
   },
   ContainerButton: {
     alignItems: 'center'

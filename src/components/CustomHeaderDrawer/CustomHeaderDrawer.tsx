@@ -29,13 +29,13 @@ const CustomHeaderDrawer = () => {
         [selectCartItems], (items) => {
             const uniqueItems = Array.from(new Set(items.map((item: any) => item.id))).map((uniqueId) => {
                 const quantity = items.filter((item: any) => item.id === uniqueId).length;
-                const itemInfo = items.find((item: any) => item.id === uniqueId);
+                const itemInfo: any = items.find((item: any) => item.id === uniqueId);
                 return {
                     id: uniqueId,
                     name: itemInfo.name,
                     photo: itemInfo.photo,
                     price: itemInfo.price,
-                    productQuantity: itemInfo.quantity,
+                    productQuantity: quantity,
                     quantity: quantity,
                 };
             });

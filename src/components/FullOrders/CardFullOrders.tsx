@@ -27,10 +27,7 @@ type ProductByCartResponse = {
 
 const ContainerFullOrder = ({
   productsByCart,
-  created_at,
-  status,
   total,
-  id,
 }: ProductByCartResponse) => {
   return (
     <View style={styles.Container}>

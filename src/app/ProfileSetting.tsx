@@ -42,7 +42,7 @@ const defaultPhoto = require("../assets/img/user.png")
 
 const ProfileSetting = () => {
     const [userSetting, setUserSetting] = useState<userInfo>();
-    const [selectedImage, setSelectedImage] = useState<string | any>(null);
+    const [selectedImage, setSelectedImage] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const token = useToken();
 
@@ -106,7 +106,7 @@ const ProfileSetting = () => {
 
         try {
             deleteObject(deleteRef).then(() => {
-                setSelectedImage(null)
+                setSelectedImage('')
                 setLoading(true)
                 setInterval(() => {
                     setLoading(false)

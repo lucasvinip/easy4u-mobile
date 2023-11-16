@@ -17,7 +17,7 @@ export default{
         Blue395998: '#395998',
         Blue24285F4: '#4285F4',
         Blue4285F4: '#4285F4',
-
+        Blue94B2E0: '#94B2E0',
 
         OrangeFF6C44: '#FF6C44',
         Orange2FFA24B: '#FFA24B',

@@ -84,7 +84,7 @@ export const AppTexts = {
     Payment: 'PAGAMENTO',
 
     Easy_you: 'Facilitando pra você',
-    Name_Product: 'Nome do produto',
+    Name_Product: 'Nome do Produto',
 
     Cafeteria_Credits: 'Créditos da Cantina',
     Pay: 'Pagar',

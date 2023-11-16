@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
 import InputText from '../components/CustomTextInput/CustomTextInput';

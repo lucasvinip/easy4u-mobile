@@ -16,7 +16,7 @@ import SubTotalDiscount from '../StyleAndComponentsScreens/ShoppingCart/componen
 
 interface ProductProps {
     id: number,
-    name: any,
+    name: string,
     price: number,
     photo: string,
     productType: string,
@@ -24,7 +24,7 @@ interface ProductProps {
 }
 
 const ShoppingCart = () => {
-    const [products, setProducts] = useState<any[]>([])
+    const [products, setProducts] = useState<ProductProps[]>([])
 
     const quantityItems = useSelector((state: RootState) => state.cart.items.length)
 

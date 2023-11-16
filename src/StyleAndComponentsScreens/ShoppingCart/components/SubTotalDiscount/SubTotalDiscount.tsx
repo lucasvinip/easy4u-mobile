@@ -11,6 +11,10 @@ import { RootState } from '../../../../redux/store';
 
 const SubTotalDiscount = () => {
   const total = useSelector((state: RootState) => state.cart.total)
+  const formattedTotal = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(total);
 
   return (
     <View style={styles.Card}>
@@ -18,16 +22,16 @@ const SubTotalDiscount = () => {
         <View style={{ width: '90%', height: '66%', justifyContent: 'space-around' }}>
           <View style={styles.TextRow}>
             <Text style={styles.labelText}>{AppTexts.Subtotal}</Text>
-            <Text style={styles.valueText}>R$ {total}</Text>
+            <Text style={styles.valueText}>{formattedTotal}</Text>
           </View>
           <View style={styles.TextRow}>
             <Text style={styles.labelText}>{AppTexts.Discount}</Text>
-            <Text style={styles.valueText}>R$ 00,00</Text>
+            <Text style={styles.valueText}>R$ 0,00</Text>
           </View>
           <View style={styles.TextRow}>
             <Text style={styles.labelText}>{AppTexts.Total}</Text>
             <Link href={'/Checkout'} asChild>
-              <Text style={styles.valueText}>R$ {total}</Text>
+              <Text style={styles.valueText}>{formattedTotal}</Text>
             </Link>
           </View>
         </View>

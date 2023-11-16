@@ -55,16 +55,24 @@ const Product = () => {
     };
 
     const handleCardProducts = async () => {
-        const apiDataProducts = await getUrl(`products/${id}`)
+        const apiDataProducts = await getUrl(`products/${id}`);
 
-        if (!apiDataProducts)
-            alert("erro!")
-        else {
+        if (!apiDataProducts) {
+            alert("Erro!");
+        } else {
             try {
-                const data = await apiDataProducts
-                setDataProduct(data)
+                const data = await apiDataProducts;
+                const formattedPrice = {
+                    ...data,
+                    price: new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                    }).format(data.price),
+                };
+
+                setDataProduct(formattedPrice);
             } catch (error) {
-                alert("data not get:" + error)
+                alert("Erro ao obter os dados:" + error);
             }
         }
     };

@@ -35,8 +35,10 @@ export const cartSlice = createSlice({
       }
 
       state.qty += 1;
-
-      state.total = state.items.reduce((total, item) => total + item.price * item.quantity, 0);
+      state.total = state.items.reduce((total, item) => {
+        const upadetePrice = Number(item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.'))
+        return total + upadetePrice * item.quantity
+      }, 0);
 
     },
     incrementItem(state, action: PayloadAction<number>) {
@@ -45,7 +47,11 @@ export const cartSlice = createSlice({
       if (item) {
         item.quantity = (item.quantity || 0) + 1;
         state.qty += 1;
-        state.total = state.items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+        state.total = state.items.reduce((total, item) => {
+          const upadetePrice = Number(item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.'))
+          return total + upadetePrice * item.quantity
+        }, 0);
       }
     },
     decrementItem(state, action: PayloadAction<number>) {
@@ -61,7 +67,11 @@ export const cartSlice = createSlice({
 
         state.qty = Math.max(state.qty - 1, 0);
 
-        state.total = state.items.reduce((total, item) => total + item.price * item.quantity, 0);
+        state.total = state.items.reduce((total, item) => {
+          const upadetePrice = Number(item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.'))
+          return total + upadetePrice * item.quantity
+        }, 0);
+        
       }
     },
 

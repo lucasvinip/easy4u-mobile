@@ -27,12 +27,9 @@ const ButtonAddCart = ({
 
     const handleAddCart = () => {
         const item: any = { id, price, quantity, name, photo }
-        console.log("quantity quanto é" + item.quantity);
-        
         dispatch(addCartItem(item))
-    
     }
-
+    
     return (
         <TouchableOpacity style={[styles.Container, shadowStyle]} onPress={handleAddCart}>
             <View style={styles.Touchable}>

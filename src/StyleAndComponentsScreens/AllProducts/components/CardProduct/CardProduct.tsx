@@ -14,10 +14,16 @@ interface ProductsProps {
     name: string,
     price: number,
     description: string,
-    photo: any,
+    photo: string,
 }
 
-const CardProduct = ({ id, name, price, description, photo }: ProductsProps) => {
+const CardProduct = ({
+    id,
+    name,
+    price,
+    description,
+    photo
+}: ProductsProps) => {
 
     return (
         <Link href={{
@@ -36,7 +42,7 @@ const CardProduct = ({ id, name, price, description, photo }: ProductsProps) => 
                                     {description}
                                 </Text>
                                 <Text>
-                                    <Text style={styles.Title3}>R$</Text> <Text style={styles.Title4}> {price}</Text>
+                                    <Text style={styles.Title4}>{price}</Text>
                                 </Text>
                             </View>
                             <View style={styles.ContainerImg}>
