@@ -110,5 +110,6 @@ export const AppTexts = {
     Order_Again: 'Pedir Novamente',
     Didnt_Choose_Image: 'Você não selecionou nenhuma imagem',
 
-    Order_Progress: 'Pedido em Andamento'
+    Order_Progress: 'Pedido em Andamento',
+    Choose_Payment_Method: 'Selecione a Forma de Pagamento:'
 }

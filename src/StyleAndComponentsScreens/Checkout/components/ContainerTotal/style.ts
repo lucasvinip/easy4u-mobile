@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     ContainerCard: {
-        width: '90%',
+        width: '95%',
         justifyContent: 'flex-end',
         alignSelf: 'center'
     },
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         borderBottomWidth: 1,
-        width: '98%',
+        width: '100%',
         borderBottomColor: theme.COLORS.Gray949494
     },
     HeaderProduct: {
@@ -77,19 +77,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     Main: {
-        width: '95%',
-        height: '50%',
+        width: '100%',
+        height: '100%',
         justifyContent: 'space-between',
     },
     ContentMain: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
+        marginTop: 5
     },
     NameAndQuantityProduct: {
         flexDirection: 'row',
-        width: '40%',
+        width: '70%',
         justifyContent: 'space-around'
+    },
+    NameTitle:{
+        fontFamily: theme.FONTS.Popp300,
+        fontSize: 15
+    },
+    QuantityTitle:{
+        fontFamily: theme.FONTS.Raleway700,
+        color: theme.COLORS.Gray949494,
     },
     MainTitle: {
         fontFamily: theme.FONTS.Raleway700,
@@ -98,7 +107,10 @@ const styles = StyleSheet.create({
     ContainerFooter: {
         backgroundColor: theme.COLORS.Orange4FE724C,
         width: '100%',
-        borderRadius: 8,
+        borderBottomLeftRadius: 20.5,
+        borderBottomRightRadius: 20.5,
+        borderTopRightRadius: 5,
+        borderTopLeftRadius: 5,
         height: '12%',
         justifyContent: 'center'
     },
@@ -111,7 +123,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     FooterTitle: {
-        color: theme.COLORS.WhiteEDF3EDEB,
+        color: theme.COLORS.Whiteffffff,
         fontFamily: theme.FONTS.Raleway700,
         fontSize: 15
     }

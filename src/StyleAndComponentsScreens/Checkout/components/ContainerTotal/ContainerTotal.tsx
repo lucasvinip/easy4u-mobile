@@ -26,15 +26,15 @@ const ContainerTotal = () => {
                         <ScrollView contentContainerStyle={styles.Main}>
                             <View style={styles.ContentMain}>
                                 <View style={styles.NameAndQuantityProduct}>
-                                    <Text style={styles.MainTitle}>
-                                        {AppTexts.Total}
+                                    <Text style={styles.NameTitle}>
+                                        Chocolate
                                     </Text>
-                                    <Text style={styles.MainTitle}>
+                                    <Text style={styles.QuantityTitle}>
                                         1 x
                                     </Text>
                                 </View>
                                 <Text style={styles.MainTitle}>
-                                    R$ 0,00
+                                    R$ 100,00
                                 </Text>
                             </View>
                         </ScrollView>

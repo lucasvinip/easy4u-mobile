@@ -36,8 +36,8 @@ export const cartSlice = createSlice({
 
       state.qty += 1;
       state.total = state.items.reduce((total, item) => {
-        const upadetePrice = Number(item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.'))
-        return total + upadetePrice * item.quantity
+        const upadetePrice = item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.')
+        return total + Number(upadetePrice) * item.quantity
       }, 0);
 
     },
@@ -49,8 +49,8 @@ export const cartSlice = createSlice({
         state.qty += 1;
 
         state.total = state.items.reduce((total, item) => {
-          const upadetePrice = Number(item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.'))
-          return total + upadetePrice * item.quantity
+          const upadetePrice = item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.')
+          return total + Number(upadetePrice) * item.quantity
         }, 0);
       }
     },
@@ -68,8 +68,8 @@ export const cartSlice = createSlice({
         state.qty = Math.max(state.qty - 1, 0);
 
         state.total = state.items.reduce((total, item) => {
-          const upadetePrice = Number(item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.'))
-          return total + upadetePrice * item.quantity
+          const upadetePrice = item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.')
+          return total + Number(upadetePrice) * item.quantity
         }, 0);
         
       }

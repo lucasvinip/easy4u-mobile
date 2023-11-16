@@ -11,8 +11,9 @@ import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/Checkout/style'
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
-import ButtonCredit from '../StyleAndComponentsScreens/Checkout/components/ButtonCredit/ButtonCredit';
+import PaymentMethodCredit from '../StyleAndComponentsScreens/Checkout/components/PaymentMethod/PaymentMethodCredit';
 import ContainerTotal from '../StyleAndComponentsScreens/Checkout/components/ContainerTotal/ContainerTotal';
+import PaymentMethodPix from '../StyleAndComponentsScreens/Checkout/components/PaymentMethod/PaymentMethodPix';
 
 const Checkout = () => {
     return (
@@ -29,7 +30,15 @@ const Checkout = () => {
                         </View>
                     </View>
                     <View style={styles.ContainerFooter}>
-                        <ButtonCredit />
+                        <View style={styles.ContainerPayment}>
+                            <Text style={styles.TitlePayment}>
+                                {AppTexts.Choose_Payment_Method}
+                            </Text>
+                            <View style={styles.Payment}>
+                                <PaymentMethodCredit />
+                                <PaymentMethodPix />
+                            </View>
+                        </View>
                         <Button
                             text={AppTexts.Pay}
                             fontFamily={theme.FONTS.Popp700}

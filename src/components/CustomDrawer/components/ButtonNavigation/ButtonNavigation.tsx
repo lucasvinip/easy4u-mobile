@@ -5,7 +5,6 @@ import { Href, Link } from 'expo-router';
 
 import { styles } from './style'
 
-
 interface ButtonNavigationProps {
     icon: any,
     title: string,

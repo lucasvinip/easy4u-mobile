@@ -4,27 +4,26 @@ import theme from '../../../../styles/theme';
 const styles = StyleSheet.create({
     Container: {
         backgroundColor: theme.COLORS.Whiteffffff,
-        borderRadius: 28,
-        width: 315,
-        height: 75,
+        borderRadius: 100,
+        width: 90,
+        height: 90,
         alignItems: 'center',
         justifyContent: 'center'
     },
     Touchable: {
-        flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-evenly'
-        
     },
     TouchableIcon: {
-        color: theme.COLORS.White2F3F3F3,
+        color: theme.COLORS.Orange2FFA24B,
         fontSize: 28,
-        paddingTop: 5
+        textAlign: 'center'
     },
     TouchableText: {
         color: theme.COLORS.Black000000,
         fontFamily: theme.FONTS.Popp600,
-        paddingTop: 8
+        fontSize: 12,
+        textAlign: 'center'
     }
 });
 

@@ -4,17 +4,19 @@ import {
   View,
   Text
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { AppTexts } from '../../../../assets/strings';
 import { styles, shadowStyle } from './style';
 
-const ButtonCredit = () => {
+
+const PaymentMethodCredit = () => {
 
   return (
+    
     <TouchableOpacity style={[styles.Container, shadowStyle]}>
       <View style={styles.Touchable}>
-        <AntDesign name='appstore1' style={styles.TouchableIcon} />
+        <MaterialCommunityIcons name={'credit-card-fast'} style={styles.TouchableIcon} />
         <Text style={styles.TouchableText}>
           {AppTexts.Cafeteria_Credits}
         </Text>
@@ -23,4 +25,4 @@ const ButtonCredit = () => {
   );
 };
 
-export default ButtonCredit;
+export default PaymentMethodCredit;

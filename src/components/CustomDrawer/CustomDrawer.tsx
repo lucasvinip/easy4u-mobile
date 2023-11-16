@@ -4,6 +4,8 @@ import {
   View,
   Image
 } from 'react-native';
+
+
 import { styles } from './style'
 import { AppTexts } from '../../assets/strings';
 import ButtonNavigation from './components/ButtonNavigation/ButtonNavigation';
