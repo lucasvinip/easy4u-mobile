@@ -71,13 +71,17 @@ export const cartSlice = createSlice({
           const upadetePrice = item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.')
           return total + Number(upadetePrice) * item.quantity
         }, 0);
-        
+
       }
     },
 
   },
 });
 
-export const { addCartItem, incrementItem, decrementItem } = cartSlice.actions;
+export const {
+  addCartItem,
+  incrementItem,
+  decrementItem
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -40,6 +40,8 @@ const ShoppingCart = () => {
             return item
         })
         setProducts(productInfo)
+        console.log("a a a " + products);
+        
     }
     
     useEffect(() => {
@@ -50,6 +52,7 @@ const ShoppingCart = () => {
         fetchDataAsync()
 
     }, [])
+
 
     return (
         <SafeAreaView style={{ backgroundColor: 'white' }}>

@@ -11,20 +11,21 @@ interface ButtonAddCartProps {
     id: number
     price: number,
     photo: string | undefined,
-    name: string | undefined
-
+    name: string | undefined,
+    quantity?: number
 }
 
 const ButtonAddCart = ({
     price,
     id,
     photo,
-    name
+    name,
+    quantity
 }: ButtonAddCartProps) => {
     const dispatch = useDispatch();
 
     const handleAddCart = () => {
-        const item: any = { id, price, name, photo }
+        const item: any = { id, price, name, photo, quantity}
         dispatch(addCartItem(item))
     }
     

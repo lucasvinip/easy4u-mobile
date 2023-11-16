@@ -36,19 +36,24 @@ const Checkout = () => {
 
     const getProductsItems = async () => {
         const items: any = await AsyncStorage.getItem("items")
-        console.log(" aaa " + items);
+        const getProduct = JSON.parse(items)
 
-        return await items
+        console.log('n n ' + getProduct);
+        console.log("a a a b b " + items);
+
+
+        return getProduct
     }
     const fetchData = async () => {
-        const itemsProducts = await getProductsItems()
-        const productInfo = itemsProducts.map((item: CheckoutProps) => {
-            console.log(item);
-            return item
-        })
-        
-        console.log(" olaa " + productInfo);
-        setProducts(productInfo)
+        const itemsProducts = await getProductsItems();
+
+        if (itemsProducts) {
+            const productInfo = itemsProducts.map((item: CheckoutProps) => {
+                return item;
+            });
+            setProducts(prevProducts => [...prevProducts, ...productInfo]);
+
+        }
     }
 
     useEffect(() => {
@@ -65,7 +70,10 @@ const Checkout = () => {
             <View style={styles.Screen}>
                 <View style={styles.Container}>
                     <View style={styles.ContainerHeader}>
-                        <Image source={require('../assets/img/easy.png')} style={{ width: 191, height: 65 }} />
+                        <Image
+                            source={require('../assets/img/easy.png')}
+                            style={{ width: 191, height: 65 }}
+                        />
                     </View>
                     <View style={styles.ContainerMain}>
                         <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
@@ -83,14 +91,16 @@ const Checkout = () => {
                                             </View>
                                         </View>
                                         <ScrollView contentContainerStyle={styles.ContainerCardMain} showsVerticalScrollIndicator={false}>
-                                            {products.map((item: CheckoutProps, index: number) => (
-                                                <NameAndTotal
-                                                    key={index}
-                                                    price={item.price}
-                                                    name={item.name}
-                                                    id={item.id}
-                                                />
-                                            ))}
+                                            <View style={styles.CardMain}>
+                                                {products.map((item: CheckoutProps, index: number) => (
+                                                    <NameAndTotal
+                                                        key={index}
+                                                        price={item.price}
+                                                        name={item.name}
+                                                        id={item.id}
+                                                    />
+                                                ))}
+                                            </View>
                                         </ScrollView>
                                     </View>
                                 </View>
@@ -136,3 +146,5 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
+

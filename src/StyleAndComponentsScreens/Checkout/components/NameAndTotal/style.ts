@@ -2,17 +2,6 @@ import { StyleSheet } from 'react-native'
 import theme from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
-    ContainerMain: {
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        
-    },
-    Main: {
-        width: '100%',
-        height: '95%',
-        justifyContent: 'space-between',
-    },
     ContentMain: {
         flexDirection: 'row',
         width: '95%',

@@ -9,11 +9,6 @@ import Button from '../../../../components/Button/Button';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 
-interface CheckoutProps {
-  id: number,
-  name: string,
-  price: number,
-}
 
 const SubTotalDiscount = () => {
   const router = useRouter()
@@ -24,8 +19,7 @@ const SubTotalDiscount = () => {
     currency: 'BRL',
   }).format(total);
 
-  const handleFinalizeOrder = ({id, name, price}: CheckoutProps) => {
-    const items = {id, name, price}
+  const handleFinalizeOrder = () => {
     router.push('/Checkout')
   }
 

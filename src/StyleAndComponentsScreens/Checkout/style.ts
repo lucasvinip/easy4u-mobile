@@ -83,6 +83,10 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
   },
+  CardMain: {
+    width: '100%',
+    height: '100%',
+  },
   CardFooter: {
     backgroundColor: theme.COLORS.Orange4FE724C,
     width: '100%',
