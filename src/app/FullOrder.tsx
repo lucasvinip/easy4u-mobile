@@ -3,6 +3,7 @@ import {
     Image,
     View,
     Text,
+    ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,9 +13,12 @@ import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
 import { performApi } from '../utils/api';
-import ContainerFullOrder from '../components/FullOrders/CardFullOrders';
+import ContainerFullOrder from '../StyleAndComponentsScreens/FullOrders/components/ContainerFullOrder/ContainerFullOrder';
 import CustomQRCode from '../components/QRCode/QRCode';
 import ModalPoup from '../components/ModalPoup/Modal';
+import NameAndTotal from '../StyleAndComponentsScreens/Checkout/components/NameAndTotal/NameAndTotal';
+import { useDispatch } from 'react-redux';
+import { addCartItem } from '../redux/features/shoppingCart/shoppingCartSlice';
 
 type Details = {
     name: string;
@@ -44,16 +48,32 @@ const FullOrder = () => {
     const [order, setOrder] = useState<ProductByCartResponse>();
     const [isModalVisible, setModalVisible] = useState(false);
 
+    const priceNew = order?.total ?? 0
+    const formattedTotal = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(priceNew)
+
+    const orderProduct = () => {
+        const item = order?.products
+        console.log("ifmok " + item);
+        
+    }
+
+    const dispatch = useDispatch()
+
     const getIdFromLocalStorage = async () => {
         const orderId = await AsyncStorage.getItem("orderId");
         const getToken = await AsyncStorage.getItem("token");
         setToken(getToken);
         setIdOrder(orderId);
     }
-    
+
     const getProductInfo = async (orderId: string) => {
         try {
-            const data = await performApi.getData(`carts-by-user/${orderId}`, token);
+            const data = await performApi.getData(`carts-by-user/${orderId}`, token)
+            console.log("  invoierlgkv " + data);
+
             setOrder(data);
             console.log(JSON.stringify(order))
         } catch (error) {
@@ -63,7 +83,7 @@ const FullOrder = () => {
 
     useEffect(() => {
         getIdFromLocalStorage();
-    
+
         if (idOrder) {
             getProductInfo(idOrder);
         };
@@ -79,17 +99,48 @@ const FullOrder = () => {
                     </View>
                     <View style={styles.ContainerMain}>
                         <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
-                        <View style={{ alignItems: 'center' }}>
-                            {order?.products ? (
-                                <ContainerFullOrder
-                                    productsByCart={order.products}
-                                    created_at={order.created_at}
-                                    id={order.id}
-                                    status={order.status}
-                                    total={order.total} />
-                            ) : (
-                                <Text>Não há items no carrinho!</Text>
-                            )}
+                        <View style={{ alignItems: "center" }}>
+                            <View style={styles.ContainerCard}>
+                                <View style={styles.Card}>
+                                    <View style={styles.CardContent}>
+                                        <View style={styles.ContainerContent}>
+                                            <View style={styles.Content}>
+                                                <Text style={styles.TitleName}>{AppTexts.Name_Product}</Text>
+                                                <View style={styles.ContainerSeparator}>
+                                                    <View style={styles.LineSeparator} />
+                                                </View>
+                                                <Text style={styles.TitleTotal}>{AppTexts.Total}</Text>
+                                            </View>
+                                        </View>
+                                        <ScrollView contentContainerStyle={styles.ContainerCardMain} showsVerticalScrollIndicator={false}>
+                                            <View style={styles.CardMain}>
+                                                {order?.products ? (
+                                                    <ContainerFullOrder
+                                                        productsByCart={order.products}
+                                                        created_at={order.created_at}
+                                                        id={order.id}
+                                                        status={order.status}
+                                                    />
+                                                ) : (
+                                                    <Text>Não há items no carrinho!</Text>
+                                                )}
+                                            </View>
+                                        </ScrollView>
+                                    </View>
+                                </View>
+                                <View style={styles.CardFooter}>
+                                    <View style={styles.ContentFooter}>
+                                        <View style={styles.TitlesFooter}>
+                                            <Text style={styles.TitleCardFooter}>
+                                                {AppTexts.Total}
+                                            </Text>
+                                            <Text style={styles.TitleCardFooter}>
+                                                {formattedTotal}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
                         </View>
                     </View>
                     <View style={styles.ContainerFooter}>
@@ -105,7 +156,7 @@ const FullOrder = () => {
                                 onPress={() => setModalVisible(true)}
                             />
                         ) : (
-                            <Button     
+                            <Button
                                 text={AppTexts.Order_Again}
                                 fontFamily={theme.FONTS.Popp700}
                                 background={theme.COLORS.OrangeFF6C44}
@@ -113,14 +164,15 @@ const FullOrder = () => {
                                 height={40}
                                 borderRadius={48}
                                 fontSize={14}
+                                onPress={() => dispatch(addCartItem)}
                             />
                         )}
                     </View>
                     {isModalVisible && (
-                    <ModalPoup visible={isModalVisible}>
-                        <CustomQRCode value={order?.id} onClose={() => setModalVisible(false)}/>
-                    </ModalPoup>
-                )}
+                        <ModalPoup visible={isModalVisible}>
+                            <CustomQRCode value={order?.id} onClose={() => setModalVisible(false)} />
+                        </ModalPoup>
+                    )}
                 </View>
             </View>
         </SafeAreaView>

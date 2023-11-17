@@ -52,7 +52,6 @@ const Checkout = () => {
                 return item;
             });
             setProducts(prevProducts => [...prevProducts, ...productInfo]);
-
         }
     }
 
