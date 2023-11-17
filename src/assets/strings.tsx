@@ -111,5 +111,7 @@ export const AppTexts = {
     Didnt_Choose_Image: 'Você não selecionou nenhuma imagem',
 
     Order_Progress: 'Pedido em Andamento',
-    Choose_Payment_Method: 'Selecione a Forma de Pagamento:'
+    Choose_Payment_Method: 'Selecione a Forma de Pagamento:',
+
+    Verify_Balance: "Verificando Saldo..."
 }

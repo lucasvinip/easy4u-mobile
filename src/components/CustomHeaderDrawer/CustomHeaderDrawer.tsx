@@ -29,21 +29,26 @@ const CustomHeaderDrawer = () => {
     const getCartInfo = createSelector(
         [selectCartItems], (items) => {
             const uniqueItems = Array.from(new Set(items.map((item: any) => item.id))).map((uniqueId) => {
-                const quantity = items.filter((item: any) => item.id === uniqueId).length;
+                const item = useSelector((state: RootState) => state.cart.items.find((item: any) => item.id === uniqueId))
+                const productQty = item?.quantity || 0
+                // const quantity = items.filter((item: any) => item.id === uniqueId).length;
                 const itemInfo: any = items.find((item: any) => item.id === uniqueId);
                 return {
                     id: uniqueId,
                     name: itemInfo.name,
                     photo: itemInfo.photo,
                     price: itemInfo.price,
-                    quantityCart: quantity,
+                    // quantityCart: quantity,
+                    quantityProduct: productQty
                 };
             });
 
             AsyncStorage.setItem("items", JSON.stringify(uniqueItems))
 
+            console.log(items)
+
             return {
-                cartSize: items.length,
+                cartSize: items,
                 uniqueItems: uniqueItems,
             };
         }
@@ -69,7 +74,7 @@ const CustomHeaderDrawer = () => {
                             <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
                                 <View>
                                     <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
-                                    <Badge style={styles.Badge}>{cartInfo.cartSize}</Badge>
+                                    <Badge style={styles.Badge}>{0}</Badge>
                                 </View>
                             </TouchableOpacity>
                         </View>

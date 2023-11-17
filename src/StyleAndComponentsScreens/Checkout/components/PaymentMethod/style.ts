@@ -5,20 +5,27 @@ const styles = StyleSheet.create({
     Container: {
         backgroundColor: theme.COLORS.Whiteffffff,
         borderRadius: 100,
+        borderStyle: "solid",
+        borderWidth: 2,
         width: '35%',
         height: '90%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     Touchable: {
         width: '100%',
-        justifyContent: 'space-evenly'
+        flexDirection: 'column',
+        gap: 5,
+        alignItems: "center"
     },
     TouchableIcon: {
         color: theme.COLORS.Orange2FFA24B,
         fontSize: 28,
         textAlign: 'center'
     },
+    Pix: {
+      textAlign: 'center'
+  },
     TouchableText: {
         color: theme.COLORS.Black000000,
         fontFamily: theme.FONTS.Popp600,

@@ -3,7 +3,9 @@ import {
     Image,
     View,
     Text,
-    ScrollView
+    ScrollView,
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppTexts } from '../assets/strings';
@@ -12,12 +14,13 @@ import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/Checkout/style'
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
-import PaymentMethodCredit from '../StyleAndComponentsScreens/Checkout/components/PaymentMethod/PaymentMethodCredit';
 import NameAndTotal from '../StyleAndComponentsScreens/Checkout/components/NameAndTotal/NameAndTotal';
-import PaymentMethodPix from '../StyleAndComponentsScreens/Checkout/components/PaymentMethod/PaymentMethodPix';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import PaymentMethod from '../StyleAndComponentsScreens/Checkout/components/PaymentMethod/PaymentMethodCredit';
+import { performApi } from '../utils/api';
+import ModalPoup from '../components/ModalPoup/Modal';
 
 interface CheckoutProps {
     id: number,
@@ -27,41 +30,50 @@ interface CheckoutProps {
 
 const Checkout = () => {
     const [products, setProducts] = useState<CheckoutProps[]>([])
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+    const [visible, setVisible] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
+    const total = useSelector((state: RootState) => state.cart.total);
 
-    const total = useSelector((state: RootState) => state.cart.total)
+
     const formattedTotal = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
     }).format(total);
 
     const getProductsItems = async () => {
+
         const items: any = await AsyncStorage.getItem("items")
         const getProduct = JSON.parse(items)
-
-        console.log('n n ' + getProduct);
-        console.log("a a a b b " + items);
-
-
         return getProduct
-    }
-    const fetchData = async () => {
-        const itemsProducts = await getProductsItems();
+    };
 
-        if (itemsProducts) {
-            const productInfo = itemsProducts.map((item: CheckoutProps) => {
-                return item;
-            });
-            setProducts(prevProducts => [...prevProducts, ...productInfo]);
-        }
+    const getSelectedPaymentMethod = async () => {
+        const token = await AsyncStorage.getItem("token");
+        const items: any = await AsyncStorage.getItem("items")
+        setVisible(true);
+        const productId = products.map(product => product.id)
+
+
+        // if(selectedPaymentMethod === 'Créditos'){
+        //     const order = await performApi.sendDataToken("carts-by-user", "POST", token, {})
+            
+        // }
     }
 
     useEffect(() => {
-        const fetchDataAsync = async () => {
-            await fetchData();
-        };
+        const fetchData = async () => {
+            const itemsProducts = await getProductsItems();
 
-        fetchDataAsync()
+            if (itemsProducts) {
+                const productInfo = itemsProducts.map((item: CheckoutProps) => {
+                    return item;
+                });
+                setProducts(prevProducts => [...prevProducts, ...productInfo]);
 
+            }
+        }
+        fetchData()
     }, [])
 
     return (
@@ -124,25 +136,48 @@ const Checkout = () => {
                                 {AppTexts.Choose_Payment_Method}
                             </Text>
                             <View style={styles.Payment}>
-                                <PaymentMethodCredit />
-                                <PaymentMethodPix />
+                                <PaymentMethod method="Créditos" onSelect={() => setSelectedPaymentMethod("Créditos")} />
+                                <PaymentMethod method="Pix" onSelect={() => setSelectedPaymentMethod("Pix")} />
                             </View>
                         </View>
                         <Button
-                            text={AppTexts.Pay}
+                            text={"PAGAR"}
                             fontFamily={theme.FONTS.Popp700}
                             background={theme.COLORS.OrangeFF6C44}
                             width={260}
                             height={40}
                             borderRadius={48}
                             fontSize={14}
+                            onPress={() => { getSelectedPaymentMethod(); setLoading(true) }}
                         />
+                        {visible && (
+                            <ModalPoup visible={visible}>
+                                <View style={{ alignItems: "center", height: '40%' }}>
+                                    <View style={styles.HeaderModal}>
+                                        <TouchableOpacity onPress={() => setVisible(false)}>
+                                            <Image
+                                                source={require("../assets/img/x.png")}
+                                                style={{ height: 30, width: 30 }}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <Text style={styles.VerifyBalance}>{AppTexts.Verify_Balance}</Text>
+                                    {loading && (
+                                        <View style={{marginTop: 60}}>
+                                            <ActivityIndicator size={75 || "large"} color={theme.COLORS.OrangeFF6C44}/>
+                                        </View>
+                                    )}
+                                </View>
+                            </ModalPoup>
+                        )}
                     </View>
                 </View>
             </View>
         </SafeAreaView>
     );
 };
+
+
 
 export default Checkout;
 

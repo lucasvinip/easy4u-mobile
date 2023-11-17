@@ -16,6 +16,20 @@ export class performApi {
         return data
     };
     
+    public static sendDataToken = async (path: string, method: string, token: string | null, body?: object) => {
+        const response = await fetch(`http://10.107.144.5:3000/${path}`, {
+            method: method,
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(body),
+        })
+        const data = await response.json()
+        return data
+    };
+
     public static sendIdData = async (path: string, method: string, token: string | null) => {
         const response = await fetch(`http://10.107.144.5:3000/${path}`, {
             method: method,

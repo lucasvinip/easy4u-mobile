@@ -130,6 +130,17 @@ const styles = StyleSheet.create({
     width: '65%',
     alignContent: 'center'
   },
+  HeaderModal: {
+    width: '100%',
+    height: 40,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  VerifyBalance: {
+    color: theme.COLORS.Orange4FE724C,
+    fontFamily: theme.FONTS.Popp600,
+    fontSize: 16
+  }
 
 });
 
