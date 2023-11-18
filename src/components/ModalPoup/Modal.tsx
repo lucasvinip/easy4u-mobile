@@ -45,7 +45,7 @@ export default function ModalPoup({ visible, children }: ModalPoupProps) {
     }, [visible])
 
     return (
-        <Modal transparent visible={showModal} >
+        <Modal transparent visible={showModal}>
             <View style={styles.modalBackGround}>
                 <Animated.View style={[styles.modalContainer, { transform: [{ scale: scaleValueModal }] }]}>
                     {children}

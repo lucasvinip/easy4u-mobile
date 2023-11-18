@@ -71,6 +71,7 @@ const Orders = () => {
             router.push("/");
         } else {
             const getOrdersFromUser = await performApi.getData("carts-by-user", storedToken);
+            
             if (Array.isArray(getOrdersFromUser)) {
                 setOrders(getOrdersFromUser.slice().reverse());
             }

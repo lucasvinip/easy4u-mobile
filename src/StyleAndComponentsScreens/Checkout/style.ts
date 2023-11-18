@@ -139,9 +139,23 @@ const styles = StyleSheet.create({
   VerifyBalance: {
     color: theme.COLORS.Orange4FE724C,
     fontFamily: theme.FONTS.Popp600,
-    fontSize: 16
+    fontSize: 22
+  },
+  VerifyPursche: {
+    color: theme.COLORS.Black000000,
+    fontFamily: theme.FONTS.Popp600,
+    fontSize: 22,
+    textAlign: 'center'
+  },
+  modalContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 250
+  },
+  Align: {
+    justifyContent: 'center',
+    alignItems: 'center'
   }
-
 });
 
 

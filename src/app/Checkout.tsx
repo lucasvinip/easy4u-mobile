@@ -21,11 +21,15 @@ import { RootState } from '../redux/store';
 import PaymentMethod from '../StyleAndComponentsScreens/Checkout/components/PaymentMethod/PaymentMethodCredit';
 import { performApi } from '../utils/api';
 import ModalPoup from '../components/ModalPoup/Modal';
+import { useRouter } from 'expo-router';
 
 interface CheckoutProps {
-    id: number,
-    name: string,
-    price: number,
+    id: number;
+    name: string;
+    photo: string;
+    price: number;
+    quantity: number
+
 }
 
 const Checkout = () => {
@@ -33,6 +37,10 @@ const Checkout = () => {
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
     const [visible, setVisible] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
+    const [order, setOrder] = useState<number[][]>([])
+    const [message, setMessage] = useState<string>("")
+    const [buttonOrder, setButtonOrder] = useState<boolean>(false)
+    const router = useRouter()
 
     const total = useSelector((state: RootState) => state.cart.total)
     const items = useSelector((state: RootState) => state.cart.items)
@@ -43,27 +51,48 @@ const Checkout = () => {
         currency: 'BRL',
     }).format(total);
 
-    const fetchData = () => {
-        const itemsProducts = items
+    const fetchData = async () => {
+        const itemsProducts = await items
         const productInfo = itemsProducts.map((item: CheckoutProps) => item)
         setProducts(productInfo)
     }
 
     const getSelectedPaymentMethod = async () => {
-        const token = await AsyncStorage.getItem("token");
-        const items: any = await AsyncStorage.getItem("items")
-        setVisible(true);
-        const productId = products.map(product => product.id)
+        try {
+            setVisible(true);
+            setLoading(true);
+    
+            const token = await AsyncStorage.getItem("token");
+            const items = products.map((product) => [product.id, product.quantity]);
+
+            if (selectedPaymentMethod === 'Créditos') {
+                const orderResponse = await performApi.sendDataToken("carts-by-user", "POST", token, {products: items});
+    
+                setTimeout(() => {
+                    setLoading(false)
+                }, 5000)
+    
+                if (orderResponse.statusCode === 201) {
+                    setMessage("Compra realizada com sucesso! Verifique seus pedidos");
+                    setButtonOrder(true);
+                } else {
+                    setMessage("Saldo Insuficiente! Vá à cantina para recarregar seu saldo");
+                }
+            } else {
+                console.log("oi");
+            }
+        } catch (error) {
+            setMessage("Houve um erro ao finalizar seu pedido! Tente novamente");
+        } finally {
+            setLoading(false);
+        }
+    };
+    
 
 
-        // if(selectedPaymentMethod === 'Créditos'){
-        //     const order = await performApi.sendDataToken("carts-by-user", "POST", token, {})
-            
-        // }
-    }
 
     useEffect(() => {
-        fetchData()
+        fetchData();
     }, [])
 
     return (
@@ -138,11 +167,11 @@ const Checkout = () => {
                             height={40}
                             borderRadius={48}
                             fontSize={14}
-                            onPress={() => { getSelectedPaymentMethod(); setLoading(true) }}
+                            onPress={() => getSelectedPaymentMethod()}
                         />
                         {visible && (
                             <ModalPoup visible={visible}>
-                                <View style={{ alignItems: "center", height: '40%' }}>
+                                <View >
                                     <View style={styles.HeaderModal}>
                                         <TouchableOpacity onPress={() => setVisible(false)}>
                                             <Image
@@ -151,15 +180,40 @@ const Checkout = () => {
                                             />
                                         </TouchableOpacity>
                                     </View>
-                                    <Text style={styles.VerifyBalance}>{AppTexts.Verify_Balance}</Text>
-                                    {loading && (
-                                        <View style={{marginTop: 60}}>
-                                            <ActivityIndicator size={75 || "large"} color={theme.COLORS.OrangeFF6C44}/>
-                                        </View>
-                                    )}
+                                    <View style={styles.modalContainer}>
+                                        {loading ? (
+                                            <View style={styles.Align}>
+                                                <Text style={styles.VerifyBalance}>{AppTexts.Verify_Balance}</Text>
+                                                <View style={styles.Align}>
+                                                    <ActivityIndicator size={75 || "large"} color={theme.COLORS.OrangeFF6C44} />
+                                                </View>
+                                            </View>
+                                        ) : (
+                                            <View style={styles.Align}>
+                                                <Text style={styles.VerifyPursche}>{message}</Text>
+                                                {buttonOrder && (
+                                                    <View style={{marginTop: 50}}>
+                                                        <Button
+                                                            background={theme.COLORS.Orange4FE724C}
+                                                            borderRadius={10}
+                                                            fontFamily={theme.FONTS.Popp500}
+                                                            height={35}
+                                                            width={200}
+                                                            fontSize={16}
+                                                            text='Verificar Pedido'
+                                                            color={theme.COLORS.Whiteffffff}
+                                                            onPress={() => {router.push('/Orders'); setVisible(false)}}
+                                                        />
+                                                    </View>
+                                                )}
+                                            </View>
+
+                                        )}
+                                    </View>
                                 </View>
                             </ModalPoup>
                         )}
+
                     </View>
                 </View>
             </View>
