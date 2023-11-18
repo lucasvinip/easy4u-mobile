@@ -22,6 +22,10 @@ import PaymentMethod from '../StyleAndComponentsScreens/Checkout/components/Paym
 import { performApi } from '../utils/api';
 import ModalPoup from '../components/ModalPoup/Modal';
 import { useRouter } from 'expo-router';
+import Loading from '../components/Loading/Loading';
+import SucessOrder from '../StyleAndComponentsScreens/Checkout/components/SucessOrder/SucessOrder';
+import FooterCheckout from '../StyleAndComponentsScreens/Checkout/components/Footer';
+import Header from '../StyleAndComponentsScreens/Checkout/components/Header';
 
 interface CheckoutProps {
     id: number;
@@ -99,12 +103,7 @@ const Checkout = () => {
         <SafeAreaView>
             <View style={styles.Screen}>
                 <View style={styles.Container}>
-                    <View style={styles.ContainerHeader}>
-                        <Image
-                            source={require('../assets/img/easy.png')}
-                            style={{ width: 191, height: 65 }}
-                        />
-                    </View>
+                    <Header/>
                     <View style={styles.ContainerMain}>
                         <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
                         <View style={{ alignItems: "center" }}>
@@ -134,18 +133,7 @@ const Checkout = () => {
                                         </ScrollView>
                                     </View>
                                 </View>
-                                <View style={styles.CardFooter}>
-                                    <View style={styles.ContentFooter}>
-                                        <View style={styles.TitlesFooter}>
-                                            <Text style={styles.TitleCardFooter}>
-                                                {AppTexts.Total}
-                                            </Text>
-                                            <Text style={styles.TitleCardFooter}>
-                                                {formattedTotal}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </View>
+                                <FooterCheckout total={formattedTotal}/>
                             </View>
                         </View>
                     </View>
@@ -182,29 +170,12 @@ const Checkout = () => {
                                     </View>
                                     <View style={styles.modalContainer}>
                                         {loading ? (
-                                            <View style={styles.Align}>
-                                                <Text style={styles.VerifyBalance}>{AppTexts.Verify_Balance}</Text>
-                                                <View style={styles.Align}>
-                                                    <ActivityIndicator size={75 || "large"} color={theme.COLORS.OrangeFF6C44} />
-                                                </View>
-                                            </View>
+                                            <Loading/>
                                         ) : (
                                             <View style={styles.Align}>
                                                 <Text style={styles.VerifyPursche}>{message}</Text>
                                                 {buttonOrder && (
-                                                    <View style={{marginTop: 50}}>
-                                                        <Button
-                                                            background={theme.COLORS.Orange4FE724C}
-                                                            borderRadius={10}
-                                                            fontFamily={theme.FONTS.Popp500}
-                                                            height={35}
-                                                            width={200}
-                                                            fontSize={16}
-                                                            text='Verificar Pedido'
-                                                            color={theme.COLORS.Whiteffffff}
-                                                            onPress={() => {router.push('/Orders'); setVisible(false)}}
-                                                        />
-                                                    </View>
+                                                    <SucessOrder onVisible={() => setVisible(false)}/>
                                                 )}
                                             </View>
 
