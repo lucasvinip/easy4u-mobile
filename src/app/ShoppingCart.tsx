@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootState } from '../redux/store';
 
 import { styles } from '../StyleAndComponentsScreens/ShoppingCart/style';
@@ -24,35 +23,24 @@ interface ProductProps {
 const ShoppingCart = () => {
     const [products, setProducts] = useState<ProductProps[]>([])
 
-    const quantityItems = useSelector((state: RootState) => state.cart.items.length)
+    const items = useSelector((state: RootState) => state.cart.items)
 
-    const getProductsItems = async () => {
-        const items: any = await AsyncStorage.getItem("items")
-        const getProduct = JSON.parse(items)
-
-        console.log(getProduct);
-
-        return getProduct
-    }
-    const fetchData = async () => {
-        const itemsProducts = await getProductsItems()
+    const fetchData = () => {
+        const itemsProducts = items
         const productInfo = itemsProducts.map((item: ProductProps) => {
-            return item
+            console.log(item);
+            
+           return item
         })
+        console.log("fowef, " + productInfo);
+
+
         setProducts(productInfo)
-        console.log("a a a " + products);
-        
     }
-    
+
     useEffect(() => {
-        const fetchDataAsync = async () => {
-            await fetchData();
-        };
-
-        fetchDataAsync()
-
+        fetchData()
     }, [])
-
 
     return (
         <SafeAreaView style={{ backgroundColor: 'white' }}>
@@ -60,7 +48,7 @@ const ShoppingCart = () => {
                 <View style={styles.Container}>
                     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ height: 'auto' }}>
                         <View style={styles.ContainerHeader}>
-                            <Text style={styles.HeaderText}>{quantityItems} items</Text>
+                            <Text style={styles.HeaderText}>{items.length} items</Text>
                             <View style={styles.HeaderLine} />
                         </View>
                         <View style={styles.ContainerMain}>
@@ -81,7 +69,7 @@ const ShoppingCart = () => {
                         </View>
                         <View style={styles.ConatinerFooter}>
                             <View>
-                                <SubTotalDiscount/>
+                                <SubTotalDiscount />
                             </View>
                         </View>
                     </ScrollView>

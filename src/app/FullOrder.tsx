@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { addCartItem } from '../redux/features/shoppingCart/shoppingCartSlice';
 
 type Details = {
+    id: number
     name: string;
     photo: string;
     description: string;
@@ -30,7 +31,7 @@ type Details = {
 
 type Product = {
     product: Details,
-    qntd: number;
+    quantity: number;
     total_value: number;
 }
 
@@ -54,13 +55,30 @@ const FullOrder = () => {
         currency: 'BRL',
     }).format(priceNew)
 
-    const orderProduct = () => {
-        const item = order?.products
-        console.log("ifmok " + item);
-        
-    }
-
     const dispatch = useDispatch()
+
+
+    const handleOrderAgain = () => {
+        const items = order?.products;
+    
+        if (items && items.length > 0) {
+            const newItem: any = items.map((product: Product) => {
+                return {
+                    id: product.product.id,
+                    name: product.product.name,
+                    photo: product.product.photo,
+                    price: product.product.price,
+                    quantity: product.quantity,
+                };
+            });
+            console.log("ar, " + newItem);
+            
+            
+            dispatch(addCartItem(newItem));
+        }
+    };
+
+
 
     const getIdFromLocalStorage = async () => {
         const orderId = await AsyncStorage.getItem("orderId");
@@ -164,7 +182,7 @@ const FullOrder = () => {
                                 height={40}
                                 borderRadius={48}
                                 fontSize={14}
-                                onPress={() => dispatch(addCartItem)}
+                                onPress={handleOrderAgain}
                             />
                         )}
                     </View>

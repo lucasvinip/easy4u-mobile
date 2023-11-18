@@ -11,8 +11,6 @@ import {
 import { Badge } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { createSelector } from 'reselect';
 import { RootState } from '../../redux/store';
 import { useRouter } from 'expo-router';
 
@@ -23,38 +21,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const CustomHeaderDrawer = () => {
     const navigation = useNavigation<NavigationProp<DrawerActionType>>();
     const router = useRouter();
-    const selectCartItems = (state: RootState) => state.cart.items;
-
-
-    const getCartInfo = createSelector(
-        [selectCartItems], (items) => {
-            const uniqueItems = Array.from(new Set(items.map((item: any) => item.id))).map((uniqueId) => {
-                const item = useSelector((state: RootState) => state.cart.items.find((item: any) => item.id === uniqueId))
-                const productQty = item?.quantity || 0
-                // const quantity = items.filter((item: any) => item.id === uniqueId).length;
-                const itemInfo: any = items.find((item: any) => item.id === uniqueId);
-                return {
-                    id: uniqueId,
-                    name: itemInfo.name,
-                    photo: itemInfo.photo,
-                    price: itemInfo.price,
-                    // quantityCart: quantity,
-                    quantityProduct: productQty
-                };
-            });
-
-            AsyncStorage.setItem("items", JSON.stringify(uniqueItems))
-
-            console.log(items)
-
-            return {
-                cartSize: items,
-                uniqueItems: uniqueItems,
-            };
-        }
-    );
-
-    const cartInfo = useSelector(getCartInfo);
+    const quantityItems = useSelector((state: RootState) => state.cart.items.length)
 
     return (
         <SafeAreaView style={styles.Container}>
@@ -74,7 +41,7 @@ const CustomHeaderDrawer = () => {
                             <TouchableOpacity onPress={() => router.push('/ShoppingCart')}>
                                 <View>
                                     <MaterialCommunityIcons name='cart-variant' style={styles.ShoppingCartIcon} />
-                                    <Badge style={styles.Badge}>{0}</Badge>
+                                    <Badge style={styles.Badge}>{quantityItems}</Badge>
                                 </View>
                             </TouchableOpacity>
                         </View>

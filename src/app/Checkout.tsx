@@ -33,7 +33,9 @@ const Checkout = () => {
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
     const [visible, setVisible] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
-    const total = useSelector((state: RootState) => state.cart.total);
+
+    const total = useSelector((state: RootState) => state.cart.total)
+    const items = useSelector((state: RootState) => state.cart.items)
 
 
     const formattedTotal = new Intl.NumberFormat('pt-BR', {
@@ -41,12 +43,11 @@ const Checkout = () => {
         currency: 'BRL',
     }).format(total);
 
-    const getProductsItems = async () => {
-
-        const items: any = await AsyncStorage.getItem("items")
-        const getProduct = JSON.parse(items)
-        return getProduct
-    };
+    const fetchData = () => {
+        const itemsProducts = items
+        const productInfo = itemsProducts.map((item: CheckoutProps) => item)
+        setProducts(productInfo)
+    }
 
     const getSelectedPaymentMethod = async () => {
         const token = await AsyncStorage.getItem("token");
@@ -62,17 +63,6 @@ const Checkout = () => {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            const itemsProducts = await getProductsItems();
-
-            if (itemsProducts) {
-                const productInfo = itemsProducts.map((item: CheckoutProps) => {
-                    return item;
-                });
-                setProducts(prevProducts => [...prevProducts, ...productInfo]);
-
-            }
-        }
         fetchData()
     }, [])
 

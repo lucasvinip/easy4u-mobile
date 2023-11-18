@@ -2,10 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ProductProps {
   id: number;
-  name: any;
+  name: string;
   price: number;
   photo: string;
-  productType: string;
   quantity: number;
 }
 
@@ -34,11 +33,11 @@ export const cartSlice = createSlice({
         state.items.push({ ...action.payload, quantity: 1 });
       }
 
-      state.qty += 1;
       state.total = state.items.reduce((total, item) => {
-        const upadetePrice = item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.')
-        return total + Number(upadetePrice) * item.quantity
-      }, 0);
+        const price = item.price || 0
+        const upadetePrice = price.toString().replace(/[^\d.,]/g, '').replace(',', '.');
+        return total + Number(upadetePrice) * item.quantity;
+      }, 0)
 
     },
     incrementItem(state, action: PayloadAction<number>) {
@@ -49,9 +48,11 @@ export const cartSlice = createSlice({
         state.qty += 1;
 
         state.total = state.items.reduce((total, item) => {
-          const upadetePrice = item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.')
-          return total + Number(upadetePrice) * item.quantity
-        }, 0);
+          const price = item.price || 0
+          const upadetePrice = price.toString().replace(/[^\d.,]/g, '').replace(',', '.');
+          return total + Number(upadetePrice) * item.quantity;
+        }, 0)
+
       }
     },
     decrementItem(state, action: PayloadAction<number>) {
@@ -68,9 +69,10 @@ export const cartSlice = createSlice({
         state.qty = Math.max(state.qty - 1, 0);
 
         state.total = state.items.reduce((total, item) => {
-          const upadetePrice = item.price.toString().replace(/[^\d.,]/g, '').replace(',', '.')
-          return total + Number(upadetePrice) * item.quantity
-        }, 0);
+          const price = item.price || 0
+          const upadetePrice = price.toString().replace(/[^\d.,]/g, '').replace(',', '.');
+          return total + Number(upadetePrice) * item.quantity;
+        }, 0)
 
       }
     },

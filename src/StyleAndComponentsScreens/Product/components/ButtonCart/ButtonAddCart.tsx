@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppTexts } from '../../../../assets/strings';
 import { styles, shadowStyle } from './style'
 import { addCartItem } from '../../../../redux/features/shoppingCart/shoppingCartSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 interface ButtonAddCartProps {
@@ -26,6 +27,7 @@ const ButtonAddCart = ({
 
     const handleAddCart = () => {
         const item: any = { id, price, name, photo, quantity}
+        
         dispatch(addCartItem(item))
     }
     
