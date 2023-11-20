@@ -11,9 +11,10 @@ import { RootState } from '../../../../redux/store';
 
 
 const SubTotalDiscount = () => {
-  const router = useRouter()
 
-  const total = useSelector((state: RootState) => state.cart.total)
+  const router = useRouter();
+  const total = useSelector((state: RootState) => state.cart.total);
+  
   const formattedTotal = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',

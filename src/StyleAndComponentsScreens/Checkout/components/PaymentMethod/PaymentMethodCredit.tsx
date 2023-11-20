@@ -8,32 +8,29 @@ import { styles, shadowStyle } from './style';
 
 type PaymentMethodProps = {
   method: string;
+  selectedMethod: string;
   onSelect: (method: any) => void;
 };
 
-const PaymentMethod = ({ method, onSelect }: PaymentMethodProps) => {
-  const [borderColor, setBorderColor] = useState(theme.COLORS.Whiteffffff);
+const PaymentMethod = ({ method, selectedMethod, onSelect }: PaymentMethodProps) => {
+  
+  console.log(method)
+  console.log(selectedMethod)
 
-  const resolveMethodPayment = () => {
-    onSelect(method)
-  };
+  const isMethodSelected = method === selectedMethod;
+  const borderColor = isMethodSelected ? theme.COLORS.YellowEEA734 : theme.COLORS.Whiteffffff;
 
   const handlePress = () => {
-    if (borderColor === theme.COLORS.Whiteffffff) {
-      setBorderColor(theme.COLORS.YellowEEA734);
-    } else {
-      setBorderColor(theme.COLORS.Whiteffffff);
-    }
-    resolveMethodPayment();
+    onSelect(method);
   };
 
   return (
     <TouchableOpacity
-      style={[styles.Container, shadowStyle, { borderColor: borderColor}]}
+      style={[styles.Container, shadowStyle, { borderColor: borderColor }]}
       onPress={handlePress}
     >
       <View style={[styles.Touchable]}>
-        {method == 'Créditos' ? (
+        {method === 'Créditos' ? (
           <MaterialCommunityIcons name={'credit-card-fast'} style={styles.TouchableIcon} />
         ) : (
           <FontAwesomeIcon icon={faPix} size={24} color={"#32b6aa"} />

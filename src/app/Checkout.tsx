@@ -18,6 +18,7 @@ import Loading from '../components/Loading/Loading';
 import SucessOrder from '../StyleAndComponentsScreens/Checkout/components/SucessOrder';
 import FooterCheckout from '../StyleAndComponentsScreens/Checkout/components/Footer';
 import Header from '../StyleAndComponentsScreens/Checkout/components/Header';
+import ErrorOrder from '../StyleAndComponentsScreens/Checkout/components/ErrorOrder';
 
 interface CheckoutProps {
     id: number;
@@ -57,17 +58,17 @@ const Checkout = () => {
         try {
             setVisible(true);
             setLoading(true);
-    
+
             const token = await AsyncStorage.getItem("token");
             const items = products.map((product) => [product.id, product.quantity]);
 
             if (selectedPaymentMethod === 'Créditos') {
-                const orderResponse = await performApi.sendDataToken("carts-by-user", "POST", token, {products: items});
-    
+                const orderResponse = await performApi.sendDataToken("carts-by-user", "POST", token, { products: items });
+
                 setTimeout(() => {
                     setLoading(false)
                 }, 5000)
-    
+
                 if (orderResponse.statusCode === 201) {
                     setMessage("Compra realizada com sucesso! Verifique seus pedidos");
                     setButtonOrder(true);
@@ -84,19 +85,16 @@ const Checkout = () => {
             setLoading(false);
         }
     };
-    
-
-
 
     useEffect(() => {
         fetchData();
-    }, [])
+    }, []);
 
     return (
         <SafeAreaView>
             <View style={styles.Screen}>
                 <View style={styles.Container}>
-                    <Header/>
+                    <Header />
                     <View style={styles.ContainerMain}>
                         <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
                         <View style={{ alignItems: "center" }}>
@@ -126,7 +124,7 @@ const Checkout = () => {
                                         </ScrollView>
                                     </View>
                                 </View>
-                                <FooterCheckout total={formattedTotal}/>
+                                <FooterCheckout total={formattedTotal} />
                             </View>
                         </View>
                     </View>
@@ -136,8 +134,8 @@ const Checkout = () => {
                                 {AppTexts.Choose_Payment_Method}
                             </Text>
                             <View style={styles.Payment}>
-                                <PaymentMethod method="Créditos" onSelect={() => setSelectedPaymentMethod("Créditos")} />
-                                <PaymentMethod method="Pix" onSelect={() => setSelectedPaymentMethod("Pix")} />
+                                <PaymentMethod method="Créditos" selectedMethod={selectedPaymentMethod} onSelect={() => setSelectedPaymentMethod("Créditos")} />
+                                <PaymentMethod method="Pix"  selectedMethod={selectedPaymentMethod} onSelect={() => setSelectedPaymentMethod("Pix")} />
                             </View>
                         </View>
                         <Button
@@ -153,25 +151,27 @@ const Checkout = () => {
                         {visible && (
                             <ModalPoup visible={visible}>
                                 <View >
-                                    {/* <View style={styles.HeaderModal}>
-                                        <TouchableOpacity onPress={() => setVisible(false)}>
-                                            <Image
-                                                source={require("../assets/img/x.png")}
-                                                style={{ height: 30, width: 30 }}
-                                            />
-                                        </TouchableOpacity>
-                                    </View> */}
+                                    {buttonBack && (
+                                        <View style={styles.HeaderModal}>
+                                            <TouchableOpacity onPress={() => setVisible(false)}>
+                                                <Image
+                                                    source={require("../assets/img/x.png")}
+                                                    style={{ height: 30, width: 30 }}
+                                                />
+                                            </TouchableOpacity>
+                                        </View>
+                                    )}
                                     <View style={styles.modalContainer}>
                                         {loading ? (
-                                            <Loading/>
+                                            <Loading />
                                         ) : (
                                             <View style={styles.Align}>
                                                 <Text style={styles.VerifyPursche}>{message}</Text>
                                                 {buttonOrder && (
-                                                    <SucessOrder onVisible={() => setVisible(false)}/>
+                                                    <SucessOrder onVisible={() => setVisible(false)} />
                                                 )}
                                                 {buttonBack && (
-                                                    <Text>Voltar</Text>
+                                                    <ErrorOrder onVisible={() => setVisible(false)} />
                                                 )}
                                             </View>
 
