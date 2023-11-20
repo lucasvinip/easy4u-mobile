@@ -1,10 +1,11 @@
 import { View } from "react-native";
-import Button from "../../../../components/Button/Button";
-import theme from "../../../../styles/theme";
+import Button from "../../../components/Button/Button";
+import theme from "../../../styles/theme";
 import { router } from "expo-router";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 import { useEffect } from "react";
+import { clearCart } from "../../../redux/features/shoppingCart/shoppingCartSlice";
 
 interface ButtonSucessProps {
     onVisible: () => void
@@ -20,28 +21,17 @@ interface CheckoutProps {
 }
 
 const SucessOrder: React.FC<ButtonSucessProps> = ({onVisible}) => {
+    
+    const dispatch = useDispatch();
 
-    const total = useSelector((state: RootState) => state.cart.total)
-    const items = useSelector((state: RootState) => state.cart.items)
-
-
-    const fetchData = async () => {
-        const itemsProducts = await items
-        const productInfo = itemsProducts.map((item: CheckoutProps) => item)
-        console.log(productInfo)
-    }
-
-    const handleNavigate = () => {
+    const finalizeOrderCart = () => {
+        dispatch(clearCart())
         router.back();
 
         setTimeout(() => {
             router.push('/Orders')
         }, 500);
     };
-
-    useEffect(() => {
-        fetchData();
-    })
 
     return (
         <View style={{ marginTop: 50 }}>
@@ -54,7 +44,7 @@ const SucessOrder: React.FC<ButtonSucessProps> = ({onVisible}) => {
                 fontSize={16}
                 text='Verificar Pedido'
                 color={theme.COLORS.Whiteffffff}
-                onPress={() => {handleNavigate(); onVisible() }}
+                onPress={() => {finalizeOrderCart(); onVisible() }}
             />
         </View>
     )

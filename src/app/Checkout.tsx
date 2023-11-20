@@ -15,7 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import PaymentMethod from '../StyleAndComponentsScreens/Checkout/components/PaymentMethod/PaymentMethodCredit';
 import ModalPoup from '../components/ModalPoup/Modal';
 import Loading from '../components/Loading/Loading';
-import SucessOrder from '../StyleAndComponentsScreens/Checkout/components/SucessOrder/SucessOrder';
+import SucessOrder from '../StyleAndComponentsScreens/Checkout/components/SucessOrder';
 import FooterCheckout from '../StyleAndComponentsScreens/Checkout/components/Footer';
 import Header from '../StyleAndComponentsScreens/Checkout/components/Header';
 
@@ -25,8 +25,7 @@ interface CheckoutProps {
     photo: string;
     price: number;
     quantity: number
-
-}
+};
 
 const Checkout = () => {
     const [products, setProducts] = useState<CheckoutProps[]>([])
@@ -36,6 +35,7 @@ const Checkout = () => {
     const [order, setOrder] = useState<number[][]>([])
     const [message, setMessage] = useState<string>("")
     const [buttonOrder, setButtonOrder] = useState<boolean>(false)
+    const [buttonBack, setButtonBack] = useState<boolean>(false)
     const router = useRouter()
 
     const total = useSelector((state: RootState) => state.cart.total)
@@ -72,6 +72,7 @@ const Checkout = () => {
                     setMessage("Compra realizada com sucesso! Verifique seus pedidos");
                     setButtonOrder(true);
                 } else {
+                    setButtonBack(true)
                     setMessage("Saldo Insuficiente! Vá à cantina para recarregar seu saldo");
                 }
             } else {
@@ -168,6 +169,9 @@ const Checkout = () => {
                                                 <Text style={styles.VerifyPursche}>{message}</Text>
                                                 {buttonOrder && (
                                                     <SucessOrder onVisible={() => setVisible(false)}/>
+                                                )}
+                                                {buttonBack && (
+                                                    <Text>Voltar</Text>
                                                 )}
                                             </View>
 

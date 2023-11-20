@@ -18,29 +18,24 @@ interface ProductProps {
     name: string,
     price: number,
     photo: string,
-}
+};
 
 const ShoppingCart = () => {
     const [products, setProducts] = useState<ProductProps[]>([])
 
-    const items = useSelector((state: RootState) => state.cart.items)
+    const items = useSelector((state: RootState) => state.cart.items);
 
     const fetchData = () => {
-        const itemsProducts = items
+        const itemsProducts = items;
         const productInfo = itemsProducts.map((item: ProductProps) => {
-            console.log(item);
-            
            return item
-        })
-        console.log("fowef, " + productInfo);
-
-
-        setProducts(productInfo)
-    }
+        });
+        setProducts(productInfo);
+    };
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, []);
 
     return (
         <SafeAreaView style={{ backgroundColor: 'white' }}>
