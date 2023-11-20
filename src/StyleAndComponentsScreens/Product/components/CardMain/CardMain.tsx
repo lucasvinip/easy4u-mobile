@@ -42,9 +42,13 @@ const CardMain = ({
                     <Text style={styles.AvailableText}>
                         {AppTexts.Available}
                     </Text>
-                    <ScrollView contentContainerStyle={styles.ContainerProducts} horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <ProductsDisponibility />
-                        <ProductsDisponibility />
+                    <ScrollView
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={true}
+                        contentContainerStyle={styles.ContainerProducts}
+                        scrollEnabled={true}
+                        key={Math.random()}
+                    >
                         <ProductsDisponibility />
                         <ProductsDisponibility />
                         <ProductsDisponibility />

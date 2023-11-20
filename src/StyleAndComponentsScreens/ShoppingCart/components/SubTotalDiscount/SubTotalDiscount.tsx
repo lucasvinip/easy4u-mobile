@@ -20,7 +20,10 @@ const SubTotalDiscount = () => {
   }).format(total);
 
   const handleFinalizeOrder = () => {
-    router.push('/Checkout')
+    router.back()
+    setTimeout(() => {
+      router.push('/Checkout')
+    }, 500)
   }
 
   return (

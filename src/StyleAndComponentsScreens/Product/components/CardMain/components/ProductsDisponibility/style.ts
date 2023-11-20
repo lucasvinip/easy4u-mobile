@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     Products: {
         backgroundColor: theme.COLORS.BeigeRgba237243237092,
         height: 92,
-        width: '20%',
+        width: 200,
         borderRadius: 25,
         marginRight: 20
     },

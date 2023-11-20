@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    ScrollView,
-    TouchableOpacity,
-    ActivityIndicator
-} from 'react-native';
+import { Image, View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppTexts } from '../assets/strings';
-
-
 import { styles } from '../StyleAndComponentsScreens/Checkout/style'
+import { useRouter } from 'expo-router';
+import { performApi } from '../utils/api';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
 import NameAndTotal from '../StyleAndComponentsScreens/Checkout/components/NameAndTotal/NameAndTotal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
 import PaymentMethod from '../StyleAndComponentsScreens/Checkout/components/PaymentMethod/PaymentMethodCredit';
-import { performApi } from '../utils/api';
 import ModalPoup from '../components/ModalPoup/Modal';
-import { useRouter } from 'expo-router';
 import Loading from '../components/Loading/Loading';
 import SucessOrder from '../StyleAndComponentsScreens/Checkout/components/SucessOrder/SucessOrder';
 import FooterCheckout from '../StyleAndComponentsScreens/Checkout/components/Footer';
@@ -160,14 +152,14 @@ const Checkout = () => {
                         {visible && (
                             <ModalPoup visible={visible}>
                                 <View >
-                                    <View style={styles.HeaderModal}>
+                                    {/* <View style={styles.HeaderModal}>
                                         <TouchableOpacity onPress={() => setVisible(false)}>
                                             <Image
                                                 source={require("../assets/img/x.png")}
                                                 style={{ height: 30, width: 30 }}
                                             />
                                         </TouchableOpacity>
-                                    </View>
+                                    </View> */}
                                     <View style={styles.modalContainer}>
                                         {loading ? (
                                             <Loading/>

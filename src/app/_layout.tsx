@@ -41,6 +41,7 @@ const Layout = () => {
                         title: '',
                         headerTintColor: theme.COLORS.Orange2FFA24B,
                     }}
+                    
                 />
                 <Stack.Screen
                     name='(drawer)'
@@ -105,6 +106,7 @@ const Layout = () => {
                         headerTitle: () => (
                             <CustomHeaderTitle title={AppTexts.Payment.toLocaleUpperCase()} padding={5.5} />),
                         headerTitleAlign: 'center',
+                        presentation: 'formSheet'
                     }}
                 />
             </Stack>
