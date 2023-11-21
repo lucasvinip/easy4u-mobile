@@ -19,6 +19,9 @@ import SucessOrder from '../StyleAndComponentsScreens/Checkout/components/Sucess
 import FooterCheckout from '../StyleAndComponentsScreens/Checkout/components/Footer';
 import Header from '../StyleAndComponentsScreens/Checkout/components/Header';
 import ErrorOrder from '../StyleAndComponentsScreens/Checkout/components/ErrorOrder';
+import { pixData } from '../utils/data';
+import CPBoard from '../components/CPBoard/CPBoard';
+import Toast from '../components/Toast/Toast';
 
 interface CheckoutProps {
     id: number;
@@ -28,13 +31,21 @@ interface CheckoutProps {
     quantity: number
 };
 
+interface ResponsePaymentPix {
+    copy: string;
+    qrcode: string;
+}
+
 const Checkout = () => {
     const [products, setProducts] = useState<CheckoutProps[]>([])
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
     const [visible, setVisible] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
-    const [order, setOrder] = useState<number[][]>([])
     const [message, setMessage] = useState<string>("")
+    const [pix, setPix] = useState<boolean>(false)
+    const [qrCode, setQrCode] = useState<string>("")
+    const [copy, setCopy] = useState<string>("")
+    const [error, setError] = useState<boolean>()
     const [buttonOrder, setButtonOrder] = useState<boolean>(false)
     const [buttonBack, setButtonBack] = useState<boolean>(false)
     const router = useRouter()
@@ -56,13 +67,11 @@ const Checkout = () => {
 
     const getSelectedPaymentMethod = async () => {
         try {
-            setVisible(true);
-            setLoading(true);
-
             const token = await AsyncStorage.getItem("token");
             const items = products.map((product) => [product.id, product.quantity]);
-
             if (selectedPaymentMethod === 'Créditos') {
+                setVisible(true);
+                setLoading(true);
                 const orderResponse = await performApi.sendDataToken("carts-by-user", "POST", token, { products: items });
 
                 setTimeout(() => {
@@ -76,8 +85,14 @@ const Checkout = () => {
                     setButtonBack(true)
                     setMessage("Saldo Insuficiente! Vá à cantina para recarregar seu saldo");
                 }
+            } else if (selectedPaymentMethod === "Pix") {
+                const pix: ResponsePaymentPix = await performApi.sendData("payment/pix", "POST", pixData)
+                setPix(true)
+                setVisible(true);
+                setCopy(pix.copy)
+                setQrCode(pix.qrcode)
             } else {
-                console.log("oi");
+                setError(true)
             }
         } catch (error) {
             setMessage("Houve um erro ao finalizar seu pedido! Tente novamente");
@@ -94,6 +109,9 @@ const Checkout = () => {
         <SafeAreaView>
             <View style={styles.Screen}>
                 <View style={styles.Container}>
+                {error && (
+                    <Toast/>
+                )}
                     <Header />
                     <View style={styles.ContainerMain}>
                         <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
@@ -135,7 +153,7 @@ const Checkout = () => {
                             </Text>
                             <View style={styles.Payment}>
                                 <PaymentMethod method="Créditos" selectedMethod={selectedPaymentMethod} onSelect={() => setSelectedPaymentMethod("Créditos")} />
-                                <PaymentMethod method="Pix"  selectedMethod={selectedPaymentMethod} onSelect={() => setSelectedPaymentMethod("Pix")} />
+                                <PaymentMethod method="Pix" selectedMethod={selectedPaymentMethod} onSelect={() => setSelectedPaymentMethod("Pix")} />
                             </View>
                         </View>
                         <Button
@@ -166,7 +184,10 @@ const Checkout = () => {
                                             <Loading />
                                         ) : (
                                             <View style={styles.Align}>
-                                                <Text style={styles.VerifyPursche}>{message}</Text>
+                                                {pix && (
+                                                    <CPBoard copy={copy} qrcode={qrCode} visible={() => setVisible(false)} />
+                                                )}
+                                                {message && (<Text style={styles.VerifyPursche}>{message}</Text>)}
                                                 {buttonOrder && (
                                                     <SucessOrder onVisible={() => setVisible(false)} />
                                                 )}

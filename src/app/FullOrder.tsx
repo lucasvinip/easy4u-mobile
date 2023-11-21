@@ -31,7 +31,7 @@ type Details = {
 
 type Product = {
     product: Details,
-    quantity: number;
+    qntd: number;
     total_value: number;
 }
 
@@ -57,7 +57,6 @@ const FullOrder = () => {
 
     const dispatch = useDispatch()
 
-
     const handleOrderAgain = () => {
         const items = order?.products;
     
@@ -68,12 +67,9 @@ const FullOrder = () => {
                     name: product.product.name,
                     photo: product.product.photo,
                     price: product.product.price,
-                    quantity: product.quantity,
+                    qndt: product.qntd,
                 };
             });
-            console.log("ar, " + newItem);
-            
-            
             dispatch(addCartItem(newItem));
         }
     };

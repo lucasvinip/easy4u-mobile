@@ -46,6 +46,11 @@ const styles = StyleSheet.create({
   ContainerMain: {
     height: '99%',
   },
+  Scroll: {
+    height: '57%',
+    width: '100%',
+    justifyContent: 'center',
+  }
 });
 
 const shadowStyle = {

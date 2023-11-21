@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     Image,
-    SafeAreaView
+    SafeAreaView,
+    ScrollView
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -116,7 +117,7 @@ const Product = () => {
                                     <ButtonFavoriteProduct idProduct={id} favorite={isFavorite} />
                                 </View>
                                 <View style={styles.ContainerMain}>
-                                    <CardMain    
+                                    <CardMain
                                         name={dataProduct?.name}
                                         price={dataProduct?.price}
                                         description={dataProduct?.description}

@@ -33,7 +33,7 @@ const CardMain = ({
                 </Text>
                 <View style={styles.ContainerDescription}>
                     <Text style={styles.TitleDescription}>
-                        {description} aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        {description}
                     </Text>
                 </View>
             </View>
