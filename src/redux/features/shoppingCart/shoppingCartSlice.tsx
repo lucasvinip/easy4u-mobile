@@ -25,7 +25,6 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addCartItem(state, action: PayloadAction<ProductProps>) {
-
       const existingItem = state.items.find(item => item.id === action.payload.id);
 
       if (existingItem) {
@@ -39,8 +38,19 @@ export const cartSlice = createSlice({
         const upadetePrice = price.toString().replace(/[^\d.,]/g, '').replace(',', '.');
         return total + Number(upadetePrice) * item.quantity;
       }, 0)
-
     },
+    orderAgain(state, action: PayloadAction<any>) {
+      action.payload.map((item: any) => {
+        const existingItem = state.items.find((cartItem) => cartItem.id === item.id);
+
+        if (existingItem) {
+          existingItem.quantity += item.quantity;
+        } else {
+          state.items.push({ ...item });
+        }
+      });
+    },
+
     incrementItem(state, action: PayloadAction<number>) {
       const item = state.items.find(item => item.id === action.payload);
 
@@ -88,6 +98,7 @@ export const cartSlice = createSlice({
 
 export const {
   addCartItem,
+  orderAgain,
   incrementItem,
   decrementItem,
   clearCart

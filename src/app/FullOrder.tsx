@@ -17,8 +17,9 @@ import ContainerFullOrder from '../StyleAndComponentsScreens/FullOrders/componen
 import CustomQRCode from '../components/QRCode/QRCode';
 import ModalPoup from '../components/ModalPoup/Modal';
 import NameAndTotal from '../StyleAndComponentsScreens/Checkout/components/NameAndTotal/NameAndTotal';
-import { useDispatch } from 'react-redux';
-import { addCartItem } from '../redux/features/shoppingCart/shoppingCartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCartItem, orderAgain } from '../redux/features/shoppingCart/shoppingCartSlice';
+import { RootState } from '../redux/store';
 
 type Details = {
     id: number
@@ -31,7 +32,7 @@ type Details = {
 
 type Product = {
     product: Details,
-    quantity: number;
+    qntd: number;
     total_value: number;
 }
 
@@ -49,6 +50,8 @@ const FullOrder = () => {
     const [order, setOrder] = useState<ProductByCartResponse>();
     const [isModalVisible, setModalVisible] = useState(false);
 
+    const quantityItems = useSelector((state: RootState) => state.cart.qty)
+
     const priceNew = order?.total ?? 0
     const formattedTotal = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
@@ -60,24 +63,26 @@ const FullOrder = () => {
 
     const handleOrderAgain = () => {
         const items = order?.products;
-    
+
         if (items && items.length > 0) {
             const newItem: any = items.map((product: Product) => {
-                return {
+                const newQuantity = quantityItems;
+                const item = {
                     id: product.product.id,
                     name: product.product.name,
                     photo: product.product.photo,
                     price: product.product.price,
-                    quantity: product.quantity,
+                    quantity: newQuantity,
                 };
+
+                return item;
             });
-            console.log("ar, " + newItem);
-            
-            
-            dispatch(addCartItem(newItem));
+
+            console.log(newItem);
+
+            dispatch(orderAgain(newItem));
         }
     };
-
 
 
     const getIdFromLocalStorage = async () => {
@@ -90,10 +95,7 @@ const FullOrder = () => {
     const getProductInfo = async (orderId: string) => {
         try {
             const data = await performApi.getData(`carts-by-user/${orderId}`, token)
-            console.log("  invoierlgkv " + data);
-
             setOrder(data);
-            console.log(JSON.stringify(order))
         } catch (error) {
             console.error("Error fetching product information:", error);
         }
@@ -130,7 +132,8 @@ const FullOrder = () => {
                                                 <Text style={styles.TitleTotal}>{AppTexts.Total}</Text>
                                             </View>
                                         </View>
-                                        <ScrollView contentContainerStyle={styles.ContainerCardMain} showsVerticalScrollIndicator={false}>
+                                        <ScrollView contentContainerStyle={styles.ContainerCardMain} showsVerticalScrollIndicator={false}
+                                        >
                                             <View style={styles.CardMain}>
                                                 {order?.products ? (
                                                     <ContainerFullOrder

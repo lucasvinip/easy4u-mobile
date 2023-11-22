@@ -71,7 +71,7 @@ const Orders = () => {
             router.push("/");
         } else {
             const getOrdersFromUser = await performApi.getData("carts-by-user", storedToken);
-            
+
             if (Array.isArray(getOrdersFromUser)) {
                 setOrders(getOrdersFromUser.slice().reverse());
             }
@@ -104,6 +104,7 @@ const Orders = () => {
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
                         <ScrollView style={{ marginTop: 42, height: '100%' }}
+                            showsVerticalScrollIndicator={false}
                             refreshControl={
                                 <RefreshControl
                                     refreshing={refresh}
@@ -112,10 +113,10 @@ const Orders = () => {
                             {isLoading ?
                                 <>
                                     <View style={{ gap: 20 }}>
-                                        <SkeletonOrders/>
-                                        <SkeletonOrders/>
-                                        <SkeletonOrders/>
-                                        <SkeletonOrders/>
+                                        <SkeletonOrders />
+                                        <SkeletonOrders />
+                                        <SkeletonOrders />
+                                        <SkeletonOrders />
                                     </View>
                                 </>
                                 : (

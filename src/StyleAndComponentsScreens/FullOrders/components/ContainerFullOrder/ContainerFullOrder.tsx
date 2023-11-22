@@ -13,7 +13,7 @@ type Details = {
 
 type Product = {
     product: Details;
-    quantity: number;
+    qntd: number;
     total_value: number;
 };
 
@@ -32,14 +32,14 @@ const ContainerFullOrder = ({
         <View style={styles.Container}>
             {productsByCart.length > 0 ? (
                 productsByCart.map(
-                    ({ product, quantity, total_value }: Product, index: number) => (
+                    ({ product, qntd, total_value }: Product, index: number) => (
                         <View style={styles.ContentMain} key={index}>
                             <View style={styles.NameAndQuantityProduct}>
                                 <Text style={styles.NameTitle}>
                                     {product.name}
                                 </Text>
                                 <Text style={styles.QuantityTitle}>
-                                    {quantity}x
+                                    {qntd}x
                                 </Text>
                             </View>
                             <Text style={styles.MainTitle}>
