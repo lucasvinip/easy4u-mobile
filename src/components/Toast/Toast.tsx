@@ -1,26 +1,27 @@
-import React from 'react';
-import { View, Modal, StyleSheet } from 'react-native';
-import { ErrorToast } from 'react-native-toast-message';
+import React, { useState, useEffect } from 'react';
+import { View, Modal } from 'react-native';
+import { BaseToastProps, ErrorToast, ToastConfig, ToastOptions } from 'react-native-toast-message'; // Adicionei o tipo ToastConfig
 import { styles } from './style';
 
-const Toast: React.FC = () => {
-    return (
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={true} // Certifique-se de controlar a visibilidade do modal conforme necessário
-        >
-            <View style={styles.modalContainer}>
-                <View style={{}}>
-                    <ErrorToast
-                        activeOpacity={50}
-                        text1='Selecione um Método de agamento'
-                        text1Style={styles.Error}
-                    />
-                </View>
-            </View>
-        </Modal>
-    );
+interface ToastProps {
+    onVisible: boolean;
 }
+
+const Toast: React.FC<ToastProps> = () => {
+
+
+
+    const toastConfig: ToastOptions | BaseToastProps = {
+        position: "top",
+        autoHide: true,
+        visibilityTime: 3000,
+        text1: "Olá Mundo!",
+        topOffset: 10 
+    };
+
+    return (
+        <ErrorToast {...toastConfig} style={{position: "sticky"}}/>
+    );
+};
 
 export default Toast;
