@@ -13,6 +13,8 @@ import ButtonGetOut from './components/ButtonGetOut/ButtonGetOut';
 import { useToken } from '../../hooks/useToken';
 import { useEffect } from 'react';
 import { performApi } from '../../utils/api';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 type userData = {
   name: string;
@@ -26,6 +28,9 @@ const defaultPhoto = require("../../assets/img/user.png")
 
 const CustomDrawer = () => {
 
+  const userPhoto = useSelector((state: RootState) => state.user.userPhoto)
+  const photo = userPhoto ? {uri: userPhoto} : defaultPhoto
+
   const token = useToken()
   const [user, setUser] = useState<userData>()
 
@@ -37,7 +42,7 @@ const CustomDrawer = () => {
     getUserData()
   }, [token])
 
-  const userPhotoProfile = user?.photo ? {uri: user?.photo} : defaultPhoto 
+  const userPhotoProfile = user?.photo ? { uri: user?.photo } : defaultPhoto
 
   return (
     <View style={styles.Drawer}>
@@ -45,7 +50,9 @@ const CustomDrawer = () => {
         <View style={styles.Content}>
           <View style={styles.ContainerHeader}>
             <View style={styles.Header}>
-              <Image source={userPhotoProfile} style={styles.Image} />
+              <Image
+                source={photo}
+                style={styles.Image} />
               <View style={styles.Texts}>
                 <Text style={styles.Name}>
                   {user?.name}

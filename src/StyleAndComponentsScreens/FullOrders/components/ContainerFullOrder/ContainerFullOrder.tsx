@@ -32,7 +32,7 @@ const ContainerFullOrder = ({
         <View style={styles.Container}>
             {productsByCart.length > 0 ? (
                 productsByCart.map(
-                    ({ product, total_value, qntd }: Product, index: number) => (
+                    ({ product, qntd, total_value }: Product, index: number) => (
                         <View style={styles.ContentMain} key={index}>
                             <View style={styles.NameAndQuantityProduct}>
                                 <Text style={styles.NameTitle}>

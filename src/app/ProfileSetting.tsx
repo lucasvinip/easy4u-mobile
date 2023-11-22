@@ -22,6 +22,8 @@ import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camer
 import { performApi } from '../utils/api';
 import { useToken } from '../hooks/useToken';
 import { storage } from '../../firebaseConfig';
+import { useDispatch } from 'react-redux';
+import { handleUserPhoto } from '../redux/features/userSettings/userSettingsSlice';
 
 
 const themeTextInput = {
@@ -47,6 +49,8 @@ const ProfileSetting = () => {
     const token = useToken();
 
     const userPhotoProfile = userSetting?.photo ? { uri: userSetting?.photo } : defaultPhoto
+
+    const dispatch = useDispatch()
 
 
     const uploadImage = async (uri: string): Promise<any> => {
@@ -86,14 +90,13 @@ const ProfileSetting = () => {
                 setLoading(true)
                 const uploadURL = await uploadImage(result.assets[0].uri);
                 await AsyncStorage.setItem("savedImage", uploadURL)
-
-
                 setTimeout(() => {
                     setLoading(false);
 
                 }, 2000);
 
                 setSelectedImage(uploadURL);
+                dispatch(handleUserPhoto(uploadURL))
             } else {
                 alert(AppTexts.Didnt_Choose_Image);
             }

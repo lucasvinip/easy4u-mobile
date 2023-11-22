@@ -27,6 +27,7 @@ const ButtonAddCart = ({
 
     const handleAddCart = () => {
         const item: any = { id, price, name, photo, quantity}
+        console.log(item);
         
         dispatch(addCartItem(item))
     }
