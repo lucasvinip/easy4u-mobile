@@ -19,10 +19,22 @@ interface ProductProps {
     name: string,
     price: number,
     photo: string,
+    preparationTime: number | undefined,
 };
 
 const ShoppingCart = () => {
+    const [scheduleTime, setScheduleTime] = useState<boolean>();
+
     const items = useSelector((state: RootState) => state.cart.items);
+
+    const verifyScheduleTime = () => {
+        items.some(product => product.preparationTime !== null ? setScheduleTime(true) : setScheduleTime(false));
+    }
+
+    useEffect(() => {
+        verifyScheduleTime();
+    }, [items]);
+
 
     return (
         <UseFonts>
@@ -47,9 +59,12 @@ const ShoppingCart = () => {
                                     ))
                                 }
                             </View>
-                            <View>
-                                <ScheduleTime />
-                            </View>
+                            {scheduleTime && (
+                                <View>
+                                    <ScheduleTime />
+                                </View>
+                            )}
+
                             <View style={styles.ConatinerFooter}>
                                 <View>
                                     <SubTotalDiscount />

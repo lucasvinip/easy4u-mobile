@@ -117,8 +117,6 @@ const AllProducts = () => {
 
     const handleSearchProduct = async () => {
         const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
-        console.log(apiDataFilterProductsByTypeAndName);
-
         if (!apiDataFilterProductsByTypeAndName) {
             Alert.alert("Erro!")
         } else {
@@ -130,8 +128,7 @@ const AllProducts = () => {
                     const lowerCaseProductType = productType.toLowerCase()
                     return lowerCaseName.includes(lowerCaseText) || lowerCaseProductType.includes(lowerCaseText)
                 });
-
-                console.log(filter);
+                
                 setProducts(filter);
             } catch (error) {
                 alert('filter name and productType not get:' + error);
