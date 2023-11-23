@@ -25,11 +25,6 @@ const ButtonMoreOrLess = ({
     const item = useSelector((state: RootState) => state.cart.items.find((item: ButtonMoreOrLessProps) => item.id === id))
 
     const productQty = item?.quantity || 0
-    const productPrice = item?.price || 0
-
-    console.log(' aaaa ' + productQty)
-    console.log(" bbb " + productPrice);
-
 
     const handleMinus = async () => {
         dispatch(decrementItem(id))

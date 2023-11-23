@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ProductProps {
-  id: number;
-  name: string;
-  price: number;
-  photo: string;
-  quantity: number;
+  id: number,
+  name: string,
+  price: number,
+  photo: string,
+  quantity: number,
+  preparationTime: number | undefined
 }
 
 export interface CartState {
@@ -45,9 +46,12 @@ export const cartSlice = createSlice({
 
         if (existingItem) {
           existingItem.quantity += item.quantity;
+          console.log(item.quantity);
+
         } else {
           state.items.push({ ...item });
         }
+
       });
     },
 
