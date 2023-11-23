@@ -13,7 +13,8 @@ interface ButtonAddCartProps {
     price: number,
     photo: string | undefined,
     name: string | undefined,
-    quantity?: number
+    quantity?: number,
+    preparationTime: number | undefined
 }
 
 const ButtonAddCart = ({
@@ -21,12 +22,13 @@ const ButtonAddCart = ({
     id,
     photo,
     name,
-    quantity
+    quantity,
+    preparationTime
 }: ButtonAddCartProps) => {
     const dispatch = useDispatch();
 
     const handleAddCart = () => {
-        const item: any = { id, price, name, photo, quantity}
+        const item: any = { id, price, name, photo, quantity, preparationTime}
         console.log(item);
         
         dispatch(addCartItem(item))

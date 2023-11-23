@@ -16,6 +16,7 @@ interface CardMainProps {
     description: string | undefined,
     id: number,
     photo: string | undefined,
+    preparationTime: number | undefined
 }
 
 const CardMain = ({
@@ -24,6 +25,7 @@ const CardMain = ({
     description,
     id,
     photo,
+    preparationTime
 }: CardMainProps) => {
     return (
         <View style={styles.Container}>
@@ -62,6 +64,7 @@ const CardMain = ({
                     id={id}
                     name={name}
                     photo={photo}
+                    preparationTime={preparationTime}
                 />
             </View>
         </View>

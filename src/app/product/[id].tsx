@@ -19,7 +19,8 @@ type CardProductProps = {
     name: string,
     price: number,
     photo: string,
-    description: string
+    description: string,
+    preparationTime: number | undefined
 }
 
 type Product = {
@@ -63,6 +64,8 @@ const Product = () => {
         } else {
             try {
                 const data = await apiDataProducts;
+                console.log(apiDataProducts);
+                
                 const formattedPrice = {
                     ...data,
                     price: new Intl.NumberFormat('pt-BR', {
@@ -123,6 +126,7 @@ const Product = () => {
                                         description={dataProduct?.description}
                                         id={+id}
                                         photo={dataProduct?.photo}
+                                        preparationTime={dataProduct?.preparationTime}
                                     />
                                 </View>
                             </View>

@@ -76,6 +76,7 @@ const FullOrder = () => {
 
                 return item;
             });
+            dispatch(orderAgain(newItem))
         }
     };
 
