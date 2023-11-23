@@ -87,6 +87,7 @@ const Checkout = () => {
 
         if (orderResponse.statusCode === 201) {
           setMessage('Compra realizada com sucesso! Verifique seus pedidos');
+
           setButtonOrder(true);
         } else {
           setButtonBack(true);

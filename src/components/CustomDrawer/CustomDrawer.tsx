@@ -28,21 +28,20 @@ const defaultPhoto = require("../../assets/img/user.png")
 
 const CustomDrawer = () => {
 
-  const userPhoto = useSelector((state: RootState) => state.user.userPhoto)
-  const photo = userPhoto ? {uri: userPhoto} : defaultPhoto
-
-  const token = useToken()
-  const [user, setUser] = useState<userData>()
+  const uploadURL = useSelector((state: RootState) => state.user.uploadURL)
+  const photo = uploadURL ? { uri: uploadURL } : defaultPhoto;
+  const token = useToken();
+  const [user, setUser] = useState<userData>();
 
   useEffect(() => {
     const getUserData = async () => {
-      const data = await performApi.getData("auth/me", token)
-      setUser(data)
-    }
-    getUserData()
-  }, [token])
+      const data = await performApi.getData('auth/me', token);
+      setUser(data);
+    };
+    getUserData();
+  }, [token]);
 
-  const userPhotoProfile = user?.photo ? { uri: user?.photo } : defaultPhoto
+
 
   return (
     <View style={styles.Drawer}>

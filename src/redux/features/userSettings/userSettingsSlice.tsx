@@ -1,28 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserProps {
-    userPhoto: string,
-    userCredit: number
+    userCredit: number,
+    uploadURL: string,
 }
 
 const initialState: UserProps = {
     userCredit: 0,
-    userPhoto: ''
+    uploadURL: '',
 };
 
 export const userSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        handleUserPhoto(state) {
-            state.userPhoto
-        }
-
+        setUploadURL(state, action: PayloadAction<string>) {
+            state.uploadURL = action.payload;
+            console.log("aa " + action.payload);
+        },
     }
 });
 
-export const {
-    handleUserPhoto
-} = userSlice.actions;
+export const { setUploadURL } = userSlice.actions;
 
 export default userSlice.reducer;

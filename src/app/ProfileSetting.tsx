@@ -23,7 +23,7 @@ import { performApi } from '../utils/api';
 import { useToken } from '../hooks/useToken';
 import { storage } from '../../firebaseConfig';
 import { useDispatch } from 'react-redux';
-import { handleUserPhoto } from '../redux/features/userSettings/userSettingsSlice';
+import { setUploadURL } from '../redux/features/userSettings/userSettingsSlice';
 
 
 const themeTextInput = {
@@ -96,7 +96,7 @@ const ProfileSetting = () => {
                 }, 2000);
 
                 setSelectedImage(uploadURL);
-                dispatch(handleUserPhoto(uploadURL))
+                dispatch(setUploadURL(uploadURL))
             } else {
                 alert(AppTexts.Didnt_Choose_Image);
             }
