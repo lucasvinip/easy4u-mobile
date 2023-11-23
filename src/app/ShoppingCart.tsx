@@ -22,20 +22,7 @@ interface ProductProps {
 };
 
 const ShoppingCart = () => {
-    const [products, setProducts] = useState<ProductProps[]>([])
-
     const items = useSelector((state: RootState) => state.cart.items);
-
-    const fetchData = () => {
-        const item = items.map((item: ProductProps) => item)
-        console.log(item);
-        
-        setProducts(item);
-    };
-
-    useEffect(() => {
-        fetchData()
-    }, []);
 
     return (
         <UseFonts>
@@ -49,7 +36,7 @@ const ShoppingCart = () => {
                             </View>
                             <View style={styles.ContainerMain}>
                                 {
-                                    products.map((item: ProductProps, index: number) => (
+                                    items.map((item: ProductProps, index: number) => (
                                         <ProductItem
                                             key={index}
                                             name={item.name}

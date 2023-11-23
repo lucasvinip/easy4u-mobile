@@ -16,10 +16,8 @@ import { performApi } from '../utils/api';
 import ContainerFullOrder from '../StyleAndComponentsScreens/FullOrders/components/ContainerFullOrder/ContainerFullOrder';
 import CustomQRCode from '../components/QRCode/QRCode';
 import ModalPoup from '../components/ModalPoup/Modal';
-import NameAndTotal from '../StyleAndComponentsScreens/Checkout/components/NameAndTotal/NameAndTotal';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCartItem, orderAgain } from '../redux/features/shoppingCart/shoppingCartSlice';
-import { RootState } from '../redux/store';
+import { orderAgain } from '../redux/features/shoppingCart/shoppingCartSlice';
 
 type Details = {
     id: number
@@ -50,8 +48,6 @@ const FullOrder = () => {
     const [order, setOrder] = useState<ProductByCartResponse>();
     const [isModalVisible, setModalVisible] = useState(false);
 
-    const quantityItems = useSelector((state: RootState) => state.cart.qty)
-
     const priceNew = order?.total ?? 0
     const formattedTotal = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
@@ -65,15 +61,18 @@ const FullOrder = () => {
 
         if (items && items.length > 0) {
             const newItem: any = items.map((product: Product) => {
-                const newQuantity = quantityItems;
+                const priceNew = product.product.price ?? 0
+                const formattedTotal = new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                }).format(priceNew)
                 const item = {
                     id: product.product.id,
                     name: product.product.name,
                     photo: product.product.photo,
-                    price: product.product.price,
-                    quantity: newQuantity,
-                };
-
+                    price: formattedTotal,
+                    quantity: product.qntd,
+                }
                 return item;
             });
             dispatch(orderAgain(newItem))

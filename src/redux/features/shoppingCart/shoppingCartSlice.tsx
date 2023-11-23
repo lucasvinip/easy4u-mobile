@@ -46,11 +46,17 @@ export const cartSlice = createSlice({
 
         if (existingItem) {
           existingItem.quantity += item.quantity;
-          console.log(item.quantity);
-
         } else {
           state.items.push({ ...item });
         }
+
+        state.total = state.items.reduce((total, item) => {
+          const price = item.price || 0
+          console.log("aaa ß" + item.price);
+          
+          const upadetePrice = price.toString().replace(/[^\d.,]/g, '').replace(',', '.');
+          return total + Number(upadetePrice) * item.quantity;
+        }, 0)
 
       });
     },
