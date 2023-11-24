@@ -9,11 +9,14 @@ import Button from '../../../../components/Button/Button';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 
+interface SubTotalDiscountProps{
+  total: number
+}
 
-const SubTotalDiscount = () => {
+const SubTotalDiscount = ({total}: SubTotalDiscountProps) => {
 
   const router = useRouter();
-  const total = useSelector((state: RootState) => state.cart.total);
+  // const total = useSelector((state: RootState) => state.cart.total);
   
   const formattedTotal = new Intl.NumberFormat('pt-BR', {
     style: 'currency',

@@ -25,15 +25,19 @@ interface ProductProps {
 const ShoppingCart = () => {
     const [scheduleTime, setScheduleTime] = useState<boolean>();
 
-    const items = useSelector((state: RootState) => state.cart.items);
+    const cart = useSelector((state: RootState) => state.cart);
+    const cartItems = cart.items
+    const cartQty = cart.items.find((item: ProductProps) => item.id === item.id)
+    const productQty = cartQty?.quantity || 0
+    const cartTotal = cart.total
 
     const verifyScheduleTime = () => {
-        items.some(product => product.preparationTime !== null ? setScheduleTime(true) : setScheduleTime(false));
+        cartItems.some(product => product.preparationTime !== null ? setScheduleTime(true) : setScheduleTime(false));
     }
 
     useEffect(() => {
         verifyScheduleTime();
-    }, [items]);
+    }, [cartItems]);
 
 
     return (
@@ -43,18 +47,19 @@ const ShoppingCart = () => {
                     <View style={styles.Container}>
                         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ height: 'auto' }}>
                             <View style={styles.ContainerHeader}>
-                                <Text style={styles.HeaderText}>{items.length} items</Text>
+                                <Text style={styles.HeaderText}>{cartItems.length} items</Text>
                                 <View style={styles.HeaderLine} />
                             </View>
                             <View style={styles.ContainerMain}>
                                 {
-                                    items.map((item: ProductProps, index: number) => (
+                                    cartItems.map((item: ProductProps, index: number) => (
                                         <ProductItem
                                             key={index}
                                             name={item.name}
                                             price={item.price}
                                             photo={item.photo}
                                             id={item.id}
+                                            productQty={productQty}
                                         />
                                     ))
                                 }
@@ -67,7 +72,7 @@ const ShoppingCart = () => {
 
                             <View style={styles.ConatinerFooter}>
                                 <View>
-                                    <SubTotalDiscount />
+                                    <SubTotalDiscount total={cartTotal}/>
                                 </View>
                             </View>
                         </ScrollView>

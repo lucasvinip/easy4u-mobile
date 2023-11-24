@@ -13,7 +13,7 @@ type PaymentMethodProps = {
 };
 
 const PaymentMethod = ({ method, selectedMethod, onSelect }: PaymentMethodProps) => {
-  
+
   console.log(method)
   console.log(selectedMethod)
 

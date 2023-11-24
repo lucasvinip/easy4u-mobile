@@ -19,6 +19,7 @@ import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/
 import { performApi } from '../../utils/api';
 import { RefreshControl } from 'react-native-gesture-handler';
 import SkeletonProducts from '../../components/Skeleton/SkeletonProducts/SkeletonProducts';
+import { formatNumberToTypeBr } from '../../utils/formatNumber';
 
 interface ProductProps {
     id: number,
@@ -94,10 +95,7 @@ const AllProducts = () => {
                     photo,
                     id
                 }: ProductProps) => {
-                    const formattedPrice = new Intl.NumberFormat('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL',
-                    }).format(price);
+                    const formattedPrice = formatNumberToTypeBr(price)
                     return {
                         name,
                         price: formattedPrice,

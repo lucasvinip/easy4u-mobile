@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Image, View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useSelector } from 'react-redux';
-import { performApi } from '../utils/api';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { AppTexts } from '../assets/strings';
-import { styles } from '../StyleAndComponentsScreens/Checkout/style';
-import { useRouter } from 'expo-router';
 
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
@@ -22,6 +24,11 @@ import ErrorOrder from '../StyleAndComponentsScreens/Checkout/components/ErrorOr
 import { pixData } from '../utils/data';
 import CPBoard from '../components/CPBoard/CPBoard';
 import Toast from '../components/Toast/Toast';
+import { AppTexts } from '../assets/strings';
+import { styles } from '../StyleAndComponentsScreens/Checkout/style';
+import { performApi } from '../utils/api';
+import { setBalance } from '../redux/features/userSettings/userSettingsSlice';
+
 
 // Interface for the product in the checkout
 interface CheckoutProps {
@@ -40,7 +47,7 @@ interface ResponsePaymentPix {
 
 const Checkout = () => {
   const [products, setProducts] = useState<CheckoutProps[]>([]);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
@@ -54,12 +61,6 @@ const Checkout = () => {
   // Redux state
   const total = useSelector((state: RootState) => state.cart.total);
   const items = useSelector((state: RootState) => state.cart.items);
-
-  // Format total to currency
-  const formattedTotal = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(total);
 
   // Fetch data when component mounts
   const fetchData = async () => {
@@ -86,8 +87,7 @@ const Checkout = () => {
         }, 5000);
 
         if (orderResponse.statusCode === 201) {
-          setMessage('Compra realizada com sucesso! Verifique seus pedidos');
-
+          setMessage('Compra realizada com sucesso! Verifique seus pedidos')
           setButtonOrder(true);
         } else {
           setButtonBack(true);
@@ -102,7 +102,7 @@ const Checkout = () => {
       } else {
         setToast(true);
         setTimeout(() => {
-            setToast(false)
+          setToast(false)
         }, 1000)
       }
     } catch (error) {
@@ -114,6 +114,11 @@ const Checkout = () => {
 
   useEffect(() => {
     fetchData();
+    const fetch = async () => {
+      const dataBalance = await performApi.getData("auth/me", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMgVmluaWNpdXMiLCJpZCI6MiwiaWF0IjoxNzAwODIyODEyLCJleHAiOjE3MDA4MzI4MTJ9.i06D1oSRaqYgy7WQd5TBHXbYrOm_uHNQLE25yuwQIjc")
+      console.log(dataBalance.balance);
+    }
+    fetch()
   }, []);
 
   return (
@@ -149,7 +154,7 @@ const Checkout = () => {
                     </ScrollView>
                   </View>
                 </View>
-                <FooterCheckout total={formattedTotal} />
+                <FooterCheckout total={total} />
               </View>
             </View>
           </View>

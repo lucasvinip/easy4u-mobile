@@ -42,17 +42,12 @@ const styles = StyleSheet.create({
     },
     Delete: {
         color: theme.COLORS.Black000000,
-        fontSize: 20,
+        fontSize: 17,
         justifyContent: 'flex-end'
     },
-    R$: {
-        color: theme.COLORS.Black393939,
-        fontSize: 12,
-        fontFamily: theme.FONTS.Popp700
-    },
     Price: {
-        color: theme.COLORS.OrangeFF6C44,
-        fontSize: 12,
+        color: theme.COLORS.RedF15050,
+        fontSize: 13,
         fontFamily: theme.FONTS.Popp600
     },
 });

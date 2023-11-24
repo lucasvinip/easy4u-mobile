@@ -13,8 +13,10 @@ import ButtonGetOut from './components/ButtonGetOut/ButtonGetOut';
 import { useToken } from '../../hooks/useToken';
 import { useEffect } from 'react';
 import { performApi } from '../../utils/api';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { setBalance } from '../../redux/features/userSettings/userSettingsSlice';
+import { formatNumberToTypeBr } from '../../utils/formatNumber';
 
 type userData = {
   name: string;
@@ -27,21 +29,25 @@ type userData = {
 const defaultPhoto = require("../../assets/img/user.png")
 
 const CustomDrawer = () => {
+  const [user, setUser] = useState<userData>();
+
+  const dispatch = useDispatch()
 
   const uploadURL = useSelector((state: RootState) => state.user.uploadURL)
   const photo = uploadURL ? { uri: uploadURL } : defaultPhoto;
   const token = useToken();
-  const [user, setUser] = useState<userData>();
+
+  const balance = useSelector((state: RootState) => state.user.userBalance)
+  const formatBalance = formatNumberToTypeBr(balance)
 
   useEffect(() => {
     const getUserData = async () => {
       const data = await performApi.getData('auth/me', token);
+      dispatch(setBalance(data.balance))
       setUser(data);
     };
     getUserData();
   }, [token]);
-
-
 
   return (
     <View style={styles.Drawer}>
@@ -60,7 +66,7 @@ const CustomDrawer = () => {
                   {user?.email}
                 </Text>
                 <Text style={styles.Balance}>
-                  {`Saldo: R$ ${user?.balance}`}
+                  {`Saldo: ${formatBalance}`}
                 </Text>
               </View>
             </View>

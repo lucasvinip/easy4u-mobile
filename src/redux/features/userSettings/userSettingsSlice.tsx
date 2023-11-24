@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserProps {
-    userCredit: number,
+    userBalance: number,
     uploadURL: string,
 }
 
 const initialState: UserProps = {
-    userCredit: 0,
+    userBalance: 0,
     uploadURL: '',
 };
 
@@ -18,9 +18,15 @@ export const userSlice = createSlice({
             state.uploadURL = action.payload;
             console.log("aa " + action.payload);
         },
+        setBalance(state, action: PayloadAction<number>){
+            state.userBalance = action.payload
+            console.log("ionf " + action.payload)
+            
+        },
+
     }
 });
 
-export const { setUploadURL } = userSlice.actions;
+export const { setUploadURL, setBalance} = userSlice.actions;
 
 export default userSlice.reducer;

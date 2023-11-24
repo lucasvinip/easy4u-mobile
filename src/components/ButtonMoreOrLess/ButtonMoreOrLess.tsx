@@ -11,20 +11,22 @@ import { RootState } from '../../redux/store';
 import { styles } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrementItem, incrementItem } from '../../redux/features/shoppingCart/shoppingCartSlice';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 interface ButtonMoreOrLessProps {
     id: number,
+    productQty: number
 }
 
 const ButtonMoreOrLess = ({
     id,
+    productQty
 }: ButtonMoreOrLessProps) => {
     const dispatch = useDispatch();
 
-    const item = useSelector((state: RootState) => state.cart.items.find((item: ButtonMoreOrLessProps) => item.id === id))
+    // const item = useSelector((state: RootState) => state.cart.items.find((item: ButtonMoreOrLessProps) => item.id === id))
 
-    const productQty = item?.quantity || 0
+    // const productQty = item?.quantity || 0
 
     const handleMinus = async () => {
         dispatch(decrementItem(id))

@@ -18,6 +18,7 @@ import CustomQRCode from '../components/QRCode/QRCode';
 import ModalPoup from '../components/ModalPoup/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { orderAgain } from '../redux/features/shoppingCart/shoppingCartSlice';
+import { formatNumberToTypeBr } from '../utils/formatNumber';
 
 type Details = {
     id: number
@@ -49,10 +50,7 @@ const FullOrder = () => {
     const [isModalVisible, setModalVisible] = useState(false);
 
     const priceNew = order?.total ?? 0
-    const formattedTotal = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    }).format(priceNew)
+    const formattedTotal = formatNumberToTypeBr(priceNew)
 
     const dispatch = useDispatch()
 
@@ -62,10 +60,7 @@ const FullOrder = () => {
         if (items && items.length > 0) {
             const newItem: any = items.map((product: Product) => {
                 const priceNew = product.product.price ?? 0
-                const formattedTotal = new Intl.NumberFormat('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL',
-                }).format(priceNew)
+                const formattedTotal = formatNumberToTypeBr(priceNew)
                 const item = {
                     id: product.product.id,
                     name: product.product.name,
@@ -185,7 +180,10 @@ const FullOrder = () => {
                     </View>
                     {isModalVisible && (
                         <ModalPoup visible={isModalVisible}>
-                            <CustomQRCode value={order?.id} onClose={() => setModalVisible(false)} />
+                            <CustomQRCode
+                                value={order?.id}
+                                onClose={() => setModalVisible(false)}
+                            />
                         </ModalPoup>
                     )}
                 </View>

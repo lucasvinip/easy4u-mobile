@@ -7,19 +7,22 @@ import {
 
 import { styles } from './style';
 import ButtonMoreOrLess from '../../../../components/ButtonMoreOrLess/ButtonMoreOrLess';
+import { formatNumberToTypeBr } from '../../../../utils/formatNumber';
 
 interface ProductItemProps {
     price: number,
     name: string | undefined,
     photo: string | undefined,
-    id: number
+    id: number,
+    productQty: number
 }
 
 const ProductItem = ({
     price,
     photo,
     name,
-    id
+    id,
+    productQty
 }: ProductItemProps) => {
 
     return (
@@ -41,6 +44,7 @@ const ProductItem = ({
                 </View>
                 <ButtonMoreOrLess
                     id={id}
+                    productQty={productQty}
                 />
             </View>
             <View style={styles.SeparatorContainer}>

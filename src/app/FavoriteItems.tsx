@@ -34,7 +34,7 @@ interface ProductsProps {
 interface FavoritesProps {
   id: number;
   name: string;
-  price: string;
+  price: number;
   photo: string;
 }
 

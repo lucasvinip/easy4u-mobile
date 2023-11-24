@@ -10,16 +10,20 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 import { styles, shadowStyle } from './style';
+import { formatNumberToTypeBr } from '../../../../utils/formatNumber';
 
 interface ItemsFavoriteProps {
     name: string;
-    price: string;
+    price: number;
     photo: string;
     onDeleteFavorite: () => void;
     onSelectItem: () => void;
 }
 
 function FavoriteCard({name, photo, price, onDeleteFavorite, onSelectItem}:ItemsFavoriteProps) {
+
+    const formattedPrice = formatNumberToTypeBr(price)
+
     return (
         <View style={[styles.Container]} >
             <TouchableOpacity style={[styles.Card, shadowStyle]} onPress={onSelectItem}>
@@ -31,7 +35,7 @@ function FavoriteCard({name, photo, price, onDeleteFavorite, onSelectItem}:Items
                         </Text>
                         <View style={styles.ContainerPrice}>
                             <Text>
-                                <Text style={styles.R$}>R$</Text> <Text style={styles.Price}>{price}</Text>
+                                <Text style={styles.Price}>{formattedPrice}</Text>
                             </Text>
                             <TouchableOpacity onPress={onDeleteFavorite}>
                                 <AntDesign name='delete' style={styles.Delete} />

@@ -16,25 +16,19 @@ interface ProductItemProps {
 }
 
 const NameAndTotal = ({ price, name, id }: ProductItemProps) => {
-    const item = useSelector((state: RootState) => state.cart.items.find((item: ProductItemProps) => item.id === id))
+    const item = useSelector((state: RootState) => state.cart.items.find((item) => item.id === id));
 
-    const productQty = item?.quantity || 0
+    const productQty = item?.quantity || 0;
 
     console.log(name);
 
     return (
         <View style={styles.ContentMain}>
             <View style={styles.NameAndQuantityProduct}>
-                <Text style={styles.NameTitle}>
-                    {name}
-                </Text>
-                <Text style={styles.QuantityTitle}>
-                    {productQty}x
-                </Text>
+                <Text style={styles.NameTitle}>{name}</Text>
+                <Text style={styles.QuantityTitle}>{productQty}x</Text>
             </View>
-            <Text style={styles.MainTitle}>
-                {price}
-            </Text>
+            <Text style={styles.MainTitle}>{price}</Text>
         </View>
     );
 };

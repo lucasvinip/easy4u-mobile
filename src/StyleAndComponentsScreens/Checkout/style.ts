@@ -39,14 +39,15 @@ const styles = StyleSheet.create({
   Card: {
     width: '95%',
     justifyContent: 'flex-end',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   CardContent: {
-    height: '70%',
+    height: '80%',
     width: '100%',
   },
   ContainerContent: {
     width: '100%',
+    height: '20%' ,
     justifyContent: 'center',
     alignItems: 'center'
   },

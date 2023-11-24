@@ -14,6 +14,7 @@ import UseFonts from '../../hooks/useFonts';
 import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMain/CardMain'
 import { performApi } from '../../utils/api';
 import ButtonFavoriteProduct from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';
+import { formatNumberToTypeBr } from '../../utils/formatNumber';
 
 type CardProductProps = {
     name: string,
@@ -68,10 +69,7 @@ const Product = () => {
                 
                 const formattedPrice = {
                     ...data,
-                    price: new Intl.NumberFormat('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL',
-                    }).format(data.price),
+                    price: formatNumberToTypeBr(data.price)
                 };
 
                 setDataProduct(formattedPrice);

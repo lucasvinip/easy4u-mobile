@@ -1,13 +1,17 @@
 import { Text } from "react-native"
 import { View } from "react-native"
 import { AppTexts } from "../../../assets/strings"
+import { formatNumberToTypeBr } from "../../../utils/formatNumber"
 import { styles } from '../style'
 
 interface CheckoutProps {
-    total: string 
+    total: number  
 }
 
 const FooterCheckout: React.FC<CheckoutProps>= ({total})  => {
+    
+    const formattedNumber = formatNumberToTypeBr(total)
+
     return (
         <View style={styles.CardFooter}>
         <View style={styles.ContentFooter}>
@@ -16,7 +20,7 @@ const FooterCheckout: React.FC<CheckoutProps>= ({total})  => {
                     {AppTexts.Total}
                 </Text>
                 <Text style={styles.TitleCardFooter}>
-                    {total}
+                    {formattedNumber}
                 </Text>
             </View>
         </View>
