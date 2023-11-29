@@ -1,7 +1,7 @@
 import theme from '../../../../styles/theme';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { StyleSheet, Platform} from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 
 const styles = StyleSheet.create({
     Container: {
@@ -41,13 +41,32 @@ const styles = StyleSheet.create({
         fontSize: RFValue(11),
         fontFamily: theme.FONTS.Popp700
     },
+    ContainerPriceAndTime: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '57%',
+        justifyContent: 'space-around',
+    },
     Title4: {
         color: theme.COLORS.OrangeFF6C44,
         fontSize: RFValue(12),
         fontFamily: theme.FONTS.Popp700
     },
+    ContainerTime: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        width: '30%'
+    },
+    Icon: {
+        marginBottom: 3
+    },
+    TitleTime: {
+        marginBottom: 3,
+        fontFamily: theme.FONTS.Raleway600
+    },
     ContainerImg: {
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     Img: {
         width: 100,
@@ -58,17 +77,17 @@ const styles = StyleSheet.create({
 
 const shadowStyle = {
     ...Platform.select({
-      ios: {
-        shadowColor: '#ffff',
-        shadowOffset: { width: 1, height: 3 },
-        shadowOpacity: 50,
-        shadowRadius: 3,
-        elevation: 2
-      },
-      android: {
-        elevation: 2,
-      },
+        ios: {
+            shadowColor: '#ffff',
+            shadowOffset: { width: 1, height: 3 },
+            shadowOpacity: 50,
+            shadowRadius: 3,
+            elevation: 2
+        },
+        android: {
+            elevation: 2,
+        },
     }),
-  };
+};
 
-export { styles, shadowStyle};
+export { styles, shadowStyle };

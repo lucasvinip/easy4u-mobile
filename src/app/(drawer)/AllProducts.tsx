@@ -27,7 +27,8 @@ interface ProductProps {
     description: string,
     price: number,
     photo: string,
-    productType: string
+    productType: string,
+    preparationTime: number
 }
 
 interface TypeProductProps {
@@ -83,6 +84,8 @@ const AllProducts = () => {
 
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
+        console.log(apiDataProducts);
+        
 
         if (!apiDataProducts)
             Alert.alert("Erro!")

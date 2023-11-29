@@ -6,8 +6,11 @@ import {
     Text,
     Image
 } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 import { styles, shadowStyle } from './style';
+import theme from '../../../../styles/theme';
 
 interface ProductsProps {
     id: number,
@@ -22,7 +25,7 @@ const CardProduct = ({
     name,
     price,
     description,
-    photo
+    photo,
 }: ProductsProps) => {
 
     return (
@@ -41,9 +44,15 @@ const CardProduct = ({
                                 <Text style={styles.Title2}>
                                     {description}
                                 </Text>
-                                <Text>
+                                <View style={styles.ContainerPriceAndTime}>
                                     <Text style={styles.Title4}>{price}</Text>
-                                </Text>
+                                    <View style={styles.ContainerTime}>
+                                        <MaterialCommunityIcons name={"clock-time-twelve-outline"} style={styles.Icon} size={13} color={theme.COLORS.Gray37C7C7A} />
+                                        <Text style={styles.TitleTime}>
+                                            15m
+                                        </Text>
+                                    </View>
+                                </View>
                             </View>
                             <View style={styles.ContainerImg}>
                                 <Image source={{ uri: photo }} style={styles.Img} />
