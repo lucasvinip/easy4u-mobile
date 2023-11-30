@@ -18,7 +18,8 @@ interface ProductsProps {
     price: number,
     description: string,
     photo: string,
-    preparationTime: number | undefined
+    preparationTime: number | undefined,
+    productType: string
 }
 
 const CardProduct = ({
@@ -49,6 +50,7 @@ const CardProduct = ({
                                     </Text>
                                     <Text style={styles.Title2}>
                                         {description}
+                                        
                                     </Text>
                                     <Text style={styles.Title4}>{price}</Text>
                                 </View>
@@ -74,7 +76,7 @@ const CardProduct = ({
                                                 size={13}
                                                 color={theme.COLORS.Gray37C7C7A} />
                                             <Text style={styles.TitleTime}>
-                                                {preparationTime} min
+                                                {preparationTime}min
                                             </Text>
                                         </View>
                                     </View>
@@ -92,3 +94,5 @@ const CardProduct = ({
 };
 
 export default CardProduct;
+
+//Saaaaaa Saaaa Saaaaaa

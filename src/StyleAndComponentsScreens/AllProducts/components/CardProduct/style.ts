@@ -38,9 +38,10 @@ const styles = StyleSheet.create({
         fontFamily: theme.FONTS.Popp400
     },
     Title2: {
-        width: 198,
-        fontSize: RFValue(11),
-        fontFamily: theme.FONTS.Popp400, color: theme.COLORS.Gray888888
+        fontSize: 14,
+        fontFamily: theme.FONTS.Popp400, color: theme.COLORS.Gray888888,
+        textAlign: 'center',
+        width: '80%'
     },
     Title3: {
         color: theme.COLORS.Black393939,

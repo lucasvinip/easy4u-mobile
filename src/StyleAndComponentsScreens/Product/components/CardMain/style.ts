@@ -60,13 +60,14 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   AvailableProducts: {
-    height: '70%', // You can adjust this as needed
+    height: '70%',
     width: 'auto',
     justifyContent: 'center',
   },
   ContainerProducts: {
     height: '100%',
     flexDirection: 'row',
+    width: '100%'
   },
   ContainerButton: {
     alignItems: 'center'

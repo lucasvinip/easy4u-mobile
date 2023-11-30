@@ -4,8 +4,8 @@ import theme from '../../../../../../styles/theme';
 const styles = StyleSheet.create({
     Products: {
         backgroundColor: theme.COLORS.BeigeRgba237243237092,
-        height: '83%',
-        width: '25%',
+        height: 105,
+        width: 205,
         borderRadius: 25,
         marginRight: 20
     },

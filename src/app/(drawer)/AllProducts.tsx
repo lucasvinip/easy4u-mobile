@@ -28,7 +28,7 @@ interface ProductProps {
     price: number,
     photo: string,
     productType: string,
-    preparationTime: number | undefined
+    preparationTime: number | undefined,
 }
 
 interface TypeProductProps {
@@ -84,7 +84,7 @@ const AllProducts = () => {
 
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
-        console.log(apiDataProducts);
+        console.log("ofe " + apiDataProducts);
         
 
         if (!apiDataProducts)
@@ -97,7 +97,8 @@ const AllProducts = () => {
                     description,
                     photo,
                     id,
-                    preparationTime
+                    preparationTime,
+                    productType
                 }: ProductProps) => {
                     const formattedPrice = formatNumberToTypeBr(price)
                     return {
@@ -106,7 +107,8 @@ const AllProducts = () => {
                         description,
                         photo,
                         id,
-                        preparationTime
+                        preparationTime,
+                        productType
                     }
                 })
                 setIsLoading(false)
@@ -149,7 +151,7 @@ const AllProducts = () => {
                 const typeProduct = await apiDataFilterProductsByType
                 setProducts(typeProduct)
             } catch (error) {
-                alert("typeProduct not get:" + error)
+                alert("typeProduct not get :" + error)
             }
 
         }
@@ -231,7 +233,8 @@ const AllProducts = () => {
                                             description,
                                             photo,
                                             id,
-                                            preparationTime
+                                            preparationTime,
+                                            productType
                                         }: ProductProps, index: number) => (
                                             <CardProduct
                                                 key={index}
@@ -241,6 +244,7 @@ const AllProducts = () => {
                                                 photo={photo}
                                                 id={id}
                                                 preparationTime={preparationTime}
+                                                productType={productType}
                                             />
                                         ))
                                     )

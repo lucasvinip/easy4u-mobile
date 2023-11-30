@@ -15,13 +15,17 @@ import CardMain from '../../StyleAndComponentsScreens/Product/components/CardMai
 import { performApi } from '../../utils/api';
 import ButtonFavoriteProduct from '../../StyleAndComponentsScreens/Product/components/ButtonFavoriteProduct/ButtonFavoriteProduct';
 import { formatNumberToTypeBr } from '../../utils/formatNumber';
+import { FlatList } from 'react-native-gesture-handler';
+import ProductsDisponibility from '../../StyleAndComponentsScreens/Product/components/CardMain/components/ProductsDisponibility/ProductsDisponibility';
 
 type CardProductProps = {
+    id: number
     name: string,
     price: number,
     photo: string,
     description: string,
-    preparationTime: number | undefined
+    preparationTime: number | undefined,
+    productType: string
 }
 
 type Product = {
@@ -39,6 +43,7 @@ type Favorite = {
 const Product = () => {
     const { id } = useLocalSearchParams()
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
+    const [typeProducts, setTypeProducts] = useState<CardProductProps[]>([])
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
     const getUrl = async (path: string) => {
@@ -65,8 +70,8 @@ const Product = () => {
         } else {
             try {
                 const data = await apiDataProducts;
-                console.log(apiDataProducts);
-                
+                console.log("prl,ft " + data);
+
                 const formattedPrice = {
                     ...data,
                     price: formatNumberToTypeBr(data.price)
@@ -92,15 +97,46 @@ const Product = () => {
         }
     };
 
+    const handleDisponibilityProducts = async () => {
+
+        if (dataProduct?.productType == null)
+            console.log('ola');
+        else {
+            const apiProductType: CardProductProps[] = await getUrl(`products?productType=${dataProduct.productType}&disponibility=true`);
+
+            if (!apiProductType) {
+                setTypeProducts([]);
+            } else {
+                const data = apiProductType.map((item: CardProductProps) => {
+                    console.log(item);
+                    return item;
+                });
+                console.log("mpgr " + data);
+                setTypeProducts(data);
+            }
+        }
+    };
+
+
+
+
     useEffect(() => {
         const fetchData = async () => {
             await handleCardProducts()
             await handleFavoriteItem()
+            await handleDisponibilityProducts()
         }
 
         fetchData()
     }, [id]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            await handleDisponibilityProducts()
+        }
+
+        fetchData()
+    }, [dataProduct?.productType]);
 
     return (
         <UseFonts>
@@ -125,7 +161,22 @@ const Product = () => {
                                         id={+id}
                                         photo={dataProduct?.photo}
                                         preparationTime={dataProduct?.preparationTime}
-                                    />
+                                    >
+                                        <FlatList
+                                            data={typeProducts}
+                                            renderItem={({ item }) => {
+                                                return <ProductsDisponibility
+                                                    key={item.id}
+                                                    name={item.name}
+                                                    photo={item.photo}
+                                                    productType={item.productType}
+                                                    id={item.id}
+                                                />;
+                                            }}
+                                            horizontal={true}
+                                            showsHorizontalScrollIndicator={false}
+                                        />
+                                    </CardMain>
                                 </View>
                             </View>
                         </View>
