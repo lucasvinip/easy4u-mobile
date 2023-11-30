@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.Whiteffffff,
     marginLeft: 15,
     marginRight: 15,
-    justifyContent: `space-evenly`,
-    height: 'auto',
-    marginTop: 44
+    justifyContent: `space-between`,
+    height: '100%',
+    marginTop: 40
   },
   ContainerHeader: {
     alignItems: 'center',
@@ -33,13 +33,14 @@ const styles = StyleSheet.create({
   },
   ContainerMain: {
     justifyContent: 'space-evenly',
-    height: 'auto'
+    height: '50%',
+    marginBottom: 15
   },
   ConatinerFooter: {
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     paddingTop: 8,
     height: 'auto',
-    }
+  }
 });
 
 export { styles }

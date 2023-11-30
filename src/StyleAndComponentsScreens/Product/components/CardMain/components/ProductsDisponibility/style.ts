@@ -4,8 +4,8 @@ import theme from '../../../../../../styles/theme';
 const styles = StyleSheet.create({
     Products: {
         backgroundColor: theme.COLORS.BeigeRgba237243237092,
-        height: 92,
-        width: 200,
+        height: '83%',
+        width: '25%',
         borderRadius: 25,
         marginRight: 20
     },
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     NameAndDescription: {
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
         width: '60%',
         alignItems: 'center',
     },
@@ -28,19 +28,21 @@ const styles = StyleSheet.create({
         fontFamily: theme.FONTS.Popp600,
         fontSize: 12,
         textAlign: 'center',
-
+        width: '60%'
     },
     Description: {
         fontFamily: theme.FONTS.Popp500,
         fontSize: 9,
-        color: theme.COLORS.Gray37C7C7A
+        color: theme.COLORS.Gray37C7C7A,
+        textAlign: 'center',
+
     },
     ContainerIcon:{
-        width: "100%",
+        width: "91%",
         alignItems: 'flex-end'
     },
     Icon:{
-        fontSize: 14,
+        fontSize: 12,
         color: theme.COLORS.Orange4FE724C
     }
 });
@@ -60,4 +62,3 @@ const shadowStyle = {
 };
 
 export { styles, shadowStyle };
-

@@ -3,7 +3,7 @@ import theme from '../../../../styles/theme';
 
 const styles = StyleSheet.create({
   Container: {
-    height: '85%',
+    height: '82%',
     justifyContent: 'space-evenly',
     alignItems: 'center'
   },
@@ -14,10 +14,25 @@ const styles = StyleSheet.create({
   },
   TypeProductName: {
     fontFamily: theme.FONTS.Popp600,
-    fontSize: 26,
-    width: '60%',
+    fontSize: 20,
+    width: '55%',
     textAlign: 'center',
     height: 'auto',
+  },
+  ContainerTime: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    width: '37%'
+  },
+  Icon: {
+    marginBottom: 3,
+  },
+  TitleTime: {
+    marginBottom: 3,
+    fontFamily: theme.FONTS.Raleway600,
+    color: theme.COLORS.Gray37C7C7A,
+    fontSize: 13
   },
   ContainerDescription: {
     width: '100%',
@@ -29,7 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     width: 'auto',
     height: 'auto',
-    textAlign: 'left',
+    textAlign: 'center',
     marginLeft: 5
   },
   ContainerMain: {

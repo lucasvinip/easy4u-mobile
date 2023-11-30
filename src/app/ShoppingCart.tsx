@@ -14,6 +14,7 @@ import ScheduleTime from '../StyleAndComponentsScreens/ShoppingCart/components/S
 import SubTotalDiscount from '../StyleAndComponentsScreens/ShoppingCart/components/SubTotalDiscount/SubTotalDiscount';
 import UseFonts from '../hooks/useFonts';
 import { cartPreparationTime } from '../redux/features/shoppingCart/shoppingCartSlice';
+import { FlatList } from 'react-native-gesture-handler';
 
 interface ProductProps {
     id: number,
@@ -57,24 +58,25 @@ const ShoppingCart = () => {
             <SafeAreaView style={{ backgroundColor: 'white' }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
-                        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ height: 'auto' }}>
+                        <View style={{ height: 'auto' }}>
                             <View style={styles.ContainerHeader}>
                                 <Text style={styles.HeaderText}>{item.length} items</Text>
                                 <View style={styles.HeaderLine} />
                             </View>
                             <View style={styles.ContainerMain}>
-                                {
-                                    products.map((item: ProductProps, index: number) => (
-                                        <ProductItem
-                                            key={index}
+                                <FlatList
+                                    data={item}
+                                    renderItem={({ item }) => {
+                                        return <ProductItem
+                                            key={item.id}
                                             name={item.name}
                                             price={item.price}
                                             photo={item.photo}
                                             id={item.id}
-                    
-                                        />
-                                    ))
-                                }
+                                        />;
+                                    }}
+                                    showsVerticalScrollIndicator={false}
+                                />
                             </View>
                             {scheduleTime && (
                                 <View>
@@ -83,10 +85,10 @@ const ShoppingCart = () => {
                             )}
                             <View style={styles.ConatinerFooter}>
                                 <View>
-                                    <SubTotalDiscount/>
+                                    <SubTotalDiscount />
                                 </View>
                             </View>
-                        </ScrollView>
+                        </View>
                     </View>
                 </View>
             </SafeAreaView >

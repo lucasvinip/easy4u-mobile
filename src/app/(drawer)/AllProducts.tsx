@@ -28,7 +28,7 @@ interface ProductProps {
     price: number,
     photo: string,
     productType: string,
-    preparationTime: number
+    preparationTime: number | undefined
 }
 
 interface TypeProductProps {
@@ -96,7 +96,8 @@ const AllProducts = () => {
                     price,
                     description,
                     photo,
-                    id
+                    id,
+                    preparationTime
                 }: ProductProps) => {
                     const formattedPrice = formatNumberToTypeBr(price)
                     return {
@@ -104,7 +105,8 @@ const AllProducts = () => {
                         price: formattedPrice,
                         description,
                         photo,
-                        id
+                        id,
+                        preparationTime
                     }
                 })
                 setIsLoading(false)
@@ -228,7 +230,8 @@ const AllProducts = () => {
                                             price,
                                             description,
                                             photo,
-                                            id
+                                            id,
+                                            preparationTime
                                         }: ProductProps, index: number) => (
                                             <CardProduct
                                                 key={index}
@@ -237,6 +240,7 @@ const AllProducts = () => {
                                                 description={description}
                                                 photo={photo}
                                                 id={id}
+                                                preparationTime={preparationTime}
                                             />
                                         ))
                                     )

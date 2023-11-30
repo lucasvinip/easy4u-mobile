@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   ProductImage: {
     width: 76,
     height: 76,
+    borderRadius: 40
   },
   ProductTextContainer: {
     justifyContent: 'space-evenly',

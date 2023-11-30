@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-
 import { styles, shadowStyle } from './style';
 
 const ProductsDisponibility = () => {

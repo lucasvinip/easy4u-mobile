@@ -4,11 +4,14 @@ import {
     Image,
     ScrollView
 } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 import { styles } from './style';
 import { AppTexts } from '../../../../assets/strings';
 import ButtonAddCart from '../ButtonCart/ButtonAddCart';
 import ProductsDisponibility from './components/ProductsDisponibility/ProductsDisponibility';
+import theme from '../../../../styles/theme';
 
 interface CardMainProps {
     name: string | undefined,
@@ -30,12 +33,32 @@ const CardMain = ({
     return (
         <View style={styles.Container}>
             <View style={styles.ContainerHeader}>
-                <Text style={styles.TypeProductName}>
-                    {name}
-                </Text>
+                {preparationTime === null ? (
+                    <Text style={styles.TypeProductName}>
+                        {name} aaaaaaaa
+                    </Text>
+                ) :
+                    <View style={{ height: 'auto' }}>
+                        <Text style={styles.TypeProductName}>
+                            {name} aa aaaaaaa
+                        </Text>
+                        <View style={{ alignItems: 'flex-end' }}>
+                            <View style={styles.ContainerTime}>
+                                <MaterialCommunityIcons
+                                    name={"clock-time-twelve-outline"}
+                                    style={styles.Icon}
+                                    size={15}
+                                    color={theme.COLORS.Gray37C7C7A} />
+                                <Text style={styles.TitleTime}>
+                                    {preparationTime} min
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+                }
                 <View style={styles.ContainerDescription}>
                     <Text style={styles.TitleDescription}>
-                        {description}
+                        {description} bfehjw fwebijkfniewkjfwfeiunjklwhenffweinlkporiwefnjfoweim
                     </Text>
                 </View>
             </View>
@@ -49,7 +72,6 @@ const CardMain = ({
                         showsHorizontalScrollIndicator={true}
                         contentContainerStyle={styles.ContainerProducts}
                         scrollEnabled={true}
-                        key={Math.random()}
                     >
                         <ProductsDisponibility />
                         <ProductsDisponibility />

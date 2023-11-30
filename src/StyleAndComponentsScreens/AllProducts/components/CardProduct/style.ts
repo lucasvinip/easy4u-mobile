@@ -17,11 +17,17 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
     },
+    CardItemsTimePreparing: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        width: '80%',
+    },
     CardItems: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        width: '90%'
+        width: '57%',
     },
     Description: {
         justifyContent: 'space-between',
@@ -44,7 +50,7 @@ const styles = StyleSheet.create({
     ContainerPriceAndTime: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: '57%',
+        width: '70%',
         justifyContent: 'space-around',
     },
     Title4: {
@@ -56,14 +62,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        width: '30%'
+        width: '37%'
     },
     Icon: {
         marginBottom: 3
     },
     TitleTime: {
         marginBottom: 3,
-        fontFamily: theme.FONTS.Raleway600
+        fontFamily: theme.FONTS.Raleway600,
+        color: theme.COLORS.Gray37C7C7A
     },
     ContainerImg: {
         justifyContent: 'center',
