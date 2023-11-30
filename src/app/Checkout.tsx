@@ -58,18 +58,18 @@ const Checkout = () => {
   const [buttonOrder, setButtonOrder] = useState<boolean>(false);
   const [buttonBack, setButtonBack] = useState<boolean>(false);
 
-  // Redux state
   const total = useSelector((state: RootState) => state.cart.total);
   const items = useSelector((state: RootState) => state.cart.items);
+  const preparationTime = useSelector((state: RootState) => state.cart.preparationTime);
 
-  // Fetch data when component mounts
+  console.log("Tempo de Preparo" + preparationTime)
+
   const fetchData = async () => {
     const itemsProducts = await items;
     const productInfo = itemsProducts.map((item: CheckoutProps) => item);
     setProducts(productInfo);
   };
 
-  // Handle selected payment method and make API calls
   const getSelectedPaymentMethod = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -112,13 +112,10 @@ const Checkout = () => {
     }
   };
 
+
+
   useEffect(() => {
     fetchData();
-    const fetch = async () => {
-      const dataBalance = await performApi.getData("auth/me", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMgVmluaWNpdXMiLCJpZCI6MiwiaWF0IjoxNzAwODIyODEyLCJleHAiOjE3MDA4MzI4MTJ9.i06D1oSRaqYgy7WQd5TBHXbYrOm_uHNQLE25yuwQIjc")
-      console.log(dataBalance.balance);
-    }
-    fetch()
   }, []);
 
   return (

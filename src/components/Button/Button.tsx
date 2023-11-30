@@ -2,15 +2,16 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  Platform
+  Platform,
+  DimensionValue
 } from 'react-native';
 
 interface ButtonProps {
   background: string;
-  width: number;
-  height: number;
+  width: DimensionValue;
+  height: DimensionValue;
   borderRadius: number;
-  text: string;
+  text: string | number;
   fontFamily: string;
   fontSize: number;
   color?: string;
@@ -49,7 +50,7 @@ const Button = ({
       }),
     },
     text: {
-      color: "white",
+      color: color ? color: "white",
       fontFamily: fontFamily,
       fontSize: fontSize,
     },

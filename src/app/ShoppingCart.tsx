@@ -5,7 +5,7 @@ import {
     ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 
 import { styles } from '../StyleAndComponentsScreens/ShoppingCart/style';
@@ -13,6 +13,7 @@ import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/Pr
 import ScheduleTime from '../StyleAndComponentsScreens/ShoppingCart/components/SchuleTime/SchuleTime';
 import SubTotalDiscount from '../StyleAndComponentsScreens/ShoppingCart/components/SubTotalDiscount/SubTotalDiscount';
 import UseFonts from '../hooks/useFonts';
+import { cartPreparationTime } from '../redux/features/shoppingCart/shoppingCartSlice';
 
 interface ProductProps {
     id: number,
@@ -23,21 +24,32 @@ interface ProductProps {
 };
 
 const ShoppingCart = () => {
+    const [products, setProducts] = useState<ProductProps[]>([])
     const [scheduleTime, setScheduleTime] = useState<boolean>();
+    const [time, setTime] = useState<number>(0);
 
-    const cart = useSelector((state: RootState) => state.cart);
-    const cartItems = cart.items
-    const cartQty = cart.items.find((item: ProductProps) => item.id === item.id)
-    const productQty = cartQty?.quantity || 0
-    const cartTotal = cart.total
+    const item = useSelector((state: RootState) => state.cart.items);
+    const dispatch = useDispatch()
 
     const verifyScheduleTime = () => {
-        cartItems.some(product => product.preparationTime !== null ? setScheduleTime(true) : setScheduleTime(false));
+        item.some(product => product.preparationTime !== null ? setScheduleTime(true) : setScheduleTime(false));
+    };
+
+    const handleTimeSelection = (selectedTime: number) => {
+        console.log("Colocando dentro do Estado Global", selectedTime);
+        dispatch(cartPreparationTime(selectedTime));
+        setTime(selectedTime);
+    };
+
+    const findProducts = () => {
+        const a = item.map((product: ProductProps) => product)
+        setProducts(a)
     }
 
     useEffect(() => {
         verifyScheduleTime();
-    }, [cartItems]);
+        findProducts();
+    }, [item]);
 
 
     return (
@@ -47,32 +59,31 @@ const ShoppingCart = () => {
                     <View style={styles.Container}>
                         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ height: 'auto' }}>
                             <View style={styles.ContainerHeader}>
-                                <Text style={styles.HeaderText}>{cartItems.length} items</Text>
+                                <Text style={styles.HeaderText}>{item.length} items</Text>
                                 <View style={styles.HeaderLine} />
                             </View>
                             <View style={styles.ContainerMain}>
                                 {
-                                    cartItems.map((item: ProductProps, index: number) => (
+                                    products.map((item: ProductProps, index: number) => (
                                         <ProductItem
                                             key={index}
                                             name={item.name}
                                             price={item.price}
                                             photo={item.photo}
                                             id={item.id}
-                                            productQty={productQty}
+                    
                                         />
                                     ))
                                 }
                             </View>
                             {scheduleTime && (
                                 <View>
-                                    <ScheduleTime />
+                                    <ScheduleTime onSelectTime={handleTimeSelection} />
                                 </View>
                             )}
-
                             <View style={styles.ConatinerFooter}>
                                 <View>
-                                    <SubTotalDiscount total={cartTotal}/>
+                                    <SubTotalDiscount/>
                                 </View>
                             </View>
                         </ScrollView>

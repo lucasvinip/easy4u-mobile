@@ -13,12 +13,14 @@ export interface CartState {
   items: ProductProps[];
   qty: number;
   total: number;
+  preparationTime: number;
 }
 
 const initialState: CartState = {
   items: [],
   qty: 0,
   total: 0,
+  preparationTime: 0
 };
 
 export const cartSlice = createSlice({
@@ -102,6 +104,9 @@ export const cartSlice = createSlice({
       state.qty = 0;
       state.total = 0;
     },
+    cartPreparationTime(state, action: PayloadAction<number>){
+      state.preparationTime = action.payload;
+    }
 
   },
 });
@@ -111,7 +116,8 @@ export const {
   orderAgain,
   incrementItem,
   decrementItem,
-  clearCart
+  clearCart,
+  cartPreparationTime
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

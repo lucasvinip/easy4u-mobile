@@ -14,19 +14,16 @@ import { decrementItem, incrementItem } from '../../redux/features/shoppingCart/
 
 
 interface ButtonMoreOrLessProps {
-    id: number,
-    productQty: number
+    id: number
 }
 
 const ButtonMoreOrLess = ({
-    id,
-    productQty
+    id
 }: ButtonMoreOrLessProps) => {
     const dispatch = useDispatch();
 
-    // const item = useSelector((state: RootState) => state.cart.items.find((item: ButtonMoreOrLessProps) => item.id === id))
-
-    // const productQty = item?.quantity || 0
+    const item = useSelector((state: RootState) => state.cart.items.find((item: ButtonMoreOrLessProps) => item.id === id))
+    const productQty = item?.quantity || 0
 
     const handleMinus = async () => {
         dispatch(decrementItem(id))
