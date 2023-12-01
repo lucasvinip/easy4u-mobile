@@ -144,6 +144,7 @@ const CreateAccount = () => {
                                 data={password}
                                 onChange={handlePasswordFromUser}
                                 onFocus={clearMessageErro}
+                                secureTextEntry
                             />
                             <View style={styles.ContainerButton}>
                                 {error && (<Text style={styles.TextError}>{error}</Text>)}

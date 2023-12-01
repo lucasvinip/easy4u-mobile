@@ -30,7 +30,6 @@ import { performApi } from '../utils/api';
 import { setBalance } from '../redux/features/userSettings/userSettingsSlice';
 
 
-// Interface for the product in the checkout
 interface CheckoutProps {
   id: number;
   name: string;
@@ -39,7 +38,6 @@ interface CheckoutProps {
   quantity: number;
 }
 
-// Interface for the response from the Pix payment API
 interface ResponsePaymentPix {
   copy: string;
   qrcode: string;

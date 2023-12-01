@@ -112,6 +112,7 @@ const Login = () => {
                 data={password}
                 onChange={handlePasswordChange}
                 onFocus={disableErrorMessage}
+                secureTextEntry
               />
               {erro &&
                 <Text style={{ color: theme.COLORS.RedF15050, fontFamily: theme.FONTS.Popp500, justifyContent: "center", textAlign: "center", marginTop: 15, fontSize: 12 }}>{erro}</Text>}

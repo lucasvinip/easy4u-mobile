@@ -84,9 +84,7 @@ const AllProducts = () => {
 
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
-        console.log("ofe " + apiDataProducts);
         
-
         if (!apiDataProducts)
             Alert.alert("Erro!")
         else {
@@ -148,7 +146,26 @@ const AllProducts = () => {
             alert("Erro!")
         else {
             try {
-                const typeProduct = await apiDataFilterProductsByType
+                const typeProduct = apiDataFilterProductsByType.map(({
+                    name,
+                    price,
+                    description,
+                    photo,
+                    id,
+                    preparationTime,
+                    productType
+                }: ProductProps) => {
+                    const formattedPrice = formatNumberToTypeBr(price)
+                    return {
+                        name,
+                        price: formattedPrice,
+                        description,
+                        photo,
+                        id,
+                        preparationTime,
+                        productType
+                    }
+                })
                 setProducts(typeProduct)
             } catch (error) {
                 alert("typeProduct not get :" + error)

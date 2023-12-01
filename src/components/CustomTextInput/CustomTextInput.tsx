@@ -25,6 +25,8 @@ interface CustomTextInputProps {
   onFocus?: () => void;
   data?: string;
   isPassword?: boolean;
+  secureTextEntry?: boolean | undefined
+
 }
 
 const CustomTextInput = ({
@@ -44,7 +46,8 @@ const CustomTextInput = ({
   onChange,
   onFocus,
   data,
-  isPassword
+  isPassword,
+  secureTextEntry
 }: CustomTextInputProps) => {
 
   const [inputValue, setInputValue] = useState<string>(data || "");
@@ -94,6 +97,7 @@ const CustomTextInput = ({
       value={inputValue}
       onChangeText={handleInputChange}
       onFocus={handleInputFocus}
+      secureTextEntry={secureTextEntry}
     />
   );
 };

@@ -91,6 +91,7 @@ const ForgotPassword = () => {
                             fontFamily={theme.FONTS.Popp400}
                             data={email}
                             onChange={handleEmailFromUser}
+                            secureTextEntry
                         />
                         <View style={styles.ContainerButton}>
                             {sucess && <Text style={styles.TextSucess}>{sucess}</Text>}
@@ -104,6 +105,7 @@ const ForgotPassword = () => {
                                 borderRadius={8}
                                 fontSize={14}
                                 onPress={sendForgotPassword}
+                                
                             />
                         </View>
                     </View>
