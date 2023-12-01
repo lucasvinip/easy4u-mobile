@@ -27,7 +27,6 @@ import Toast from '../components/Toast/Toast';
 import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import { performApi } from '../utils/api';
-import { setBalance } from '../redux/features/userSettings/userSettingsSlice';
 
 
 interface CheckoutProps {
@@ -58,9 +57,9 @@ const Checkout = () => {
 
   const total = useSelector((state: RootState) => state.cart.total);
   const items = useSelector((state: RootState) => state.cart.items);
-  const preparationTime = useSelector((state: RootState) => state.cart.preparationTime);
 
-  console.log("Tempo de Preparo" + preparationTime)
+  const preparationTime = useSelector((state: RootState) => state.cart.preparationTime);
+  const verifyTime = preparationTime ? preparationTime : null;
 
   const fetchData = async () => {
     const itemsProducts = await items;
@@ -76,8 +75,10 @@ const Checkout = () => {
       if (selectedPaymentMethod === 'Créditos') {
         setVisible(true);
         setLoading(true);
+
         const orderResponse = await performApi.sendDataToken('carts-by-user', 'POST', token, {
           products: items,
+          preparationTime: verifyTime
         });
 
         setTimeout(() => {

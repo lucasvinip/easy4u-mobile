@@ -85,7 +85,7 @@ const ScheduleTime = ({onSelectTime}: TimeProps) => {
                   text={formattedTime}
                   width={'20%'}
                   color={index === selectedButtonIndex ? theme.COLORS.Whiteffffff : theme.COLORS.Black000000}
-                  onPress={() => { handleButtonClick(index, time), onSelectTime(time) }}
+                  onPress={() => {handleButtonClick(index, time), onSelectTime(time)}}
                 />
               );
             })}

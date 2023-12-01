@@ -21,7 +21,7 @@ interface ProductProps {
     name: string,
     price: number,
     photo: string,
-    preparationTime: number | undefined,
+    preparationTime: number | null,
 };
 
 const ShoppingCart = () => {

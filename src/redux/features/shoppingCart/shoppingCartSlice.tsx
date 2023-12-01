@@ -6,21 +6,21 @@ interface ProductProps {
   price: number,
   photo: string,
   quantity: number,
-  preparationTime: number | undefined
+  preparationTime: number | null
 }
 
 export interface CartState {
   items: ProductProps[];
   qty: number;
   total: number;
-  preparationTime: number;
+  preparationTime: number | null;
 }
 
 const initialState: CartState = {
   items: [],
   qty: 0,
   total: 0,
-  preparationTime: 0
+  preparationTime: null
 };
 
 export const cartSlice = createSlice({
@@ -103,6 +103,7 @@ export const cartSlice = createSlice({
       state.items = [];
       state.qty = 0;
       state.total = 0;
+      state.preparationTime = null
     },
     cartPreparationTime(state, action: PayloadAction<number>){
       state.preparationTime = action.payload;
