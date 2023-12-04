@@ -7,6 +7,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
+import Toast from '../components/Toast/Toast';
+
 
 import { styles } from '../StyleAndComponentsScreens/ShoppingCart/style';
 import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/ProductItem/ProductItem'
@@ -27,6 +29,7 @@ interface ProductProps {
 const ShoppingCart = () => {
     const [products, setProducts] = useState<ProductProps[]>([])
     const [scheduleTime, setScheduleTime] = useState<boolean>();
+    const [toast, setToast] = useState<boolean>(false)
     const [time, setTime] = useState<number>(0);
 
     const item = useSelector((state: RootState) => state.cart.items);
@@ -55,6 +58,7 @@ const ShoppingCart = () => {
 
     return (
         <UseFonts>
+            {toast && <Toast onVisible={toast} />}
             <SafeAreaView style={{ backgroundColor: 'white' }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
@@ -80,7 +84,10 @@ const ShoppingCart = () => {
                             </View>
                             {scheduleTime && (
                                 <View>
-                                    <ScheduleTime onSelectTime={handleTimeSelection} />
+                                    <ScheduleTime
+                                        onSelectTime={handleTimeSelection}
+                                        time={false}
+                                    />
                                 </View>
                             )}
                             <View style={styles.ConatinerFooter}>

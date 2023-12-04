@@ -38,29 +38,7 @@ const CardMain = ({
     preparationTime,
     children
 }: CardMainProps) => {
-    // const [typeProducts, setTypeProducts] = useState<DisponibilityProps[]>([])
-
-    // const getUrl = async (path: string) => {
-    //     const token = await AsyncStorage.getItem("token")
-
-    //     if (!token)
-    //         router.push('/')
-    //     else {
-    //         try {
-    //             const data = await performApi.getData(path, token)
-    //             return data
-    //         } catch (error) {
-    //             alert("data not get:" + error)
-    //         }
-
-    //     }
-
-    // };
-
-    // useEffect(() => {
-    //     handleDisponibilityProducts()
-    // }, [])
-
+    
     return (
         <View style={styles.Container}>
             <View style={styles.ContainerHeader}>
@@ -98,18 +76,6 @@ const CardMain = ({
                     <Text style={styles.AvailableText}>
                         {AppTexts.Available}
                     </Text>
-                    {/* <ScrollView
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={true}
-                        contentContainerStyle={styles.ContainerProducts}
-                        scrollEnabled={true}
-                    >
-                        <ProductsDisponibility
-                            id={typeProducts?.id}
-                            name={typeProducts?.name}
-                            photo={typeProducts?.photo}
-                        />
-                    </ScrollView> */}
                     {children}
                 </View>
             </View>

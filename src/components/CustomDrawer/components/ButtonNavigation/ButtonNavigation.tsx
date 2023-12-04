@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons} from '@expo/vector-icons';
 import { Href, Link } from 'expo-router';
 
 import { styles } from './style'

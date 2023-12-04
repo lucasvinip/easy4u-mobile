@@ -4,7 +4,7 @@ import theme from '../../../../../../styles/theme';
 const styles = StyleSheet.create({
     Products: {
         backgroundColor: theme.COLORS.BeigeRgba237243237092,
-        height: 105,
+        height: "90%",
         width: 205,
         borderRadius: 25,
         marginRight: 20

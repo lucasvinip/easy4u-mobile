@@ -9,8 +9,6 @@ interface ToastProps {
 
 const Toast: React.FC<ToastProps> = () => {
 
-
-
     const toastConfig: ToastOptions | BaseToastProps = {
         position: "top",
         autoHide: true,

@@ -38,6 +38,38 @@ const styles = StyleSheet.create({
         color: theme.COLORS.Gray5E5959,
         width: 77,
     },
+    ContainerModal: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'flex-end',
+        paddingRight: 10,
+        paddingLeft: 10
+    },
+    Modal: {
+        width: '100%',
+        height: '80%',
+    },
+    bGetOut: {
+        alignSelf: 'flex-end',
+        marginTop: 10
+    },
+    ChooseTime: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+    },
+    Choose: {
+        flexDirection: 'row',
+        width: '80%',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        gap: 15
+    },
+    bConfirm: {
+        alignSelf: 'center',
+        paddingTop: 5
+    }
 });
 
-export {styles}
+export { styles }
