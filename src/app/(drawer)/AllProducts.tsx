@@ -84,7 +84,7 @@ const AllProducts = () => {
 
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
-        
+
         if (!apiDataProducts)
             Alert.alert("Erro!")
         else {
@@ -98,6 +98,9 @@ const AllProducts = () => {
                     preparationTime,
                     productType
                 }: ProductProps) => {
+                    const names = name === "Monster"
+                    console.log("irgmek "+ names);
+                    
                     const formattedPrice = formatNumberToTypeBr(price)
                     return {
                         name,
@@ -131,7 +134,7 @@ const AllProducts = () => {
                     const lowerCaseProductType = productType.toLowerCase()
                     return lowerCaseName.includes(lowerCaseText) || lowerCaseProductType.includes(lowerCaseText)
                 });
-                
+
                 setProducts(filter);
             } catch (error) {
                 alert('filter name and productType not get:' + error);

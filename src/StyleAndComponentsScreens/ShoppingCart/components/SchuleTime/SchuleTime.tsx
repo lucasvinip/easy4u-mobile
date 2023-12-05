@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  Alert,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -13,17 +14,16 @@ import ModalPoup from '../../../../components/ModalPoup/Modal';
 import theme from '../../../../styles/theme';
 import { styles } from './style';
 import { AppTexts } from '../../../../assets/strings';
+import Toast from '../../../../components/Toast/Toast';
 
 interface TimeProps {
   onSelectTime: (selectedTime: any) => void;
-  time: boolean
 }
 
-const ScheduleTime = ({ onSelectTime, time}: TimeProps) => {
+const ScheduleTime = ({ onSelectTime }: TimeProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [selectedTime, setSelectedTime] = useState<number>();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(null);
-  const [toast, setToast] = useState<boolean>(time)
   const listTime: number[] = [15, 30, 60, 90, 120];
 
   const handlePickerPress = () => {
@@ -42,15 +42,10 @@ const ScheduleTime = ({ onSelectTime, time}: TimeProps) => {
 
   const okModal = () => {
     if (selectedButtonIndex === null) {
-      setToast(true);
-      setTimeout(() => {
-        setToast(false)
-      }, 1000)
+      Alert.alert("Warning", AppTexts.Select_Time)
     }
     else {
-      // Do something when a button is selected
-      console.log("Button selected. Time:", selectedTime);
-      // You can perform additional actions when a button is selected.
+      setVisible(false)
     }
   };
 

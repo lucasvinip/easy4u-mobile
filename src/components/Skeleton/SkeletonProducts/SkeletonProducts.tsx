@@ -3,8 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { styles, shadowStyle} from './style'
+import React from 'react';
 
-const SkeletonProducts = () => {
+const SkeletonProducts: React.FC = () => {
     return (
         <View style={[styles.Container, shadowStyle]}>
             <View style={styles.ContainerCard}>

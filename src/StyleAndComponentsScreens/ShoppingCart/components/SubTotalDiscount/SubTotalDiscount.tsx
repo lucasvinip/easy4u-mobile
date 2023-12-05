@@ -15,7 +15,7 @@ const SubTotalDiscount = () => {
 
   const router = useRouter();
   const total = useSelector((state: RootState) => state.cart.total);
-  
+
   const formattedTotal = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -42,7 +42,7 @@ const SubTotalDiscount = () => {
           </View>
           <View style={styles.TextRow}>
             <Text style={styles.labelText}>{AppTexts.Total}</Text>
-              <Text style={styles.valueText}>{formattedTotal}</Text>
+            <Text style={styles.valueText}>{formattedTotal}</Text>
           </View>
         </View>
       </View>

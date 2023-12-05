@@ -7,8 +7,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
-import Toast from '../components/Toast/Toast';
-
 
 import { styles } from '../StyleAndComponentsScreens/ShoppingCart/style';
 import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/ProductItem/ProductItem'
@@ -17,6 +15,8 @@ import SubTotalDiscount from '../StyleAndComponentsScreens/ShoppingCart/componen
 import UseFonts from '../hooks/useFonts';
 import { cartPreparationTime } from '../redux/features/shoppingCart/shoppingCartSlice';
 import { FlatList } from 'react-native-gesture-handler';
+import SkeletonShoppingCart from '../components/Skeleton/SkeletonShoppingCart/SkeletonShoppingCart';
+import ModalPoup from '../components/ModalPoup/Modal';
 
 interface ProductProps {
     id: number,
@@ -27,9 +27,10 @@ interface ProductProps {
 };
 
 const ShoppingCart = () => {
-    const [products, setProducts] = useState<ProductProps[]>([])
+    const [products, setProducts] = useState<ProductProps[]>([]);
     const [scheduleTime, setScheduleTime] = useState<boolean>();
-    const [toast, setToast] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [modalWhithout, setModalWhithout] = useState<boolean>(false);
     const [time, setTime] = useState<number>(0);
 
     const item = useSelector((state: RootState) => state.cart.items);
@@ -46,9 +47,24 @@ const ShoppingCart = () => {
     };
 
     const findProducts = () => {
-        const a = item.map((product: ProductProps) => product)
-        setProducts(a)
+        try {
+            const product = item.map((product: ProductProps) => product)
+            console.log(product);
+            if (product.length === 0) {
+                setModalWhithout(true)
+                setTimeout(() => {
+                    setModalWhithout(false)
+                }, 1000)
+            } else {
+                setProducts(product);
+                setIsLoading(false);
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            setIsLoading(false);
+        }
     }
+
 
     useEffect(() => {
         verifyScheduleTime();
@@ -58,7 +74,6 @@ const ShoppingCart = () => {
 
     return (
         <UseFonts>
-            {toast && <Toast onVisible={toast} />}
             <SafeAreaView style={{ backgroundColor: 'white' }}>
                 <View style={styles.Screen}>
                     <View style={styles.Container}>
@@ -68,25 +83,34 @@ const ShoppingCart = () => {
                                 <View style={styles.HeaderLine} />
                             </View>
                             <View style={styles.ContainerMain}>
-                                <FlatList
-                                    data={item}
-                                    renderItem={({ item }) => {
-                                        return <ProductItem
-                                            key={item.id}
-                                            name={item.name}
-                                            price={item.price}
-                                            photo={item.photo}
-                                            id={item.id}
-                                        />;
-                                    }}
-                                    showsVerticalScrollIndicator={false}
-                                />
+                                {isLoading ?
+                                    <>
+                                        <SkeletonShoppingCart />
+                                        <SkeletonShoppingCart />
+                                        <SkeletonShoppingCart />
+                                        <ModalPoup visible={true} children={undefined}></ModalPoup>
+                                    </>
+                                    : (
+                                        <FlatList
+                                            data={products}
+                                            renderItem={({ item }) => {
+                                                return <ProductItem
+                                                    key={item.id}
+                                                    name={item.name}
+                                                    price={item.price}
+                                                    photo={item.photo}
+                                                    id={item.id}
+                                                />;
+                                            }}
+                                            showsVerticalScrollIndicator={false}
+                                        />
+                                    )
+                                }
                             </View>
                             {scheduleTime && (
                                 <View>
                                     <ScheduleTime
                                         onSelectTime={handleTimeSelection}
-                                        time={false}
                                     />
                                 </View>
                             )}
