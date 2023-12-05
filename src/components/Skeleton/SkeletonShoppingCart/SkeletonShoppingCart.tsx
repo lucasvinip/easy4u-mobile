@@ -1,6 +1,5 @@
 import { Skeleton } from '@rneui/themed';
-import { View, Image, Text } from 'react-native';
-import ButtonMoreOrLess from '../../ButtonMoreOrLess/ButtonMoreOrLess';
+import { View } from 'react-native';
 
 import { styles } from './styles';
 

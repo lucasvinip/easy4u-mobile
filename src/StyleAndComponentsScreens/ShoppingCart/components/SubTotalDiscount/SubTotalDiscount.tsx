@@ -8,10 +8,13 @@ import { styles } from './style';
 import Button from '../../../../components/Button/Button';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
+import SkeletonSubTotal from '../../../../components/Skeleton/SkeletonShoppingCart/SkeletonSubTotal';
 
+interface SubTotalDiscountProps {
+  isLoading: boolean
+}
 
-
-const SubTotalDiscount = () => {
+const SubTotalDiscount: React.FC<SubTotalDiscountProps> = ({ isLoading }) => {
 
   const router = useRouter();
   const total = useSelector((state: RootState) => state.cart.total);
@@ -31,20 +34,27 @@ const SubTotalDiscount = () => {
   return (
     <View style={styles.Card}>
       <View style={styles.ContentContainer}>
-        <View style={{ width: '90%', height: '66%', justifyContent: 'space-around' }}>
-          <View style={styles.TextRow}>
-            <Text style={styles.labelText}>{AppTexts.Subtotal}</Text>
-            <Text style={styles.valueText}>{formattedTotal}</Text>
-          </View>
-          <View style={styles.TextRow}>
-            <Text style={styles.labelText}>{AppTexts.Discount}</Text>
-            <Text style={styles.valueText}>R$ 0,00</Text>
-          </View>
-          <View style={styles.TextRow}>
-            <Text style={styles.labelText}>{AppTexts.Total}</Text>
-            <Text style={styles.valueText}>{formattedTotal}</Text>
-          </View>
-        </View>
+        {isLoading ?
+          <>
+            <SkeletonSubTotal />
+          </>
+          : (
+            <View style={{ width: '90%', height: '66%', justifyContent: 'space-around' }}>
+              <View style={styles.TextRow}>
+                <Text style={styles.labelText}>{AppTexts.Subtotal}</Text>
+                <Text style={styles.valueText}>{formattedTotal}</Text>
+              </View>
+              <View style={styles.TextRow}>
+                <Text style={styles.labelText}>{AppTexts.Discount}</Text>
+                <Text style={styles.valueText}>R$ 0,00</Text>
+              </View>
+              <View style={styles.TextRow}>
+                <Text style={styles.labelText}>{AppTexts.Total}</Text>
+                <Text style={styles.valueText}>{formattedTotal}</Text>
+              </View>
+            </View>
+          )
+        }
       </View>
       <View style={styles.buttonContainer}>
         <Button

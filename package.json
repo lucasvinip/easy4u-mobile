@@ -63,7 +63,8 @@
     "reselect": "^4.1.8",
     "sharp-cli": "^4.1.1",
     "styled-components": "^6.0.7",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "lottie-react-native": "5.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

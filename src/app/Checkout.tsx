@@ -3,13 +3,14 @@ import {
   Image,
   View,
   Text,
-  ScrollView,
   TouchableOpacity
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { FlatList } from 'react-native-gesture-handler';
+
 
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
@@ -51,7 +52,7 @@ const Checkout = () => {
   const [pix, setPix] = useState<boolean>(false);
   const [qrCode, setQrCode] = useState<string>('');
   const [copy, setCopy] = useState<string>('');
-  const [toast, setToast] = useState<boolean>(false);
+  const [toast, setToast] = useState<boolean>(true);
   const [buttonOrder, setButtonOrder] = useState<boolean>(false);
   const [buttonBack, setButtonBack] = useState<boolean>(false);
 
@@ -121,7 +122,7 @@ const Checkout = () => {
     <SafeAreaView>
       <View style={styles.Screen}>
         <View style={styles.Container}>
-          {toast && <Toast onVisible={toast} />}
+          {toast && <Toast visible={toast} />}
           <Header />
           <View style={styles.ContainerMain}>
             <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>
@@ -138,16 +139,21 @@ const Checkout = () => {
                         <Text style={styles.TitleTotal}>{AppTexts.Total}</Text>
                       </View>
                     </View>
-                    <ScrollView
-                      contentContainerStyle={styles.ContainerCardMain}
-                      showsVerticalScrollIndicator={false}
-                    >
-                      <View style={styles.CardMain}>
-                        {products.map((item: CheckoutProps, index: number) => (
-                          <NameAndTotal key={index} price={item.price} name={item.name} id={item.id} />
-                        ))}
-                      </View>
-                    </ScrollView>
+                    <View style={styles.ContainerCardMain}>
+                      <FlatList
+                        data={products}
+                        renderItem={({ item }) => {
+                          return <NameAndTotal
+                            key={item.id}
+                            name={item.name}
+                            price={item.price}
+                            id={item.id}
+                          />;
+                        }}
+                        showsVerticalScrollIndicator={false}
+                        contentContainerStyle={styles.CardMain}
+                      />
+                    </View>
                   </View>
                 </View>
                 <FooterCheckout total={total} />

@@ -81,12 +81,11 @@ const styles = StyleSheet.create({
   },
   ContainerCardMain: {
     width: '100%',
-    height: '100%',
+    height: 'auto',
     alignItems: 'center',
   },
   CardMain: {
-    width: '100%',
-    height: '100%',
+    width: '85%',
   },
   CardFooter: {
     backgroundColor: theme.COLORS.Orange4FE724C,

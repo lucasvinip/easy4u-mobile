@@ -28,7 +28,7 @@ type userData = {
 
 const defaultPhoto = require("../../assets/img/user.png")
 
-const CustomDrawer = () => {
+const CustomDrawer: React.FC = () => {
   const [user, setUser] = useState<userData>();
 
   const dispatch = useDispatch()

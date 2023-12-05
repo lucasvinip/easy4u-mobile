@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     View,
     Text,
@@ -7,6 +7,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
+import LottieView from 'lottie-react-native';
+
 
 import { styles } from '../StyleAndComponentsScreens/ShoppingCart/style';
 import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/ProductItem/ProductItem'
@@ -17,6 +19,9 @@ import { cartPreparationTime } from '../redux/features/shoppingCart/shoppingCart
 import { FlatList } from 'react-native-gesture-handler';
 import SkeletonShoppingCart from '../components/Skeleton/SkeletonShoppingCart/SkeletonShoppingCart';
 import ModalPoup from '../components/ModalPoup/Modal';
+import { AppTexts } from '../assets/strings';
+import theme from '../styles/theme';
+import { useRouter } from 'expo-router';
 
 interface ProductProps {
     id: number,
@@ -32,6 +37,8 @@ const ShoppingCart = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [modalWhithout, setModalWhithout] = useState<boolean>(false);
     const [time, setTime] = useState<number>(0);
+
+    const router = useRouter()
 
     const item = useSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch()
@@ -54,7 +61,10 @@ const ShoppingCart = () => {
                 setModalWhithout(true)
                 setTimeout(() => {
                     setModalWhithout(false)
-                }, 1000)
+                }, 2500)
+                setTimeout(() => {
+                    router.replace('/(drawer)/AllProducts')
+                }, 3000)
             } else {
                 setProducts(product);
                 setIsLoading(false);
@@ -65,12 +75,10 @@ const ShoppingCart = () => {
         }
     }
 
-
     useEffect(() => {
         verifyScheduleTime();
         findProducts();
     }, [item]);
-
 
     return (
         <UseFonts>
@@ -88,7 +96,18 @@ const ShoppingCart = () => {
                                         <SkeletonShoppingCart />
                                         <SkeletonShoppingCart />
                                         <SkeletonShoppingCart />
-                                        <ModalPoup visible={true} children={undefined}></ModalPoup>
+                                        <ModalPoup visible={modalWhithout}>
+                                            <View style={{ alignItems: 'center' }}>
+                                                <LottieView
+                                                    autoPlay
+                                                    style={{ height: '80%', alignItems: 'center' }}
+                                                    source={require('../assets/lottie/Animation1701803001076.json')}
+                                                />
+                                                <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: theme.FONTS.Raleway700 }}>
+                                                    {AppTexts.Oops_Cart_Empyt}
+                                                </Text>
+                                            </View>
+                                        </ModalPoup>
                                     </>
                                     : (
                                         <FlatList
@@ -116,7 +135,7 @@ const ShoppingCart = () => {
                             )}
                             <View style={styles.ConatinerFooter}>
                                 <View>
-                                    <SubTotalDiscount />
+                                    <SubTotalDiscount isLoading={isLoading} />
                                 </View>
                             </View>
                         </View>

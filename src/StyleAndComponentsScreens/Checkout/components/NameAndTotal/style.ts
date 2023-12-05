@@ -6,11 +6,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '95%',
         justifyContent: 'space-between',
-        marginTop: 5
+        marginTop: 5,
     },
     NameAndQuantityProduct: {
         flexDirection: 'row',
-        width: '50%',
+        width: '55%',
         justifyContent: 'space-around'
     },
     NameTitle:{

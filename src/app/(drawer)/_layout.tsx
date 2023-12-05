@@ -7,7 +7,7 @@ import CustomHeaderDrawer from '../../components/CustomHeaderDrawer/CustomHeader
 import { Provider } from 'react-redux';
 import { store } from '../../redux/store';
 
-const Layout = () => {
+const Layout: React.FC = () => {
 
   return (
     <Provider store={store}>

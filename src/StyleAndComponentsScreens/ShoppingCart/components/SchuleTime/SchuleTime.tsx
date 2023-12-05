@@ -15,12 +15,13 @@ import theme from '../../../../styles/theme';
 import { styles } from './style';
 import { AppTexts } from '../../../../assets/strings';
 import Toast from '../../../../components/Toast/Toast';
+import SkeletonSchuleTime from '../../../../components/Skeleton/SkeletonShoppingCart/SkeletonSchuleTime';
 
 interface TimeProps {
   onSelectTime: (selectedTime: any) => void;
 }
 
-const ScheduleTime = ({ onSelectTime }: TimeProps) => {
+const ScheduleTime: React.FC<TimeProps> = ({ onSelectTime }) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [selectedTime, setSelectedTime] = useState<number>();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(null);
@@ -51,6 +52,7 @@ const ScheduleTime = ({ onSelectTime }: TimeProps) => {
 
   return (
     <View>
+
       <Text style={styles.labelText}>{AppTexts.Schedule_Time}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => handlePickerPress()}>

@@ -113,5 +113,8 @@ export const AppTexts = {
     Order_Progress: 'Pedido em Andamento',
     Choose_Payment_Method: 'Selecione a Forma de Pagamento:',
 
-    Verify_Balance: "Verificando Saldo..."
+    Verify_Balance: "Verificando Saldo...",
+    Oops_Cart_Empyt: "Oops! Seu carrinho está vazio. Que tal começar suas compras agora!?",
+
+    Oops_Choose_Payment: "Oops! Escolha uma forma de pagamento."
 }

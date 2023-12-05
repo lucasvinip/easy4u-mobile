@@ -74,7 +74,15 @@ const Login = () => {
       />
       <SafeAreaView style={{ backgroundColor: 'white' }}>
         <View style={styles.Screen}>
-          {loading && <ActivityIndicator style={{ justifyContent: 'center', alignItems: 'center', height: "100%", width: "100%" }} size={75} color={theme.COLORS.OrangeFF6C44} />}
+          {loading && <ActivityIndicator
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: "100%",
+              width: "100%"
+            }} size={75} color={theme.COLORS.OrangeFF6C44}
+          />
+          }
           <View style={styles.Container}>
             <View style={styles.ContainerHeader}>
               <Text style={styles.HeaderText}>

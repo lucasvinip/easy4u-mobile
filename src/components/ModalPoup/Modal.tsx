@@ -1,4 +1,4 @@
-import {
+import React, {
     useEffect,
     useRef,
     useState
@@ -16,7 +16,7 @@ interface ModalPoupProps {
     children: React.ReactNode
 }
 
-export default function ModalPoup({ visible, children }: ModalPoupProps) {
+const ModalPoup: React.FC<ModalPoupProps> = ({ visible, children }) => {
 
     const [showModal, setShowModal] = useState<boolean>(visible)
     const scaleValueModal = useRef(new Animated.Value(0)).current
@@ -54,3 +54,5 @@ export default function ModalPoup({ visible, children }: ModalPoupProps) {
         </Modal>
     )
 }
+
+export default ModalPoup;

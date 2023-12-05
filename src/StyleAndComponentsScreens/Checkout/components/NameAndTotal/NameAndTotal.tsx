@@ -15,7 +15,7 @@ interface ProductItemProps {
     id: number
 }
 
-const NameAndTotal = ({ price, name, id }: ProductItemProps) => {
+const NameAndTotal: React.FC<ProductItemProps> = ({ price, name, id }) => {
     const item = useSelector((state: RootState) => state.cart.items.find((item) => item.id === id));
 
     const productQty = item?.quantity || 0;
