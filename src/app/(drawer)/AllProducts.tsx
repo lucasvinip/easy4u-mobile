@@ -51,7 +51,6 @@ const AllProducts = () => {
 
     const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
-
         if (!token)
             router.push('/')
         else {
@@ -61,11 +60,8 @@ const AllProducts = () => {
             } catch (error) {
                 alert("data not get:" + error)
             }
-
         }
-
     };
-
     const handleFilterProductsTypes = async () => {
         const apiDataProductsType = await getUrl("products/types")
 
@@ -81,10 +77,8 @@ const AllProducts = () => {
 
         }
     };
-
     const handleCardProducts = async () => {
         const apiDataProducts = await getUrl("products?disponibility=true")
-
         if (!apiDataProducts)
             Alert.alert("Erro!")
         else {
@@ -99,8 +93,8 @@ const AllProducts = () => {
                     productType
                 }: ProductProps) => {
                     const names = name === "Monster"
-                    console.log("irgmek "+ names);
-                    
+                    console.log("irgmek " + names);
+
                     const formattedPrice = formatNumberToTypeBr(price)
                     return {
                         name,
@@ -117,10 +111,8 @@ const AllProducts = () => {
             } catch (error) {
                 alert("allProductsTypes not get:" + error)
             }
-
         }
     };
-
     const handleSearchProduct = async () => {
         const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
         if (!apiDataFilterProductsByTypeAndName) {
@@ -128,23 +120,19 @@ const AllProducts = () => {
         } else {
             try {
                 const lowerCaseText = text.toLowerCase()
-
                 const filter = apiDataFilterProductsByTypeAndName.filter(({ name, productType }: SearcProductProps) => {
                     const lowerCaseName = name.toLowerCase()
                     const lowerCaseProductType = productType.toLowerCase()
                     return lowerCaseName.includes(lowerCaseText) || lowerCaseProductType.includes(lowerCaseText)
                 });
-
                 setProducts(filter);
             } catch (error) {
                 alert('filter name and productType not get:' + error);
             }
         }
     };
-
     const handleClickFilterProductType = async (productType: any) => {
         const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}&disponibility=true`)
-
         if (!apiDataFilterProductsByType)
             alert("Erro!")
         else {
@@ -173,23 +161,17 @@ const AllProducts = () => {
             } catch (error) {
                 alert("typeProduct not get :" + error)
             }
-
         }
     };
-
-
     const pullMeDown = async () => {
         setRefresh(true);
         await handleCardProducts();
         setRefresh(false);
     };
-
-
     useEffect(() => {
         handleFilterProductsTypes();
         handleCardProducts()
     }, [])
-
 
     return (
         <UseFonts >

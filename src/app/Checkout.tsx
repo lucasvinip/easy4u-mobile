@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { FlatList } from 'react-native-gesture-handler';
+import { FontAwesome } from '@expo/vector-icons';
 
 
 import Button from '../components/Button/Button';
@@ -28,6 +29,7 @@ import Toast from '../components/Toast/Toast';
 import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import { performApi } from '../utils/api';
+import { formatNumberToTypeBr } from '../utils/formatNumber';
 
 
 interface CheckoutProps {
@@ -52,12 +54,17 @@ const Checkout = () => {
   const [pix, setPix] = useState<boolean>(false);
   const [qrCode, setQrCode] = useState<string>('');
   const [copy, setCopy] = useState<string>('');
-  const [toast, setToast] = useState<boolean>(true);
+  const [toast, setToast] = useState<boolean>(false);
   const [buttonOrder, setButtonOrder] = useState<boolean>(false);
   const [buttonBack, setButtonBack] = useState<boolean>(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
+
 
   const total = useSelector((state: RootState) => state.cart.total);
   const items = useSelector((state: RootState) => state.cart.items);
+  const balance = useSelector((state: RootState) => state.user.userBalance)
+  const formatBalance = formatNumberToTypeBr(balance)
+
 
   const preparationTime = useSelector((state: RootState) => state.cart.preparationTime);
   const verifyTime = preparationTime ? preparationTime : null;
@@ -200,14 +207,44 @@ const Checkout = () => {
                     </View>
                   )}
                   <View style={styles.modalContainer}>
-                    {loading ? (
-                      <Loading />
+                    {buttonClicked ? (
+                      loading ? (
+                        <Loading />
+                      ) : (
+                        <View style={styles.Align}>
+                          {pix && <CPBoard copy={copy} qrcode={qrCode} visible={() => setVisible(false)} />}
+                          {message && <Text style={styles.VerifyPursche}>{message}</Text>}
+                          {buttonOrder && <SucessOrder onVisible={() => setVisible(false)} />}
+                          {buttonBack && <ErrorOrder onVisible={() => setVisible(false)} />}
+                        </View>
+                      )
                     ) : (
-                      <View style={styles.Align}>
-                        {pix && <CPBoard copy={copy} qrcode={qrCode} visible={() => setVisible(false)} />}
-                        {message && <Text style={styles.VerifyPursche}>{message}</Text>}
-                        {buttonOrder && <SucessOrder onVisible={() => setVisible(false)} />}
-                        {buttonBack && <ErrorOrder onVisible={() => setVisible(false)} />}
+                      <View style={styles.ContainerModal}>
+                        <View style={styles.bGetOut}>
+                          <TouchableOpacity onPress={() => setVisible(false)}>
+                            <FontAwesome name='times-circle' size={30} color={theme.COLORS.OrangeF6752C} />
+                          </TouchableOpacity>
+                        </View>
+                        <View style={styles.Modal}>
+                          <Text style={{ fontFamily: theme.FONTS.Raleway700, fontSize: 16 }}>
+                            Seu saldo é: {formatBalance}
+                          </Text>
+                          <Text style={{ fontFamily: theme.FONTS.Raleway700, fontSize: 18, width: '40%', textAlign: 'center' }}>
+                            {AppTexts.Confirm_Buy}
+                          </Text>
+                        </View>
+                        <View style={styles.bConfirm}>
+                          <Button
+                            text={'Cofirmar'}
+                            fontFamily={theme.FONTS.Popp700}
+                            background={theme.COLORS.OrangeFF6C44}
+                            width={100}
+                            height={40}
+                            borderRadius={48}
+                            fontSize={14}
+                            onPress={() => setButtonClicked(true)}
+                          />
+                        </View>
                       </View>
                     )}
                   </View>

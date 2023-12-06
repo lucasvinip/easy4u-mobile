@@ -2,17 +2,41 @@ import { StyleSheet } from 'react-native'
 import theme from '../../styles/theme';
 
 const styles = StyleSheet.create({
-    Error: {
-        color: theme.COLORS.RedF15050,
-        fontFamily: theme.FONTS.Popp500,
-        fontSize: 12,
-        
+    modalBackground: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        marginTop: 70,
+        width: '80%',
     },
     modalContainer: {
-        flex: 1,
-        justifyContent: 'flex-start',
+        width: '100%',
+        height: 'auto',
+        backgroundColor: theme.COLORS.Orange2FFA24B,
+        padding: 10,
+        borderRadius: 15,
+        elevation: 15,
+    },
+    modalContent: {
+        backgroundColor: theme.COLORS.Orange2FFA24B,
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'center',
+        height: 'auto',
+        
+    },
+    iconContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    lottie: {
+        width: 20, 
+        height: 20,
+        marginRight: 10,
+    },
+    modalText: {
+        fontSize: 13,
+        fontFamily: theme.FONTS.Raleway700,
+        marginBottom: 1.5
     },
 });
 

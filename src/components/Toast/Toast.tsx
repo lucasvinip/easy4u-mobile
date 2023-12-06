@@ -3,13 +3,12 @@ import {
     Modal,
     View,
     Animated,
-    StyleSheet,
     Text
 } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import LottieView from 'lottie-react-native';
 
 import { AppTexts } from '../../assets/strings';
+import {styles} from './style'
 
 interface TopModalProps {
     visible: boolean;
@@ -47,8 +46,8 @@ const TopModal: React.FC<TopModalProps> = ({ visible }) => {
                         <View style={styles.iconContainer}>
                             <LottieView
                                 autoPlay
-                                style={{}}
-                                source={require('../../assets/lottie/Animation1701813693711.json')}
+                                style={styles.lottie}
+                            source={require('../../assets/lottie/Animation1701813693711.json')}
                             />
                             <Text style={styles.modalText}>{AppTexts.Oops_Choose_Payment}</Text>
                         </View>
@@ -59,37 +58,6 @@ const TopModal: React.FC<TopModalProps> = ({ visible }) => {
     );
 };
 
-const styles = StyleSheet.create({
-    modalBackground: {
-        position: 'absolute',
-        justifyContent: 'center',
-        alignSelf: 'center',
-        marginTop: 70,
-        width: '80%',
-    },
-    modalContainer: {
-        width: '100%',
-        height: 'auto',
-        backgroundColor: 'white',
-        padding: 10,
-        borderRadius: 15,
-        elevation: 15,
-    },
-    modalContent: {
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 'auto',
-    },
-    iconContainer: {
-        flexDirection: 'row',
-        backgroundColor: 'green',
-        width: '100%'
-    },
-    modalText: {
-        fontSize: 14,
-        color: '#333',
-    },
-});
+
 
 export default TopModal;

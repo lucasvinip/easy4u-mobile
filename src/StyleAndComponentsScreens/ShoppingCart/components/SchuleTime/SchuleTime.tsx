@@ -14,8 +14,7 @@ import ModalPoup from '../../../../components/ModalPoup/Modal';
 import theme from '../../../../styles/theme';
 import { styles } from './style';
 import { AppTexts } from '../../../../assets/strings';
-import Toast from '../../../../components/Toast/Toast';
-import SkeletonSchuleTime from '../../../../components/Skeleton/SkeletonShoppingCart/SkeletonSchuleTime';
+
 
 interface TimeProps {
   onSelectTime: (selectedTime: any) => void;

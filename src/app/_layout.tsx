@@ -41,7 +41,6 @@ const Layout = () => {
                         title: '',
                         headerTintColor: theme.COLORS.Orange2FFA24B,
                     }}
-                    
                 />
                 <Stack.Screen
                     name='(drawer)'

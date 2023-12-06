@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         borderStyle: "solid",
         borderWidth: 2,
-        width: '35%',
+        width: '45%',
         height: '90%',
         alignItems: 'center',
         justifyContent: 'center',

@@ -116,5 +116,6 @@ export const AppTexts = {
     Verify_Balance: "Verificando Saldo...",
     Oops_Cart_Empyt: "Oops! Seu carrinho está vazio. Que tal começar suas compras agora!?",
 
-    Oops_Choose_Payment: "Oops! Escolha uma forma de pagamento."
+    Oops_Choose_Payment: "Oops! Escolha uma forma de pagamento.",
+    Confirm_Buy: 'Confirma a sua compra?'
 }

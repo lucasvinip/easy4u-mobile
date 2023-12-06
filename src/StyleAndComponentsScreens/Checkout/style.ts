@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   ContainerContent: {
     width: '100%',
-    height: '20%' ,
+    height: '20%',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   Payment: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '65%',
+    width: '80%',
     alignContent: 'center'
   },
   HeaderModal: {
@@ -155,6 +155,27 @@ const styles = StyleSheet.create({
   Align: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  bGetOut: {
+    alignSelf: 'flex-end',
+    marginTop: 10
+  },
+  ContainerModal: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'flex-end',
+    paddingRight: 10,
+    paddingLeft: 10
+  },
+  Modal: {
+    width: '100%',
+    height: '60%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
+  },
+  bConfirm: {
+    alignSelf: 'center',
+    paddingTop: 5
   }
 });
 

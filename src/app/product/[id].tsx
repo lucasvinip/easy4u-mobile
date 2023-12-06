@@ -3,7 +3,6 @@ import {
     View,
     Image,
     SafeAreaView,
-    ScrollView
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -17,6 +16,7 @@ import ButtonFavoriteProduct from '../../StyleAndComponentsScreens/Product/compo
 import { formatNumberToTypeBr } from '../../utils/formatNumber';
 import { FlatList } from 'react-native-gesture-handler';
 import ProductsDisponibility from '../../StyleAndComponentsScreens/Product/components/CardMain/components/ProductsDisponibility/ProductsDisponibility';
+import ButtonAddCart from '../../StyleAndComponentsScreens/Product/components/ButtonCart/ButtonAddCart';
 
 type CardProductProps = {
     id: number

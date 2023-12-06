@@ -9,8 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 interface ButtonAddCartProps {
-    id: number
-    price: number,
+    id: number | undefined,
+    price: number | undefined,
     photo: string | undefined,
     name: string | undefined,
     quantity?: number,
