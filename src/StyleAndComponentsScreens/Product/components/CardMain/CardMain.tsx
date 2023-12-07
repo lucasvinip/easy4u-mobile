@@ -26,18 +26,20 @@ interface CardMainProps {
     id: number,
     photo: string | undefined,
     preparationTime: number | undefined,
-    children: ReactChildren
+    children: ReactChildren,
+    setToast: () => void
 }
 
-const CardMain = ({
+const CardMain: React.FC<CardMainProps> = ({
     name,
     price,
     description,
     id,
     photo,
     preparationTime,
-    children
-}: CardMainProps) => {
+    children,
+    setToast
+}) => {
     
     return (
         <View style={styles.Container}>
@@ -86,6 +88,7 @@ const CardMain = ({
                     name={name}
                     photo={photo}
                     preparationTime={preparationTime}
+                    setToast={setToast}
                 />
             </View>
         </View>

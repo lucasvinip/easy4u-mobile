@@ -3,18 +3,23 @@ import {
     Modal,
     View,
     Animated,
-    Text
+    Text,
+    DimensionValue
 } from 'react-native';
 import LottieView from 'lottie-react-native';
 
 import { AppTexts } from '../../assets/strings';
-import {styles} from './style'
+import { styles } from './style'
 
 interface TopModalProps {
-    visible: boolean;
+    visible: boolean,
+    src: any,
+    text: string,
+    width: DimensionValue;
+    height: DimensionValue;
 }
 
-const TopModal: React.FC<TopModalProps> = ({ visible }) => {
+const TopModal: React.FC<TopModalProps> = ({ visible, src, text, width, height}) => {
     const [showModal, setShowModal] = useState<boolean>(visible);
     const translateY = useRef(new Animated.Value(0)).current;
 
@@ -46,10 +51,10 @@ const TopModal: React.FC<TopModalProps> = ({ visible }) => {
                         <View style={styles.iconContainer}>
                             <LottieView
                                 autoPlay
-                                style={styles.lottie}
-                            source={require('../../assets/lottie/Animation1701813693711.json')}
+                                style={[styles.lottie, { width: width, height: height }]}
+                                source={src}
                             />
-                            <Text style={styles.modalText}>{AppTexts.Oops_Choose_Payment}</Text>
+                            <Text style={styles.modalText}>{text}</Text>
                         </View>
                     </View>
                 </Animated.View>

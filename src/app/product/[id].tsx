@@ -16,7 +16,9 @@ import ButtonFavoriteProduct from '../../StyleAndComponentsScreens/Product/compo
 import { formatNumberToTypeBr } from '../../utils/formatNumber';
 import { FlatList } from 'react-native-gesture-handler';
 import ProductsDisponibility from '../../StyleAndComponentsScreens/Product/components/CardMain/components/ProductsDisponibility/ProductsDisponibility';
-import ButtonAddCart from '../../StyleAndComponentsScreens/Product/components/ButtonCart/ButtonAddCart';
+import Toast from '../../components/Toast/Toast';
+import { AppTexts } from '../../assets/strings';
+
 
 type CardProductProps = {
     id: number
@@ -45,6 +47,8 @@ const Product = () => {
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
     const [typeProducts, setTypeProducts] = useState<CardProductProps[]>([])
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
+    const [toast, setToast] = useState<boolean>(false);
+
 
     const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
@@ -117,7 +121,12 @@ const Product = () => {
         }
     };
 
-
+    const showToast = () => {
+        setToast(true);
+        setTimeout(() => {
+            setToast(false);
+        }, 1000);
+    };
 
 
     useEffect(() => {
@@ -144,6 +153,15 @@ const Product = () => {
                 style='dark'
                 backgroundColor='transparent'
             />
+            {toast && (
+                <Toast
+                    visible={toast}
+                    src={require('../../assets/lottie/Animation1701897361704.json')}
+                    text={AppTexts.Order_Add_Cart}
+                    width={23}
+                    height={23}
+                />
+            )}
             <SafeAreaView>
                 <View style={styles.Background}>
                     <Image source={{ uri: String(dataProduct?.photo) }} style={styles.Img} />
@@ -151,7 +169,10 @@ const Product = () => {
                         <View style={styles.Screen}>
                             <View style={styles.Container}>
                                 <View style={styles.ContainerFavorite}>
-                                    <ButtonFavoriteProduct idProduct={id} favorite={isFavorite} />
+                                    <ButtonFavoriteProduct
+                                        idProduct={id}
+                                        favorite={isFavorite}
+                                    />
                                 </View>
                                 <View style={styles.ContainerMain}>
                                     <CardMain
@@ -161,6 +182,7 @@ const Product = () => {
                                         id={+id}
                                         photo={dataProduct?.photo}
                                         preparationTime={dataProduct?.preparationTime}
+                                        setToast={showToast}
                                     >
                                         <FlatList
                                             data={typeProducts}
@@ -183,7 +205,7 @@ const Product = () => {
                     </View>
                 </View>
             </SafeAreaView>
-        </UseFonts>
+        </UseFonts >
     );
 };
 

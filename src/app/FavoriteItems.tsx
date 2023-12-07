@@ -15,6 +15,7 @@ import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { RefreshControl } from "react-native-gesture-handler";
+import LottieView from 'lottie-react-native';
 
 import { performApi } from "../utils/api";
 import FavoriteCard from "../StyleAndComponentsScreens/FavoriteItens/components/FavoriteCard.tsx/FavoriteCard";
@@ -45,6 +46,8 @@ const FavoriteItems = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [isSkeleton, setSkeleton] = useState<boolean>(true);
   const [id, setId] = useState<number>();
+  const [modalWhithout, setModalWhithout] = useState<boolean>(false);
+
 
   const memoFavoriteItems = useMemo(() => {
     return favorites.map(({ product }: ProductsProps, index: number) => {
@@ -123,7 +126,7 @@ const FavoriteItems = () => {
       />
       <SafeAreaView style={{ backgroundColor: theme.COLORS.Whiteffffff }}>
         <View style={styles.Screen}>
-          <ModalPoup visible={visible}>
+          <ModalPoup visible={true}>
             <View style={{ alignItems: "center" }}>
               <View style={styles.headerModal}>
                 <TouchableOpacity onPress={() => setVisible(false)}>
@@ -193,12 +196,16 @@ const FavoriteItems = () => {
                   favorites.length > 0 ?
                     memoFavoriteItems
                     : (
-                      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                        <Text
-                          style={{ textAlign: "center", color: "black", fontSize: 20, fontFamily: theme.FONTS.Popp500 }}>
-                          Você não tem nenhum item adicionado aos favoritos!
-                        </Text>
-                      </View>
+                        <View style={{ alignItems: 'center' }}>
+                          <LottieView
+                            autoPlay
+                            style={{ height: '80%', alignItems: 'center' }}
+                            source={require('../assets/lottie/Animation1701904243006.json')}
+                          />
+                          <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: theme.FONTS.Raleway700 }}>
+                            {AppTexts.Oops_Whithout_Fav}
+                          </Text>
+                        </View>
                     )
                 )}
               </ScrollView>

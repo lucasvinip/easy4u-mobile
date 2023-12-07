@@ -9,11 +9,11 @@ import theme from '../../../../styles/theme';
 import { performApi } from '../../../../utils/api';
 
 interface ButtonFavoriteProductProps {
-    idProduct: any;
-    favorite: boolean;
+    idProduct: any,
+    favorite: boolean,
 }
 
-const ButtonFavoriteProduct = ({idProduct, favorite}: ButtonFavoriteProductProps) => {
+const ButtonFavoriteProduct: React.FC<ButtonFavoriteProductProps> = ({idProduct, favorite}) => {
     const [isFavorite, setIsFavorite] = useState<boolean>();
 
     const postUrl = async (path: string) => {

@@ -117,5 +117,10 @@ export const AppTexts = {
     Oops_Cart_Empyt: "Oops! Seu carrinho está vazio. Que tal começar suas compras agora!?",
 
     Oops_Choose_Payment: "Oops! Escolha uma forma de pagamento.",
-    Confirm_Buy: 'Confirma a sua compra?'
+    Confirm_Buy: 'Confirma a sua compra?',
+
+    Order_Add_Cart: 'Boom! Seu item está agora no carrinho.',
+    Add_Fav: 'Adicionado à Lista de Favoritos',
+
+    Oops_Whithout_Fav: 'Oops! Seus favoritos estão vazios por enquanto. Que tal adicionar algum!?'
 }

@@ -29,8 +29,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     lottie: {
-        width: 20, 
-        height: 20,
         marginRight: 10,
     },
     modalText: {

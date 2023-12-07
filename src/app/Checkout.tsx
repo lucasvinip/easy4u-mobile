@@ -31,7 +31,6 @@ import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import { performApi } from '../utils/api';
 import { formatNumberToTypeBr } from '../utils/formatNumber';
 
-
 interface CheckoutProps {
   id: number;
   name: string;
@@ -129,7 +128,13 @@ const Checkout = () => {
     <SafeAreaView>
       <View style={styles.Screen}>
         <View style={styles.Container}>
-          {toast && <Toast visible={toast} />}
+          {toast && <Toast
+            visible={toast}
+            src={require('../assets/lottie/Animation1701813693711.json')}
+            text={AppTexts.Oops_Choose_Payment}
+            width={18}
+            height={20}
+          />}
           <Header />
           <View style={styles.ContainerMain}>
             <Text style={styles.TitleMain}>{AppTexts.Easy_you}</Text>

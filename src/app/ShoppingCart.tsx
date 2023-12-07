@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import LottieView from 'lottie-react-native';
 
-
 import { styles } from '../StyleAndComponentsScreens/ShoppingCart/style';
 import ProductItem from '../StyleAndComponentsScreens/ShoppingCart/components/ProductItem/ProductItem'
 import ScheduleTime from '../StyleAndComponentsScreens/ShoppingCart/components/SchuleTime/SchuleTime';
@@ -63,7 +62,7 @@ const ShoppingCart = () => {
                     setModalWhithout(false)
                 }, 2500)
                 setTimeout(() => {
-                    router.replace('/(drawer)/AllProducts')
+                    router.push('/(drawer)/AllProducts')
                 }, 3000)
             } else {
                 setProducts(product);
