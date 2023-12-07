@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
     CardItemsTimePreparing: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
         alignItems: 'center',
         width: '80%',
     },

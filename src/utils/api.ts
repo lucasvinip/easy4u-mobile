@@ -17,9 +17,6 @@ export class performApi {
     };
     
     public static sendDataToken = async (path: string, method: string, token: string | null, body?: object) => {
-
-        console.log(body)
-
         const response = await fetch(`http://easy4u-server.online:3000/${path}`, {
             method: method,
             headers: {
@@ -78,7 +75,6 @@ export class performApi {
             body: JSON.stringify(body)
         })
         const data = await response.json()
-        console.log(data)
         return data
     }
 }

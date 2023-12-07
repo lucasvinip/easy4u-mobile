@@ -17,7 +17,7 @@ import UseFonts from '../../hooks/useFonts';
 import CustomTextInput from '../../StyleAndComponentsScreens/AllProducts/components/CustomTextInput/CustomTextInput';
 import TypeProduct from '../../StyleAndComponentsScreens/AllProducts/components/TypeProduct/TypeProduct';
 import { performApi } from '../../utils/api';
-import { RefreshControl } from 'react-native-gesture-handler';
+import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import SkeletonProducts from '../../components/Skeleton/SkeletonProducts/SkeletonProducts';
 import { formatNumberToTypeBr } from '../../utils/formatNumber';
 
@@ -62,6 +62,46 @@ const AllProducts = () => {
             }
         }
     };
+
+    const MAX_DESCRIPTION_LENGTH = 40
+    const handleLimitedDescription = (description: string) => description.slice(0, MAX_DESCRIPTION_LENGTH);
+    const handleOneCardForName = (apiData: ProductProps[]) => {
+        const seenNames = new Set<string>();
+        const typeProduct = apiData.reduce((accumulator: ProductProps[], {
+            name,
+            price,
+            description,
+            photo,
+            id,
+            preparationTime,
+            productType
+        }: ProductProps) => {
+            const formattedName = name.trim().toLowerCase();
+
+            if (!seenNames.has(formattedName)) {
+                seenNames.add(formattedName);
+
+                const descLimited = handleLimitedDescription(description)
+                const formattedPrice: any = formatNumberToTypeBr(price);
+                const newItem: ProductProps = {
+                    description: descLimited,
+                    name: name,
+                    id: id,
+                    photo: photo,
+                    preparationTime: preparationTime,
+                    price: formattedPrice,
+                    productType: productType
+                };
+                console.log(newItem);
+
+                accumulator.push(newItem);
+            }
+
+            return accumulator;
+        }, []);
+        return typeProduct
+    }
+
     const handleFilterProductsTypes = async () => {
         const apiDataProductsType = await getUrl("products/types")
 
@@ -78,85 +118,53 @@ const AllProducts = () => {
         }
     };
     const handleCardProducts = async () => {
-        const apiDataProducts = await getUrl("products?disponibility=true")
-        if (!apiDataProducts)
-            Alert.alert("Erro!")
-        else {
-            try {
-                const allProductsTypes = apiDataProducts.map(({
-                    name,
-                    price,
-                    description,
-                    photo,
-                    id,
-                    preparationTime,
-                    productType
-                }: ProductProps) => {
-                    const names = name === "Monster"
-                    console.log("irgmek " + names);
+        try {
+            const apiDataProducts = await getUrl("products?disponibility=true");
 
-                    const formattedPrice = formatNumberToTypeBr(price)
-                    return {
-                        name,
-                        price: formattedPrice,
-                        description,
-                        photo,
-                        id,
-                        preparationTime,
-                        productType
-                    }
-                })
-                setIsLoading(false)
-                setProducts(allProductsTypes)
-            } catch (error) {
-                alert("allProductsTypes not get:" + error)
+            if (!apiDataProducts) {
+                router.push('/');
+                return;
             }
+            const allProductsTypes = handleOneCardForName(apiDataProducts)
+            setIsLoading(false);
+            setProducts(allProductsTypes);
+        } catch (error) {
+            console.error("Error in handleCardProducts:", error);
         }
     };
     const handleSearchProduct = async () => {
-        const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
-        if (!apiDataFilterProductsByTypeAndName) {
-            Alert.alert("Erro!")
-        } else {
-            try {
-                const lowerCaseText = text.toLowerCase()
-                const filter = apiDataFilterProductsByTypeAndName.filter(({ name, productType }: SearcProductProps) => {
-                    const lowerCaseName = name.toLowerCase()
-                    const lowerCaseProductType = productType.toLowerCase()
-                    return lowerCaseName.includes(lowerCaseText) || lowerCaseProductType.includes(lowerCaseText)
-                });
-                setProducts(filter);
-            } catch (error) {
-                alert('filter name and productType not get:' + error);
+        try {
+            const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
+            if (!apiDataFilterProductsByTypeAndName) {
+                Alert.alert("Erro!");
+                return;
             }
+
+            const lowerCaseText = text.toLowerCase();
+            const seenNames = new Set<string>();
+
+            const filteredProducts = apiDataFilterProductsByTypeAndName.filter(({ name, productType }: SearcProductProps) => {
+                const lowerCaseName = name.toLowerCase();
+                const lowerCaseProductType = productType.toLowerCase();
+                return lowerCaseName.includes(lowerCaseText) || lowerCaseProductType.includes(lowerCaseText);
+            });
+
+            const productsWithLimitedDescription = handleOneCardForName(filteredProducts)
+            const finalProducts = productsWithLimitedDescription.filter((product: ProductProps) => product !== null);
+
+            setProducts(finalProducts);
+        } catch (error) {
+            alert('Error in handleSearchProduct: ' + error);
         }
     };
+
     const handleClickFilterProductType = async (productType: any) => {
         const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}&disponibility=true`)
         if (!apiDataFilterProductsByType)
             alert("Erro!")
         else {
             try {
-                const typeProduct = apiDataFilterProductsByType.map(({
-                    name,
-                    price,
-                    description,
-                    photo,
-                    id,
-                    preparationTime,
-                    productType
-                }: ProductProps) => {
-                    const formattedPrice = formatNumberToTypeBr(price)
-                    return {
-                        name,
-                        price: formattedPrice,
-                        description,
-                        photo,
-                        id,
-                        preparationTime,
-                        productType
-                    }
-                })
+                const typeProduct = handleOneCardForName(apiDataFilterProductsByType)
                 setProducts(typeProduct)
             } catch (error) {
                 alert("typeProduct not get :" + error)
@@ -208,7 +216,7 @@ const AllProducts = () => {
                                 </View>
                             </View>
                         </View>
-                        <ScrollView refreshControl={
+                        <FlatList refreshControl={
                             <RefreshControl
                                 refreshing={refresh}
                                 onRefresh={() => pullMeDown()}
@@ -217,42 +225,35 @@ const AllProducts = () => {
                             contentContainerStyle={styles.ContainerMain}
                             showsVerticalScrollIndicator={false}
                             keyboardShouldPersistTaps={'handled'}
-                        >
-                            <View style={styles.Main}>
-                                {isLoading ?
-                                    <>
-                                        <View>
-                                            <SkeletonProducts />
-                                            <SkeletonProducts />
-                                            <SkeletonProducts />
-                                            <SkeletonProducts />
-                                        </View>
-                                    </>
-                                    : (
-                                        products.map(({
-                                            name,
-                                            price,
-                                            description,
-                                            photo,
-                                            id,
-                                            preparationTime,
-                                            productType
-                                        }: ProductProps, index: number) => (
-                                            <CardProduct
-                                                key={index}
-                                                name={name}
-                                                price={price}
-                                                description={description}
-                                                photo={photo}
-                                                id={id}
-                                                preparationTime={preparationTime}
-                                                productType={productType}
-                                            />
-                                        ))
-                                    )
-                                }
-                            </View>
-                        </ScrollView>
+                            data={products}
+                            renderItem={({ item }) => {
+                                return (
+                                    <View style={styles.Main}>
+                                        {isLoading ?
+                                            <>
+                                                <View>
+                                                    <SkeletonProducts />
+                                                    <SkeletonProducts />
+                                                    <SkeletonProducts />
+                                                    <SkeletonProducts />
+                                                </View>
+                                            </>
+                                            : (
+                                                <CardProduct
+                                                    name={item.name}
+                                                    price={item.price}
+                                                    description={item.description}
+                                                    photo={item.photo}
+                                                    id={item.id}
+                                                    preparationTime={item.preparationTime}
+                                                    productType={item.productType}
+                                                />
+                                            )
+                                        }
+                                    </View>
+                                )
+                            }}
+                        />
                     </View>
                 </View>
             </SafeAreaView >

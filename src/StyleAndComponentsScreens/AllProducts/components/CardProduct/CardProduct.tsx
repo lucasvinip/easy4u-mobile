@@ -31,7 +31,7 @@ const CardProduct = ({
     preparationTime
 }: ProductsProps) => {
 
-    console.log(preparationTime);
+    console.log(",lgç " + preparationTime);
 
 
     return (
