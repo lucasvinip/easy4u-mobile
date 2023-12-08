@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Image,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -30,6 +30,7 @@ import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import { performApi } from '../utils/api';
 import { formatNumberToTypeBr } from '../utils/formatNumber';
 import { setBalance } from '../redux/features/userSettings/userSettingsSlice';
+import { Link } from 'expo-router';
 
 interface CheckoutProps {
   id: number;
@@ -57,6 +58,7 @@ const Checkout: React.FC = () => {
   const [buttonOrder, setButtonOrder] = useState<boolean>(false);
   const [buttonBack, setButtonBack] = useState<boolean>(false);
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [loading2, setLoading2] = useState<boolean>(false)
 
   const dispatch = useDispatch()
 
@@ -76,30 +78,40 @@ const Checkout: React.FC = () => {
   };
 
   const getSelectedPaymentMethod = async () => {
+    if (selectedPaymentMethod === 'Créditos' || selectedPaymentMethod === 'Pix')
+      setVisible(true);
+    else {
+      setToast(true);
+      setTimeout(() => {
+        setToast(false);
+      }, 1000);
+    }
+  };
+
+  const confirmOrder = async () => {
+    setButtonClicked(true)
     try {
       const token = await AsyncStorage.getItem('token');
       const items = products.map((product) => [product.id, product.quantity]);
 
       if (selectedPaymentMethod === 'Créditos') {
-        setVisible(true);
         setLoading(true);
 
         const orderResponse = await performApi.sendDataToken('carts-by-user', 'POST', token, {
           products: items,
           preparationTime: verifyTime
         });
-
         setTimeout(() => {
           setLoading(false);
-        }, 5000);
+        }, 4000);
 
         if (orderResponse.statusCode === 201) {
           const getAuthMe = await performApi.getData('auth/me', token)
-          console.log(getAuthMe);
-          dispatch(setBalance(getAuthMe.balance))
-          setMessage(AppTexts.Success_Check_Order)
+          dispatch(setBalance(getAuthMe.balance));
+          setMessage(AppTexts.Success_Check_Order);
           setButtonOrder(true);
-        } else {
+        }
+        else {
           setButtonBack(true);
           setMessage(AppTexts.Insufficient_Balance);
         }
@@ -109,20 +121,29 @@ const Checkout: React.FC = () => {
         setVisible(true);
         setCopy(pix.copy);
         setQrCode(pix.qrcode);
-      } else {
+      }
+      else {
         setToast(true);
         setTimeout(() => {
           setToast(false)
         }, 1000)
       }
-    } catch (error) {
+    }
+    catch (error) {
       setMessage(AppTexts.Error_Finalize_Order);
-    } finally {
+    }
+    finally {
       setLoading(false);
     }
-  };
 
+  }
 
+  const showLoading2 = () => {
+    setLoading2(true);
+    setTimeout(() => {
+      setLoading2(false);
+    }, 1000);
+};
 
   useEffect(() => {
     fetchData();
@@ -131,6 +152,15 @@ const Checkout: React.FC = () => {
   return (
     <SafeAreaView>
       <View style={styles.Screen}>
+        {loading2 && <ActivityIndicator
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: "100%",
+            width: "100%"
+          }} size={75} color={theme.COLORS.OrangeFF6C44}
+        />
+        }
         <View style={styles.Container}>
           {toast && <Toast
             visible={toast}
@@ -200,7 +230,7 @@ const Checkout: React.FC = () => {
               height={40}
               borderRadius={48}
               fontSize={14}
-              onPress={() => getSelectedPaymentMethod()}
+              onPress={getSelectedPaymentMethod}
             />
             {visible && (
               <ModalPoup visible={visible}>
@@ -213,7 +243,7 @@ const Checkout: React.FC = () => {
                         <View style={styles.Align}>
                           {pix && <CPBoard copy={copy} qrcode={qrCode} visible={() => setVisible(false)} />}
                           {message && <Text style={styles.VerifyPursche}>{message}</Text>}
-                          {buttonOrder && <SucessOrder onVisible={() => setVisible(false)} />}
+                          {buttonOrder && <SucessOrder onVisible={() => setVisible(false)}/>}
                           {buttonBack && <ErrorOrder onVisible={() => setVisible(false)} />}
                         </View>
                       )
@@ -226,7 +256,7 @@ const Checkout: React.FC = () => {
                         </View>
                         <View style={styles.Modal}>
                           <Text style={{ fontFamily: theme.FONTS.Raleway700, fontSize: 16 }}>
-                            Seu saldo é: {formatBalance}
+                            Seu saldo de créditos é: {formatBalance}
                           </Text>
                           <Text style={{ fontFamily: theme.FONTS.Raleway700, fontSize: 18, width: '40%', textAlign: 'center' }}>
                             {AppTexts.Confirm_Buy}
@@ -241,7 +271,7 @@ const Checkout: React.FC = () => {
                             height={40}
                             borderRadius={48}
                             fontSize={14}
-                            onPress={() => setButtonClicked(true)}
+                            onPress={confirmOrder}
                           />
                         </View>
                       </View>

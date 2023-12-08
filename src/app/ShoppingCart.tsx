@@ -74,6 +74,12 @@ const ShoppingCart: React.FC = () => {
         }
     }
 
+    const verifyScheduleToError = () => {
+        if (scheduleTime !== null)
+            console.log('ola');
+
+    }
+
     useEffect(() => {
         verifyScheduleTime();
         findProducts();
@@ -132,8 +138,8 @@ const ShoppingCart: React.FC = () => {
                                         <ScheduleTime onSelectTime={handleTimeSelection} />
                                     </View>
                                 )}
-                                <View style={{ paddingBottom: 10 }}>
-                                    <SubTotalDiscount isLoading={isLoading} />
+                                <View>
+                                    <SubTotalDiscount isLoading={isLoading}/>
                                 </View>
                             </View>
                         </View>

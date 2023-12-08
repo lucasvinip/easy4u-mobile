@@ -13,14 +13,13 @@ interface ButtonErrorProps {
 const ErrorOrder: React.FC<ButtonErrorProps> = ({onVisible}) => {
 
     const finalizeOrderCart = () => {
-
         setTimeout(() => {
             router.back();
         }, 500);
     };
 
     return (
-        <View style={{paddingTop: 20}}>
+        <View>
             <Button
                 background={theme.COLORS.Orange4FE724C}
                 borderRadius={10}
@@ -28,7 +27,7 @@ const ErrorOrder: React.FC<ButtonErrorProps> = ({onVisible}) => {
                 height={35}
                 width={200}
                 fontSize={16}
-                text={AppTexts.Come_Back_menu}
+                text={AppTexts.Come_Back_Cart}
                 color={theme.COLORS.Whiteffffff}
                 onPress={() => {finalizeOrderCart(); onVisible() }}
             />

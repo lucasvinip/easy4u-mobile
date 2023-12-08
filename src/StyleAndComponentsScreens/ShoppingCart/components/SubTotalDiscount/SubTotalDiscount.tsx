@@ -25,7 +25,6 @@ const SubTotalDiscount: React.FC<SubTotalDiscountProps> = ({ isLoading }) => {
   }).format(total);
 
   const handleFinalizeOrder = () => {
-    router.back()
     setTimeout(() => {
       router.push('/Checkout')
     }, 500)

@@ -129,5 +129,5 @@ export const AppTexts = {
     Insufficient_Balance: 'Saldo insuficiente! Diminua o carrinho ou recarregue na cantina.',
 
     Success_Check_Order: 'Compra realizada com sucesso! Verifique seus pedidos',
-    Come_Back_menu: 'Voltar ao menu'
+    Come_Back_Cart: 'Voltar ao Carrinho'
 }

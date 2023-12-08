@@ -43,7 +43,7 @@ const shadowStyle = {
         shadowRadius: 1,
       },
       android: {
-        elevation: 2,
+        elevation: 0.1,
       },
     }),
   };

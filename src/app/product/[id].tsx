@@ -126,7 +126,7 @@ const Product: React.FC = () => {
         setToast(true);
         setTimeout(() => {
             setToast(false);
-        }, 750);
+        }, 1000);
     };
 
 

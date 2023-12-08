@@ -16,7 +16,7 @@ import { AppTexts } from '../../../../assets/strings';
 
 
 interface TimeProps {
-  onSelectTime: (selectedTime: any) => void;
+  onSelectTime: (selectedTime: number) => void;
 }
 
 const ScheduleTime: React.FC<TimeProps> = ({ onSelectTime }) => {
@@ -50,7 +50,6 @@ const ScheduleTime: React.FC<TimeProps> = ({ onSelectTime }) => {
 
   return (
     <View>
-
       <Text style={styles.labelText}>{AppTexts.Schedule_Time}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => handlePickerPress()}>

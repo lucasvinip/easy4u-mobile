@@ -6,48 +6,43 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { useEffect } from "react";
 import { clearCart } from "../../../redux/features/shoppingCart/shoppingCartSlice";
+import { Link } from "expo-router";
 
 interface ButtonSucessProps {
-    onVisible: () => void
+    onVisible: () => void,
 }
 
-interface CheckoutProps {
-    id: number;
-    name: string;
-    photo: string;
-    price: number;
-    quantity: number
+const SucessOrder: React.FC<ButtonSucessProps> = ({ onVisible }) => {
 
-}
-
-const SucessOrder: React.FC<ButtonSucessProps> = ({onVisible}) => {
-    
     const dispatch = useDispatch();
 
     const finalizeOrderCart = () => {
         dispatch(clearCart())
-
-        setTimeout(() => {
-            router.replace('/Orders')
-        }, 500);
+        router.back()
+        router.replace('/Orders')
     };
+
 
     return (
         <View>
-            <Button
-                background={theme.COLORS.Orange4FE724C}
-                borderRadius={10}
-                fontFamily={theme.FONTS.Popp500}
-                height={35}
-                width={200}
-                fontSize={16}
-                text='Verificar Pedido'
-                color={theme.COLORS.Whiteffffff}
-                onPress={() => {finalizeOrderCart(); onVisible() }}
-            />
+            <Link href={{
+                pathname: '/Orders',
+            }}>
+                <Button
+                    background={theme.COLORS.Orange4FE724C}
+                    borderRadius={10}
+                    fontFamily={theme.FONTS.Popp500}
+                    height={35}
+                    width={200}
+                    fontSize={16}
+                    text='Verificar Pedido'
+                    color={theme.COLORS.Whiteffffff}
+                    onPress={() => { finalizeOrderCart(); onVisible() }}
+                />
+            </Link>
         </View>
     )
 
 }
 
-export default  SucessOrder 
+export default SucessOrder 

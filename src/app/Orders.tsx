@@ -16,8 +16,9 @@ import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/
 import { performApi } from '../utils/api';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
-import SkeletonOrders from '../components/Skeleton/SkeletonOrders';
+import SkeletonOrdersAble from '../components/Skeleton/SkeletonOrders/SkeletonOrdersAble';
 import { AppTexts } from '../assets/strings';
+import SkeletonOrdersDisable from '../components/Skeleton/SkeletonOrders/SkeletonOrdersDisable';
 
 type Cart = {
     status: string;
@@ -49,13 +50,15 @@ const Orders: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [token, setToken] = useState<string | null>("")
 
-    const memoizedOrders = useMemo(() => {        
+    const memoizedOrders = useMemo(() => {
         return orders.map((order: CartResponseProps) => {
             if (order.cart.products.length > 0) {
                 const getDate = order.createdAt.split("T")[0];
                 const [y, m, d] = getDate.split("-");
                 const date = `${d}/${m}/${y}`;
-    
+
+                //const hnadl
+
                 return (
                     <OrderCard
                         id={order.id}
@@ -67,11 +70,11 @@ const Orders: React.FC = () => {
                     />
                 );
             } else {
-                return null; 
+                return null;
             }
         });
     }, [orders]);
-    
+
     const fetchData = async () => {
         const storedToken = await AsyncStorage.getItem("token");
         setToken(storedToken);
@@ -120,11 +123,13 @@ const Orders: React.FC = () => {
                                     tintColor={'orange'} />}>
                             {isLoading ?
                                 <>
-                                    <View style={{ gap: 20 }}>
-                                        <SkeletonOrders />
-                                        <SkeletonOrders />
-                                        <SkeletonOrders />
-                                        <SkeletonOrders />
+                                    <View>
+                                        <SkeletonOrdersAble />
+                                        <SkeletonOrdersAble />
+                                        <SkeletonOrdersAble />
+                                        <SkeletonOrdersAble />
+                                        <SkeletonOrdersDisable />
+                                        <SkeletonOrdersDisable />
                                     </View>
                                 </>
                                 : (
