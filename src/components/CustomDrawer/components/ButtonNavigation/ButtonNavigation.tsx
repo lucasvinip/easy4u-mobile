@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import { MaterialCommunityIcons} from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Href, Link } from 'expo-router';
 
 import { styles } from './style'
@@ -10,7 +10,11 @@ interface ButtonNavigationProps {
     title: string,
     href: Href<string>
 }
-const ButtonNavigation = ({ icon, title, href }: ButtonNavigationProps) => {
+const ButtonNavigation: React.FC<ButtonNavigationProps> = ({
+    icon,
+    title,
+    href
+}) => {
     return (
         <Link href={href} asChild>
             <TouchableOpacity style={styles.Button}>

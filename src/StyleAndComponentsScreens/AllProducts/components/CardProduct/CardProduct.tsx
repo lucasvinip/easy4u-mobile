@@ -22,14 +22,14 @@ interface ProductsProps {
     productType: string
 }
 
-const CardProduct = ({
+const CardProduct: React.FC<ProductsProps> = ({
     id,
     name,
     price,
     description,
     photo,
     preparationTime
-}: ProductsProps) => {
+}) => {
 
     console.log(",lgç " + preparationTime);
 

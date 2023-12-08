@@ -6,7 +6,7 @@ import theme from '../styles/theme';
 import { AppTexts } from '../assets/strings';
 import CustomHeaderTitle from '../components/CustomHeaderTitle/CustomHeaderTitle';
 
-const Layout = () => {
+const Layout: React.FC = () => {
     return (
         <Provider store={store}>
             <Stack initialRouteName='index'>

@@ -42,7 +42,7 @@ type userInfo = {
 
 const defaultPhoto = require("../assets/img/user.png")
 
-const ProfileSetting = () => {
+const ProfileSetting: React.FC = () => {
     const [userSetting, setUserSetting] = useState<userInfo>();
     const [selectedImage, setSelectedImage] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);

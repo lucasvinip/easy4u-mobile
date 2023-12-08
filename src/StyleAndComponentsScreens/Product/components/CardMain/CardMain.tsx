@@ -46,12 +46,12 @@ const CardMain: React.FC<CardMainProps> = ({
             <View style={styles.ContainerHeader}>
                 {preparationTime === null ? (
                     <Text style={styles.TypeProductName}>
-                        {name} aaaaaaaa
+                        {name}
                     </Text>
                 ) :
                     <View style={{ height: 'auto' }}>
                         <Text style={styles.TypeProductName}>
-                            {name} aa aaaaaaa
+                            {name}
                         </Text>
                         <View style={{ alignItems: 'flex-end' }}>
                             <View style={styles.ContainerTime}>

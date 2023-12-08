@@ -19,7 +19,13 @@ interface TopModalProps {
     height: DimensionValue;
 }
 
-const TopModal: React.FC<TopModalProps> = ({ visible, src, text, width, height}) => {
+const TopModal: React.FC<TopModalProps> = ({
+    visible,
+    src,
+    text,
+    width,
+    height
+}) => {
     const [showModal, setShowModal] = useState<boolean>(visible);
     const translateY = useRef(new Animated.Value(0)).current;
 

@@ -15,12 +15,12 @@ interface CustomTextInputProps {
 
 }
 
-const CustomTextInput = ({
+const CustomTextInput: React.FC<CustomTextInputProps> = ({
     onPress,
     onChange,
     onFocus,
     data,
-}: CustomTextInputProps) => {
+}) => {
     const [inputValue, setInputValue] = useState<string>(data)
 
     const handleInputChange = (text: string) => {

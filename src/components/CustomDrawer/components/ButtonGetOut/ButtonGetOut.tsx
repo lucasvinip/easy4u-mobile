@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './style'
 import { AppTexts } from '../../../../assets/strings';
 
-const ButtonGetOut = () => {
+const ButtonGetOut: React.FC = () => {
 
     return (
         <Link replace href={'/'} asChild>

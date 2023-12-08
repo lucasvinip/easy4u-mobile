@@ -7,20 +7,28 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 import { styles, shadowStyle } from './style';
 import { formatNumberToTypeBr } from '../../../../utils/formatNumber';
+import theme from '../../../../styles/theme';
 
 interface ItemsFavoriteProps {
-    name: string;
-    price: number;
-    photo: string;
-    onDeleteFavorite: () => void;
-    onSelectItem: () => void;
+    name: string,
+    price: number,
+    photo: string,
+    onDeleteFavorite: () => void,
+    onSelectItem: () => void,
 }
 
-function FavoriteCard({name, photo, price, onDeleteFavorite, onSelectItem}:ItemsFavoriteProps) {
+const FavoriteCard: React.FC<ItemsFavoriteProps> = ({
+    name,
+    photo,
+    price,
+    onDeleteFavorite,
+    onSelectItem
+}) => {
 
     const formattedPrice = formatNumberToTypeBr(price)
 
@@ -38,7 +46,11 @@ function FavoriteCard({name, photo, price, onDeleteFavorite, onSelectItem}:Items
                                 <Text style={styles.Price}>{formattedPrice}</Text>
                             </Text>
                             <TouchableOpacity onPress={onDeleteFavorite}>
-                                <AntDesign name='delete' style={styles.Delete} />
+                                <MaterialCommunityIcons
+                                    name={"delete-empty"}
+                                    style={styles.Delete}
+                                    size={21}
+                                    color={theme.COLORS.BlackRgba3419081} />
                             </TouchableOpacity>
                         </View>
                     </View>

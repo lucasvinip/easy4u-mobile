@@ -18,7 +18,7 @@ interface ButtonAddCartProps {
     setToast: () => void
 }
 
-const ButtonAddCart = ({
+const ButtonAddCart: React.FC<ButtonAddCartProps> = ({
     price,
     id,
     photo,
@@ -26,7 +26,7 @@ const ButtonAddCart = ({
     quantity,
     preparationTime,
     setToast
-}: ButtonAddCartProps) => {
+}) => {
     const dispatch = useDispatch();
 
     const handleAddCart = () => {

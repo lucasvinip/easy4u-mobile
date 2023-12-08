@@ -17,9 +17,7 @@ interface ButtonMoreOrLessProps {
     id: number
 }
 
-const ButtonMoreOrLess = ({
-    id
-}: ButtonMoreOrLessProps) => {
+const ButtonMoreOrLess: React.FC<ButtonMoreOrLessProps> = ({id}) => {
     const dispatch = useDispatch();
 
     const item = useSelector((state: RootState) => state.cart.items.find((item: ButtonMoreOrLessProps) => item.id === id))
@@ -51,4 +49,4 @@ const ButtonMoreOrLess = ({
     );
 }
 
-export default ButtonMoreOrLess
+export default ButtonMoreOrLess;

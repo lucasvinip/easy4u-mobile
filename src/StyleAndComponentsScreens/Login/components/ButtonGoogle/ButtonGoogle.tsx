@@ -10,7 +10,7 @@ import { AppTexts } from '../../../../assets/strings';
 import { styles } from './style'
 import { Link } from 'expo-router';
 
-const ButtonGoogle = () => {
+const ButtonGoogle: React.FC = () => {
     return (
         <Link replace href={'/AllProducts'} asChild>
             <TouchableOpacity style={styles.Container}>

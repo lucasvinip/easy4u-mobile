@@ -30,7 +30,7 @@ interface ProductProps {
     preparationTime: number | null,
 };
 
-const ShoppingCart = () => {
+const ShoppingCart: React.FC = () => {
     const [products, setProducts] = useState<ProductProps[]>([]);
     const [scheduleTime, setScheduleTime] = useState<boolean>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -90,7 +90,7 @@ const ShoppingCart = () => {
                                 <View style={styles.HeaderLine} />
                             </View>
                             <View style={styles.ContainerMain}>
-                                {isLoading ?
+                                {isLoading ? (
                                     <>
                                         <SkeletonShoppingCart />
                                         <SkeletonShoppingCart />
@@ -108,32 +108,31 @@ const ShoppingCart = () => {
                                             </View>
                                         </ModalPoup>
                                     </>
-                                    : (
-                                        <FlatList
-                                            data={products}
-                                            renderItem={({ item }) => {
-                                                return <ProductItem
-                                                    key={item.id}
-                                                    name={item.name}
-                                                    price={item.price}
-                                                    photo={item.photo}
-                                                    id={item.id}
-                                                />;
-                                            }}
-                                            showsVerticalScrollIndicator={false}
-                                        />
-                                    )
-                                }
-                            </View>
-                            {scheduleTime && (
-                                <View>
-                                    <ScheduleTime
-                                        onSelectTime={handleTimeSelection}
+                                ) : (
+                                    <FlatList
+                                        data={products}
+                                        renderItem={({ item }) => (
+                                            <ProductItem
+                                                key={item.id}
+                                                name={item.name}
+                                                price={item.price}
+                                                photo={item.photo}
+                                                id={item.id}
+                                            />
+                                        )}
+                                        showsVerticalScrollIndicator={false}
+                                        style={[
+                                            { maxHeight: '58%' },
+                                            products.length === 0 && { height: 'auto' }
+                                        ]}
                                     />
-                                </View>
-                            )}
-                            <View style={styles.ConatinerFooter}>
-                                <View>
+                                )}
+                                {scheduleTime && (
+                                    <View style={{ paddingBottom: 10 }}>
+                                        <ScheduleTime onSelectTime={handleTimeSelection} />
+                                    </View>
+                                )}
+                                <View style={{ paddingBottom: 10 }}>
                                     <SubTotalDiscount isLoading={isLoading} />
                                 </View>
                             </View>

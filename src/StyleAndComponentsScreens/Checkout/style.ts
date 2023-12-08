@@ -150,15 +150,16 @@ const styles = StyleSheet.create({
   modalContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 250
+    height: '100%'
   },
   Align: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   bGetOut: {
     alignSelf: 'flex-end',
-    marginTop: 10
+    marginTop: 10,
+    width: '10%'
   },
   ContainerModal: {
     width: '100%',

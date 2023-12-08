@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-
 import Button from '../../../../components/Button/Button';
 import ModalPoup from '../../../../components/ModalPoup/Modal';
 import theme from '../../../../styles/theme';

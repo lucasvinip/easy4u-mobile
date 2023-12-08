@@ -8,10 +8,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     Card: {
-        height: 135,
-        width: 360,
+        height: 132,
+        width: 345,
         backgroundColor: '#F3F3F3',
-        borderRadius: 15,
+        borderRadius: 30,
         justifyContent: 'center',
 
     },
@@ -41,14 +41,20 @@ const styles = StyleSheet.create({
         alignContent: 'center',
     },
     Delete: {
-        color: theme.COLORS.Black000000,
-        fontSize: 17,
         justifyContent: 'flex-end'
     },
     Price: {
         color: theme.COLORS.RedF15050,
         fontSize: 13,
         fontFamily: theme.FONTS.Popp600
+    },
+    Icon: {
+        marginBottom: 3
+    },
+    TitleTime: {
+        marginBottom: 3,
+        fontFamily: theme.FONTS.Raleway600,
+        color: theme.COLORS.Gray37C7C7A
     },
 });
 

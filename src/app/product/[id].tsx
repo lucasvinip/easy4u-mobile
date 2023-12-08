@@ -35,6 +35,7 @@ type Product = {
     name: string;
     photo: string;
     price: number;
+    preparationTime: number,
 
 };
 
@@ -42,7 +43,7 @@ type Favorite = {
     product: Product;
 };
 
-const Product = () => {
+const Product: React.FC = () => {
     const { id } = useLocalSearchParams()
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
     const [typeProducts, setTypeProducts] = useState<CardProductProps[]>([])
@@ -125,7 +126,7 @@ const Product = () => {
         setToast(true);
         setTimeout(() => {
             setToast(false);
-        }, 1000);
+        }, 750);
     };
 
 

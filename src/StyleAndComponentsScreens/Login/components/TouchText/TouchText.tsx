@@ -15,7 +15,11 @@ interface TouchTextProps {
     title: string
 }
 
-const TouchText = ({ title, titleColor, href }: TouchTextProps) => {
+const TouchText: React.FC<TouchTextProps> = ({
+    title,
+    titleColor,
+    href
+}) => {
     const styles = StyleSheet.create({
         Title: {
             fontSize: RFValue(12),

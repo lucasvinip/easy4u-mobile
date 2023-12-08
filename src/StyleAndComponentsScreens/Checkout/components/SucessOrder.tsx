@@ -26,15 +26,14 @@ const SucessOrder: React.FC<ButtonSucessProps> = ({onVisible}) => {
 
     const finalizeOrderCart = () => {
         dispatch(clearCart())
-        router.back();
 
         setTimeout(() => {
-            router.push('/Orders')
+            router.replace('/Orders')
         }, 500);
     };
 
     return (
-        <View style={{ marginTop: 50 }}>
+        <View>
             <Button
                 background={theme.COLORS.Orange4FE724C}
                 borderRadius={10}

@@ -10,7 +10,11 @@ interface ButtonCameraProps {
     buttuTypeIcon: any
 }
 
-const ButtonCamera = ({ postPhoto, buttuTypeIcon, deletePhoto}: ButtonCameraProps) => {
+const ButtonCamera: React.FC<ButtonCameraProps> = ({
+    postPhoto,
+    buttuTypeIcon,
+    deletePhoto
+}) => {
 
     return (
         buttuTypeIcon ? (
@@ -18,12 +22,12 @@ const ButtonCamera = ({ postPhoto, buttuTypeIcon, deletePhoto}: ButtonCameraProp
                 <AntDesign name='delete' style={styles.Icon} />
             </TouchableOpacity>
         ) :
-        (
-            <TouchableOpacity onPress={postPhoto}>
-                <AntDesign name='camera' style={styles.Icon} />
-            </TouchableOpacity>
-        )
-        
+            (
+                <TouchableOpacity onPress={postPhoto}>
+                    <AntDesign name='camera' style={styles.Icon} />
+                </TouchableOpacity>
+            )
+
     );
 }
 

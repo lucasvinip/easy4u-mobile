@@ -29,7 +29,7 @@ interface CustomTextInputProps {
 
 }
 
-const CustomTextInput = ({
+const CustomTextInput: React.FC<CustomTextInputProps> = ({
   label,
   mode,
   keyboardType,
@@ -48,7 +48,7 @@ const CustomTextInput = ({
   data,
   isPassword,
   secureTextEntry
-}: CustomTextInputProps) => {
+}) => {
 
   const [inputValue, setInputValue] = useState<string>(data || "");
 

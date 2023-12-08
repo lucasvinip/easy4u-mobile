@@ -16,12 +16,12 @@ interface ProductItemProps {
     id: number
 }
 
-const ProductItem = ({
+const ProductItem: React.FC<ProductItemProps> = ({
     price,
     photo,
     name,
     id
-}: ProductItemProps) => {
+}) => {
 
     return (
         <View>

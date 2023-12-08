@@ -9,12 +9,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
+import LottieView from 'lottie-react-native';
+
 import UseFonts from '../hooks/useFonts';
 import OrderCard from '../StyleAndComponentsScreens/Orders/components/OrderCard/OrderCard'
 import { performApi } from '../utils/api';
 import { styles } from '../StyleAndComponentsScreens/Orders/style';
 import theme from '../styles/theme';
 import SkeletonOrders from '../components/Skeleton/SkeletonOrders';
+import { AppTexts } from '../assets/strings';
 
 type Cart = {
     status: string;
@@ -40,30 +43,35 @@ type CartResponseProps = {
     createdAt: string;
 }
 
-const Orders = () => {
+const Orders: React.FC = () => {
     const [refresh, setRefresh] = useState<boolean>(false);
-    const [orders, setOrders] = useState<any>([]);
+    const [orders, setOrders] = useState<CartResponseProps[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [token, setToken] = useState<string | null>("")
 
-    const memoizedOrders = useMemo(() => {
-        return orders.map((order: CartResponseProps, index: number) => {
-            const getDate = order.createdAt.split("T")[0];
-            const [y, m, d] = getDate.split("-");
-            const date = `${d}/${m}/${y}`;
-            return (
-                <OrderCard
-                    id={order.id}
-                    key={index}
-                    photo={order.cart?.products[0]?.product?.photo}
-                    date={date}
-                    status={order.cart.status}
-                    onPress={() => handleOrderClick(order.id.toString())}
-                />
-            );
+    const memoizedOrders = useMemo(() => {        
+        return orders.map((order: CartResponseProps) => {
+            if (order.cart.products.length > 0) {
+                const getDate = order.createdAt.split("T")[0];
+                const [y, m, d] = getDate.split("-");
+                const date = `${d}/${m}/${y}`;
+    
+                return (
+                    <OrderCard
+                        id={order.id}
+                        key={`order_${order.id}`}
+                        photo={order.cart?.products[0]?.product?.photo}
+                        date={date}
+                        status={order.cart.status}
+                        onPress={() => handleOrderClick(order.id.toString())}
+                    />
+                );
+            } else {
+                return null; 
+            }
         });
     }, [orders]);
-
+    
     const fetchData = async () => {
         const storedToken = await AsyncStorage.getItem("token");
         setToken(storedToken);
@@ -123,8 +131,15 @@ const Orders = () => {
                                     orders.length > 0 ? (
                                         memoizedOrders
                                     ) : (
-                                        <View>
-                                            <Text>Você não tem nenhum pedido ainda! Realize já</Text>
+                                        <View style={{ alignItems: 'center' }}>
+                                            <LottieView
+                                                autoPlay
+                                                style={{ height: '80%', alignItems: 'center' }}
+                                                source={require('../assets/lottie/Animation1701904243006.json')}
+                                            />
+                                            <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: theme.FONTS.Raleway700 }}>
+                                                {AppTexts.Oops_Orders_Empyt}
+                                            </Text>
                                         </View>
                                     )
                                 )

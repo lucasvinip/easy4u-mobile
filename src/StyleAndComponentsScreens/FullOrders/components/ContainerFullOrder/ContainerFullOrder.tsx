@@ -24,9 +24,9 @@ type ProductByCartResponse = {
     status: string;
 };
 
-const ContainerFullOrder = ({
+const ContainerFullOrder: React.FC<ProductByCartResponse> = ({
     productsByCart,
-}: ProductByCartResponse) => {
+}) => {
 
     return (
         <View style={styles.Container}>

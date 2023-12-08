@@ -16,12 +16,12 @@ interface ProductsDisponibilityProps {
 
 }
 
-const ProductsDisponibility = ({
+const ProductsDisponibility: React.FC<ProductsDisponibilityProps> = ({
     id,
     name,
     photo,
     productType
-}: ProductsDisponibilityProps) => {
+}) => {
     return (
         <View style={[styles.Products, shadowStyle]}>
             <View style={styles.AboutProducts}>

@@ -20,7 +20,13 @@ interface OrderCardProps {
     onPress?: () => void
 }
 
-function OrderCard({ status, date, id, photo, onPress }: OrderCardProps) {
+const OrderCard: React.FC<OrderCardProps> = ({
+    status,
+    date,
+    id,
+    photo,
+    onPress
+}) => {
     return (
         status === 'ACTIVE' ? (
             <View style={styles.Container}>
@@ -66,7 +72,7 @@ function OrderCard({ status, date, id, photo, onPress }: OrderCardProps) {
                         </View>
                         <View style={styles.ContainerItems}>
                             <View style={styles.Items}>
-                            <Image source={{ uri: photo }} style={styles.Img} />
+                                <Image source={{ uri: photo }} style={styles.Img} />
                                 <View style={styles.Titles}>
                                     <Text
                                         style={styles.OrderTitle}>

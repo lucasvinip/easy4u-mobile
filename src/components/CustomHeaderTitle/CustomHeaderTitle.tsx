@@ -4,12 +4,16 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import theme from '../../styles/theme';
 
 interface CustomHeaderTitleProps {
-    title?: string,
-    textWith?: number,
-    padding?: number
-  }
+  title?: string,
+  textWith?: number,
+  padding?: number
+}
 
-const CustomHeaderTitle = ({ title, textWith, padding} : CustomHeaderTitleProps) => {
+const CustomHeaderTitle: React.FC<CustomHeaderTitleProps> = ({
+  title,
+  textWith,
+  padding
+}) => {
   return (
     <View>
       <Text

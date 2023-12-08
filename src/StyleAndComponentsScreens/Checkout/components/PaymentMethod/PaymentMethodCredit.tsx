@@ -12,10 +12,14 @@ type PaymentMethodProps = {
   onSelect: (method: any) => void;
 };
 
-const PaymentMethod = ({ method, selectedMethod, onSelect }: PaymentMethodProps) => {
+const PaymentMethod: React.FC<PaymentMethodProps> = ({
+  method,
+  selectedMethod,
+  onSelect
+}) => {
 
-  console.log(method)
-  console.log(selectedMethod)
+  // console.log(method)
+  // console.log(selectedMethod)
 
   const isMethodSelected = method === selectedMethod;
   const borderColor = isMethodSelected ? theme.COLORS.YellowEEA734 : theme.COLORS.Whiteffffff;

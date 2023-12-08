@@ -27,7 +27,7 @@ interface UseFontsProps {
     children: React.ReactNode
 }
 
-const UseFonts = ({ children }: UseFontsProps) => {
+const UseFonts: React.FC<UseFontsProps> = ({ children }) => {
     const [fontsLoaded, fontError] = useFonts({
         Poppins_300Light,
         Poppins_400Regular,

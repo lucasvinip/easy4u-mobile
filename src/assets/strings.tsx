@@ -2,7 +2,7 @@ export const AppTexts = {
     Welcome: 'Bem vindo ao Easy4U',
     Enjoy_Cafeteria: 'Entre com seu email ou com suas redes sociais. Aproveite a cantina!',
 
-    Exclude_Favorite: "Tem certeza que deseja tirar esse item do seus favoritos?",
+    Exclude_Favorite: "Tem certeza de que quer remover este item dos favoritos?",
 
     Forgot_Password: 'Esqueceu a senha?',
     Join: 'ENTRAR',
@@ -122,5 +122,12 @@ export const AppTexts = {
     Order_Add_Cart: 'Boom! Seu item está agora no carrinho.',
     Add_Fav: 'Adicionado à Lista de Favoritos',
 
-    Oops_Whithout_Fav: 'Oops! Seus favoritos estão vazios por enquanto. Que tal adicionar algum!?'
+    Oops_Whithout_Fav: 'Oops! Seus favoritos estão vazios por enquanto. Que tal adicionar algum!?',
+    Oops_Orders_Empyt: 'Oops! Parece que seu carrinho está vazio. Que tal começar a comprar agora!?',
+
+    Error_Finalize_Order: 'Houve um erro ao finalizar seu pedido! Tente novamente!',
+    Insufficient_Balance: 'Saldo insuficiente! Diminua o carrinho ou recarregue na cantina.',
+
+    Success_Check_Order: 'Compra realizada com sucesso! Verifique seus pedidos',
+    Come_Back_menu: 'Voltar ao menu'
 }

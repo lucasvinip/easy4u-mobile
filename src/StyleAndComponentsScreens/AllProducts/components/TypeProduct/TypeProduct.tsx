@@ -9,7 +9,7 @@ interface FilterProductsProps{
     onPress: () => void 
 }
 
-const TypeProduct = ({productType, onPress}: FilterProductsProps) => {
+const TypeProduct: React.FC<FilterProductsProps> = ({productType, onPress}) => {
     return (
         <TouchableOpacity style={styles.Container} onPress={onPress}>
             <Text style={styles.Title}>

@@ -29,7 +29,7 @@ const themeTextInput = {
     },
 };
 
-const CreateAccount = () => {
+const CreateAccount: React.FC = () => {
     const [name, setName] = useState<string>("")
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");

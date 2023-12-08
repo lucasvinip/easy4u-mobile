@@ -18,7 +18,7 @@ interface ButtonProps {
   onPress?: (value: any) => void;
 }
 
-const Button = ({
+const Button: React.FC<ButtonProps> = ({
   background,
   width,
   height,
@@ -28,7 +28,7 @@ const Button = ({
   fontSize,
   onPress,
   color
-}: ButtonProps) => {
+}) => {
   const styles = StyleSheet.create({
     button: {
       backgroundColor: background,
@@ -42,7 +42,7 @@ const Button = ({
           shadowColor: 'black',
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.5,
-          shadowRadius: 3,
+          shadowRadius: 2,
         },
         android: {
           elevation: 6,

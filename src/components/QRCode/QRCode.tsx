@@ -3,13 +3,14 @@ import { Image, View, Text } from "react-native";
 import Button from "../Button/Button";
 import { AppTexts } from "../../assets/strings";
 import theme from "../../styles/theme";
+import React from "react";
 
 type QRCodeProps = {
   value: any;
   onClose: () => void;
 };
 
-const CustomQRCode = ({ value, onClose }: QRCodeProps) => {
+const CustomQRCode: React.FC<QRCodeProps> = ({ value, onClose }) => {
   let logoEasy4U = require("../../assets/img/adaptive-icon.svg");
 
   return (

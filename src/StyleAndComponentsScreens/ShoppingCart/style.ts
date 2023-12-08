@@ -33,13 +33,15 @@ const styles = StyleSheet.create({
   },
   ContainerMain: {
     justifyContent: 'space-evenly',
-    height: '50%',
-    marginBottom: 15
+    height: 'auto',
   },
-  ConatinerFooter: {
-    justifyContent: 'flex-end',
+  ContainerFooter: {
     paddingTop: 8,
     height: 'auto',
+  },
+  ContainerFooterSingleItem: {
+    paddingTop: 10,
+    marginTop: 10,
   }
 });
 

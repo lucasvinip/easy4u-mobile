@@ -42,7 +42,7 @@ interface SearcProductProps {
     productType: string,
 }
 
-const AllProducts = () => {
+const AllProducts: React.FC = () => {
     const [refresh, setRefresh] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [typeProducts, setTypeProducts] = useState<string[]>([])

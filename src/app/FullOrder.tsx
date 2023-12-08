@@ -43,7 +43,7 @@ type ProductByCartResponse = {
     total: number;
 }
 
-const FullOrder = () => {
+const FullOrder: React.FC = () => {
     const [idOrder, setIdOrder] = useState<string | null>("");
     const [token, setToken] = useState<string | null>("");
     const [order, setOrder] = useState<ProductByCartResponse>();

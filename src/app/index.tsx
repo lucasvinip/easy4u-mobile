@@ -28,7 +28,7 @@ const themeTextInput = {
   },
 };
 
-const Login = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [erro, setErro] = useState<string>("");

@@ -4,7 +4,6 @@ import React, {
   useState
 } from "react";
 import {
-  Image,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -16,6 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { RefreshControl } from "react-native-gesture-handler";
 import LottieView from 'lottie-react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 import { performApi } from "../utils/api";
 import FavoriteCard from "../StyleAndComponentsScreens/FavoriteItens/components/FavoriteCard.tsx/FavoriteCard";
@@ -33,13 +33,13 @@ interface ProductsProps {
 }
 
 interface FavoritesProps {
-  id: number;
-  name: string;
-  price: number;
-  photo: string;
+  id: number,
+  name: string,
+  price: number,
+  photo: string,
 }
 
-const FavoriteItems = () => {
+const FavoriteItems: React.FC = () => {
   const [refresh, setRefresh] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<any>([]);
   const token = useToken();
@@ -50,7 +50,9 @@ const FavoriteItems = () => {
 
 
   const memoFavoriteItems = useMemo(() => {
-    return favorites.map(({ product }: ProductsProps, index: number) => {
+    const sortedFavorites = favorites.slice().sort((a: ProductsProps, b: ProductsProps) => a.product.id - b.product.id);
+
+    return sortedFavorites.map(({ product }: ProductsProps, index: number) => {
       return (
         <FavoriteCard
           key={index}
@@ -126,48 +128,48 @@ const FavoriteItems = () => {
       />
       <SafeAreaView style={{ backgroundColor: theme.COLORS.Whiteffffff }}>
         <View style={styles.Screen}>
-          <ModalPoup visible={true}>
-            <View style={{ alignItems: "center" }}>
-              <View style={styles.headerModal}>
+          <ModalPoup visible={visible}>
+            <View style={{ alignItems: "center", justifyContent: 'center' }}>
+              <View style={styles.bGetOut}>
                 <TouchableOpacity onPress={() => setVisible(false)}>
-                  <Image
-                    source={require("../assets/img/x.png")}
-                    style={{ height: 30, width: 30 }}
-                  />
+                  <FontAwesome name='times-circle' size={30} color={theme.COLORS.OrangeF6752C} />
                 </TouchableOpacity>
               </View>
-              <View style={{ alignItems: "center", gap: 20 }}>
-                <Image
-                  source={require("../assets/img/question.png")}
-                  style={{ width: 80, height: 80 }}
+              <View style={{ alignItems: "center" }}>
+                <LottieView
+                  autoPlay
+                  style={{ height: '58%', alignItems: 'center', justifyContent: 'center' }}
+                  source={require('../assets/lottie/Animation1701906420429.json')}
                 />
-                <Text style={{ fontSize: 20, textAlign: "center" }}>
+                <Text style={{ fontSize: 15, textAlign: "center", paddingBottom: 8, fontFamily: theme.FONTS.Raleway700 }}>
                   {AppTexts.Exclude_Favorite}
                 </Text>
-                <View style={{ justifyContent: "center", alignItems: "center", flexDirection: "row", gap: 50 }}>
-                  <Button
-                    text="Sim"
-                    background="transparent"
-                    width={58.15}
-                    height={35.15}
-                    borderRadius={5}
-                    fontSize={17}
-                    fontFamily={theme.FONTS.Popp600}
-                    onPress={() => {
-                      setVisible(false);
-                      deleteFavoriteItem(id);
-                    }}
-                  />
-                  <Button
-                    text="Não"
-                    background={theme.COLORS.OrangeF6752C}
-                    width={58.15}
-                    height={35.15}
-                    borderRadius={5}
-                    fontSize={17}
-                    fontFamily={theme.FONTS.Popp600}
-                    onPress={() => setVisible(false)}
-                  />
+                <View style={{ width: '80%', flexDirection: "row",}}>
+                  <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: '100%' }}>
+                    <Button
+                      text="Sim"
+                      background={theme.COLORS.GrayC4C4C4}
+                      width={58.15}
+                      height={35.15}
+                      borderRadius={5}
+                      fontSize={17}
+                      fontFamily={theme.FONTS.Popp600}
+                      onPress={() => {
+                        setVisible(false);
+                        deleteFavoriteItem(id);
+                      }}
+                    />
+                    <Button
+                      text="Não"
+                      background={theme.COLORS.OrangeF6752C}
+                      width={58.15}
+                      height={35.15}
+                      borderRadius={5}
+                      fontSize={17}
+                      fontFamily={theme.FONTS.Popp600}
+                      onPress={() => setVisible(false)}
+                    />
+                  </View>
                 </View>
               </View>
             </View>
@@ -196,16 +198,16 @@ const FavoriteItems = () => {
                   favorites.length > 0 ?
                     memoFavoriteItems
                     : (
-                        <View style={{ alignItems: 'center' }}>
-                          <LottieView
-                            autoPlay
-                            style={{ height: '80%', alignItems: 'center' }}
-                            source={require('../assets/lottie/Animation1701904243006.json')}
-                          />
-                          <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: theme.FONTS.Raleway700 }}>
-                            {AppTexts.Oops_Whithout_Fav}
-                          </Text>
-                        </View>
+                      <View style={{ alignItems: 'center' }}>
+                        <LottieView
+                          autoPlay
+                          style={{ height: '80%', alignItems: 'center' }}
+                          source={require('../assets/lottie/Animation1701904243006.json')}
+                        />
+                        <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: theme.FONTS.Raleway700 }}>
+                          {AppTexts.Oops_Whithout_Fav}
+                        </Text>
+                      </View>
                     )
                 )}
               </ScrollView>
@@ -218,5 +220,3 @@ const FavoriteItems = () => {
 };
 
 export default FavoriteItems;
-
-//memoFavoriteItems

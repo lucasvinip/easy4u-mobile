@@ -7,11 +7,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { FlatList } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
-
 
 import Button from '../components/Button/Button';
 import theme from '../styles/theme';
@@ -30,6 +29,7 @@ import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import { performApi } from '../utils/api';
 import { formatNumberToTypeBr } from '../utils/formatNumber';
+import { setBalance } from '../redux/features/userSettings/userSettingsSlice';
 
 interface CheckoutProps {
   id: number;
@@ -44,7 +44,7 @@ interface ResponsePaymentPix {
   qrcode: string;
 }
 
-const Checkout = () => {
+const Checkout: React.FC = () => {
   const [products, setProducts] = useState<CheckoutProps[]>([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
@@ -58,6 +58,7 @@ const Checkout = () => {
   const [buttonBack, setButtonBack] = useState<boolean>(false);
   const [buttonClicked, setButtonClicked] = useState(false);
 
+  const dispatch = useDispatch()
 
   const total = useSelector((state: RootState) => state.cart.total);
   const items = useSelector((state: RootState) => state.cart.items);
@@ -93,11 +94,14 @@ const Checkout = () => {
         }, 5000);
 
         if (orderResponse.statusCode === 201) {
-          setMessage('Compra realizada com sucesso! Verifique seus pedidos')
+          const getAuthMe = await performApi.getData('auth/me', token)
+          console.log(getAuthMe);
+          dispatch(setBalance(getAuthMe.balance))
+          setMessage(AppTexts.Success_Check_Order)
           setButtonOrder(true);
         } else {
           setButtonBack(true);
-          setMessage('Saldo Insuficiente! Vá à cantina para recarregar seu saldo');
+          setMessage(AppTexts.Insufficient_Balance);
         }
       } else if (selectedPaymentMethod === 'Pix') {
         const pix: ResponsePaymentPix = await performApi.sendData('payment/pix', 'POST', pixData);
@@ -112,7 +116,7 @@ const Checkout = () => {
         }, 1000)
       }
     } catch (error) {
-      setMessage('Houve um erro ao finalizar seu pedido! Tente novamente');
+      setMessage(AppTexts.Error_Finalize_Order);
     } finally {
       setLoading(false);
     }
@@ -201,16 +205,6 @@ const Checkout = () => {
             {visible && (
               <ModalPoup visible={visible}>
                 <View>
-                  {buttonBack && (
-                    <View style={styles.HeaderModal}>
-                      <TouchableOpacity onPress={() => setVisible(false)}>
-                        <Image
-                          source={require('../assets/img/x.png')}
-                          style={{ height: 30, width: 30 }}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  )}
                   <View style={styles.modalContainer}>
                     {buttonClicked ? (
                       loading ? (

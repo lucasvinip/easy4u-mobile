@@ -1,10 +1,9 @@
-import { useDispatch } from "react-redux";
-import { clearCart } from "../../../redux/features/shoppingCart/shoppingCartSlice";
 import { router } from "expo-router";
 import { View } from "react-native";
 
 import theme from "../../../styles/theme";
 import Button from "../../../components/Button/Button";
+import { AppTexts } from "../../../assets/strings";
 
 interface ButtonErrorProps {
     onVisible: () => void
@@ -13,19 +12,15 @@ interface ButtonErrorProps {
 
 const ErrorOrder: React.FC<ButtonErrorProps> = ({onVisible}) => {
 
-    const dispatch = useDispatch()
-
     const finalizeOrderCart = () => {
-        dispatch(clearCart())
-        router.back();
 
         setTimeout(() => {
-            router.push('/AllProducts')
+            router.back();
         }, 500);
     };
 
     return (
-        <View style={{ marginTop: 50 }}>
+        <View style={{paddingTop: 20}}>
             <Button
                 background={theme.COLORS.Orange4FE724C}
                 borderRadius={10}
@@ -33,7 +28,7 @@ const ErrorOrder: React.FC<ButtonErrorProps> = ({onVisible}) => {
                 height={35}
                 width={200}
                 fontSize={16}
-                text='Voltar ao menu'
+                text={AppTexts.Come_Back_menu}
                 color={theme.COLORS.Whiteffffff}
                 onPress={() => {finalizeOrderCart(); onVisible() }}
             />

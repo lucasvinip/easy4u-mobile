@@ -19,6 +19,7 @@ export const userSlice = createSlice({
             console.log("aa " + action.payload);
         },
         setBalance(state, action: PayloadAction<number>){
+            
             state.userBalance = action.payload
             console.log("ionf " + action.payload)
             

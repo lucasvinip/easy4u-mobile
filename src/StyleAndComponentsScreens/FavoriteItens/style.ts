@@ -25,7 +25,12 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: 'flex-end',
     justifyContent: 'center',
-  }
+  },
+  bGetOut: {
+    alignSelf: 'flex-end',
+    marginTop: 10,
+    width: '10%'
+  },
 });
 
 export { styles }

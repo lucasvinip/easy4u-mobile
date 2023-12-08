@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
 import { Alert } from "react-native";
 
-export const useToken = () => {
+export const useToken: React.FC = () => {
     const [token, setToken] = useState<any>(null);
 
     useEffect(() => {

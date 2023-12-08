@@ -24,7 +24,7 @@ const themeTextInput = {
     },
 };
 
-const ForgotPassword = () => {
+const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState<string>("");
     const [sucess, setSucess] = useState<string>("");
     const [erro, setErro] = useState<string>("");
