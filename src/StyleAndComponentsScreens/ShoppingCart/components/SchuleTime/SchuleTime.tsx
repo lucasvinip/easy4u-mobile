@@ -61,7 +61,7 @@ const ScheduleTime: React.FC<TimeProps> = ({ onSelectTime }) => {
         </TouchableOpacity>
       </View>
       {visible && (
-        <ModalPoup visible={visible}>
+        <ModalPoup visible={visible} width={'72%'} height={'35%'}>
           <View style={styles.ContainerModal}>
             <View style={styles.bGetOut}>
               <TouchableOpacity onPress={exitModal}>

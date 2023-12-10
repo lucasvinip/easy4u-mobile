@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import { DefaultTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link, router} from 'expo-router';
+import { Link, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { FontAwesome } from '@expo/vector-icons';
 
 
 import UseFonts from '../hooks/useFonts';
@@ -35,7 +36,7 @@ const CreateAccount: React.FC = () => {
     const [password, setPassword] = useState<string>("");
     const [sucess, setSucess] = useState<string>("");
     const [error, setError] = useState<string>("");
-    const [visible, setVisible] = useState<boolean>(false)
+    const [visible, setVisible] = useState<boolean>(true)
 
     const handleNameFromUser = (name: string) => setName(name)
     const handleEmailFromUser = (email: string) => setEmail(email)
@@ -65,15 +66,15 @@ const CreateAccount: React.FC = () => {
             <SafeAreaView style={{ backgroundColor: 'white' }}>
                 <View style={styles.Screen}>
                     {visible && (
-                        <ModalPoup visible={visible}>
+                        <ModalPoup visible={visible} width={'65%'} height={'35%'}>
                             <View style={{ alignItems: "center" }}>
-                                <View style={styles.headerModal}>
-                                    <TouchableOpacity onPress={() => { setVisible(false) }}>
-                                        <Image source={require('../assets/img/x.png')} style={{ height: 30, width: 30 }} />
+                                <View style={styles.bGetOut}>
+                                    <TouchableOpacity onPress={() => setVisible(false)}>
+                                        <FontAwesome name='times-circle' size={30} color={theme.COLORS.OrangeF6752C} />
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                            <View style={{ alignItems: 'center', gap: 20 }}>
+                            <View style={{ alignItems: 'center' }}>
                                 <Image source={(require("../assets/img/7efs.gif"))} style={{ height: 150, width: 150, marginVertical: 10 }} />
                                 <Text style={styles.TextSucess}>{sucess}</Text>
                                 <Button

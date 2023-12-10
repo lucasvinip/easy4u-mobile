@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   ContainerCardMain: {
     width: '100%',
-    height: 'auto',
+    height: '90%',
     alignItems: 'center',
   },
   CardMain: {

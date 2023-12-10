@@ -233,7 +233,7 @@ const Checkout: React.FC = () => {
               onPress={getSelectedPaymentMethod}
             />
             {visible && (
-              <ModalPoup visible={visible}>
+              <ModalPoup visible={visible} width={'80%'} height={'32%'}  >
                 <View>
                   <View style={styles.modalContainer}>
                     {buttonClicked ? (

@@ -46,8 +46,10 @@ const ProfileSetting: React.FC = () => {
     const [userSetting, setUserSetting] = useState<userInfo>();
     const [selectedImage, setSelectedImage] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
-    const token = useToken();
 
+    const token = async () => {
+        return await AsyncStorage.getItem('token');
+    }
     const userPhotoProfile = userSetting?.photo ? { uri: userSetting?.photo } : defaultPhoto
 
     const dispatch = useDispatch()
@@ -121,13 +123,15 @@ const ProfileSetting: React.FC = () => {
     }
     const saveImage = async () => {
         const foto = await AsyncStorage.getItem("savedImage")
-        const updateUserImage = await performApi.updateData("users", token, { photo: foto })
+        const tokenUser = await token()
+        const updateUserImage = await performApi.updateData("users", tokenUser, { photo: foto })
         return updateUserImage
     }
 
     useEffect(() => {
         const getSettings = async () => {
-            const data = await performApi.getData("auth/me", token)
+            const tokenUser = await token()
+            const data = await performApi.getData("auth/me", tokenUser)
             setUserSetting(data)
         }
         getSettings()

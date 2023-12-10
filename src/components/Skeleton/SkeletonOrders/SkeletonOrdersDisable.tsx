@@ -36,11 +36,7 @@ const SkeletonOrdersDisable = () => {
                                     animation='wave'
                                     LinearGradientComponent={LinearGradient}
                                 />
-                                <Skeleton
-                                    style={{ width: 140, height: 24, borderRadius: 30 }}
-                                    animation='wave'
-                                    LinearGradientComponent={LinearGradient}
-                                />
+                                
                             </View>
                         </View>
                     </View>

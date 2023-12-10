@@ -127,7 +127,7 @@ const AllProducts: React.FC = () => {
             }
             const allProductsTypes = handleOneCardForName(apiDataProducts)
             setIsLoading(false);
-            setProducts(allProductsTypes);
+            setProducts(allProductsTypes.slice().reverse());
         } catch (error) {
             console.error("Error in handleCardProducts:", error);
         }
@@ -152,7 +152,7 @@ const AllProducts: React.FC = () => {
             const productsWithLimitedDescription = handleOneCardForName(filteredProducts)
             const finalProducts = productsWithLimitedDescription.filter((product: ProductProps) => product !== null);
 
-            setProducts(finalProducts);
+            setProducts(finalProducts.slice().reverse());
         } catch (error) {
             alert('Error in handleSearchProduct: ' + error);
         }
@@ -165,7 +165,7 @@ const AllProducts: React.FC = () => {
         else {
             try {
                 const typeProduct = handleOneCardForName(apiDataFilterProductsByType)
-                setProducts(typeProduct)
+                setProducts(typeProduct.slice().reverse())
             } catch (error) {
                 alert("typeProduct not get :" + error)
             }

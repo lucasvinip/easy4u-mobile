@@ -3,6 +3,7 @@ import {
     View,
     Image,
     SafeAreaView,
+    ActivityIndicator,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -18,6 +19,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import ProductsDisponibility from '../../StyleAndComponentsScreens/Product/components/CardMain/components/ProductsDisponibility/ProductsDisponibility';
 import Toast from '../../components/Toast/Toast';
 import { AppTexts } from '../../assets/strings';
+import theme from '../../styles/theme';
 
 
 type CardProductProps = {
@@ -49,7 +51,7 @@ const Product: React.FC = () => {
     const [typeProducts, setTypeProducts] = useState<CardProductProps[]>([])
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
     const [toast, setToast] = useState<boolean>(false);
-
+    const [isLoading, setIsLoading] = useState<boolean>(true)
 
     const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
@@ -104,11 +106,12 @@ const Product: React.FC = () => {
 
     const handleDisponibilityProducts = async () => {
 
-        if (dataProduct?.productType == null)
+        if (dataProduct?.name == null)
             console.log('ola');
         else {
-            const apiProductType: CardProductProps[] = await getUrl(`products?productType=${dataProduct.productType}&disponibility=true`);
-
+            const apiProductType: CardProductProps[] = await getUrl(`products/equals?productName=${dataProduct.name}`)
+            //products/equals?productName=Ola
+            //&disponibility=true
             if (!apiProductType) {
                 setTypeProducts([]);
             } else {
@@ -117,7 +120,8 @@ const Product: React.FC = () => {
                     return item;
                 });
                 console.log("mpgr " + data);
-                setTypeProducts(data);
+                setTypeProducts(data.slice().reverse());
+                setIsLoading(false)
             }
         }
     };
@@ -126,7 +130,7 @@ const Product: React.FC = () => {
         setToast(true);
         setTimeout(() => {
             setToast(false);
-        }, 1000);
+        }, 1520);
     };
 
 
@@ -146,6 +150,7 @@ const Product: React.FC = () => {
         }
 
         fetchData()
+
     }, [dataProduct?.productType]);
 
     return (
@@ -163,49 +168,55 @@ const Product: React.FC = () => {
                     height={23}
                 />
             )}
-            <SafeAreaView>
-                <View style={styles.Background}>
-                    <Image source={{ uri: String(dataProduct?.photo) }} style={styles.Img} />
-                    <View style={styles.Backgroung2}>
-                        <View style={styles.Screen}>
-                            <View style={styles.Container}>
-                                <View style={styles.ContainerFavorite}>
-                                    <ButtonFavoriteProduct
-                                        idProduct={id}
-                                        favorite={isFavorite}
-                                    />
-                                </View>
-                                <View style={styles.ContainerMain}>
-                                    <CardMain
-                                        name={dataProduct?.name}
-                                        price={dataProduct?.price}
-                                        description={dataProduct?.description}
-                                        id={+id}
-                                        photo={dataProduct?.photo}
-                                        preparationTime={dataProduct?.preparationTime}
-                                        setToast={showToast}
-                                    >
-                                        <FlatList
-                                            data={typeProducts}
-                                            renderItem={({ item }) => {
-                                                return <ProductsDisponibility
-                                                    key={item.id}
-                                                    name={item.name}
-                                                    photo={item.photo}
-                                                    productType={item.productType}
-                                                    id={item.id}
-                                                />;
-                                            }}
-                                            horizontal={true}
-                                            showsHorizontalScrollIndicator={false}
+            {isLoading ? (
+                <View style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
+                    <ActivityIndicator size={60} color={theme.COLORS.OrangeF6752C} />
+                </View>
+            ) :
+                <SafeAreaView>
+                    <View style={styles.Background}>
+                        <Image source={{ uri: String(dataProduct?.photo) }} style={styles.Img} />
+                        <View style={styles.Backgroung2}>
+                            <View style={styles.Screen}>
+                                <View style={styles.Container}>
+                                    <View style={styles.ContainerFavorite}>
+                                        <ButtonFavoriteProduct
+                                            idProduct={id}
+                                            favorite={isFavorite}
                                         />
-                                    </CardMain>
+                                    </View>
+                                    <View style={styles.ContainerMain}>
+                                        <CardMain
+                                            name={dataProduct?.name}
+                                            price={dataProduct?.price}
+                                            description={dataProduct?.description}
+                                            id={+id}
+                                            photo={dataProduct?.photo}
+                                            preparationTime={dataProduct?.preparationTime}
+                                            setToast={showToast}
+                                        >
+                                            <FlatList
+                                                data={typeProducts}
+                                                renderItem={({ item }) => {
+                                                    return <ProductsDisponibility
+                                                        key={item.id}
+                                                        name={item.name}
+                                                        photo={item.photo}
+                                                        productType={item.productType}
+                                                        id={item.id}
+                                                    />;
+                                                }}
+                                                horizontal={true}
+                                                showsHorizontalScrollIndicator={false}
+                                            />
+                                        </CardMain>
+                                    </View>
                                 </View>
                             </View>
                         </View>
                     </View>
-                </View>
-            </SafeAreaView>
+                </SafeAreaView>
+            }
         </UseFonts >
     );
 };

@@ -6,17 +6,20 @@ import React, {
 import {
     Modal,
     View,
-    Animated
+    Animated,
+    DimensionValue
 } from 'react-native';
 
 import { styles } from "./style";
 
 interface ModalPoupProps {
     visible: boolean,
-    children: React.ReactNode
+    children: React.ReactNode,
+    width: DimensionValue;
+    height: DimensionValue;
 }
 
-const ModalPoup: React.FC<ModalPoupProps> = ({ visible, children }) => {
+const ModalPoup: React.FC<ModalPoupProps> = ({ visible, children, width, height}) => {
 
     const [showModal, setShowModal] = useState<boolean>(visible)
     const scaleValueModal = useRef(new Animated.Value(0)).current
@@ -47,7 +50,7 @@ const ModalPoup: React.FC<ModalPoupProps> = ({ visible, children }) => {
     return (
         <Modal transparent visible={showModal}>
             <View style={styles.modalBackGround}>
-                <Animated.View style={[styles.modalContainer, { transform: [{ scale: scaleValueModal }] }]}>
+                <Animated.View style={[styles.modalContainer, { transform: [{ scale: scaleValueModal }], width: width, height: height }]}>
                     {children}
                 </Animated.View>
             </View>

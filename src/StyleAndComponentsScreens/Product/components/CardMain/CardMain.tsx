@@ -1,23 +1,12 @@
-import {
-    View,
-    Text,
-    Image,
-    ScrollView
-} from 'react-native';
+import {View, Text,} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 import { styles } from './style';
 import { AppTexts } from '../../../../assets/strings';
 import ButtonAddCart from '../ButtonCart/ButtonAddCart';
-import ProductsDisponibility from './components/ProductsDisponibility/ProductsDisponibility';
 import theme from '../../../../styles/theme';
-import React, { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { router } from 'expo-router';
-import { performApi } from '../../../../utils/api';
-import { FlatList } from 'react-native-gesture-handler';
-import { ReactChildren } from 'react-native-toast-message';
+import React from 'react';
 
 interface CardMainProps {
     name: string | undefined,
@@ -26,7 +15,7 @@ interface CardMainProps {
     id: number,
     photo: string | undefined,
     preparationTime: number | undefined,
-    children: ReactChildren,
+    children: React.ReactNode,
     setToast: () => void
 }
 

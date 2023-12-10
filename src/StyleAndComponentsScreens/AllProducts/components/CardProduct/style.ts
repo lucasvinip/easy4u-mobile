@@ -1,5 +1,4 @@
 import theme from '../../../../styles/theme';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 import { StyleSheet, Platform } from 'react-native'
 
@@ -34,8 +33,10 @@ const styles = StyleSheet.create({
         height: '83%',
     },
     Title1: {
-        fontSize: RFValue(15.5),
-        fontFamily: theme.FONTS.Popp400
+        fontSize: 16,
+        fontFamily: theme.FONTS.Popp400,
+        textAlign: 'center',
+        width: '80%'
     },
     Title2: {
         fontSize: 14,
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     },
     Title3: {
         color: theme.COLORS.Black393939,
-        fontSize: RFValue(11),
+        fontSize: 11,
         fontFamily: theme.FONTS.Popp700
     },
     ContainerPriceAndTime: {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     },
     Title4: {
         color: theme.COLORS.OrangeFF6C44,
-        fontSize: RFValue(12),
+        fontSize: 14,
         fontFamily: theme.FONTS.Popp700
     },
     ContainerTime: {

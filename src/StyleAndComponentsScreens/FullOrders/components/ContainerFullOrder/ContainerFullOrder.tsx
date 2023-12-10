@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 import { styles } from "./style";
+import { FlatList } from "react-native-gesture-handler";
 
 type Details = {
     name: string;
@@ -31,26 +32,30 @@ const ContainerFullOrder: React.FC<ProductByCartResponse> = ({
     return (
         <View style={styles.Container}>
             {productsByCart.length > 0 ? (
-                productsByCart.map(
-                    ({ product, qntd, total_value }: Product, index: number) => (
-                        <View style={styles.ContentMain} key={index}>
-                            <View style={styles.NameAndQuantityProduct}>
-                                <Text style={styles.NameTitle}>
-                                    {product.name}
-                                </Text>
-                                <Text style={styles.QuantityTitle}>
-                                    {qntd}x
+                <FlatList
+                    data={productsByCart}
+                    renderItem={({ item, index }) => {
+                        return (
+                            <View style={styles.ContentMain} key={index}>
+                                <View style={styles.NameAndQuantityProduct}>
+                                    <Text style={styles.NameTitle}>
+                                        {item.product.name}
+                                    </Text>
+                                    <Text style={styles.QuantityTitle}>
+                                        {item.qntd}x
+                                    </Text>
+                                </View>
+                                <Text style={styles.MainTitle}>
+                                    {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL',
+                                    }).format(item.total_value)}
                                 </Text>
                             </View>
-                            <Text style={styles.MainTitle}>
-                                {new Intl.NumberFormat('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL',
-                                }).format(total_value)}
-                            </Text>
-                        </View>
-                    )
-                )
+                        )
+                    }}
+                    showsVerticalScrollIndicator={false}
+                />
             ) : (
                 <View>
                     <Text>O Caue Feio</Text>
@@ -61,3 +66,5 @@ const ContainerFullOrder: React.FC<ProductByCartResponse> = ({
 };
 
 export default ContainerFullOrder;
+
+

@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     ContentMain: {
         flexDirection: 'row',
         width: '95%',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         marginTop: 5
     },
     NameAndQuantityProduct: {
         flexDirection: 'row',
-        width: '50%',
+        width: '85%',
         justifyContent: 'space-around'
     },
     NameTitle: {

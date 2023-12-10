@@ -34,7 +34,7 @@ const ShoppingCart: React.FC = () => {
     const [products, setProducts] = useState<ProductProps[]>([]);
     const [scheduleTime, setScheduleTime] = useState<boolean>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [modalWhithout, setModalWhithout] = useState<boolean>(false);
+    const [modalWhithout, setModalWhithout] = useState<boolean>(true);
     const [time, setTime] = useState<number>(0);
 
     const router = useRouter()
@@ -101,7 +101,7 @@ const ShoppingCart: React.FC = () => {
                                         <SkeletonShoppingCart />
                                         <SkeletonShoppingCart />
                                         <SkeletonShoppingCart />
-                                        <ModalPoup visible={modalWhithout}>
+                                        <ModalPoup visible={modalWhithout} width={'76%'} height={'32%'}>
                                             <View style={{ alignItems: 'center' }}>
                                                 <LottieView
                                                     autoPlay
@@ -139,7 +139,7 @@ const ShoppingCart: React.FC = () => {
                                     </View>
                                 )}
                                 <View>
-                                    <SubTotalDiscount isLoading={isLoading}/>
+                                    <SubTotalDiscount isLoading={isLoading} />
                                 </View>
                             </View>
                         </View>

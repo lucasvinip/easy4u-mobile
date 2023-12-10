@@ -25,7 +25,6 @@ import Button from "../components/Button/Button";
 import theme from "../styles/theme";
 import UseFonts from "../hooks/useFonts";
 import { styles } from "../StyleAndComponentsScreens/FavoriteItens/style";
-import { useToken } from "../hooks/useToken";
 import SkeletonFavorites from "../components/Skeleton/SkeletonFavorites/SkeletonFavorites";
 
 interface ProductsProps {
@@ -42,12 +41,14 @@ interface FavoritesProps {
 const FavoriteItems: React.FC = () => {
   const [refresh, setRefresh] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<any>([]);
-  const token = useToken();
   const [visible, setVisible] = useState<boolean>(false);
   const [isSkeleton, setSkeleton] = useState<boolean>(true);
   const [id, setId] = useState<number>();
   const [modalWhithout, setModalWhithout] = useState<boolean>(false);
 
+  const token = async () => {
+    return await AsyncStorage.getItem('token');
+  }
 
   const memoFavoriteItems = useMemo(() => {
     const sortedFavorites = favorites.slice().sort((a: ProductsProps, b: ProductsProps) => a.product.id - b.product.id);
@@ -86,7 +87,8 @@ const FavoriteItems: React.FC = () => {
 
   const deleteFavoriteItem = async (productId: number | undefined) => {
     try {
-      await performApi.deleteData(`favorites/${productId}`, token);
+      const tokenUser = await token()
+      await performApi.deleteData(`favorites/${productId}`, tokenUser);
       const updatedFavorites = favorites.filter(
         (item: ProductsProps) => item.product.id !== productId
       );
@@ -128,7 +130,7 @@ const FavoriteItems: React.FC = () => {
       />
       <SafeAreaView style={{ backgroundColor: theme.COLORS.Whiteffffff }}>
         <View style={styles.Screen}>
-          <ModalPoup visible={visible}>
+          <ModalPoup visible={visible} width={'75%'} height={'40%'}>
             <View style={{ alignItems: "center", justifyContent: 'center' }}>
               <View style={styles.bGetOut}>
                 <TouchableOpacity onPress={() => setVisible(false)}>
@@ -144,7 +146,7 @@ const FavoriteItems: React.FC = () => {
                 <Text style={{ fontSize: 15, textAlign: "center", paddingBottom: 8, fontFamily: theme.FONTS.Raleway700 }}>
                   {AppTexts.Exclude_Favorite}
                 </Text>
-                <View style={{ width: '80%', flexDirection: "row",}}>
+                <View style={{ width: '80%', flexDirection: "row", }}>
                   <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: '100%' }}>
                     <Button
                       text="Sim"
