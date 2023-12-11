@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     Image: {
         width: 60,
         height: 60,
-        borderRadius: 5,
+        borderRadius: 30,
         justifyContent: 'center',
         
     },

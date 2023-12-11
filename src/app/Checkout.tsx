@@ -30,7 +30,7 @@ import { styles } from '../StyleAndComponentsScreens/Checkout/style';
 import { performApi } from '../utils/api';
 import { formatNumberToTypeBr } from '../utils/formatNumber';
 import { setBalance } from '../redux/features/userSettings/userSettingsSlice';
-import { Link } from 'expo-router';
+import CheckoutModal from '../StyleAndComponentsScreens/Checkout/components/Modal/Modal';
 
 interface CheckoutProps {
   id: number;
@@ -143,7 +143,7 @@ const Checkout: React.FC = () => {
     setTimeout(() => {
       setLoading2(false);
     }, 1000);
-};
+  };
 
   useEffect(() => {
     fetchData();
@@ -168,6 +168,8 @@ const Checkout: React.FC = () => {
             text={AppTexts.Oops_Choose_Payment}
             width={18}
             height={20}
+            backgroundColor={theme.COLORS.Orange2FFA24B
+            }
           />}
           <Header />
           <View style={styles.ContainerMain}>
@@ -233,52 +235,20 @@ const Checkout: React.FC = () => {
               onPress={getSelectedPaymentMethod}
             />
             {visible && (
-              <ModalPoup visible={visible} width={'80%'} height={'32%'}  >
-                <View>
-                  <View style={styles.modalContainer}>
-                    {buttonClicked ? (
-                      loading ? (
-                        <Loading />
-                      ) : (
-                        <View style={styles.Align}>
-                          {pix && <CPBoard copy={copy} qrcode={qrCode} visible={() => setVisible(false)} />}
-                          {message && <Text style={styles.VerifyPursche}>{message}</Text>}
-                          {buttonOrder && <SucessOrder onVisible={() => setVisible(false)}/>}
-                          {buttonBack && <ErrorOrder onVisible={() => setVisible(false)} />}
-                        </View>
-                      )
-                    ) : (
-                      <View style={styles.ContainerModal}>
-                        <View style={styles.bGetOut}>
-                          <TouchableOpacity onPress={() => setVisible(false)}>
-                            <FontAwesome name='times-circle' size={30} color={theme.COLORS.OrangeF6752C} />
-                          </TouchableOpacity>
-                        </View>
-                        <View style={styles.Modal}>
-                          <Text style={{ fontFamily: theme.FONTS.Raleway700, fontSize: 16 }}>
-                            Seu saldo de créditos é: {formatBalance}
-                          </Text>
-                          <Text style={{ fontFamily: theme.FONTS.Raleway700, fontSize: 18, width: '40%', textAlign: 'center' }}>
-                            {AppTexts.Confirm_Buy}
-                          </Text>
-                        </View>
-                        <View style={styles.bConfirm}>
-                          <Button
-                            text={'Cofirmar'}
-                            fontFamily={theme.FONTS.Popp700}
-                            background={theme.COLORS.OrangeFF6C44}
-                            width={100}
-                            height={40}
-                            borderRadius={48}
-                            fontSize={14}
-                            onPress={confirmOrder}
-                          />
-                        </View>
-                      </View>
-                    )}
-                  </View>
-                </View>
-              </ModalPoup>
+              <CheckoutModal
+                visible={visible}
+                onClose={() => setVisible(false)}
+                onConfirmOrder={confirmOrder}
+                loading={loading}
+                buttonClicked={buttonClicked}
+                pix={pix}
+                copy={copy}
+                qrCode={qrCode}
+                message={message}
+                buttonOrder={buttonOrder}
+                buttonBack={buttonBack}
+                formatBalance={formatBalance}
+              />
             )}
           </View>
         </View>

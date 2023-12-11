@@ -50,7 +50,9 @@ const Product: React.FC = () => {
     const [dataProduct, setDataProduct] = useState<CardProductProps | null>(null)
     const [typeProducts, setTypeProducts] = useState<CardProductProps[]>([])
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
-    const [toast, setToast] = useState<boolean>(false);
+    const [toast, setToast] = useState<boolean>(false)
+    const [toastFavoriteRed, setToastFavoriteRed] = useState<boolean>(false)
+    const [toastFavoriteGray, setToastFavoriteGray] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
     const getUrl = async (path: string) => {
@@ -133,6 +135,19 @@ const Product: React.FC = () => {
         }, 1520);
     };
 
+    const showToastFavoriteRed = () => {
+        setToastFavoriteRed(true);
+        setTimeout(() => {
+            setToastFavoriteRed(false);
+        }, 800);
+    };
+
+    const showToastFavoriteGray = () => {
+        setToastFavoriteGray(true);
+        setTimeout(() => {
+            setToastFavoriteGray(false);
+        }, 800);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -159,6 +174,26 @@ const Product: React.FC = () => {
                 style='dark'
                 backgroundColor='transparent'
             />
+            {toastFavoriteRed && (
+                <Toast
+                    visible={toastFavoriteRed}
+                    src={require('../../assets/lottie/Animation1701897361704.json')}
+                    text={AppTexts.Add_Fav}
+                    width={23}
+                    height={23}
+                    backgroundColor={theme.COLORS.Green23A26D}
+                />
+            )}
+            {toastFavoriteGray && (
+                <Toast
+                    visible={toastFavoriteGray}
+                    src={require('../../assets/lottie/Animation1701897361704.json')}
+                    text={AppTexts.Removed_Fav}
+                    width={23}
+                    height={23}
+                    backgroundColor={theme.COLORS.RedF15050}
+                />
+            )}
             {toast && (
                 <Toast
                     visible={toast}
@@ -166,6 +201,7 @@ const Product: React.FC = () => {
                     text={AppTexts.Order_Add_Cart}
                     width={23}
                     height={23}
+                    backgroundColor={theme.COLORS.Orange2FFA24B}
                 />
             )}
             {isLoading ? (
@@ -183,6 +219,8 @@ const Product: React.FC = () => {
                                         <ButtonFavoriteProduct
                                             idProduct={id}
                                             favorite={isFavorite}
+                                            setToastFavoriteRed={showToastFavoriteRed}
+                                            setToastFavoriteGray={showToastFavoriteGray}
                                         />
                                     </View>
                                     <View style={styles.ContainerMain}>

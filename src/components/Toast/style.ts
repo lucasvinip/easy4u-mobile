@@ -12,13 +12,11 @@ const styles = StyleSheet.create({
     modalContainer: {
         width: '100%',
         height: 'auto',
-        backgroundColor: theme.COLORS.Orange2FFA24B,
         padding: 10,
         borderRadius: 15,
         elevation: 15,
     },
     modalContent: {
-        backgroundColor: theme.COLORS.Orange2FFA24B,
         alignItems: 'center',
         justifyContent: 'center',
         height: 'auto',

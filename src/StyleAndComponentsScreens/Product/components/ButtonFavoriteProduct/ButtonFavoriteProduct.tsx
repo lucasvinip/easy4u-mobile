@@ -11,9 +11,12 @@ import { performApi } from '../../../../utils/api';
 interface ButtonFavoriteProductProps {
     idProduct: any,
     favorite: boolean,
+    setToastFavoriteRed: () => void
+    setToastFavoriteGray: () => void
+
 }
 
-const ButtonFavoriteProduct: React.FC<ButtonFavoriteProductProps> = ({idProduct, favorite}) => {
+const ButtonFavoriteProduct: React.FC<ButtonFavoriteProductProps> = ({idProduct, favorite, setToastFavoriteRed, setToastFavoriteGray}) => {
     const [isFavorite, setIsFavorite] = useState<boolean>();
 
     const postUrl = async (path: string) => {
@@ -50,9 +53,11 @@ const ButtonFavoriteProduct: React.FC<ButtonFavoriteProductProps> = ({idProduct,
         if (!isFavorite) {
             const apiDataPostFavoriteItem = await postUrl(`favorites/${id}`);
             console.log(apiDataPostFavoriteItem);
+            setToastFavoriteRed()
         } else {
             const apiDataDeleteFavoriteItem = await deleteUrl(`favorites/${id}`);
             console.log(apiDataDeleteFavoriteItem);
+            setToastFavoriteGray()
         }
 
         setIsFavorite(!isFavorite);

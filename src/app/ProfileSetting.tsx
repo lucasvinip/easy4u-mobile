@@ -12,7 +12,6 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import theme from '../styles/theme';
-import TouchTextAlter from '../StyleAndComponentsScreens/ProfileSetting/components/TouchTextAlter/TouchTextAlter';
 import InputText from '../components/CustomTextInput/CustomTextInput';
 import { AppTexts } from '../assets/strings';
 import Button from '../components/Button/Button';
@@ -20,7 +19,6 @@ import { styles } from '../StyleAndComponentsScreens/ProfileSetting/style';
 import UseFonts from '../hooks/useFonts';
 import Camera from '../StyleAndComponentsScreens/ProfileSetting/components/Camera/Camera';
 import { performApi } from '../utils/api';
-import { useToken } from '../hooks/useToken';
 import { storage } from '../../firebaseConfig';
 import { useDispatch } from 'react-redux';
 import { setUploadURL } from '../redux/features/userSettings/userSettingsSlice';
@@ -125,6 +123,7 @@ const ProfileSetting: React.FC = () => {
         const foto = await AsyncStorage.getItem("savedImage")
         const tokenUser = await token()
         const updateUserImage = await performApi.updateData("users", tokenUser, { photo: foto })
+        
         return updateUserImage
     }
 
@@ -176,12 +175,9 @@ const ProfileSetting: React.FC = () => {
                             paddingTop={30}
                             data={userSetting?.email}
                         />
-                        <View style={{ alignItems: 'flex-end' }}>
-                            <TouchTextAlter />
-                        </View>
                         <View style={styles.ContainerButton}>
                             <Button
-                                text={AppTexts.Change_Settings}
+                                text={AppTexts.Confirme_Settings}
                                 fontFamily={theme.FONTS.Popp700}
                                 background={theme.COLORS.OrangeFF6C44}
                                 width={280}

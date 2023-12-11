@@ -57,8 +57,6 @@ const Orders: React.FC = () => {
                 const [y, m, d] = getDate.split("-");
                 const date = `${d}/${m}/${y}`;
 
-                //const hnadl
-
                 return (
                     <OrderCard
                         id={order.id}
@@ -127,7 +125,7 @@ const Orders: React.FC = () => {
                                         <SkeletonOrdersAble />
                                         <SkeletonOrdersAble />
                                         <SkeletonOrdersAble />
-                                        <SkeletonOrdersAble />
+                                        <SkeletonOrdersDisable />
                                         <SkeletonOrdersDisable />
                                         <SkeletonOrdersDisable />
                                     </View>
@@ -138,7 +136,6 @@ const Orders: React.FC = () => {
                                     ) : (
                                         <View style={{ alignItems: 'center' }}>
                                             <LottieView
-                                                autoPlay
                                                 style={{ height: '80%', alignItems: 'center' }}
                                                 source={require('../assets/lottie/Animation1701904243006.json')}
                                             />

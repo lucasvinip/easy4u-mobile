@@ -3,7 +3,8 @@ import {
     View,
     ScrollView,
     Alert,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    ActivityIndicator
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -45,9 +46,12 @@ interface SearcProductProps {
 const AllProducts: React.FC = () => {
     const [refresh, setRefresh] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [loading, setloading] = useState<boolean>(false)
+
     const [typeProducts, setTypeProducts] = useState<string[]>([])
     const [products, setProducts] = useState<ProductProps[]>([])
     const [text, setText] = useState<string>("");
+
 
     const getUrl = async (path: string) => {
         const token = await AsyncStorage.getItem("token")
@@ -64,7 +68,11 @@ const AllProducts: React.FC = () => {
     };
 
     const MAX_DESCRIPTION_LENGTH = 40
+    const MAX_NAME_LENGTH = 16
+
     const handleLimitedDescription = (description: string) => description.slice(0, MAX_DESCRIPTION_LENGTH);
+    const handleLimitedName = (name: string) => name.slice(0, MAX_NAME_LENGTH);
+
     const handleOneCardForName = (apiData: ProductProps[]) => {
         const seenNames = new Set<string>();
         const typeProduct = apiData.reduce((accumulator: ProductProps[], {
@@ -82,10 +90,11 @@ const AllProducts: React.FC = () => {
                 seenNames.add(formattedName);
 
                 const descLimited = handleLimitedDescription(description)
+                const nameLimeted = handleLimitedName(name)
                 const formattedPrice: any = formatNumberToTypeBr(price);
                 const newItem: ProductProps = {
                     description: descLimited,
-                    name: name,
+                    name: nameLimeted,
                     id: id,
                     photo: photo,
                     preparationTime: preparationTime,
@@ -101,7 +110,6 @@ const AllProducts: React.FC = () => {
         }, []);
         return typeProduct
     }
-
     const handleFilterProductsTypes = async () => {
         const apiDataProductsType = await getUrl("products/types")
 
@@ -133,6 +141,8 @@ const AllProducts: React.FC = () => {
         }
     };
     const handleSearchProduct = async () => {
+        setloading(true);
+
         try {
             const apiDataFilterProductsByTypeAndName = await getUrl('products?disponibility=true');
             if (!apiDataFilterProductsByTypeAndName) {
@@ -151,20 +161,24 @@ const AllProducts: React.FC = () => {
 
             const productsWithLimitedDescription = handleOneCardForName(filteredProducts)
             const finalProducts = productsWithLimitedDescription.filter((product: ProductProps) => product !== null);
-
+            setloading(false);
             setProducts(finalProducts.slice().reverse());
+
         } catch (error) {
             alert('Error in handleSearchProduct: ' + error);
         }
     };
 
     const handleClickFilterProductType = async (productType: any) => {
+        setloading(true);
+
         const apiDataFilterProductsByType = await getUrl(`products?productType=${productType}&disponibility=true`)
         if (!apiDataFilterProductsByType)
             alert("Erro!")
         else {
             try {
                 const typeProduct = handleOneCardForName(apiDataFilterProductsByType)
+                setloading(false);
                 setProducts(typeProduct.slice().reverse())
             } catch (error) {
                 alert("typeProduct not get :" + error)
@@ -254,6 +268,11 @@ const AllProducts: React.FC = () => {
                                 )
                             }}
                         />
+                        {loading && (
+                            <View style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', position: 'absolute' }}>
+                                <ActivityIndicator size={60} color={theme.COLORS.OrangeF6752C} />
+                            </View>
+                        )}
                     </View>
                 </View>
             </SafeAreaView >

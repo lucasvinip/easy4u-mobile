@@ -17,6 +17,7 @@ interface TopModalProps {
     text: string,
     width: DimensionValue;
     height: DimensionValue;
+    backgroundColor: string
 }
 
 const TopModal: React.FC<TopModalProps> = ({
@@ -24,7 +25,8 @@ const TopModal: React.FC<TopModalProps> = ({
     src,
     text,
     width,
-    height
+    height,
+    backgroundColor
 }) => {
     const [showModal, setShowModal] = useState<boolean>(visible);
     const translateY = useRef(new Animated.Value(0)).current;
@@ -52,8 +54,8 @@ const TopModal: React.FC<TopModalProps> = ({
     return (
         <Modal transparent visible={showModal}>
             <View style={styles.modalBackground}>
-                <Animated.View style={[styles.modalContainer, { transform: [{ translateY }] }]}>
-                    <View style={styles.modalContent}>
+                <Animated.View style={[styles.modalContainer, { transform: [{ translateY }] }, {backgroundColor: backgroundColor}]}>
+                    <View style={[styles.modalContent, {backgroundColor: backgroundColor}]}>
                         <View style={styles.iconContainer}>
                             <LottieView
                                 autoPlay

@@ -49,7 +49,7 @@ const FavoriteCard: React.FC<ItemsFavoriteProps> = ({
                                 <MaterialCommunityIcons
                                     name={"delete-empty"}
                                     style={styles.Delete}
-                                    size={21}
+                                    size={23}
                                     color={theme.COLORS.BlackRgba3419081} />
                             </TouchableOpacity>
                         </View>

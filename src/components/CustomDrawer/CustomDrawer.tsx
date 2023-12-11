@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setBalance } from '../../redux/features/userSettings/userSettingsSlice';
 import { formatNumberToTypeBr } from '../../utils/formatNumber';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type userData = {
   name: string;
@@ -35,19 +36,21 @@ const CustomDrawer: React.FC = () => {
 
   const uploadURL = useSelector((state: RootState) => state.user.uploadURL)
   const photo = uploadURL ? { uri: uploadURL } : defaultPhoto;
-  const token = useToken();
-
+  const token = async () => {
+    return await AsyncStorage.getItem('token');
+  }
   const balance = useSelector((state: RootState) => state.user.userBalance)
   const formatBalance = formatNumberToTypeBr(balance)
 
   useEffect(() => {
     const getUserData = async () => {
-      const data = await performApi.getData('auth/me', token);
+      const newToken = await token()
+      const data = await performApi.getData('auth/me', newToken);
       dispatch(setBalance(data.balance))
       setUser(data);
     };
     getUserData();
-  }, [token]);
+  }, [token()]);
 
   return (
     <View style={styles.Drawer}>

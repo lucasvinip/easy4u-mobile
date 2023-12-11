@@ -3,11 +3,12 @@ import {
     Image,
     View,
     Text,
-    ScrollView,
     ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FontAwesome } from '@expo/vector-icons';
+
 
 import { AppTexts } from '../assets/strings';
 import { styles } from '../StyleAndComponentsScreens/Checkout/style';
@@ -21,6 +22,8 @@ import { useDispatch } from 'react-redux';
 import { orderAgain } from '../redux/features/shoppingCart/shoppingCartSlice';
 import { formatNumberToTypeBr } from '../utils/formatNumber';
 import { FlatList } from 'react-native-gesture-handler';
+import Modal from '../StyleAndComponentsScreens/FullOrder/components/Modal/Modal';
+import { useRouter } from 'expo-router';
 
 type Details = {
     id: number
@@ -29,6 +32,7 @@ type Details = {
     description: string;
     price: number;
     productType: string;
+    preparationTime: number | null
 }
 
 type Product = {
@@ -49,34 +53,16 @@ const FullOrder: React.FC = () => {
     const [idOrder, setIdOrder] = useState<string | null>("");
     const [token, setToken] = useState<string | null>("");
     const [order, setOrder] = useState<ProductByCartResponse>();
-    const [isModalVisible, setModalVisible] = useState(false);
+    const [isModalVisible, setModalVisible] = useState<boolean>(false);
+    const [modalContent, setModalContent] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
+    const dispatch = useDispatch()
+    const router = useRouter()
 
     const priceNew = order?.total ?? 0
     const formattedTotal = formatNumberToTypeBr(priceNew)
 
-    const dispatch = useDispatch()
-
-    const handleOrderAgain = () => {
-        const items = order?.products;
-
-        if (items && items.length > 0) {
-            const newItem: any = items.map((product: Product) => {
-                const priceNew = product.product.price ?? 0
-                const formattedTotal = formatNumberToTypeBr(priceNew)
-                const item = {
-                    id: product.product.id,
-                    name: product.product.name,
-                    photo: product.product.photo,
-                    price: formattedTotal,
-                    quantity: product.qntd,
-                }
-                return item;
-            });
-            dispatch(orderAgain(newItem))
-        }
-    };
 
     const getIdFromLocalStorage = async () => {
         const orderId = await AsyncStorage.getItem("orderId");
@@ -93,6 +79,38 @@ const FullOrder: React.FC = () => {
         } catch (error) {
             console.error("Error fetching product information:", error);
         }
+    }
+
+    const handleOrderAgain = () => {
+        const items = order?.products;
+
+        if (items && items.length > 0) {
+            const newItem: any = items.map((product: Product) => {
+                const priceNew = product.product.price ?? 0
+                const formattedTotal = formatNumberToTypeBr(priceNew)
+                const item = {
+                    id: product.product.id,
+                    name: product.product.name,
+                    photo: product.product.photo,
+                    price: formattedTotal,
+                    quantity: product.qntd,
+                    preparationTime: product.product.preparationTime
+                }
+                return item;
+            });
+            setModalContent(true)
+            dispatch(orderAgain(newItem))
+        }
+    }
+
+    const handleGoCart = () =>{
+        setModalContent(false)
+        router.replace('/ShoppingCart')
+    }
+
+    const handleKeepBuying = () =>{
+        setModalContent(false)
+        router.replace('/(drawer)/AllProducts')
     }
 
     useEffect(() => {
@@ -189,13 +207,21 @@ const FullOrder: React.FC = () => {
                         </View>
                         {isModalVisible && (
                             <ModalPoup visible={isModalVisible} width={'75%'} height={'40%'}>
-                                <View style={{justifyContent: 'center', height: '100%'}}>
+                                <View style={{ justifyContent: 'center', height: '100%' }}>
                                     <CustomQRCode
                                         value={order?.id}
                                         onClose={() => setModalVisible(false)}
                                     />
                                 </View>
                             </ModalPoup>
+                        )}
+                        {modalContent && (
+                            <Modal
+                                modalContent={modalContent}
+                                setModalContent={() => setModalContent(false)}
+                                onPressGoCart={handleGoCart}
+                                onPressBuying={handleKeepBuying}
+                            />
                         )}
                     </View>
                 }

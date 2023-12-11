@@ -54,7 +54,6 @@ export const cartSlice = createSlice({
 
         state.total = state.items.reduce((total, item) => {
           const price = item.price || 0
-          console.log("aaa ß" + item.price);
           
           const upadetePrice = price.toString().replace(/[^\d.,]/g, '').replace(',', '.');
           return total + Number(upadetePrice) * item.quantity;

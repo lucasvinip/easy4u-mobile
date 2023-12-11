@@ -26,6 +26,8 @@ import theme from "../styles/theme";
 import UseFonts from "../hooks/useFonts";
 import { styles } from "../StyleAndComponentsScreens/FavoriteItens/style";
 import SkeletonFavorites from "../components/Skeleton/SkeletonFavorites/SkeletonFavorites";
+import Toast from "../components/Toast/Toast";
+import DeleteFavoriteModal from "../StyleAndComponentsScreens/FavoriteItens/components/Modal/Modal";
 
 interface ProductsProps {
   product: FavoritesProps;
@@ -44,7 +46,7 @@ const FavoriteItems: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [isSkeleton, setSkeleton] = useState<boolean>(true);
   const [id, setId] = useState<number>();
-  const [modalWhithout, setModalWhithout] = useState<boolean>(false);
+  const [toast, seToast] = useState<boolean>(false);
 
   const token = async () => {
     return await AsyncStorage.getItem('token');
@@ -93,6 +95,10 @@ const FavoriteItems: React.FC = () => {
         (item: ProductsProps) => item.product.id !== productId
       );
       setFavorites(updatedFavorites);
+      seToast(true)
+      setTimeout(() => {
+        seToast(false);
+      }, 1500);
     } catch (erro) {
       console.log(erro);
     }
@@ -128,54 +134,24 @@ const FavoriteItems: React.FC = () => {
         translucent
         backgroundColor={theme.COLORS.GrayRgba255249243041}
       />
+      {toast && (
+        <Toast
+          visible={toast}
+          src={require('../assets/lottie/Animation1701897361704.json')}
+          text={AppTexts.Removed_Fav}
+          width={23}
+          height={23}
+          backgroundColor={theme.COLORS.Green23A26D}
+        />
+      )}
       <SafeAreaView style={{ backgroundColor: theme.COLORS.Whiteffffff }}>
         <View style={styles.Screen}>
-          <ModalPoup visible={visible} width={'75%'} height={'40%'}>
-            <View style={{ alignItems: "center", justifyContent: 'center' }}>
-              <View style={styles.bGetOut}>
-                <TouchableOpacity onPress={() => setVisible(false)}>
-                  <FontAwesome name='times-circle' size={30} color={theme.COLORS.OrangeF6752C} />
-                </TouchableOpacity>
-              </View>
-              <View style={{ alignItems: "center" }}>
-                <LottieView
-                  autoPlay
-                  style={{ height: '58%', alignItems: 'center', justifyContent: 'center' }}
-                  source={require('../assets/lottie/Animation1701906420429.json')}
-                />
-                <Text style={{ fontSize: 15, textAlign: "center", paddingBottom: 8, fontFamily: theme.FONTS.Raleway700 }}>
-                  {AppTexts.Exclude_Favorite}
-                </Text>
-                <View style={{ width: '80%', flexDirection: "row", }}>
-                  <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: '100%' }}>
-                    <Button
-                      text="Sim"
-                      background={theme.COLORS.GrayC4C4C4}
-                      width={58.15}
-                      height={35.15}
-                      borderRadius={5}
-                      fontSize={17}
-                      fontFamily={theme.FONTS.Popp600}
-                      onPress={() => {
-                        setVisible(false);
-                        deleteFavoriteItem(id);
-                      }}
-                    />
-                    <Button
-                      text="Não"
-                      background={theme.COLORS.OrangeF6752C}
-                      width={58.15}
-                      height={35.15}
-                      borderRadius={5}
-                      fontSize={17}
-                      fontFamily={theme.FONTS.Popp600}
-                      onPress={() => setVisible(false)}
-                    />
-                  </View>
-                </View>
-              </View>
-            </View>
-          </ModalPoup>
+          <DeleteFavoriteModal
+            visible={visible}
+            setVisible={setVisible}
+            deleteFavoriteItem={deleteFavoriteItem}
+            id={id}
+          />
           <View style={styles.Container}>
             <View style={styles.ContainerItens}>
               <ScrollView
@@ -202,9 +178,9 @@ const FavoriteItems: React.FC = () => {
                     : (
                       <View style={{ alignItems: 'center' }}>
                         <LottieView
-                          autoPlay
                           style={{ height: '80%', alignItems: 'center' }}
                           source={require('../assets/lottie/Animation1701904243006.json')}
+                          loop
                         />
                         <Text style={{ fontSize: 15, textAlign: 'center', fontFamily: theme.FONTS.Raleway700 }}>
                           {AppTexts.Oops_Whithout_Fav}

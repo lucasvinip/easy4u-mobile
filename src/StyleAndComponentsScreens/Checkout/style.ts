@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   },
   bGetOut: {
     alignSelf: 'flex-end',
-    marginTop: 10,
+    marginTop: 15,
     width: '10%'
   },
   ContainerModal: {

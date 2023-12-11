@@ -2,7 +2,7 @@ import { Skeleton } from '@rneui/themed';
 import { StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { styles, shadowStyle} from './style'
+import { styles, shadowStyle } from './style'
 import React from 'react';
 
 const SkeletonProducts: React.FC = () => {
