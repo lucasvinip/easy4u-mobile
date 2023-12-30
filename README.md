@@ -3,14 +3,13 @@
 </div>
 
 <div align="center">
-  <img src="/caminho/para/imagem1.jpg" alt="Imagem 1" width="200"/>
-  <img src="/caminho/para/imagem2.jpg" alt="Imagem 2" width="200"/>
-  <img src="/caminho/para/imagem3.jpg" alt="Imagem 3" width="200"/>
-  <img src="/caminho/para/imagem4.jpg" alt="Imagem 4" width="200"/>
-  <img src="/caminho/para/imagem5.jpg" alt="Imagem 5" width="200"/>
-  <img src="/caminho/para/imagem6.jpg" alt="Imagem 6" width="200"/>
-  <img src="/caminho/para/imagem7.jpg" alt="Imagem 7" width="200"/>
-  <img src="/caminho/para/imagem7.jpg" alt="Imagem 7" width="200"/>
+  <img src="/src/assets/img/allproducts1.jpeg" alt="All Produts Screen 1" width="200"/>
+  <img src="/src/assets/img/product.jpeg" alt="Product 1" width="200"/>
+  <img src="/src/assets/img/allproducts2.jpeg" alt="All Produts Screen 2" width="200"/>
+  <img src="/src/assets/img/shoppingcart.jpeg" alt="Shopping Cart" width="200"/>
+  <img src="/src/assets/img/checkout.jpeg" alt="Chechout Screen 1" width="200"/>
+  <img src="/src/assets/img/orders.jpeg" alt="Orders Screen 1" width="200"/>
+  <img src="/src/assets/img/qrcode.jpeg" alt="QrCode Screen" width="200"/>
 </div>
 
 
