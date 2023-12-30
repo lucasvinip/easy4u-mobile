@@ -7,7 +7,11 @@
   <img src="/caminho/para/imagem2.jpg" alt="Imagem 2" width="200"/>
   <img src="/caminho/para/imagem3.jpg" alt="Imagem 3" width="200"/>
   <img src="/caminho/para/imagem4.jpg" alt="Imagem 4" width="200"/>
+  <img src="/caminho/para/imagem5.jpg" alt="Imagem 5" width="200"/>
+  <img src="/caminho/para/imagem6.jpg" alt="Imagem 6" width="200"/>
+  <img src="/caminho/para/imagem7.jpg" alt="Imagem 7" width="200"/>
 </div>
+
 
 
 <div>
@@ -29,14 +33,30 @@
     <li>React-Native</li>
     <li>TypeScript</li>
     <li>Redux Toolkit</li>
+    <li>Firebase</li>
     <li>JavaScript</li>
     <li>GitHub</li>
   </ul>
 </div>
 
 <div>
-  <h2>Uso de Redux Toolkit</h2>
-  <p>O Redux Toolkit desempenhou um papel fundamental neste projeto ao gerenciar o estado global da aplicação. Uma implementação chave foi o uso do Redux para armazenar a quantidade de cada produto no carrinho de compras. Essa abordagem global facilitou a manipulação dos dados em várias telas, proporcionando consistência e eficiência no controle das informações relacionadas aos produtos selecionados pelo usuário.</p>
+  <h2>Uso de Redux Toolkit e Firebase</h2>
+  <p>O Redux Toolkit e o Firebase desempenharam papéis fundamentais neste projeto, proporcionando uma infraestrutura robusta para o gerenciamento de dados e armazenamento de recursos externos.</p>
+  
+  <p>Com o Redux Toolkit:</p>
+  <ul>
+    <li>Gerenciamento do estado global da aplicação.</li>
+    <li>Armazenamento da quantidade de cada produto no carrinho de compras.</li>
+    <li>Facilitação da manipulação consistente de dados em várias telas.</li>
+    <li>Controle eficiente das informações relacionadas aos produtos selecionados pelo usuário.</li>
+    <li>Uso em várias particularidades do projeto, sendo a gestão do carrinho de compras a mais importante e desafiadora.</li>
+  </ul>
+  
+  <p>Com o Firebase:</p>
+  <ul>
+    <li>Armazenamento de fotos de usuários na nuvem.</li>
+    <li>Envio para o banco de dados da aplicação após o upload bem-sucedido.</li>
+  </ul>
 </div>
 
 
