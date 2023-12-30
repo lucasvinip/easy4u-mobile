@@ -8,7 +8,7 @@
   <img src="/caminho/para/imagem3.jpg" alt="Imagem 3" width="200"/>
   <img src="/caminho/para/imagem4.jpg" alt="Imagem 4" width="200"/>
 </div>
->
+
 
 <div>
   <p>Este projeto é o resultado do trabalho dedicado de um grupo de estudantes do SENAI Jandira que se propôs a desenvolver um sistema de e-commerce para a cantina da instituição como parte de seu Trabalho de Conclusão de Curso (TCC). A iniciativa foi impulsionada por uma solicitação da proprietária da cantina, que buscava uma solução moderna e eficiente para gerenciar seus produtos e transações.</p>
