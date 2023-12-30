@@ -3,38 +3,24 @@
 </div>
 
 <div align="center">
-  <div>
-    <img src="/caminho/para/backend.png" alt="Backend">
-  </div>
-
-  <div>
-    <img src="/caminho/para/frontend.png" alt="Frontend">
-  </div>
+  <img src="/caminho/para/imagem1.jpg" alt="Imagem 1" width="200"/>
+  <img src="/caminho/para/imagem2.jpg" alt="Imagem 2" width="200"/>
+  <img src="/caminho/para/imagem3.jpg" alt="Imagem 3" width="200"/>
+  <img src="/caminho/para/imagem4.jpg" alt="Imagem 4" width="200"/>
 </div>
+>
 
 <div>
-  <p>Este projeto é o resultado do trabalho dedicado de um grupo de estudantes do SENAI que se propôs a desenvolver um sistema de e-commerce para a cantina da instituição como parte de seu Trabalho de Conclusão de Curso (TCC). A iniciativa foi impulsionada por uma solicitação da proprietária da cantina, que buscava uma solução moderna e eficiente para gerenciar seus produtos e transações.</p>
+  <p>Este projeto é o resultado do trabalho dedicado de um grupo de estudantes do SENAI Jandira que se propôs a desenvolver um sistema de e-commerce para a cantina da instituição como parte de seu Trabalho de Conclusão de Curso (TCC). A iniciativa foi impulsionada por uma solicitação da proprietária da cantina, que buscava uma solução moderna e eficiente para gerenciar seus produtos e transações.</p>
 </div>
 
 <div>
   <h2>Objetivo do Projeto</h2>
-  <p>O objetivo principal deste projeto é criar uma plataforma de e-commerce personalizada para a Cantina do SENAI, proporcionando uma experiência conveniente e segura para os clientes. A aplicação visa facilitar a visualização dos produtos, oferecer opções de pagamento via cartão de crédito da cantina e Pix, além de agilizar o processo de retirada dos pedidos por meio de QR Code.</p>
-</div>
-
-<div>
-  <h2>Funcionalidades Principais</h2>
-  <h3>Catálogo de Produtos</h3>
-  <ul>
-    <li>Lista completa dos produtos oferecidos pela Cantina SENAI.</li>
-  </ul>
-  <h3>Pagamento Seguro</h3>
-  <ul>
-    <li>Opções de pagamento via crédito da cantina e Pix para atender às preferências dos clientes.</li>
-  </ul>
-  <h3>Retirada por QR Code</h3>
-  <ul>
-    <li>Sistema de geração de QR Code para identificação e retirada dos pedidos.</li>
-  </ul>
+  <p>O principal objetivo deste projeto é desenvolver uma plataforma de e-commerce personalizada para atender às necessidades da Cantina do SENAI Jandira. A aplicação tem como meta proporcionar uma experiência conveniente e segura para os clientes, com foco em:</p>
+  
+  - Facilitar a visualização dos produtos oferecidos pela Cantina.
+  - Oferecer opções de pagamento através de créditos colocados na cantina e Pix.
+  - Agilizar o processo de retirada dos pedidos por meio de QR Code, proporcionando maior praticidade e eficiência.
 </div>
 
 <div>
@@ -50,13 +36,19 @@
 
 <div>
   <h2>Uso de Redux Toolkit</h2>
-  <p>aaaaaaaaaa</p>
+  <p>O Redux Toolkit desempenhou um papel fundamental neste projeto ao gerenciar o estado global da aplicação. Uma implementação chave foi o uso do Redux para armazenar a quantidade de cada produto no carrinho de compras. Essa abordagem global facilitou a manipulação dos dados em várias telas, proporcionando consistência e eficiência no controle das informações relacionadas aos produtos selecionados pelo usuário.</p>
 </div>
+
 
 <div>
   <h2>Outros Projetos Importantes</h2>
-  | <a></a> | 
+  <p>Além do projeto mobile, outros projetos são fundamentais para o funcionamento completo do sistema. Conheça-os:</p>
+  
+  - [Backend - ecommerce-easy4u](https://github.com/Ma7hs/ecommerce-easy4u): Desenvolvido para gerenciar a lógica de negócios, banco de dados e interações com o frontend web e mobile.
+  - [Frontend - dashboard](https://github.com/akatsuki-devs/dashboard): Responsável pela interface web destinada a administradores, permitindo a realização de operações administrativas e consultas. Esta interface também interage com o aplicativo mobile, recebendo informações através de QR Codes gerados pelo mobile para processamento adicional.
 </div>
+
+
 
 |NOME                                                                                                                                                                                   |                                               GITHUB                                               |                                       FOTO                                        |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: |
