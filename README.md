@@ -10,6 +10,7 @@
   <img src="/caminho/para/imagem5.jpg" alt="Imagem 5" width="200"/>
   <img src="/caminho/para/imagem6.jpg" alt="Imagem 6" width="200"/>
   <img src="/caminho/para/imagem7.jpg" alt="Imagem 7" width="200"/>
+  <img src="/caminho/para/imagem7.jpg" alt="Imagem 7" width="200"/>
 </div>
 
 
