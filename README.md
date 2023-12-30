@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Nome do Seu Projeto</h1>
+  <h1>Easy4U</h1>
 </div>
 
 <div align="center">
@@ -55,7 +55,7 @@
 
 <div>
   <h2>Outros Projetos Importantes</h2>
-  <p>aaaaaaaaaa</p>
+  | <a></a> | 
 </div>
 
 |NOME                                                                                                                                                                                   |                                               GITHUB                                               |                                       FOTO                                        |
