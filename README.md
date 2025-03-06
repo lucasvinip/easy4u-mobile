@@ -31,6 +31,7 @@
   <h2>Tecnologias Utilizadas</h2>
   <ul>
     <li>React-Native</li>
+    <li>Expo</li>
     <li>TypeScript</li>
     <li>Redux Toolkit</li>
     <li>Firebase</li>
